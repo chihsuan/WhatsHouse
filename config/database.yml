@@ -89,8 +89,24 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+  adapter: postgresql
+  database: Whatshouse_test
+  encoding: utf8
+  host: localhost
+  pool: 5
+  username: hacker
+  password: password1
+   
 production:
-  <<: *default
-  database: Whatshouse_production
-  username: Whatshouse
-  password: <%= ENV['WHATSHOUSE_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: ddssc8n1eqsnl3
+  encoding: utf8
+  host: ec2-23-21-101-129.compute-1.amazonaws.com
+  pool: 5
+  username: iwurgjyzhlmsuj
+  password: 5L_bFoFDh_slRqrhq1l0pPmwJW
+  
+  #<<: *default
+  #database: Whatshouse_production
+  #username: Whatshouse
+  #password: <%= ENV['WHATSHOUSE_DATABASE_PASSWORD'] %>
