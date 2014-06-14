@@ -1,0 +1,127 @@
+[
+{"phone": "(06)2260151", "business_hours": "08:00-22:30", "name": "全聯福利中心", "district": "中西區", "address": "台南市中西區金華路3段69號"}
+,
+{"phone": "(06)2496056", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "仁德區", "address": "台南市仁德區中正路三段126號"}
+,
+{"phone": "(06)249-8371", "business_hours": "08:00-22:30", "name": "全聯福利中心", "district": "仁德區", "address": "台南市仁德區民安路一段402號"}
+,
+{"phone": "(06)7210507", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "佳里區", "address": "台南市佳里區中山路452.456號"}
+,
+{"phone": "(06)722-3866", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "佳里區", "address": "台南市佳里區建南街112號"}
+,
+{"phone": null, "business_hours": "24小時", "name": "頂好超市", "district": "佳里區", "address": "台南市佳里區延平路233、237號"}
+,
+{"phone": "(06)6981031", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "六甲區", "address": "台南市六甲區中山路93號"}
+,
+{"phone": "(06)283-2310", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "北區", "address": "台南市北區公園路798號1樓"}
+,
+{"phone": "(06)281-0737", "business_hours": "08:00-22:30", "name": "全聯福利中心", "district": "北區", "address": "台南市北區和緯路二段172號"}
+,
+{"phone": "(06)259-0500", "business_hours": "08:00-22:30", "name": "全聯福利中心", "district": "北區", "address": "台南市北區和緯路五段30號"}
+,
+{"phone": "(06)220-3009", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "北區", "address": "台南市北區忠義路三段11號2樓"}
+,
+{"phone": "(06)2589705", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "北區", "address": "台南市北區海安路3段747號"}
+,
+{"phone": "(06)2619698", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "南區", "address": "台南市南區永成路3段523號"}
+,
+{"phone": "(06)261-2801", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "南區", "address": "台南市南區金華路一段365號"}
+,
+{"phone": "(06)291-0826", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "南區", "address": "台南市南區金華路二段85號"}
+,
+{"phone": "(06)292-3851", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "南區", "address": "台南市南區健康路二段334號"}
+,
+{"phone": "(06)2650315", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "南區", "address": "台南市南區新建路47號"}
+,
+{"phone": null, "business_hours": "07:00~24:00", "name": "頂好超市", "district": "南區", "address": "台南市南區大同路2段164巷2號"}
+,
+{"phone": "(06)5814883", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "善化區", "address": "台南市善化區中正路419號"}
+,
+{"phone": "(06)5856080", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "善化區", "address": "台南市善化區忠孝路66號"}
+,
+{"phone": "(06)783-2399", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "學甲區", "address": "台南市學甲區中山路56號"}
+,
+{"phone": null, "business_hours": "07:00~24:00", "name": "頂好超市", "district": "學甲區", "address": "台南市學甲區中正路135號"}
+,
+{"phone": "(06)256-3017", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "安南區", "address": "台南市安南區安中路1段872號"}
+,
+{"phone": "(06)2550651", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "安南區", "address": "台南市安南區安和路1段463號"}
+,
+{"phone": "(06)355-0302", "business_hours": "08:00-22:30", "name": "全聯福利中心", "district": "安南區", "address": "台南市安南區安和路四段557號1樓"}
+,
+{"phone": "(06)2563207", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "安南區", "address": "台南市安南區海佃路3段138號"}
+,
+{"phone": null, "business_hours": "07:00~24:00", "name": "頂好超市", "district": "安南區", "address": "台南市安南區同安路235號"}
+,
+{"phone": "(06)299-5955", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "安平區", "address": "台南市安平區中華西路2段351號"}
+,
+{"phone": "(06)2930117", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "安平區", "address": "台南市安平區文平路271號"}
+,
+{"phone": "(06)2996925", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "安平區", "address": "台南市安平區華平路619號"}
+,
+{"phone": "(06)5970281", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "新化區", "address": "台南市新化區中正路540之1號"}
+,
+{"phone": "(06)5893501", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "新市區", "address": "台南市新市區中正路162號"}
+,
+{"phone": "(06)6571758", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "新營區", "address": "台南市新營區民生路172號"}
+,
+{"phone": "(06)637-4487", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "新營區", "address": "台南市新營區民治路5之1號1樓"}
+,
+{"phone": "(06)6370709", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "新營區", "address": "台南市新營區復興路150-3號1.2樓"}
+,
+{"phone": null, "business_hours": "7:00-24:00", "name": "頂好超市", "district": "新營區", "address": "台南市新營區民權路76號"}
+,
+{"phone": "(06)269-9822", "business_hours": "08:00-22:30", "name": "全聯福利中心", "district": "東區", "address": "台南市東區中華東路二段237號1樓"}
+,
+{"phone": "(06)2891296", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "東區", "address": "台南市東區仁和路77-38號"}
+,
+{"phone": "(06)238-3270", "business_hours": "08:00-23:00", "name": "全聯福利中心", "district": "東區", "address": "台南市東區東安路20號"}
+,
+{"phone": "(06)2090030", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "東區", "address": "台南市東區長榮路2段180號"}
+,
+{"phone": "(06)2697051", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "東區", "address": "台南市東區崇明路385號1、2樓"}
+,
+{"phone": "(06)335-5809", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "東區", "address": "台南市東區崇善路666號"}
+,
+{"phone": "(06)2891385", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "東區", "address": "台南市東區崇道路22.24號"}
+,
+{"phone": "(06)2606907", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "東區", "address": "台南市東區崇德路154-156號"}
+,
+{"phone": "(06)-289-4061", "business_hours": "11:00~22:00", "name": "松青超市", "district": "東區", "address": "台南市東區中華東路三段360號B1"}
+,
+{"phone": null, "business_hours": "24HR", "name": "頂好超市", "district": "東區", "address": "台南市東區長榮路一段227號"}
+,
+{"phone": null, "business_hours": "07:00-24:00", "name": "頂好超市", "district": "東區", "address": "台南市東區崇學路54號1樓"}
+,
+{"phone": null, "business_hours": "星期一至星期五11:00-22:00星期六11:00-22:30星期日10:30-22:00", "name": "頂好超市", "district": "東區", "address": "台南市東區前鋒路210號B2"}
+,
+{"phone": "(06)2301086", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "歸仁區", "address": "台南市歸仁區中山路3段2號"}
+,
+{"phone": "(06)239-1358", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "歸仁區", "address": "台南市歸仁區復興路87號"}
+,
+{"phone": "(06)303-5210", "business_hours": "08:30-23:00", "name": "全聯福利中心", "district": "永康區", "address": "台南市永康區中山南路63.65.67.69號"}
+,
+{"phone": "(06)203-0220", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "永康區", "address": "台南市永康區正強街172號"}
+,
+{"phone": "(06)2712378", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "永康區", "address": "台南市永康區永大路2段1068號"}
+,
+{"phone": "(06)203-1075", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "永康區", "address": "台南市永康區永大路三段35號"}
+,
+{"phone": "(06)205-5428", "business_hours": "08:00-22:30", "name": "全聯福利中心", "district": "永康區", "address": "台南市永康區崑山街1號"}
+,
+{"phone": "(06)202-5226", "business_hours": "08:30-22:30", "name": "全聯福利中心", "district": "永康區", "address": "台南市永康區復國一路315巷1號"}
+,
+{"phone": null, "business_hours": "24小時", "name": "頂好超市", "district": "永康區", "address": "台南市永康區中華路181號"}
+,
+{"phone": "(06)684-0717", "business_hours": "07:30-21:30", "name": "全聯福利中心", "district": "白河區", "address": "台南市白河區富民路142號"}
+,
+{"phone": "(06)796-1531", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "西港區", "address": "台南市西港區中山路352號1樓"}
+,
+{"phone": "(06)6530571", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "鹽水區", "address": "台南市鹽水區後厝70號"}
+,
+{"phone": "(06)572-2740", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "麻豆區", "address": "台南市麻豆區博愛路7號"}
+,
+{"phone": "(06)5716610", "business_hours": "08:00-22:00", "name": "全聯福利中心", "district": "麻豆區", "address": "台南市麻豆區興國路36-5號"}
+,
+{"phone": null, "business_hours": "7:00~24:00", "name": "頂好超市", "district": "麻豆區", "address": "台南市麻豆區博愛路3-1號"}
+]

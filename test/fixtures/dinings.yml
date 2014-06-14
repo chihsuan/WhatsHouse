@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  diningid: MyString
+  store_id: MyString
+  name: MyString
+  breif: MyString
+  addr: MyString
+  tel: MyString
+  time: MyString
+  lng: 1.5
+  lat: 1.5
+  code: MyString
+  changetime: MyString
+
+two:
+  diningid: MyString
+  store_id: MyString
+  name: MyString
+  breif: MyString
+  addr: MyString
+  tel: MyString
+  time: MyString
+  lng: 1.5
+  lat: 1.5
+  code: MyString
+  changetime: MyString

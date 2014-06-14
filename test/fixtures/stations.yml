@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  country: MyString
+  area: MyString
+  station: MyString
+  location: MyString
+  lat: 1.5
+  lng: 1.5
+
+two:
+  country: MyString
+  area: MyString
+  station: MyString
+  location: MyString
+  lat: 1.5
+  lng: 1.5

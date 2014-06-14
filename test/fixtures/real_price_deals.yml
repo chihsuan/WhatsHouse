@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: MyString
+  things: MyString
+  location: MyString
+  size: 1.5
+  ciy_part: MyString
+  non_city_part: MyString
+  non_city_sub: MyString
+  date: 1
+  items: MyString
+  tranf: MyString
+  height: MyString
+  tpye: MyString
+  usage: MyString
+  material: MyString
+  compele_year: 1
+  tranf_area: MyString
+  house: MyString
+  hall: MyString
+  toilet: MyString
+  part_house: MyString
+  org: MyString
+  total_price: 1
+  price_per_m: 1.5
+  car_tpye: MyString
+  car_area: MyString
+  car_price: 1
+  lat: 1.5
+  lng: 1.5
+
+two:
+  area: MyString
+  things: MyString
+  location: MyString
+  size: 1.5
+  ciy_part: MyString
+  non_city_part: MyString
+  non_city_sub: MyString
+  date: 1
+  items: MyString
+  tranf: MyString
+  height: MyString
+  tpye: MyString
+  usage: MyString
+  material: MyString
+  compele_year: 1
+  tranf_area: MyString
+  house: MyString
+  hall: MyString
+  toilet: MyString
+  part_house: MyString
+  org: MyString
+  total_price: 1
+  price_per_m: 1.5
+  car_tpye: MyString
+  car_area: MyString
+  car_price: 1
+  lat: 1.5
+  lng: 1.5

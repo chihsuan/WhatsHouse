@@ -1,0 +1,206 @@
+var map;
+var services;
+var infowindow;
+var TainanRealPrice = 
+
+[
+	{	
+		name: "東區",
+		location:  new google.maps.LatLng(22.999255, 120.215013)
+	},
+	{
+		name: "永康區",
+		location:  new google.maps.LatLng(23.021604,120.251487)
+	},
+	{
+		name: "中西區",
+		location:  new google.maps.LatLng(22.996086,120.196939)
+	},
+	{
+		name: "北區",
+		location:  new google.maps.LatLng(23.010149,120.208012)
+	},
+	{
+		name: "安南區",
+		location:  new google.maps.LatLng(23.064255,120.135101)
+	},
+	{
+		name: "新營區",
+		location:  new google.maps.LatLng(23.312937,120.313286)
+	},
+	{
+		name: "南區",
+		location:  new google.maps.LatLng(22.9595,120.187313)
+	},
+	{
+		name: "歸仁區",
+		location:  new google.maps.LatLng(22.972302,120.282387)
+	},
+	{
+		name: "仁德區",
+		location:  new google.maps.LatLng(22.972618,120.251831)
+	},
+	{
+		name: "安平區",
+		location:  new google.maps.LatLng(22.996639,120.164997)
+	},
+	{
+		name: "麻豆區",
+		location:  new google.maps.LatLng(23.189285,120.251144)
+	},
+	{
+		name: "善化區",
+		location:  new google.maps.LatLng(23.136572,120.300094)
+	},
+	{
+		name: "佳里區",
+		location:  new google.maps.LatLng(23.177923,120.17012)
+	},
+	{
+		name: "白河區",
+		location:  new google.maps.LatLng(23.340995,120.458854)
+	},
+	{
+		name: "新市區",
+		location:  new google.maps.LatLng(23.085891,120.300609)
+	},
+	{
+		name: "新化區",
+		location:  new google.maps.LatLng(23.043405,120.310196)
+	},
+	{
+		name: "七股區",
+		location:  new google.maps.LatLng(23.126468,120.103515)
+	},
+	{
+		name: "東山區",
+		location:  new google.maps.LatLng(23.290549,120.448211)
+	},
+	{
+		name: "關廟區",
+		location:  new google.maps.LatLng(22.966296,120.327705)
+	},
+	{
+		name: "官田區",
+		location:  new google.maps.LatLng(23.189285,120.332855)
+	},
+	{
+		name: "柳營區",
+		location:  new google.maps.LatLng(23.282665,120.317405)
+	},
+	{
+		name: "玉井區",
+		location:  new google.maps.LatLng(23.124219,120.460085)
+	},
+	{
+		name: "鹽水區",
+		location:  new google.maps.LatLng(23.27415,120.241134)
+	},
+	{
+		name: "學甲區",
+		location:  new google.maps.LatLng(23.263111,120.169777)
+	},
+	{
+		name: "後壁區",
+		location:  new google.maps.LatLng(23.372199,120.355858)
+	},
+	{
+		name: "六甲區",
+		location:  new google.maps.LatLng(23.232316,120.34711)
+	},
+	{	
+		name: "南化區",
+		location:  new google.maps.LatLng(23.116365,120.565231)
+	},
+	{
+		name: "安定區",
+		location:  new google.maps.LatLng(23.098681,120.216839)
+	},
+	{
+		name: "楠西區",
+		location:  new google.maps.LatLng(23.174727,120.486392)
+	},
+	{
+		name: "西港區",
+		location:  new google.maps.LatLng(23.123587,120.203387)
+	},
+	{
+		name: "將軍區",
+		location:  new google.maps.LatLng(23.199699,120.158991)
+	},
+	{
+		name: "下營區",
+		location:  new google.maps.LatLng(23.232355,120.268337)
+	},
+	{
+		name: "龍崎區",
+		location:  new google.maps.LatLng(22.961238,120.37886)
+	},
+	{
+		name: "北門區",
+		location:  new google.maps.LatLng(23.292757,120.126518)
+	},
+	{
+		name: "大內區",
+		location:  new google.maps.LatLng(23.148884,120.401863)
+	},
+	{
+		name: "左鎮區",
+		location:  new google.maps.LatLng(23.034875,120.426925)
+	},
+	{
+		name: "山上區",
+		location:  new google.maps.LatLng(23.098997,120.373024)
+	}
+];
+
+function initialize() {
+	var tmpCenter = new google.maps.LatLng(22.999255, 120.215013);
+	var zoomLevel = 12;
+
+	var mapOptions = {
+    	center: tmpCenter,
+        zoom: zoomLevel,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+	map = new google.maps.Map(document.getElementById("map_canvas"),
+    		mapOptions);
+
+	// pop up window for the marker
+	infowindow = new google.maps.InfoWindow();
+
+	var markers = [];
+	var real_price_list = gon.real_price_list
+	
+	for (var i = 0; i < real_price_list.length; i++) {
+		createMarker(real_price_list[i].lat, real_price_list[i].lng, markers);
+	}
+	//create clusterer and push the global array of markers into it.
+	var markerCluster = new MarkerClusterer(map, markers);  
+}
+
+// add a marker to the map and push it to the map.
+function createMarker(lat, lng, markers) {
+	
+	var marker = new google.maps.Marker({
+		map: map,
+		position: new google.maps.LatLng(lat, lng)
+	});
+
+	google.maps.event.addListener(marker, 'mouseover', function(){
+		infowindow.setContent(road);
+		infowindow.open(map, this);
+	});
+
+	google.maps.event.addListener(marker, 'mouseout', function(){
+		infowindow.close(map, this);
+	});
+
+	google.maps.event.addListener(marker, 'click', function(){
+	});
+
+	markers.push(marker);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
