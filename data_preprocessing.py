@@ -75,7 +75,7 @@ def insertJson( mydb, table_name, data ):
 		key_list = []
 		data_list = []
 		for key in datum:
-			if key.lower() == "address":
+			if key.lower() == "location":
 				key_list.append("lat")
 				key_list.append("lng")
 				if not datum[key]:
@@ -163,9 +163,9 @@ def converToCor(addr):
 if __name__=='__main__':
 	# database object
 	#mydb = DataDB( 'localhost', 'mydb', 'root', 'axszdc', 'utf8', "" )
-	mydb = DataDB( 'PostgreSQL' , 'localhost', 'Whatshouse_development', 'hacker', 'password1', 'utf8', "")
+	#mydb = DataDB( 'PostgreSQL' , 'localhost', 'Whatshouse_development', 'hacker', 'password1', 'utf8', "")
 	#mydb = DataDB( 'PostgreSQL' , 'ec2-54-221-227-25.compute-1.amazonaws.com', 'd2e3rl3ds8c2h6', 'rmmwtmqsnswqkd', 'YJ87ONjgkwje3O0avBKLx4Utnb', 'utf8', "5432")
-	
+	mydb = DataDB( 'PostgreSQL', 'ec2-23-21-101-129.compute-1.amazonaws.com', 'ddssc8n1eqsnl3', 'iwurgjyzhlmsuj', '5L_bFoFDh_slRqrhq1l0pPmwJW', 'utf8', '5432')
 	if len( sys.argv ) == 3:
 		input_File, data = loadData(sys.argv[1])
 		if sys.argv[1][-3:] == "csv":
