@@ -2,10 +2,15 @@
 	<layer id="layer-3">
     	<div id= "title_bar">
       		<div class="ui tiered title_bar menu">
-        		<a class="active item">Whats House?</a>
-        		<a class="active item">Sign In</a>
-				<a class="active item" href="<%= signin_path %>"> Log in</a>
-
+				<a class="active item" href="<%= root_path %>" data-no-turbolink>Whats House?</a>
+          		<% if signed_in? %>
+					<a class="active item" href="<%= current_user %>"> Profile</a>
+					<a class="active item" href="<%= edit_user_path(current_user) %>"> Settings</a>
+					<a class="active item" href="<%= signout_path %>"> Log out</a>
+          		<% else %>
+					<a class="active item" href="<%= signin_path %>"> Log in</a>
+					<a class="active item" href="<%= signup_path %>"> Sign up</a>
+				<% end %>	
       		</div>
     	</div>
   	</layer>
