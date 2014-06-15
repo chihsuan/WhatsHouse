@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+	resources :users
 	root :to => "static_pages#index"
 	get "map/index" => "map#index"
 	match '/signup',  to: 'users#new',            via: 'get'
