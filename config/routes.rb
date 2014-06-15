@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]
+	resources :rent_house, only: [:create, :destroy]
+	resources :sale_house, only: [:create, :destroy]
 	root :to => "static_pages#index"
 	get "map/index" => "map#index"
 	match '/signup',  to: 'users#new',            via: 'get'

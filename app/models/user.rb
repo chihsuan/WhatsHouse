@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  
+ 	has_many :sale_house
+ 	has_many :rent_house
   	before_save { self.email = email.downcase }
   	before_create :create_remember_token
   	validates :name, presence: true, length: { maximum: 50 }

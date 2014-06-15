@@ -43,3 +43,8 @@ gem 'gon'
 
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby'
+
+gem 'therubyracer', platforms: :ruby # or any other runtime
+gem 'less-rails'
+gem 'autoprefixer-rails'
+gem 'semantic-ui-rails'
