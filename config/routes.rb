@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	resources :sale_house, only: [:create, :destroy]
 	root :to => "static_pages#index"
 	get "map/index" => "map#index"
+	get "content" => "content#content"
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
