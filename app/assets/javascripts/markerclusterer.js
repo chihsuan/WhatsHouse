@@ -251,8 +251,10 @@ ClusterIcon.prototype.show = function () {
 	if (this.url_[4] != "s"){
 		this.url_ = "https" + this.url_.substring(4, this.url_.length );
 	}
+		console.log(this.url_);
 
     img = "<img src='" + this.url_ + "' style='position: absolute; top: " + spriteV + "px; left: " + spriteH + "px; ";
+    
     if (!this.cluster_.getMarkerClusterer().enableRetinaIcons_) {
       img += "clip: rect(" + (-1 * spriteV) + "px, " + ((-1 * spriteH) + this.width_) + "px, " +
           ((-1 * spriteV) + this.height_) + "px, " + (-1 * spriteH) + "px);";
