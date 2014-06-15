@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-	root :to => "map#index"
-	#get "map/index" => "map#index"
+	root :to => "static_pages#index"
+	get "map/index" => "map#index"
  
  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
