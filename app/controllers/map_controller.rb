@@ -1,5 +1,6 @@
 # encoding: utf-8
 class MapController < ApplicationController
-	def 
-
+	def index:
+	
+	end
 end
