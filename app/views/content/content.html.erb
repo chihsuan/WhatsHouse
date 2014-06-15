@@ -15,12 +15,26 @@
   		<layer id="layer-2">
     		<div id="response">
       			<div class="ui pointing response menu">
+					<%= link_to 'ajax show',{:controller => 'events', :action => :show, :remote => true, "data-type" => :json, :id => "10"}, :id => "update_information", class: "active green item"%>
         			<a class="active red item" data-tab="Information">Information</a>
         			<a class="active blue item" data-tab="Comment">Comment</a>
       			</div>
-      			<div class="ui active tab segment" data-tab="Information"></div>
+				<div class="ui active tab segment" id="information" data-tab="Information"></div>
       			<div class="ui tab segment" data-tab="Comment"></div>
     		</div>
-  		</layer>
+			</layer>
+
 	</body>
+
+<script>
+$(function() {
+    $('#update_information').bind("ajax:success", function(event, data) {
+		var information = $('#information');
+		console.log(data);
+		information.html( data.area + "<br>" + data.location + "<br>" + data.total_price );
+    });
+});
+</script>
 </html>
+
+

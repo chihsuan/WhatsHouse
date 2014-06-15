@@ -10,6 +10,20 @@
     sample application.
   </h2>
 
+  <div id ="foobar">
+  </div>
+  <%= link_to 'ajax show', event_path('show'), :remote => true, "data-type" => :json, :id => "update_foobar" %>
+
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
+
+<script>
+$(function() {
+    $('#update_foobar').bind("ajax:success", function(event, data) {
+		var foobar = $('#foobar');
+		console.log(data);
+        foobar.html( data.area );
+    });
+});
+</script>
 
