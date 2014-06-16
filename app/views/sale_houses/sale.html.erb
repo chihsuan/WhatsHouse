@@ -43,3 +43,13 @@
 		<% end %>
 </section>
 
+  <div class="span8">
+    <% if @user.sale_houses.any? %>
+      <h3>Houses On Sale (<%= @user.sale_houses.count %>)</h3>
+      <ol class="sale_houses">
+        <%= render @sale_houses %>
+      </ol>
+      <%= will_paginate @sale_houses %>
+    <% end %>
+  </div>
+

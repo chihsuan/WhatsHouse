@@ -44,3 +44,15 @@
 			  <%= f.submit "Create house on sale"  %>
 		<% end %>
 </section>
+
+
+  <div class="span8">
+    <% if @user.rent_houses.any? %>
+      <h3>Houses For Rent (<%= @user.rent_houses.count %>)</h3>
+      <ol class="rent_houses">
+        <%= render @rent_houses %>
+      </ol>
+      <%= will_paginate @rent_houses %>
+    <% end %>
+  </div>
+

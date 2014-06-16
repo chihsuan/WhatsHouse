@@ -48,3 +48,4 @@ gem 'therubyracer', platforms: :ruby # or any other runtime
 gem 'less-rails'
 gem 'autoprefixer-rails'
 gem 'semantic-ui-rails'
+gem 'will_paginate', '3.0.4'
