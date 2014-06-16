@@ -269,19 +269,20 @@ function initialize() {
 	var real_price_list = gon.real_price_list
 	
 	for (var i = 0; i < real_price_list.length; i++) {
-		console.log( real_price_list[i].lat );
-		createMarker(real_price_list[i].lat, real_price_list[i].lng, markers);
+//		console.log( real_price_list[i].lat );
+		createMarker(real_price_list[i], markers);
 	}
 	//create clusterer and push the global array of markers into it.
 	var markerCluster = new MarkerClusterer(map, markers);  
 }
 
 // add a marker to the map and push it to the map.
-function createMarker(lat, lng, markers) {
+function createMarker(obj, markers) {
 	
 	var marker = new google.maps.Marker({
 		map: map,
-		position: new google.maps.LatLng(lat, lng)
+		position: new google.maps.LatLng(obj.lat, obj.lng),
+		id: obj.id
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(){
@@ -294,6 +295,35 @@ function createMarker(lat, lng, markers) {
 	});
 
 	google.maps.event.addListener(marker, 'click', function(){
+		jQuery.ajax({
+        	url : '/events/show',
+        	dataType : 'json',
+        	type : 'GET',
+        	data : {
+        		real_price_id : marker.id
+        	},
+        	success : function(response){
+        		// success - for now just log it
+        		console.log(response);
+
+				$('.response.menu .item')        
+						.tab('change tab', 'Information');
+				$('#information').html(
+					'"<div class="red ui ribbon label">' + "Area" + '</div>' +
+						"<p>" + response.area + "</p>" + 
+					'"<div class="green ui ribbon label">' + "Things" + '</div>' + 
+						"<p>" + response.things + "</p>" + 
+					'"<div class="blue ui ribbon label">' + "Address" + '</div>' + 
+						"<p>" + response.location + "</p>"
+				);
+        	},
+        	error : function(err){
+ 
+        		// do error checking
+        		alert("something went wrong");
+        		console.error(err);
+        	}
+        });
 	});
 
 	markers.push(marker);
