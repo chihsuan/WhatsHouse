@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
-
 	def show
-    	@data = RealPriceDeal.find(10)
+    	@data = RealPriceDeal.find(params[:real_price_id])
 		respond_to do |format|
 			format.json { render :json => @data }
 		end
