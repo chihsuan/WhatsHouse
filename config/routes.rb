@@ -2,17 +2,18 @@ Rails.application.routes.draw do
 	resources :users
 	resources :events
 	resources :sessions, only: [:new, :create, :destroy]
-	resources :rent_house, only: [:create, :destroy]
-	resources :sale_house, only: [:create, :destroy]
+	resources :rent_houses, only: [:create, :destroy]
+	resources :sale_houses, only: [:create, :destroy]
 	
 	root :to => "content#content"
 	#get "map/index" => "map#index"
 	get "content" => "content#content"
+	get "static_pages" => "static_pages#index"
+	match '/renthouse',  to: 'rent_houses#rent',            via: 'get'
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
 	match '/get_json', to: 'static_pages#get_json', via: 'get'
-	get "static_pages" => "static_pages#index"
   	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
