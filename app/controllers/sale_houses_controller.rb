@@ -15,7 +15,7 @@ class SaleHousesController < ApplicationController
     	@sale_house = current_user.sale_houses.build(saleHouses_params)
     	if @sale_house.save
      	 	flash[:success] = "SaleHouse created!"
-      		redirect_to root_url
+      		redirect_to salehouse_path
     	else
       		render '/'
     	end
@@ -23,7 +23,7 @@ class SaleHousesController < ApplicationController
 
   	def destroy
  		@sale_house.destroy
-  		redirect_to root_url
+  		redirect_to salehouse_path
   	end
 
   private
