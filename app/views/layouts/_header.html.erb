@@ -4,6 +4,8 @@
       		<div class="ui tiered title_bar menu">
 				<%= link_to "Whats House", root_path, class:"active item", 'data-no-turbolink' => true %>
           		<% if signed_in? %>
+                	<%= link_to "Sale house", salehouse_path, class:"active item"%>
+                	<%= link_to "Rent house", renthouse_path, class:"active item"%>
                 	<%= link_to "Profile", current_user, class:"active item"%>
                 	<%= link_to "Settings", edit_user_path(current_user), class:"active item"%>
 					<%= link_to "Sign out", signout_path, method: "delete" , class:"active item" %>

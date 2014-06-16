@@ -15,6 +15,11 @@
   <%= link_to 'ajax show', event_path('show'), :remote => true, "data-type" => :json, :id => "update_foobar" %>
 
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+	<% if signed_in? %>
+	 <section>
+	         <%= render 'shared/rent_house_form' %>
+			 </section>
+	<% end %>
 </div>
 
 <script>
