@@ -99,12 +99,12 @@ test:
    
 production:
   adapter: postgresql
-  database: ddssc8n1eqsnl3
+  database: 
   encoding: utf8
   host: ec2-23-21-101-129.compute-1.amazonaws.com
   pool: 5
-  username: iwurgjyzhlmsuj
-  password: 5L_bFoFDh_slRqrhq1l0pPmwJW
+  username: 
+  password: 
   
   #<<: *default
   #database: Whatshouse_production
