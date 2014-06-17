@@ -1,20 +1,30 @@
 <% provide(:title, "Sign in") %>
 
-<h1>Sign in</h1>
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(:session, url: sessions_path) do |f| %>
-
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-    <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+<div class="ui form segment">
+  <%= form_for(:session, url: sessions_path) do |f| %>
+  <div class="field">
+    <%= f.label :email%> 
+	<div class="ui left labeled icon input">
+      <%= f.text_field :email, name:"email"%>
+      <i class="mail icon"></i>
+      <div class="ui corner label">
+      <i class="icon asterisk"></i>
+      </div>
+	</div>
   </div>
-
+  <div class="field">
+    <%= f.label :password %>
+    <div class="ui left labeled icon input">
+    <%= f.password_field :password, name:"password"%>
+      <i class="lock icon"></i>
+      <div class="ui corner label">
+        <i class="icon asterisk"></i>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "Sign in", class: "ui blue submit button" %>
+<p>New user? <%= link_to "Sign up now!", signup_path %></p>
 </div>
+<% end %>
+
+
