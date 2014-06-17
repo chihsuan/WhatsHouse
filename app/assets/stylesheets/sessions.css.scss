@@ -1,3 +1,13 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ui.form.signin {
+	position: absolute;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);	
+}
+
+

@@ -1,6 +1,6 @@
-<div class="ui form rent segment">
+<div class="ui form segment">
   <%= form_for(@rent_house) do |f| %>
-  <%= render 'shared/error_messages', object: f.object%>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :tpye %>
 	<div class="ui left labeled icon input">
@@ -11,9 +11,8 @@
 	  </div>
 	</div>
   </div> 
-
   <div class="field">
-    <%= f.label :address %>
+	<%= f.label :address %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :address %>
 	  <i class="mail icon"></i>
@@ -35,7 +34,7 @@
   </div> 
 
   <div class="field">
-    <%= f.label :size %>
+	<%= f.label :size %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :size %>
 	  <i class="lock icon"></i>
@@ -46,7 +45,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :structure %>
+	<%= f.label :structure %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :structure %>
 	  <i class="lock icon"></i>
@@ -90,7 +89,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :note %>
+	<%= f.label :note %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :note %>
 	  <i class="lock icon"></i>
@@ -123,7 +122,7 @@
   </div>
 
   <div class="field">
-	<%= f.label :email %>
+    <%= f.label :email %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :email %>
 	  <i class="lock icon"></i>
@@ -133,17 +132,17 @@
 	</div>
   </div>
 
-  <%= f.submit "Create house on sale", class:"ui green button" %>
+  <%= f.submit "Create house on sale" , class:"ui red button" %>
 </div>
 <% end %>
 
 <div class="span8">
-  <% if @user.rent_houses.any? %>
-    <h3>Houses For Rent (<%= @user.rent_houses.count %>)</h3>
-    <ol class="rent_houses">
-      <%= render @rent_houses %>
-    </ol>
-    <%= will_paginate @rent_houses %>
-  <% end %>
+<% if @user.rent_houses.any? %>
+  <h3>Houses For Rent (<%= @user.rent_houses.count %>)</h3>
+  <ol class="rent_houses">
+	<%= render @rent_houses %>
+  </ol>
+  <%= will_paginate @rent_houses %>
+<% end %>
 </div>
 
