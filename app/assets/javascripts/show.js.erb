@@ -278,7 +278,7 @@ function initialize() {
 
 // add a marker to the map and push it to the map.
 function createMarker(obj, markers) {
-	
+
 	var marker = new google.maps.Marker({
 		map: map,
 		position: new google.maps.LatLng(obj.lat, obj.lng),
@@ -296,7 +296,7 @@ function createMarker(obj, markers) {
 
 	google.maps.event.addListener(marker, 'click', function(){
 	
-	jQuery.ajax({
+		jQuery.ajax({
         	url : '/events/show',
         	dataType : 'json',
         	type : 'GET',
@@ -305,10 +305,9 @@ function createMarker(obj, markers) {
         	},
         	success : function(response){
         		// success - for now just log it
-        		console.log(response);
 
-				$('.response.menu .item')        
-						.tab('change tab', 'Information');
+			//	$('.response.menu .item')       
+			//			.tab('change tab', 'Information');
 				$('#information').html(
 					'"<div class="red ui ribbon label">' + "Area" + '</div>' +
 						"<p>" + response.area + "</p>" + 
@@ -324,7 +323,28 @@ function createMarker(obj, markers) {
         		alert("something went wrong");
         		console.error(err);
         	}
-        });
+			});
+
+
+			if (!window.DISQUS) {
+				var disqus_shortname = 'whatshouse';
+				var disqus_identifier = marker.id;
+					(function() {
+						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+						dsq.id = disqus_identifier;
+						dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+			}else{
+				DISQUS.reset({
+  					reload: true,
+  					config: function () {  
+    					this.page.identifier = marker.id;  
+    					this.page.url = "http://example.com/#!newthread";
+  					}
+				});	
+			}
+
 	});
 
 	markers.push(marker);

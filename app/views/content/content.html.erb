@@ -6,7 +6,7 @@
     	</script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 		<script src="https://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.1.2/src/markerclusterer.js" type="text/javascript"></script>
-    <%= javascript_include_tag "show" %>
+   <%= javascript_include_tag "show" %>
 	</head>
 	<body>
 		<layer id="layer-1">
@@ -15,24 +15,20 @@
   		<layer id="layer-2">
     		<div id="response">
       			<div class="ui pointing response menu">
-					<%= link_to 'ajax show',{:controller => 'events', :action => :show, :remote => true, "data-type" => :json, :id => "10"}, :id => "update_information", class: "active green item"%>
         			<a class="active red item" data-tab="Information">Information</a>
-        			<a class="active blue item" data-tab="Comment">Comment</a>
+					<a class="active blue item" data-tab="Comment">Comment</a>
       			</div>
 				<div class="ui active tab segment" id="information" data-tab="Information"></div>
-      			<div class="ui tab segment" data-tab="Comment"></div>
+				<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
+					<div id="disqus_thread"></div>
+				</div>
     		</div>
 			</layer>
 
 	</body>
-
 <script>
-$(function() {
-    $('#update_information').bind("ajax:success", function(event, data) {
-		var information = $('#information');
-		console.log(data);
-		information.html( data.area + "<br>" + data.location + "<br>" + data.total_price );
-    });
+		
+$(document).ready(function() {
 });
 </script>
 </html>
