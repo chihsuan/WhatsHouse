@@ -332,7 +332,7 @@ function createMarker(obj, markers) {
 					(function() {
 						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 						dsq.id = disqus_identifier;
-						dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+						dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 						})();
 			}else{
@@ -340,7 +340,7 @@ function createMarker(obj, markers) {
   					reload: true,
   					config: function () {  
     					this.page.identifier = marker.id;  
-    					this.page.url = "http://example.com/#!newthread";
+    					this.page.url = "https://example.com/#!newthread";
   					}
 				});	
 			}
