@@ -304,10 +304,6 @@ function createMarker(obj, markers) {
         		real_price_id : marker.id
         	},
         	success : function(response){
-        		// success - for now just log it
-
-			//	$('.response.menu .item')       
-			//			.tab('change tab', 'Information');
 				$('#information').html(
 					'"<div class="red ui ribbon label">' + "Area" + '</div>' +
 						"<p>" + response.area + "</p>" + 

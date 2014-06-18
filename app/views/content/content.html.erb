@@ -9,11 +9,12 @@
    <%= javascript_include_tag "show" %>
 	</head>
 	<body>
-		<layer id="layer-1">
-    		<div id="map_canvas" style="width:100%; height:100%"></div>
-  		</layer>
-  		<layer id="layer-2">
-    		<div id="response">
+    		<div id="map_canvas" style="width:100%; height:100%; z-index:1"></div>
+		
+			<div class="ui right floated black launch button" style="z-index:2">
+   		 		   <i class="list layout icon"></i> Menu
+    	  	</div>
+			<div class="response" style="z-index:2">
       			<div class="ui pointing response menu">
         			<a class="active red item" data-tab="Information">Information</a>
 					<a class="active blue item" data-tab="Comment">Comment</a>
@@ -21,14 +22,22 @@
 				<div class="ui active tab segment" id="information" data-tab="Information"></div>
 				<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
 					<div id="disqus_thread"></div>
-				</div>
-    		</div>
-			</layer>
+    			</div>
+			</div>
 
 	</body>
 <script>
 		
 $(document).ready(function() {
+  $('.ui.launch.button').click(function() {
+	var $righty = $(this).next();
+	console.log($righty.css('right'));
+    $righty.animate({
+      right: parseInt($righty.css('right'),10) == 0 ?
+        -$righty.outerWidth() :
+        0
+    });
+  });
 });
 </script>
 </html>
