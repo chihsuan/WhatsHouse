@@ -282,7 +282,8 @@ function createMarker(obj, markers) {
 	var marker = new google.maps.Marker({
 		map: map,
 		position: new google.maps.LatLng(obj.lat, obj.lng),
-		id: obj.id
+		id: obj.id,
+		data:obj.data
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(){
@@ -301,21 +302,53 @@ function createMarker(obj, markers) {
         	dataType : 'json',
         	type : 'GET',
         	data : {
-        		real_price_id : marker.id
+				real_price_id : marker.id,
+				data: marker.data
         	},
         	success : function(response){
         		// success - for now just log it
 
 			//	$('.response.menu .item')       
 			//			.tab('change tab', 'Information');
-				$('#information').html(
-					'"<div class="red ui ribbon label">' + "Area" + '</div>' +
-						"<p>" + response.area + "</p>" + 
-					'"<div class="green ui ribbon label">' + "Things" + '</div>' + 
-						"<p>" + response.things + "</p>" + 
+
+				if(marker.data == 'sale_houses'){
+					$('#information').html(
+					'"<div class="red ui ribbon label">' + "For" + '</div>' +
+						"<p>" + response.use + "</p>" + 
+					'"<div class="green ui ribbon label">' + "Structure" + '</div>' + 
+						"<p>" + response.structure + "</p>" + 
 					'"<div class="blue ui ribbon label">' + "Address" + '</div>' + 
-						"<p>" + response.location + "</p>"
-				);
+						"<p>" + response.address + "</p>"
+						);
+
+				}
+				else if( marker.data == 'rent_houses' ){
+					$('#information').html(
+					'"<div class="red ui ribbon label">' + "For" + '</div>' +
+						"<p>"  + response.use + "</p>" + 
+					'"<div class="green ui ribbon label">' + "Structure" + '</div>' + 
+						"<p>" + response.structure + "</p>" + 
+					'"<div class="blue ui ribbon label">' + "Address" + '</div>' + 
+						"<p>" + response.address + "</p>" + 
+					'"<div class="green ui ribbon label">' + "Price" + '</div>' + 
+						"<p>" + response.price + "</p>" 
+						);
+				}
+				else if( marker.data == 'real_price_deals'){
+					$('#information').html(
+					'"<div class="red ui ribbon label">' + "District" + '</div>' +
+						"<p>" + response.area + "</p>" + 
+					'"<div class="green ui ribbon label">' + "Location" + '</div>' + 
+						"<p>" + response.location + "</p>" + 
+					'"<div class="blue ui ribbon label">' + "Price" + '</div>' + 
+						"<p>" + response.total_price + "</p>"
+						);
+				}
+				else{
+					// error message
+				}
+
+				console.log(response)	
         	},
         	error : function(err){
  
