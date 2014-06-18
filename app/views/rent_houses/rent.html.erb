@@ -1,10 +1,11 @@
 <div class="ui form rent segment">
   <%= form_for(@rent_house) do |f| %>
   <%= render 'shared/error_messages', object: f.object%>
+
   <div class="field">
-    <%= f.label :tpye %>
+    <%= f.label :use_for %>
 	<div class="ui left labeled icon input">
-	  <%= f.text_field :type %>
+	  <%= f.text_field :use %>
       <i class="user icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>

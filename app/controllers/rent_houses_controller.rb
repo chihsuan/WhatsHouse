@@ -26,10 +26,13 @@ class RentHousesController < ApplicationController
   		redirect_to renthouse_path
   	end
 
+
   private
 
+
     def rentHouses_params
-      params.require(:rent_house).permit(:address)
+      params.require(:rent_house).permit(:use, :address, :price, :size,
+      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email )
     end
 	
 	def correct_user

@@ -1,4 +1,5 @@
 class SaleHousesController < ApplicationController
+	
 	before_action :signed_in_user, only: [:create, :destroy]
 	before_action :correct_user,   only: :destroy
 	
@@ -29,7 +30,8 @@ class SaleHousesController < ApplicationController
   private
 
     def saleHouses_params
-      params.require(:sale_house).permit(:address)
+      params.require(:sale_house).permit(:use, :address, :price, :size,
+      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email )
     end
 
 	
