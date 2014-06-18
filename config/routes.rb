@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
 	resources :users
 	resources :events
+	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :rent_houses, only: [:create, :destroy]
 	resources :sale_houses, only: [:create, :destroy]
