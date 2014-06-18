@@ -306,13 +306,6 @@ function createMarker(obj, markers) {
 				data: marker.data
         	},
         	success : function(response){
-<<<<<<< HEAD
-				$('#information').html(
-					'"<div class="red ui ribbon label">' + "Area" + '</div>' +
-						"<p>" + response.area + "</p>" + 
-					'"<div class="green ui ribbon label">' + "Things" + '</div>' + 
-						"<p>" + response.things + "</p>" + 
-=======
 
 				if(marker.data == 'sale_houses'){
 					$('#information').html(
@@ -331,7 +324,6 @@ function createMarker(obj, markers) {
 						"<p>"  + response.use + "</p>" + 
 					'"<div class="green ui ribbon label">' + "Structure" + '</div>' + 
 						"<p>" + response.structure + "</p>" + 
->>>>>>> nnn
 					'"<div class="blue ui ribbon label">' + "Address" + '</div>' + 
 						"<p>" + response.address + "</p>" + 
 					'"<div class="green ui ribbon label">' + "Price" + '</div>' + 
