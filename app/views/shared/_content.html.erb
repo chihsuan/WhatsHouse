@@ -9,22 +9,19 @@
    <%= javascript_include_tag "show" %>
 	</head>
 	<body>
-		<layer id="layer-1">
-    		<div id="map_canvas" style="width:100%; height:100%"></div>
-  		</layer>
-  		<layer id="layer-2">
-    		<div id="response">
-      			<div class="ui pointing response menu">
-        			<a class="active red item" data-tab="Information">資訊</a>
+  		<div id="map_canvas" style="width:100%; height:100%"></div>
+		<div class="ui response	cell grid">
+			<div class="column">
+				<div class="ui pointing response menu">
+					<a class="active red item" data-tab="Information">資訊</a>
 					<a class="active blue item" data-tab="Comment">討論</a>
-      			</div>
+				</div>
 				<div class="ui active tab segment" id="information" data-tab="Information"></div>
 				<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
 					<div id="disqus_thread"></div>
 				</div>
-    		</div>
-			</layer>
-
+			</div>
+		</div>
 	</body>
 <script>
 		
