@@ -1,8 +1,11 @@
+<div id = "sale_houses_page" >
+
 <div class="ui form rent segment">
-  <%= form_for(@sale_house) do |f| %>
+	  
+<%= form_for(@sale_house) do |f| %>
   <%= render 'shared/error_messages', object: f.object%>
-  <div class="field">
-    <%= f.label :use_for%>
+  <div class="field use">
+    <%= f.label :'類型'%>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :use %>
       <i class="user icon"></i>
@@ -11,42 +14,9 @@
 	  </div>
 	</div>
   </div> 
-
-  <div class="field">
-    <%= f.label :address %>
-	<div class="ui left labeled icon input">
-	  <%= f.text_field :address %>
-	  <i class="mail icon"></i>
-      <div class="ui corner label">
-        <i class="icon asterisk"></i>
-	  </div>
-	</div>
-  </div> 
-
-  <div class="field">
-	<%= f.label :price %>
-	<div class="ui left labeled icon input">
-	  <%= f.text_field :price %>
-	  <i class="lock icon"></i>
-      <div class="ui corner label">
-        <i class="icon asterisk"></i>
-	  </div>
-	</div>
-  </div> 
-
-  <div class="field">
-    <%= f.label :size %>
-	<div class="ui left labeled icon input">
-	  <%= f.text_field :size %>
-	  <i class="lock icon"></i>
-      <div class="ui corner label">
-        <i class="icon asterisk"></i>
-	  </div>
-	</div>
-  </div>
-
-  <div class="field">
-    <%= f.label :structure %>
+  
+ <div class="field structure">
+    <%= f.label :'格局' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :structure %>
 	  <i class="lock icon"></i>
@@ -57,9 +27,34 @@
   </div>
 
   <div class="field">
-    <%= f.label :year %>
+    <%= f.label :'地址' %>
 	<div class="ui left labeled icon input">
-	  <%= f.text_field :year %>
+	  <%= f.text_field :address %>
+	  <i class="mail icon"></i>
+      <div class="ui corner label">
+        <i class="icon asterisk"></i>
+	  </div>
+	</div>
+  </div> 
+
+
+
+  <div class="field price">
+	<%= f.label :'售價' %>
+	<div class="ui left labeled icon input">
+	  <%= f.text_field :price %>
+	  <i class="lock icon"></i>
+      <div class="ui corner label">
+        <i class="icon asterisk"></i>
+	  </div>
+	</div>
+  </div> 
+
+
+  <div class="field">
+    <%= f.label :'聯絡人' %>
+	<div class="ui left labeled icon input">
+	  <%= f.text_field :owner %>
 	  <i class="lock icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
@@ -67,30 +62,9 @@
 	</div>
   </div>
 
-  <div class="field">
-	<%= f.label :floor %>
-	<div class="ui left labeled icon input">
-	  <%= f.text_field :floor %>
-	  <i class="lock icon"></i>
-      <div class="ui corner label">
-        <i class="icon asterisk"></i>
-	  </div>
-	</div>
-  </div>
 
   <div class="field">
-    <%= f.label :breif %>
-	<div class="ui left labeled icon input">
-	  <%= f.text_area  :breif %>
-	  <i class="lock icon"></i>
-      <div class="ui corner label">
-        <i class="icon asterisk"></i>
-	  </div>
-	</div>
-  </div>
-
-  <div class="field">
-	<%= f.label :tel %>
+	<%= f.label :'聯絡電話' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :tel %>
 	  <i class="lock icon"></i>
@@ -101,9 +75,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :'刊登資訊' %>
 	<div class="ui left labeled icon input">
-	  <%= f.text_field :owner %>
+	  <%= f.text_area  :breif %>
 	  <i class="lock icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
@@ -111,28 +85,17 @@
 	</div>
   </div>
 
-  <div class="field">
-	<%= f.label :email %>
-	<div class="ui left labeled icon input">
-	  <%= f.text_field :email %>
-	  <i class="lock icon"></i>
-      <div class="ui corner label">
-        <i class="icon asterisk"></i>
-	  </div>
-	</div>
-  </div>
-
-  <%= f.submit "Create house on sale", class:"ui green button" %>
+  <%= f.submit "出售", class:"ui orange button" %>
 </div>
 <% end %>
 
-<div class="span8">
+<div class="house_list">
   <% if @user.sale_houses.any? %>
-    <h3>Houses On Sale (<%= @user.sale_houses.count %>)</h3>
+    <h3>出售中 (<%= @user.sale_houses.count %>)</h3>
     <ol class="sale_houses">
       <%= render @sale_houses %>
     </ol>
     <%= will_paginate @sale_houses %>
   <% end %>
 </div>
-
+</div>

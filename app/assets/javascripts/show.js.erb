@@ -309,35 +309,42 @@ function createMarker(obj, markers) {
 
 				if(marker.data == 'sale_houses'){
 					$('#information').html(
-					'"<div class="red ui ribbon label">' + "For" + '</div>' +
+					'"<div class="red ui ribbon label">' + "類型" + '</div>' +
 						"<p>" + response.use + "</p>" + 
-					'"<div class="green ui ribbon label">' + "Structure" + '</div>' + 
+					'"<div class="green ui ribbon label">' + "格局" + '</div>' + 
 						"<p>" + response.structure + "</p>" + 
-					'"<div class="blue ui ribbon label">' + "Address" + '</div>' + 
-						"<p>" + response.address + "</p>"
+						
+					'"<div class="blue ui ribbon label">' + "地址" + '</div>' + 
+						"<p>" + response.address + "</p>" +
+						
+					'"<div class="green ui ribbon label">' + "價格" + '</div>' + 
+						"<p>" + response.price + "</p>" 
+
 						);
 
 				}
 				else if( marker.data == 'rent_houses' ){
 					$('#information').html(
-					'"<div class="red ui ribbon label">' + "For" + '</div>' +
+					'"<div class="red ui ribbon label">' + "類型" + '</div>' +
 						"<p>"  + response.use + "</p>" + 
-					'"<div class="green ui ribbon label">' + "Structure" + '</div>' + 
+					'"<div class="green ui ribbon label">' + "格局" + '</div>' + 
 						"<p>" + response.structure + "</p>" + 
-					'"<div class="blue ui ribbon label">' + "Address" + '</div>' + 
+						
+					'"<div class="blue ui ribbon label">' + "地址" + '</div>' + 
 						"<p>" + response.address + "</p>" + 
-					'"<div class="green ui ribbon label">' + "Price" + '</div>' + 
-						"<p>" + response.price + "</p>" 
+						
+					'"<div class="green ui ribbon label">' + "價格" + '</div>' + 
+						"<p>" + response.price + "</p>"  
 						);
 				}
 				else if( marker.data == 'real_price_deals'){
 					$('#information').html(
-					'"<div class="red ui ribbon label">' + "District" + '</div>' +
+					'"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
 						"<p>" + response.area + "</p>" + 
-					'"<div class="green ui ribbon label">' + "Location" + '</div>' + 
+					'"<div class="green ui ribbon label">' + "土地路段" + '</div>' + 
 						"<p>" + response.location + "</p>" + 
-					'"<div class="blue ui ribbon label">' + "Price" + '</div>' + 
-						"<p>" + response.total_price + "</p>"
+					'"<div class="blue ui ribbon label">' + "總成交價" + '</div>' + 
+						"<p>" + response.total_price + "元</p>"
 						);
 				}
 				else{
