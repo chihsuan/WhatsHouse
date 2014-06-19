@@ -46,6 +46,8 @@ GEM
     commonjs (0.2.7)
     erubis (2.7.0)
     execjs (2.2.0)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     geocoder (1.2.2)
     gon (5.0.4)
       actionpack (>= 2.3.0)
@@ -148,6 +150,7 @@ DEPENDENCIES
   bcrypt-ruby
   bootstrap-sass (= 2.3.2.0)
   coffee-rails (~> 4.0.0)
+  font-awesome-rails
   geocoder
   gon
   jbuilder (~> 2.0)

@@ -1,15 +1,31 @@
-<div class="ui tiered title_bar menu">
-	<%= link_to "Whats House", root_path, class:"active item", 'data-no-turbolink' => true %>
-	<%= link_to "租房", rent_path, class:"active item", 'data-no-turbolink' => true %>
-   	<%= link_to "分析", analysis_path, class:"active item", 'data-no-turbolink' => true %>
+<div class="ui fixed inverted title_bar menu">
+	<div class="menu">
+	<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
+		<h2><i class="home icon"></i>WhatsHouse</h2>
+	<% end %>
+	<%= link_to "租房", rent_path, class:"item", 'data-no-turbolink' => true %>
+   	<%= link_to "分析", analysis_path, class:"item", 'data-no-turbolink' => true %>
+
+	<div class="right menu">
     <% if signed_in? %>
-       	<%= link_to "出售", salehouse_path, class:"active item"%>
-       	<%= link_to "出租", renthouse_path, class:"active item"%>
-       	<%= link_to "個人檔案", current_user, class:"active item"%>
-       	<%= link_to "設定", edit_user_path(current_user), class:"active item"%>
-		<%= link_to "登出", signout_path, method: "delete" , class:"active item" %>
+       	<%= link_to "出售", salehouse_path, class:"item"%>
+       	<%= link_to "出租", renthouse_path, class:"item"%>
+       	<%= link_to "個人檔案", current_user, class:"item"%>
+       	<%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%>
+		<%= link_to "登出", signout_path, method: "delete" , class:"sign_in item" %>
 	<% else %>
-		<%= link_to "登入", signin_path, class:"active item"%>
-   		<%= link_to "註冊", signup_path, class:"active item"%>
+		<%= link_to "登入", signin_path, class:"item"%>
+   		<%= link_to "註冊", signup_path, class:"item"%>
 	<% end %>	
+	</div>
+<!-- search button
+      	<div class="item">
+        	<div class="ui icon input">
+          		<input placeholder="Search..." type="text">
+          		<i class="search icon"></i>
+        	</div>
+      	</div>
+-->
+	</div>
+
 </div>
