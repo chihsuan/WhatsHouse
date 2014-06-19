@@ -4,6 +4,31 @@
 .ui.form.rent {
 	position: absolute;
     width: 30%;
+    top: 15%;
+    left: 20%;
 }
 
+.house_list{
+	width: 30%;
+	position: absolute;
+	top: 15%;
+	left: 53%;
+	color: white;
+}
 
+#rent_houses_page{
+	background-image: image-url("007.jpg");
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.use, .structure{
+	clear: none !important;
+	float:left;
+	width: 47%;
+}
+.use{
+	padding-right: 5%;
+}

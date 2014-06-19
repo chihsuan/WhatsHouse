@@ -31,7 +31,7 @@ class RentHousesController < ApplicationController
 
 
     def rentHouses_params
-      params.require(:rent_house).permit(:use, :address, :price, :size,
+      params.require(:rent_house).permit(:use, :address, :price, :size, :owner,
       									 :structure, :year, :floor, :breif, :note, :tel, :name, :email )
     end
 	

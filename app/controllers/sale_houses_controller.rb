@@ -30,7 +30,7 @@ class SaleHousesController < ApplicationController
   private
 
     def saleHouses_params
-      params.require(:sale_house).permit(:use, :address, :price, :size,
+      params.require(:sale_house).permit(:use, :address, :price, :size, :owner,
       									 :structure, :year, :floor, :breif, :note, :tel, :name, :email )
     end
 
