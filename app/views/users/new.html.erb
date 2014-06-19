@@ -1,5 +1,6 @@
 <% provide(:title, 'Sign up') %>
 
+<div id = "sign_up">
 <div class="ui form signup segment">
   <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: f.object%>
@@ -46,5 +47,6 @@
 	</div>
   </div>
   <%= f.submit "Sign Up", class:"ui red button" %>
-</div>
 <% end %>
+</div>
+</div>
