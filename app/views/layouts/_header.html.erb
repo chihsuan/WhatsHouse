@@ -1,6 +1,7 @@
 <div class="ui tiered title_bar menu">
 	<%= link_to "Whats House", root_path, class:"active item", 'data-no-turbolink' => true %>
-	<%= link_to "租房", rent_path, class:"active item", 'data-no-turbolink' => true %>
+	<%= link_to "買房", buy_path, class:"active item", 'data-no-turbolink' => true %>
+	<%= link_to "租屋", rent_path, class:"active item", 'data-no-turbolink' => true %>
    	<%= link_to "分析", analysis_path, class:"active item", 'data-no-turbolink' => true %>
     <% if signed_in? %>
        	<%= link_to "出售", salehouse_path, class:"active item"%>

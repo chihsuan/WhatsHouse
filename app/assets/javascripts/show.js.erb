@@ -318,8 +318,17 @@ function createMarker(obj, markers) {
 						"<p>" + response.address + "</p>" +
 						
 					'"<div class="green ui ribbon label">' + "價格" + '</div>' + 
-						"<p>" + response.price + "</p>" 
+						"<p>" + response.price + "</p>" +
 
+					'"<div class="blue ui ribbon label">' + "聯絡人" + '</div>' + 
+						"<p>" + response.owner + "</p>"  +
+						
+					'"<div class="green ui ribbon label">' + "聯絡電話" + '</div>' + 
+						"<p>" + response.tel + "</p>"  +
+						
+					'"<div class="red ui ribbon label">' + "刊登資訊" + '</div>' + 
+						"<p>" + response.breif + "</p>"  
+	
 						);
 
 				}
@@ -327,6 +336,7 @@ function createMarker(obj, markers) {
 					$('#information').html(
 					'"<div class="red ui ribbon label">' + "類型" + '</div>' +
 						"<p>"  + response.use + "</p>" + 
+						
 					'"<div class="green ui ribbon label">' + "格局" + '</div>' + 
 						"<p>" + response.structure + "</p>" + 
 						
@@ -334,7 +344,16 @@ function createMarker(obj, markers) {
 						"<p>" + response.address + "</p>" + 
 						
 					'"<div class="green ui ribbon label">' + "價格" + '</div>' + 
-						"<p>" + response.price + "</p>"  
+						"<p>" + response.price + "</p>"   +
+						
+					'"<div class="blue ui ribbon label">' + "聯絡人" + '</div>' + 
+						"<p>" + response.owner + "</p>"  +
+						
+					'"<div class="green ui ribbon label">' + "聯絡電話" + '</div>' + 
+						"<p>" + response.tel + "</p>"  +
+						
+					'"<div class="red ui ribbon label">' + "刊登資訊" + '</div>' + 
+						"<p>" + response.breif + "</p>"  
 						);
 				}
 				else if( marker.data == 'real_price_deals'){
