@@ -16,9 +16,12 @@
 					<a class="active red item" data-tab="Information">房屋資訊</a>
 					<a class="active blue item" data-tab="Comment">討論</a>
 				</div>
+				<div class="ui mini launch button"> Show </div>
+				<div id="area">
 				<div class="ui active tab segment" id="information" data-tab="Information"></div>
 				<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
 					<div id="disqus_thread"></div>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -26,6 +29,10 @@
 <script>
 		
 $(document).ready(function() {
+	$('.launch.button').click(function(){
+		$('#area').toggle();
+		$('.launch.button').html($('#area').text() == 'Show' ? 'Hide' : 'Show');
+	});
 });
 </script>
 </html>
