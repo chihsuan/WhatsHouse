@@ -1,17 +1,19 @@
+<header>
 <div class="ui fixed inverted title_bar menu">
 	<div class="menu">
 	<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
 		<h2><i class="home icon"></i>WhatsHouse</h2>
 	<% end %>
-	<%= link_to "租房", rent_path, class:"item", 'data-no-turbolink' => true %>
+	<%= link_to "買房", buy_path, class:"item", 'data-no-turbolink' => true %>
+	<%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %>
    	<%= link_to "分析", analysis_path, class:"item", 'data-no-turbolink' => true %>
 
 	<div class="right menu">
     <% if signed_in? %>
        	<%= link_to "出售", salehouse_path, class:"item"%>
        	<%= link_to "出租", renthouse_path, class:"item"%>
-       	<%= link_to "個人檔案", current_user, class:"item"%>
-       	<%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%>
+		<%= link_to "個人檔案", edit_user_path(current_user), class:"item"%> 
+		<!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
 		<%= link_to "登出", signout_path, method: "delete" , class:"sign_in item" %>
 	<% else %>
 		<%= link_to "登入", signin_path, class:"item"%>
@@ -29,3 +31,4 @@
 	</div>
 
 </div>
+</header>

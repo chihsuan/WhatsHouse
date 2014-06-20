@@ -11,9 +11,14 @@
 }
 
 #sign_in{
-	background-image: image-url("001.jpg");
+	background-image: image-url("005.jpg");
 	height: 95%;
 	background-repeat: no-repeat;
 	background-size: 100%;
+}
+
+span.ui.small.error.message.alert-error {
+		top: 26px;
+		left: 4%;
 }
 
