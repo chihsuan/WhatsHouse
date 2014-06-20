@@ -33,6 +33,7 @@
 .ui.title_bar.menu .menu .right.menu {
 	position: relative;
 	left: -70px;
+	top: 4px;
 }
 
 .ui.launch.button {
@@ -109,4 +110,7 @@ header .item{
 .ui.response.cell.grid .column .ui.response.menu {
 		position: relative;
 		box-shadow: 0.6px 0.7px 0.7px rgba(1,1,1,0.5);
+}
+.ui.form .error.message {
+		display: block !important;
 }
