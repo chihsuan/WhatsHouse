@@ -310,7 +310,7 @@ function createMarker(obj, markers) {
 				lng: marker.lng
         	},
         	success : function(response){
-
+				console.log("success");
 				for( i=0; i < response.length; ++i ){
 				
 					if( response[i].data == 'sale_houses'){
@@ -374,9 +374,9 @@ function createMarker(obj, markers) {
 								);
 						}
 						else {
-							console.log(response[i].data);
+							console.log(response[i]);
 						}
-					//		console.log(response[i]);	
+							console.log(response[i]);	
 					}	
         	},
         	error : function(err){
