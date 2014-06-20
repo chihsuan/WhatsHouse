@@ -283,7 +283,9 @@ function createMarker(obj, markers) {
 		map: map,
 		position: new google.maps.LatLng(obj.lat, obj.lng),
 		id: obj.id,
-		data:obj.data
+		data:obj.data,
+		lat: obj.lat,
+		lng: obj.lng
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(){
@@ -303,80 +305,79 @@ function createMarker(obj, markers) {
         	type : 'GET',
         	data : {
 				real_price_id : marker.id,
-				data: marker.data
+				data: marker.data,
+				lat: marker.lat,
+				lng: marker.lng
         	},
         	success : function(response){
 
-				if(marker.data == 'sale_houses'){
-					$('#information').html(
-					
-					'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
-							"<p>" + response.use + "</p></span>" +
+				for( i=0; i < response.length; ++i ){
+				
+					if( response[i].data == 'sale_houses'){
+							$('#information').html(
+							'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+									"<p>" + response[i].use + "</p></span>" +
 
-					'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
-							"<p>" + response.structure + "</p></span>" + 
-						
-					'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
-							"<p>" + response.address + "</p></span>" +
-						
-					'<span class="right-information"><div class="orange ui ribbon label">' + "售價" + '</div>' + 
-							"<p>" + response.price + "</p></span>" +
+							'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+									"<p>" + response[i].structure + "</p></span>" + 
+								
+							'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+									"<p>" + response[i].address + "</p></span>" +
+								
+							'<span class="right-information"><div class="orange ui ribbon label">' + "售價" + '</div>' + 
+									"<p>" + response[i].price + "</p></span>" +
 
-					'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
-							"<p>" + response.owner + "</p></span>"  +
-						
-					'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
-							"<p>" + response.tel + "</p></span>"  +
-						
-					'<span class="brief"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
-							"<p>" + response.breif + "</p></span>"  
-						
-	
-						);
+							'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+									"<p>" + response[i].owner + "</p></span>"  +
+								
+							'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+									"<p>" + response[i].tel + "</p></span>"  +
+								
+							'<span class="brief"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+									"<p>" + response[i].breif + "</p></span>"  
+			
+								);
+						}
+						else if( response[i].data == 'rent_houses' ){
+							$('#information').html(
+								
+							'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+									"<p>" + response[i].use + "</p></span>" +
 
-				}
-				else if( marker.data == 'rent_houses' ){
-					$('#information').html(
-						
-					'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
-							"<p>" + response.use + "</p></span>" +
+							'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+									"<p>" + response[i].structure + "</p></span>" + 
+								
+							'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+									"<p>" + response[i].address + "</p></span>" +
+								
+							'<span class="right-information"><div class="orange ui ribbon label">' + "租金" + '</div>' + 
+									"<p>" + response[i].price + "</p></span>" +
 
-					'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
-							"<p>" + response.structure + "</p></span>" + 
-						
-					'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
-							"<p>" + response.address + "</p></span>" +
-						
-					'<span class="right-information"><div class="orange ui ribbon label">' + "租金" + '</div>' + 
-							"<p>" + response.price + "</p></span>" +
-
-					'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
-							"<p>" + response.owner + "</p></span>"  +
-						
-					'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
-							"<p>" + response.tel + "</p></span>"  +
-						
-					'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
-							"<p>" + response.breif + "</p></span>"  
-						
-	
-						);
-				}
-				else if( marker.data == 'real_price_deals'){
-					$('#information').html(
-					'"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
-						"<p>" + response.area + "</p>" + 
-					'"<div class="green ui ribbon label">' + "土地路段" + '</div>' + 
-						"<p>" + response.location + "</p>" + 
-					'"<div class="blue ui ribbon label">' + "總成交價" + '</div>' + 
-						"<p>" + response.total_price + "元</p>"
-						);
-				}
-				else{
-					// error message
-				}
-
-				console.log(response)	
+							'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+									"<p>" + response[i].owner + "</p></span>"  +
+								
+							'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+									"<p>" + response[i].tel + "</p></span>"  +
+								
+							'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+									"<p>" + response[i].breif + "</p></span>"  
+								);
+						}
+						else if( response[i].data == 'real_price_deals'){
+							$('#information').html(
+							'"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
+								"<p>" + response[i].area + "</p>" + 
+							'"<div class="green ui ribbon label">' + "土地路段" + '</div>' + 
+								"<p>" + response[i].location + "</p>" + 
+							'"<div class="blue ui ribbon label">' + "總成交價" + '</div>' + 
+								"<p>" + response[i].total_price + "元</p>"
+								);
+						}
+						else{
+							// error message
+						}
+							console.log(response[i]);	
+					}	
         	},
         	error : function(err){
  

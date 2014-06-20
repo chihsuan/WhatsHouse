@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618132650) do
+ActiveRecord::Schema.define(version: 20140620104553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.string   "addr"
     t.float    "lat"
     t.float    "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "data",          default: "childcarerosters"
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.string   "changetime"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",       default: "dinings"
   end
 
   create_table "drugstores", force: true do |t|
@@ -57,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",       default: "drugstores"
   end
 
   create_table "hospitals", force: true do |t|
@@ -67,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",       default: "hospitals"
   end
 
   create_table "police_stations", force: true do |t|
@@ -78,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",       default: "police_stations"
   end
 
   create_table "real_price_deals", force: true do |t|
@@ -166,9 +177,10 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",       default: "stations"
   end
 
-  create_table "store_7_11s", force: true do |t|
+  create_table "stores", force: true do |t|
     t.string   "address"
     t.string   "code"
     t.string   "district"
@@ -177,6 +189,7 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",       default: "stores"
   end
 
   create_table "tainan_markets", force: true do |t|
@@ -189,6 +202,7 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",           default: "tainan_markets"
   end
 
   create_table "tainan_schools", force: true do |t|
@@ -210,6 +224,7 @@ ActiveRecord::Schema.define(version: 20140618132650) do
     t.string   "stage"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data",        default: "tainan_schools"
   end
 
   create_table "users", force: true do |t|
