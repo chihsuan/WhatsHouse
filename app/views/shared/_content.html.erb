@@ -13,28 +13,49 @@
 		<div class="ui response	cell grid">
 			<div class="column">
 				<div class="ui inverted orange pointing response menu">
-					<a class="active red item" data-tab="Information">房屋資訊</a>
-					<a class="active blue item" data-tab="Comment">討論</a>
+					<a class="item" data-tab="Information">房屋資訊</a>
+					<a class="item" data-tab="Comment">討論</a>
+					<a class="item" data-tab="Around">周邊</a>
 				</div>
 				<div class="ui mini launch button"> Show </div>
 				<div id="area">
-				<div class="ui active tab segment" id="information" data-tab="Information"></div>
+				<div class="ui tab segment" id="information" data-tab="Information"></div>
 				<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
 					<div id="disqus_thread"></div>
+				</div>
+				<div class="ui tab segment" id="around" data-tab="Around">
+					<div class="ui slider checkbox">
+  						<input name="7-11" type="checkbox">
+  						<label>7-11</label>
+					</div>	
 				</div>
 				</div>
 			</div>
 		</div>
 	</body>
+</html>
+
 <script>
-		
 $(document).ready(function() {
 	$('.launch.button').click(function(){
 		$('#area').toggle();
 		$('.launch.button').html($('#area').text() == 'Show' ? 'Hide' : 'Show');
 	});
-});
-</script>
-</html>
 
+	$('#around .checkbox').click(function() {
+		$(this).checkbox();
+
+		if($('input[name=7-11]').is(':checked')) {
+			console.log("checked");
+			addAround("stores");
+			showAround("all");
+		}else {
+			console.log("not checked");
+			hideAround("all");
+		}
+	});
+});
+
+
+</script>
 
