@@ -373,10 +373,10 @@ function createMarker(obj, markers) {
 								"<p>" + response[i].total_price + "元</p>"
 								);
 						}
-						else{
-							// error message
+						else {
+							console.log(response[i].data);
 						}
-							console.log(response[i]);	
+					//		console.log(response[i]);	
 					}	
         	},
         	error : function(err){
