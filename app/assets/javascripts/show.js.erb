@@ -309,51 +309,57 @@ function createMarker(obj, markers) {
 
 				if(marker.data == 'sale_houses'){
 					$('#information').html(
-					'"<div class="red ui ribbon label">' + "類型" + '</div>' +
-						"<p>" + response.use + "</p>" + 
-					'"<div class="green ui ribbon label">' + "格局" + '</div>' + 
-						"<p>" + response.structure + "</p>" + 
-						
-					'"<div class="blue ui ribbon label">' + "地址" + '</div>' + 
-						"<p>" + response.address + "</p>" +
-						
-					'"<div class="green ui ribbon label">' + "價格" + '</div>' + 
-						"<p>" + response.price + "</p>" +
+					
+					'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+							"<p>" + response.use + "</p></span>" +
 
-					'"<div class="blue ui ribbon label">' + "聯絡人" + '</div>' + 
-						"<p>" + response.owner + "</p>"  +
+					'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+							"<p>" + response.structure + "</p></span>" + 
 						
-					'"<div class="green ui ribbon label">' + "聯絡電話" + '</div>' + 
-						"<p>" + response.tel + "</p>"  +
+					'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+							"<p>" + response.address + "</p></span>" +
 						
-					'"<div class="red ui ribbon label">' + "刊登資訊" + '</div>' + 
-						"<p>" + response.breif + "</p>"  
+					'<span class="right-information"><div class="orange ui ribbon label">' + "售價" + '</div>' + 
+							"<p>" + response.price + "</p></span>" +
+
+					'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+							"<p>" + response.owner + "</p></span>"  +
+						
+					'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+							"<p>" + response.tel + "</p></span>"  +
+						
+					'<span class="brief"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+							"<p>" + response.breif + "</p></span>"  
+						
 	
 						);
 
 				}
 				else if( marker.data == 'rent_houses' ){
 					$('#information').html(
-					'"<div class="red ui ribbon label">' + "類型" + '</div>' +
-						"<p>"  + response.use + "</p>" + 
 						
-					'"<div class="green ui ribbon label">' + "格局" + '</div>' + 
-						"<p>" + response.structure + "</p>" + 
+					'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+							"<p>" + response.use + "</p></span>" +
+
+					'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+							"<p>" + response.structure + "</p></span>" + 
 						
-					'"<div class="blue ui ribbon label">' + "地址" + '</div>' + 
-						"<p>" + response.address + "</p>" + 
+					'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+							"<p>" + response.address + "</p></span>" +
 						
-					'"<div class="green ui ribbon label">' + "價格" + '</div>' + 
-						"<p>" + response.price + "</p>"   +
+					'<span class="right-information"><div class="orange ui ribbon label">' + "租金" + '</div>' + 
+							"<p>" + response.price + "</p></span>" +
+
+					'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+							"<p>" + response.owner + "</p></span>"  +
 						
-					'"<div class="blue ui ribbon label">' + "聯絡人" + '</div>' + 
-						"<p>" + response.owner + "</p>"  +
+					'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+							"<p>" + response.tel + "</p></span>"  +
 						
-					'"<div class="green ui ribbon label">' + "聯絡電話" + '</div>' + 
-						"<p>" + response.tel + "</p>"  +
+					'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+							"<p>" + response.breif + "</p></span>"  
 						
-					'"<div class="red ui ribbon label">' + "刊登資訊" + '</div>' + 
-						"<p>" + response.breif + "</p>"  
+	
 						);
 				}
 				else if( marker.data == 'real_price_deals'){

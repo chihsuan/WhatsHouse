@@ -1,9 +1,11 @@
+<header>
 <div class="ui fixed inverted title_bar menu">
 	<div class="menu">
 	<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
 		<h2><i class="home icon"></i>WhatsHouse</h2>
 	<% end %>
-	<%= link_to "租房", rent_path, class:"item", 'data-no-turbolink' => true %>
+	<%= link_to "買房", buy_path, class:"item", 'data-no-turbolink' => true %>
+	<%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %>
    	<%= link_to "分析", analysis_path, class:"item", 'data-no-turbolink' => true %>
 
 	<div class="right menu">
@@ -29,3 +31,4 @@
 	</div>
 
 </div>
+</header>
