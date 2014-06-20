@@ -113,3 +113,21 @@ header .item{
 .ui.form .error.message {
 		display: block !important;
 }
+
+div.launch.button {
+		position: relative;
+		right: 9%;
+		top: -45px;
+		width: 20px;
+}
+.column .item:after{
+	top: 45px;
+}
+#comments{
+	margin: 0px;
+}
+
+#area{
+	top: -30px;
+	position: relative;
+}

@@ -17,7 +17,7 @@
 					<a class="item" data-tab="Comment">討論</a>
 					<a class="item" data-tab="Around">周邊</a>
 				</div>
-				<div class="ui mini launch button"> Show </div>
+				<div class="launch button"><i class='big red sort icon'></i></div>
 				<div id="area">
 				<div class="ui tab segment" id="information" data-tab="Information"></div>
 				<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
@@ -39,7 +39,6 @@
 $(document).ready(function() {
 	$('.launch.button').click(function(){
 		$('#area').toggle();
-		$('.launch.button').html($('#area').text() == 'Show' ? 'Hide' : 'Show');
 	});
 
 	$('#around .checkbox').click(function() {
