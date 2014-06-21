@@ -23,9 +23,53 @@
 					<div id="area">
 						<div class="ui tab segment" id="information" data-tab="Information"></div>
 						<div class="ui tab segment" id="around" data-tab="Around">
-							<div class="ui slider checkbox">
-  								<input name="7-11" type="checkbox">
-  								<label>7-11</label>
+							<div class="ui form">
+								<div class="field">
+									<div class="grouped inline fields">
+										<div class="field">
+											<div class="ui slider checkbox">
+					  							<input name="stores" type="checkbox">
+					  							<label>7-11</label>
+											</div>	
+										</div>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="tainan_schools" type="checkbox">
+												<label>學校</label>
+											</div>	
+										</div>	
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="dinings" type="checkbox">
+												<label>餐廳</label>
+											</div>	
+										</div>	
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="stations" type="checkbox">
+												<label>火車站</label>
+											</div>	
+										</div>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="hospitals" type="checkbox">
+												<label>診所醫院</label>
+											</div>	
+										</div>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="police_stations" type="checkbox">
+												<label>Police</label>
+											</div>	
+										</div>	
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="tainan_markets" type="checkbox">
+												<label>市場</label>
+											</div>
+										</div>
+									</div>
+								</div>	
 							</div>	
 						</div>
 						<div class="ui tab segment" id="information" data-tab="Information"></div>
@@ -127,3 +171,21 @@
 	</body>
 </html>
 
+<script>
+$(document).ready(function() {
+
+	$('.form .fields .checkbox').checkbox('disable');
+	$('.form .fields .checkbox').checkbox();
+	
+	$('.form .fields .checkbox').click(function() {	
+		if($(this).children('input').is(':checked')) {
+			console.log("true");
+			showAround($(this).children('input').attr('name'));	
+		} else {
+			console.log("false");
+			hideAround($(this).children('input').attr('name'));
+		}
+	});
+});
+
+</script>

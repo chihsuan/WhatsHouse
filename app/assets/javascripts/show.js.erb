@@ -282,16 +282,33 @@ function initialize() {
 function addAroundMarker(obj) {
 	var iconCat = "";
 	if (obj.data === "stores") {
-		iconCat = '<%= asset_path '7_11.jpg' %>';
+		iconCat = '<%= asset_path 'stores.jpg' %>';
+	} 
+	else if (obj.data === "stations") {
+		iconCat = '<%= asset_path 'stations.jpg' %>';
 	}
-
+	else if (obj.data === "dinings") {
+		iconCat = '<%= asset_path 'dinings.jpg' %>';
+	}
+	else if (obj.data === "tainan_schools") {
+		iconCat = '<%= asset_path 'tainan_schools.jpg' %>';		
+	}
+	else if (obj.data === "tainan_markets") {
+		iconCat = '<%= asset_path 'tainan_markets.jpg' %>';		
+	}
+	else if (obj.data === "hospitals") {
+		iconCat = '<%= asset_path 'hospitals.png' %>';	
+	}
+	else if (obj.data === "police_stations") {
+		iconCat = '<%= asset_path 'police_stations.png' %>';	
+	}
 	var iconImage = {
 		url: iconCat,
 		size: new google.maps.Size(30, 30)
 	};
 
 	var marker = new google.maps.Marker({
-		map: map,
+		map: null,
 		position: new google.maps.LatLng(obj.lat, obj.lng),
 		id: obj.id,
 		data:obj.data,
@@ -413,11 +430,13 @@ function createMarker(obj, markers) {
 							// if the data category of response is not in around
 							// around will add a property of data.
 							if (!(response[i].data in around)) {
-								around[response[i].data] = [];	
+								console.log("found " + response[i].data);
+								around[response[i].data] = [];
 							}
 							// add the data into the corresponding category of
 							// around.
 							around[response[i].data].push(response[i]);
+							addAroundMarker(response[i]);
 						}
 					}	
         	},
@@ -452,20 +471,6 @@ function createMarker(obj, markers) {
 	});
 	markers.push(marker);
 }
-
-// add around to aroundMarkers
-function addAround (cat) {
-	if (cat in around) {
-		console.log(cat + "is in around");
-		for (var i = 0; i < around[cat].length; i++) {
-			addAroundMarker(around[cat][i]);
-		}
-	} 
-	else {
-		console.log(cat + "isn't in around");
-	}
-}
-
 
 function showAround (cat) {
 	// show all
