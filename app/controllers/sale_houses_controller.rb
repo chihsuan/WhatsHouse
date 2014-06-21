@@ -2,7 +2,25 @@ class SaleHousesController < ApplicationController
 	
 	before_action :signed_in_user, only: [:create, :destroy]
 	before_action :correct_user,   only: :destroy
-	
+
+
+	def show
+		@district = params[:district]
+		if !params[:price].empty? && !params[:district].empty?
+    		@data = SaleHouse.where("address like ?", "%#{@district}%").where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
+		elsif params[:district].empty?
+    		@data = SaleHouse.where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
+		else
+    		@data = SaleHouse.where("address like ?", "%#{@district}%")
+		end
+		
+		respond_to do |format|
+			format.json { render :json => @data }
+		end
+	end
+
+
+
 	def sale
 		if signed_in?
 			@user = current_user
@@ -31,7 +49,7 @@ class SaleHousesController < ApplicationController
 
     def saleHouses_params
       params.require(:sale_house).permit(:use, :address, :price, :size, :owner,
-      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email )
+      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email, :district )
     end
 
 	

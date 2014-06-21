@@ -3,6 +3,22 @@ class RentHousesController < ApplicationController
 	before_action :correct_user,   only: :destroy
 
 
+	def show
+		@district = params[:district]
+		if !params[:price].empty? && !params[:district].empty?
+    		@data = RentHouse.where("address like ?", "%#{@district}%").where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
+		elsif params[:district].empty?
+    		@data = RentHouse.where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
+		else
+    		@data = RentHouse.where("address like ?", "%#{@district}%")
+		end
+	
+
+		respond_to do |format|
+			format.json { render :json => @data }
+		end
+	end
+
 	def rent
 		if signed_in?
 			@user = current_user
@@ -32,7 +48,7 @@ class RentHousesController < ApplicationController
 
     def rentHouses_params
       params.require(:rent_house).permit(:use, :address, :price, :size, :owner,
-      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email )
+      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email, :district)
     end
 	
 	def correct_user

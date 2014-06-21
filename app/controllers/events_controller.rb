@@ -29,9 +29,5 @@ class EventsController < ApplicationController
 		end
 	end
 
-	def filter
-
-	end
-
 end
 

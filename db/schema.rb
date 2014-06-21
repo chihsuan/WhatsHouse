@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620104553) do
+ActiveRecord::Schema.define(version: 20140621063526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20140620104553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "data",          default: "childcarerosters"
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "dinings", force: true do |t|
@@ -139,6 +145,7 @@ ActiveRecord::Schema.define(version: 20140620104553) do
     t.float    "lng"
     t.string   "data",       default: "rent_houses"
     t.string   "use"
+    t.string   "district"
   end
 
   create_table "sale_houses", force: true do |t|
@@ -160,6 +167,7 @@ ActiveRecord::Schema.define(version: 20140620104553) do
     t.float    "lng"
     t.string   "data",       default: "sale_houses"
     t.string   "use"
+    t.string   "district"
   end
 
   create_table "stations", force: true do |t|
