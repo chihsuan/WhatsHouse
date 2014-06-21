@@ -24,7 +24,7 @@ class RentHousesController < ApplicationController
 			end
 			@data = [@data] + [ @score_list.map.with_index.sort_by(&:first).map(&:last) ]
 		else
-			@data = [@data] + [nil]
+			@data = [@data] + []
 		end
 	
 		respond_to do |format|
