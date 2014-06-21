@@ -302,7 +302,7 @@ function addAroundMarker(obj) {
 		iconCat = '<%= asset_path 'stations.jpg' %>';
 	}
 	else if (obj.data === "dinings") {
-		iconCat = '<%= asset_path 'dinings.jpg' %>';
+		iconCat = '<%= asset_path 'dinings.png' %>';
 	}
 	else if (obj.data === "tainan_schools") {
 		iconCat = '<%= asset_path 'tainan_schools.jpg' %>';		
@@ -334,8 +334,23 @@ function addAroundMarker(obj) {
 		infowindow = new google.maps.InfoWindow();
 		var html = "";
 		for (var key in obj) {
-			html += "<p>"+ key + ": " + obj[key] +"</p>"; 
+			if (key === "name") {
+				html += "<p>"+ "名稱" + ": " + obj["name"] +"</p>"; 
+			} else if (key === "address") {
+				html += "<p>"+ "address" + ": " + obj["address"] +"</p>"; 
+			} else if (key === "addr") {
+				html += "<p>"+ "addr" + ": " + obj["addr"] +"</p>"; 
+			} else if (key === "location") {
+				html += "<p>"+ "location" + ": " + obj["location"] +"</p>";
+			} else if (key === "breif") {
+				html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
+			} else if (key === "tel") {
+				html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
+			} else if (key === "time") {
+				html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
+			}
 		}
+
 		infowindow.setContent(html);
 		infowindow.open(map, this);
 	});
