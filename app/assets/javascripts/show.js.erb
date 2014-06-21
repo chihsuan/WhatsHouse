@@ -5,6 +5,10 @@ var around = {};
 var aroundMarkers = {};
 var markers = [];
 var markerCluster;
+var focusPoint = {
+	lat: null,
+	lng: null
+};
 var styledMap=
 [
     {
@@ -367,8 +371,19 @@ function createMarker(obj, markers) {
 	});
 
 	google.maps.event.addListener(marker, 'click', function(){
+		// check if the click is the same
+		if (focusPoint.lat === marker.lat && 
+				focusPoint.lng === marker.lng) {
+			return;
+		}
+		// let the current be the focus point.
+		focusPoint.lat = marker.lat;
+		focusPoint.lng = marker.lng;
+		// delete the previous around point.
 		deleteAround();	
+		// disable all checkbox in the html
 		$('.form .fields .checkbox').checkbox('disable');
+		// request the data from database.
 		jQuery.ajax({
         	url : '/events/show',
         	dataType : 'json',
