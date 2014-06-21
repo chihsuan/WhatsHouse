@@ -154,13 +154,37 @@ div.heart.item {
 }
 
 div.radio.fields {
-	padding: 20px 20px 20px 20px;
+	display: table-cell;
+	padding: 5px 3px 9px 3px;
 }
+.radio label{
+	padding: 0px 1px 0px 0px;
+}
+
 div.ui.radio.checkbox {
-		padding: 2px 2px 2px 2px;
+	padding: 2px 2px 2px 2px;
+	min-width: 38%;
+	display: -webkit-inline-box;
 }
 
 
 div.ui.icon.input {
 	margin: 15px 10px 15px 2px;
+}
+
+i.small.long.arrow.icon{
+	display: inline;
+}
+
+.search_form{
+	width: 75%;
+}
+
+#rating_tag{
+	display: none;
+}
+
+#search_result li {
+	line-height: 18px;
+	padding: 5px 5px 5px 5px;
 }

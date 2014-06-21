@@ -1,0 +1,34 @@
+<%= form_tag('/sale_houses/show', remote:true, method:'get', class:"search_form") do%>
+	<div class="search_form">	
+		<%= label_tag(:district, "鄉鎮市區") %>
+		<div class="ui icon input">
+			 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
+			<i class="search icon"></i>
+		</div>
+	</div>
+	<%= label_tag(:price, "售價") %>
+	<div class="radio fields">
+		<div class="ui radio checkbox">
+			<%= radio_button_tag(:price, [0, 3000000], checked = true)  %>
+			<%= label_tag(:price, "500萬") %>
+			<i class="small long arrow down icon"></i>
+		</div>	
+		<div class="ui radio checkbox">
+				<%= radio_button_tag(:price, [5000000, 8000000]) %>
+				<%= label_tag(:price, "500萬 ~ 800萬") %>
+		</div>
+		<div class="ui radio checkbox">	
+				<%= radio_button_tag(:price, [8000000, 1000000]) %>
+				<%= label_tag(:price, "800萬 ~ 1000萬") %>
+		</div>	
+		<div class="ui radio checkbox">
+			<%= radio_button_tag(:price, [1000000, 999999999]) %>
+			<%= label_tag(:price, "10000萬") %>
+			<i class="long arrow up icon"></i>
+		</div>	
+	</div>
+	 <%= render :partial => "shared/rating" %>
+	 <%= text_field_tag(:rating, nil, :id=>'rating_tag' ) %>
+<%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small red button") %>
+	<% end %>
+

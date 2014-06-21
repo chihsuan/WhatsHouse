@@ -587,7 +587,32 @@ function search (){
 		markerCluster = []
 		deleteMarkers();
 
-		var real_price_list = data;
+		var rating_index = data[1];
+		
+		if( rating_index != [] ){
+		$('div.ui.form.success').hide();
+			var first = data[0][rating_index[0]]
+			$('div#advanced_search').html( 
+				"<h3>搜尋排名</h3>" +
+				"<ol id='search_result'>" +  
+				"<li>" + first.address + " " + first.price + "元</li>" 
+			);
+			for( i = 1; i < 3; ++i){
+				if( rating_index.length <= i ){
+					break;
+				}
+				var item = data[0][rating_index[i]];
+				$('#search_result').append(
+					"<li>" + item.address + " " + item.price + "元</li>"
+				)
+			}
+			$('#search_result').append(
+				"</ol>"
+			)
+		}
+
+
+		var real_price_list = data[0];
 		for (var i = 0; i < real_price_list.length; i++) {
 			createMarker(real_price_list[i], markers);
 		}
@@ -598,6 +623,6 @@ function search (){
 	});
 
 }
- 
+
 
 google.maps.event.addDomListener(window, 'load', initialize);

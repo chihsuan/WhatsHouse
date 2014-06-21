@@ -17,7 +17,6 @@
 							<a class="item" data-tab="Around">周邊</a>
 							<a class="item" data-tab="Comment">討論</a>
 							<% if current_page?("buy") || current_page?("rent") %>
-									<!--<a class="item" data-tab="Preference_score">喜好推薦</a>-->
 								<a class="item" data-tab="Advanced_Search">進階搜尋</a>
 							<% end %>
 						</div>
@@ -77,91 +76,13 @@
 						<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
 							<div id="disqus_thread"></div>
 						</div>
-						<div class="ui tab segment" id="score" data-tab="Preference_score">		
-							<div class="heart item">	
-								<div class="ui large heart rating data-rating="5"">
-									 <i class="rate icon"></i>
-									 <i class="rate icon"></i>
-									 <i class="rate icon"></i>
-									 <i class="rate icon"></i>
-									 <i class="rate icon"></i>
-								</div>
-								<div class="content">
-						 			7-11
-								</div>
-							</div>	
-							<div class="heart item">	
-								<div class="ui large heart rating data-rating="5"">
-								 	<i class="rate icon"></i>
-									<i class="rate icon"></i>
-								 	<i class="rate icon"></i>
-								 	<i class="rate icon"></i>
-									<i class="rate icon"></i>
-								</div>
-								<div class="content">
-						 			火車站
-								</div>
-							</div>
-						</div>
 						<div class="ui tab segment" id="advanced_search" data-tab="Advanced_Search">
 							<div class="ui form">	
-								<% if current_page?("rent") %>
-									<%= form_tag('/rent_houses/show', remote:true, method:'get', class:"search_form") do%>
-									<%= label_tag(:district, "鄉鎮市區") %>
-									<div class="ui icon input">
-										 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
-										<i class="search icon"></i>
-									</div>
-									<%= label_tag(:price, "月租") %>
-									<div class="radio fields">
-										<div class="ui radio checkbox">
-											<%= radio_button_tag(:price, [0, 4000], checked = true)  %>
-											<%= label_tag(:price, "4000以下") %>
-										</div>	
-										<div class="ui radio checkbox">
-												<%= radio_button_tag(:price, [4000, 6000]) %>
-												<%= label_tag(:price, "4000~6000") %>
-										</div>
-										<div class="ui radio checkbox">	
-												<%= radio_button_tag(:price, [6000, 10000]) %>
-												<%= label_tag(:price, "6000~1000") %>
-										</div>	
-										<div class="ui radio checkbox">
-											<%= radio_button_tag(:price, [10000, 99999999]) %>
-											<%= label_tag(:price, "10000以上") %>
-										</div>	
-									</div>
-								<%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small red button") %>
-									<% end %>
+							<% if current_page?("rent") %>
+	 							<%= render :partial => "shared/rent_search_form" %>	
 							<% end %>	
 							<% if current_page?("buy") %>
-								<%= form_tag('/sale_houses/show', remote:true, method:'get', class:"search_form") do%>
-									<%= label_tag(:district, "鄉鎮市區") %>
-									<div class="ui icon input">
-										 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
-										<i class="search icon"></i>
-									</div>
-									<%= label_tag(:price, "售價") %>
-										<div class="radio fields">
-											<div class="ui radio checkbox">	
-												<%= radio_button_tag(:price, [0, 3000000]) %>
-												<%= label_tag(:price, "300萬以下") %>
-											</div>	
-											<div class="ui radio checkbox">
-												<%= radio_button_tag(:price, [3000000, 5000000]) %>
-												<%= label_tag(:price, "300萬~500萬") %>
-											</div>	
-											<div class="ui radio checkbox">
-												<%= radio_button_tag(:price, [5000000, 8000000]) %>
-												<%= label_tag(:price, "500萬~800萬") %>
-											</div>
-											<div class="ui radio checkbox">
-												<%= radio_button_tag(:price, [10000000, 9999999999999999]) %>
-												<%= label_tag(:price, "1000萬以上") %>	
-										</div>	
-									</div>
-								<%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small red button") %>
-								<% end %>
+	 							<%= render :partial => "shared/buy_search_form" %>	
 							<% end %>
 							</div>
 						</div>
