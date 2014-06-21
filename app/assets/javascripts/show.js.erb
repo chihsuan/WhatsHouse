@@ -470,8 +470,8 @@ function createMarker(obj, markers) {
 						addAroundMarker(response[i]);
 					}
 				}
-
-				$("input").each(function (index) {
+								
+				$("#around_services").find("input").each(function (index) {
 					var cat = $(this).attr('name');
 					var labelID = $(this).next('label').attr('id');
 					var num = 0;		
