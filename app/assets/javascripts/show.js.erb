@@ -431,8 +431,6 @@ function createMarker(obj, markers) {
 							// around will add a property of data.
 							if (!(response[i].data in around)) {
 								console.log("found " + response[i].data);
-								console.log(response[i]);
-								
 								around[response[i].data] = [];
 							}
 							// add the data into the corresponding category of
@@ -488,7 +486,6 @@ function showAround (cat) {
 	if (cat in aroundMarkers) {
 		for(var i = 0; i != aroundMarkers[cat].length; i++) {
 			aroundMarkers[cat][i].setMap(map);
-			console.log(aroundMarkers[cat][i].data);
 		}
 	}
 }

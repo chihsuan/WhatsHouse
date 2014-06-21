@@ -83,14 +83,18 @@
 <script>
 $(document).ready(function() {
 	$('.launch.button').click(function(){
-		$('#area').toggle();
+		$('#area').toggle();  
 	});
 
-	$('.form .fields .checkbox').click(function() {
-		$(this).checkbox();
+	$('.form .fields .checkbox').checkbox('disable');
+	$('.form .fields .checkbox').checkbox();
+	
+	$('.form .fields .checkbox').click(function() {	
 		if($(this).children('input').is(':checked')) {
+			console.log("true");
 			showAround($(this).children('input').attr('name'));	
 		} else {
+			console.log("false");
 			hideAround($(this).children('input').attr('name'));
 		}
 	});
