@@ -13,7 +13,7 @@ class RentHousesController < ApplicationController
     		@data = RentHouse.where("address like ?", "%#{@district}%")
 		end
 				
-		if params[:rating]
+		if params[:rating] && !params[:rating].empty?
 			@score_list = []
 			for house in @data
 				@tmp = 0
@@ -24,7 +24,7 @@ class RentHousesController < ApplicationController
 			end
 			@data = [@data] + [ @score_list.map.with_index.sort_by(&:first).map(&:last) ]
 		else
-			@data = [@data] + []
+			@data = [@data] + [" "]
 		end
 	
 		respond_to do |format|

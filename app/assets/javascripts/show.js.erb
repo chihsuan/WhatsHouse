@@ -588,8 +588,7 @@ function search (){
 		deleteMarkers();
 
 		var rating_index = data[1];
-		
-		if( rating_index != [] ){
+		if( rating_index != " "){
 		$('div.ui.form.success').hide();
 			var first = data[0][rating_index[0]]
 			$('div#advanced_search').html( 
