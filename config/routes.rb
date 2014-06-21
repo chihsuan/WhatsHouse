@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
 	match '/get_json', to: 'static_pages#get_json', via: 'get'
-  	
+  	get 'rent_houses/show' => "rent_houses#show"	
+  	get 'sale_houses/show' => "sale_houses#show"	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

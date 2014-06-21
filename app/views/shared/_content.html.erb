@@ -10,68 +10,158 @@
 	</head>
 	<body>
   		<div id="map_canvas" style="width:100%; height:100%"></div>
-		<div class="ui response	cell grid">
-			<div class="column">
-				<div class="ui inverted orange pointing response menu">
-					<a class="item" data-tab="Information">房屋資訊</a>
-					<a class="item" data-tab="Comment">討論</a>
-					<a class="item" data-tab="Around">周邊</a>
-				</div>
-				<div class="launch button"><i class='big red sort icon'></i></div>
-				<div id="area">
-					<div class="ui tab segment" id="information" data-tab="Information">
-					</div>
-					<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
-						<div id="disqus_thread"></div>
-					</div>
-					<div class="ui tab segment" id="around" data-tab="Around">
-						<div class="ui form">
-							<div class="field">
-								<div class="grouped inline fields" id="arounds">
-									<div class="field">
-										<div class="ui slider checkbox">
-				  							<input name="stores" type="checkbox">
-				  							<label id="7-11">7-11</label>
+			<div class="ui response	cell grid">
+					<div class="column">
+						<div class="ui inverted orange pointing response menu">
+							<a class="item" data-tab="Information">房屋資訊</a>
+							<a class="item" data-tab="Around">周邊</a>
+							<a class="item" data-tab="Comment">討論</a>
+							<a class="item" data-tab="Preference_score">喜好推薦</a>
+							<a class="item" data-tab="Advanced_Search">進階搜尋</a>
+						</div>
+					<div class="launch button"><i class='big red sort icon'></i></div>
+					<div id="area">
+						<div class="ui tab segment" id="information" data-tab="Information"></div>
+						<div class="ui tab segment" id="around" data-tab="Around">
+							<div class="ui form">
+								<div class="field">
+									<div class="grouped inline fields">
+										<div class="field">
+											<div class="ui slider checkbox">
+					  							<input name="stores" type="checkbox">
+					  							<label id="7-11">7-11</label>
+											</div>	
+										</div>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="tainan_schools" type="checkbox">
+												<label id="學校">學校</label>
+											</div>	
 										</div>	
-									</div>
-									<div class="field">
-										<div class="ui slider checkbox">
-											<input name="tainan_schools" type="checkbox">
-											<label id="學校">學校</label>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="dinings" type="checkbox">
+												<label id="餐廳">餐廳</label>
+											</div>	
 										</div>	
-									</div>	
-									<div class="field">
-										<div class="ui slider checkbox">
-											<input name="dinings" type="checkbox">
-											<label id="餐廳">餐廳</label>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="stations" type="checkbox">
+												<label id="火車站">火車站</label>
+											</div>	
+										</div>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="hospitals" type="checkbox">
+												<label id="診所醫院">診所醫院</label>
+											</div>	
+										</div>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="police_stations" type="checkbox">
+												<label id="Police">Police</label>
+											</div>	
 										</div>	
-									</div>	
-									<div class="field">
-										<div class="ui slider checkbox">
-											<input name="stations" type="checkbox">
-											<label id="火車站">火車站</label>
-										</div>	
-									</div>
-									<div class="field">
-										<div class="ui slider checkbox">
-											<input name="hospitals" type="checkbox">
-											<label id="診所醫院">診所醫院</label>
-										</div>	
-									</div>
-									<div class="field">
-										<div class="ui slider checkbox">
-											<input name="police_stations" type="checkbox">
-											<label id="Police">Police</label>
-										</div>	
-									</div>	
-									<div class="field">
-										<div class="ui slider checkbox">
-											<input name="tainan_markets" type="checkbox">
-											<label id="Markets">Markets</label>
+										<div class="field">
+											<div class="ui slider checkbox">
+												<input name="tainan_markets" type="checkbox">
+												<label id="Markets">Markets</label>
+											</div>
 										</div>
 									</div>
+								</div>	
+							</div>	
+						</div>
+						<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
+							<div id="disqus_thread"></div>
+						</div>
+						<div class="ui tab segment" id="score" data-tab="Preference_score">		
+							<div class="heart item">	
+								<div class="ui large heart rating data-rating="5"">
+									 <i class="rate icon"></i>
+									 <i class="rate icon"></i>
+									 <i class="rate icon"></i>
+									 <i class="rate icon"></i>
+									 <i class="rate icon"></i>
 								</div>
-							</div>		
+								<div class="content">
+						 			7-11
+								</div>
+							</div>	
+							<div class="heart item">	
+								<div class="ui large heart rating data-rating="5"">
+								 	<i class="rate icon"></i>
+									<i class="rate icon"></i>
+								 	<i class="rate icon"></i>
+								 	<i class="rate icon"></i>
+									<i class="rate icon"></i>
+								</div>
+								<div class="content">
+						 			火車站
+								</div>
+							</div>
+						</div>
+						<div class="ui tab segment" id="advanced_search" data-tab="Advanced_Search">
+							<div class="ui form">	
+								<% if current_page?("rent") %>
+									<%= form_tag('/rent_houses/show', remote:true, method:'get') do%>
+									<%= label_tag(:district, "鄉鎮市區") %>
+									<div class="ui icon input">
+										 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
+										<i class="search icon"></i>
+									</div>
+									<%= label_tag(:price, "月租") %>
+									<div class="radio fields">
+										<div class="ui radio checkbox">
+											<%= radio_button_tag(:price, [0, 4000], checked = true)  %>
+											<%= label_tag(:price, "4000以下") %>
+										</div>	
+										<div class="ui radio checkbox">
+												<%= radio_button_tag(:price, [4000, 6000]) %>
+												<%= label_tag(:price, "4000~6000") %>
+										</div>
+										<div class="ui radio checkbox">	
+												<%= radio_button_tag(:price, [6000, 10000]) %>
+												<%= label_tag(:price, "6000~1000") %>
+										</div>	
+										<div class="ui radio checkbox">
+											<%= radio_button_tag(:price, [10000, 99999999]) %>
+											<%= label_tag(:price, "10000以上") %>
+										</div>	
+									</div>
+									<%= submit_tag("搜尋", class:"ui small red button") %>
+									<% end %>
+							<% end %>	
+							<% if current_page?("buy") %>
+								<%= form_tag('/sale_houses/show', remote:true, method:'get') do%>
+									<%= label_tag(:district, "鄉鎮市區") %>
+									<div class="ui icon input">
+										 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
+										<i class="search icon"></i>
+									</div>
+									<%= label_tag(:price, "售價") %>
+										<div class="radio fields">
+											<div class="ui radio checkbox">	
+												<%= radio_button_tag(:price, [0, 3000000]) %>
+												<%= label_tag(:price, "300萬以下") %>
+											</div>	
+											<div class="ui radio checkbox">
+												<%= radio_button_tag(:price, [3000000, 5000000]) %>
+												<%= label_tag(:price, "300萬~500萬") %>
+											</div>	
+											<div class="ui radio checkbox">
+												<%= radio_button_tag(:price, [5000000, 8000000]) %>
+												<%= label_tag(:price, "500萬~800萬") %>
+											</div>
+											<div class="ui radio checkbox">
+												<%= radio_button_tag(:price, [10000000, 9999999999999999]) %>
+												<%= label_tag(:price, "1000萬以上") %>	
+										</div>	
+									</div>
+								<%= submit_tag("搜尋", class:"ui small red button") %>
+								<% end %>
+							<% end %>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -82,9 +172,6 @@
 
 <script>
 $(document).ready(function() {
-	$('.launch.button').click(function(){
-		$('#area').toggle();  
-	});
 
 	$('.form .fields .checkbox').checkbox('disable');
 	$('.form .fields .checkbox').checkbox();

@@ -136,3 +136,30 @@ div.launch.button {
 	top: -30px;
 	position: relative;
 }
+
+.ui.tab.active, .ui.tab.open {
+		margin: 0px;
+}
+
+div.content{
+	display: inline;
+	color: rgba(0, 0, 0, 0.6);
+	-webkit-transition: color 0.2s ease;
+	transition: color 0.2s ease;
+}
+
+div.heart.item {
+	padding-bottom: 10px;
+}
+
+div.radio.fields {
+	padding: 20px 20px 20px 20px;
+}
+div.ui.radio.checkbox {
+		padding: 2px 2px 2px 2px;
+}
+
+
+div.ui.icon.input {
+	margin: 15px 10px 15px 2px;
+}
