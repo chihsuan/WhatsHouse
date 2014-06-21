@@ -19,16 +19,61 @@
 				</div>
 				<div class="launch button"><i class='big red sort icon'></i></div>
 				<div id="area">
-				<div class="ui tab segment" id="information" data-tab="Information"></div>
-				<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
-					<div id="disqus_thread"></div>
-				</div>
-				<div class="ui tab segment" id="around" data-tab="Around">
-					<div class="ui slider checkbox">
-  						<input name="7-11" type="checkbox">
-  						<label>7-11</label>
-					</div>	
-				</div>
+					<div class="ui tab segment" id="information" data-tab="Information">
+					</div>
+					<div class="comments-area ui tab segment" id="comments" data-tab="Comment">
+						<div id="disqus_thread"></div>
+					</div>
+					<div class="ui tab segment" id="around" data-tab="Around">
+						<div class="ui form">
+							<div class="field">
+								<div class="grouped inline fields">
+									<div class="field">
+										<div class="ui slider checkbox">
+				  							<input name="stores" type="checkbox">
+				  							<label>7-11</label>
+										</div>	
+									</div>
+									<div class="field">
+										<div class="ui slider checkbox">
+											<input name="tainan_schools" type="checkbox">
+											<label>學校</label>
+										</div>	
+									</div>	
+									<div class="field">
+										<div class="ui slider checkbox">
+											<input name="dining" type="checkbox">
+											<label>餐廳</label>
+										</div>	
+									</div>	
+									<div class="field">
+										<div class="ui slider checkbox">
+											<input name="stations" type="checkbox">
+											<label>火車站</label>
+										</div>	
+									</div>
+									<div class="field">
+										<div class="ui slider checkbox">
+											<input name="hospitals" type="checkbox">
+											<label>診所醫院</label>
+										</div>	
+									</div>
+									<div class="field">
+										<div class="ui slider checkbox">
+											<input name="tainan_schools" type="checkbox">
+											<label>學校</label>
+										</div>	
+									</div>	
+									<div class="field">
+										<div class="ui slider checkbox">
+											<input name="tainan_markets" type="checkbox">
+											<label>市場</label>
+										</div>
+									</div>
+								</div>
+							</div>		
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -41,16 +86,14 @@ $(document).ready(function() {
 		$('#area').toggle();
 	});
 
-	$('#around .checkbox').click(function() {
+	$('.form .fields .checkbox').click(function() {
 		$(this).checkbox();
-
-		if($('input[name=7-11]').is(':checked')) {
-			console.log("checked");
-			addAround("stores");
-			showAround("all");
-		}else {
-			console.log("not checked");
-			hideAround("all");
+		//console.log();
+		if($(this).children('input').is(':checked')) {
+			console.log($(this).children('input').attr('name'));
+			showAround($(this).children('input').attr('name'));	
+		} else {
+			hideAround($(this).children('input').attr('name'));
 		}
 	});
 });
