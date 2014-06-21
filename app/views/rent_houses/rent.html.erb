@@ -1,6 +1,6 @@
 <div id = "rent_houses_page" >
 
-<div class="ui form rent segment">
+<div class="ui form rent segment" id="rent">
 
   <%= form_for(@rent_house) do |f| %>
   <%= render 'shared/error_messages', object: f.object%>
@@ -84,7 +84,6 @@
 	  </div>
 	</div>
   </div>
-
   <%= f.submit "出租", class:"ui orange button" %>
 </div>
 <% end %>

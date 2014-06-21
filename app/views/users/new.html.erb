@@ -1,7 +1,7 @@
 <% provide(:title, 'Sign up') %>
 
 <div id = "sign_up">
-<div class="ui form signup segment">
+<div class="ui form signup segment" id="signup">
   <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: f.object%>
   <div class="field">
