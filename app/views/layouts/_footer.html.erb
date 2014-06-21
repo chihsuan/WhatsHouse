@@ -12,6 +12,21 @@ $(document).ready(function() {
 	$('.launch.button').click(function(){
 		$('#area').toggle();
 	});
+
+	$('.rating')
+	  .rating('enable');
+	
+		
+	$('.ui.checkbox')
+  		.checkbox('toggle')
+	;	
+
 });
+
+$('.rate').click(function() {
+ 	console.log( $('.rating').rating('get rating') );
+
+} );
+
 </script>
 

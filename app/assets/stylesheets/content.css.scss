@@ -136,3 +136,18 @@ div.launch.button {
 	top: -30px;
 	position: relative;
 }
+
+.ui.tab.active, .ui.tab.open {
+		margin: 0px;
+}
+
+div.content{
+	display: inline;
+	color: rgba(0, 0, 0, 0.6);
+	-webkit-transition: color 0.2s ease;
+	transition: color 0.2s ease;
+}
+
+div.heart.item {
+	padding-bottom: 10px;
+}
