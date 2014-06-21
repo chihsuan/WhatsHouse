@@ -1,6 +1,6 @@
 var map;
-var services;
 var infowindow;
+var services;
 var around = {};
 var aroundMarkers = {};
 var markers = [];
@@ -269,6 +269,7 @@ function initialize() {
 	// pop up window for the marker
 	infowindow = new google.maps.InfoWindow();
 
+	markers = [];
 	var real_price_list = gon.real_price_list
 	
 	for (var i = 0; i < real_price_list.length; i++) {
@@ -280,6 +281,15 @@ function initialize() {
 
 // add marker into map and push it into aroundMarkers
 function addAroundMarker(obj) {
+	// there are some duplicate data in police_stations,
+	// I have to delete it by myself here... 
+	if (obj.data === "police_stations") {
+		for (var p in aroundMarkers["police_stations"]) {
+			if (p.addr === obj.addr) {
+				return;
+			}
+		}
+	}
 	var iconCat = "";
 	if (obj.data === "stores") {
 		iconCat = '<%= asset_path 'stores.jpg' %>';
@@ -316,8 +326,13 @@ function addAroundMarker(obj) {
 		lng: obj.lng,
 		icon: iconImage
 	});
-
 	google.maps.event.addListener(marker, 'mouseover', function(){
+		infowindow = new google.maps.InfoWindow();
+		var html = "";
+		for (var key in obj) {
+			html += "<p>"+ key + ": " + obj[key] +"</p>"; 
+		}
+		infowindow.setContent(html);
 		infowindow.open(map, this);
 	});
 
@@ -333,7 +348,7 @@ function addAroundMarker(obj) {
 
 // add a marker to the map and push it to the map.
 function createMarker(obj, markers) {
-
+	
 	var marker = new google.maps.Marker({
 		map: map,
 		position: new google.maps.LatLng(obj.lat, obj.lng),
@@ -344,15 +359,16 @@ function createMarker(obj, markers) {
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(){
-		infowindow.open(map, this);
+		//infowindow.open(map, this);
 	});
 
 	google.maps.event.addListener(marker, 'mouseout', function(){
-		infowindow.close(map, this);
+		//infowindow.close(map, this);
 	});
 
 	google.maps.event.addListener(marker, 'click', function(){
 		deleteAround();	
+		$('.form .fields .checkbox').checkbox('disable');
 		jQuery.ajax({
         	url : '/events/show',
         	dataType : 'json',
@@ -367,78 +383,90 @@ function createMarker(obj, markers) {
 				for( i=0; i < response.length; ++i ){
 				
 					if( response[i].data == 'sale_houses'){
-							$('#information').html(
-							'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
-									"<p>" + response[i].use + "</p></span>" +
+						$('#information').html(
+						'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+								"<p>" + response[i].use + "</p></span>" +
 
-							'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
-									"<p>" + response[i].structure + "</p></span>" + 
-								
-							'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
-									"<p>" + response[i].address + "</p></span>" +
-								
-							'<span class="right-information"><div class="orange ui ribbon label">' + "售價" + '</div>' + 
-									"<p>" + response[i].price + "</p></span>" +
+						'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+								"<p>" + response[i].structure + "</p></span>" + 
+							
+						'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+								"<p>" + response[i].address + "</p></span>" +
+							
+						'<span class="right-information"><div class="orange ui ribbon label">' + "售價" + '</div>' + 
+								"<p>" + response[i].price + "</p></span>" +
 
-							'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
-									"<p>" + response[i].owner + "</p></span>"  +
-								
-							'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
-									"<p>" + response[i].tel + "</p></span>"  +
-								
-							'<span class="brief"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
-									"<p>" + response[i].breif + "</p></span>"  
-			
-								);
-						}
-						else if( response[i].data == 'rent_houses' ){
-							$('#information').html(
-								
-							'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
-									"<p>" + response[i].use + "</p></span>" +
+						'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+								"<p>" + response[i].owner + "</p></span>"  +
+							
+						'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+								"<p>" + response[i].tel + "</p></span>"  +
+							
+						'<span class="brief"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+								"<p>" + response[i].breif + "</p></span>"  
+		
+							);
+					}
+					else if( response[i].data == 'rent_houses' ){
+						$('#information').html(
+							
+						'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+								"<p>" + response[i].use + "</p></span>" +
 
-							'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
-									"<p>" + response[i].structure + "</p></span>" + 
-								
-							'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
-									"<p>" + response[i].address + "</p></span>" +
-								
-							'<span class="right-information"><div class="orange ui ribbon label">' + "租金" + '</div>' + 
-									"<p>" + response[i].price + "</p></span>" +
+						'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+								"<p>" + response[i].structure + "</p></span>" + 
+							
+						'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+								"<p>" + response[i].address + "</p></span>" +
+							
+						'<span class="right-information"><div class="orange ui ribbon label">' + "租金" + '</div>' + 
+								"<p>" + response[i].price + "</p></span>" +
 
-							'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
-									"<p>" + response[i].owner + "</p></span>"  +
-								
-							'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
-									"<p>" + response[i].tel + "</p></span>"  +
-								
-							'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
-									"<p>" + response[i].breif + "</p></span>"  
-								);
+						'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+								"<p>" + response[i].owner + "</p></span>"  +
+							
+						'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+								"<p>" + response[i].tel + "</p></span>"  +
+							
+						'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+								"<p>" + response[i].breif + "</p></span>"  
+							);
+					}
+					else if( response[i].data == 'real_price_deals'){
+						$('#information').html(
+						'"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
+							"<p>" + response[i].area + "</p>" + 
+						'"<div class="green ui ribbon label">' + "土地路段" + '</div>' + 
+							"<p>" + response[i].location + "</p>" + 
+						'"<div class="blue ui ribbon label">' + "總成交價" + '</div>' + 
+							"<p>" + response[i].total_price + "元</p>"
+							);
+					}
+					else {
+						// if the data category of response is not in around
+						// around will add a property of data.
+						if (!(response[i].data in around)) {
+							console.log("found " + response[i].data);
+							around[response[i].data] = [];
 						}
-						else if( response[i].data == 'real_price_deals'){
-							$('#information').html(
-							'"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
-								"<p>" + response[i].area + "</p>" + 
-							'"<div class="green ui ribbon label">' + "土地路段" + '</div>' + 
-								"<p>" + response[i].location + "</p>" + 
-							'"<div class="blue ui ribbon label">' + "總成交價" + '</div>' + 
-								"<p>" + response[i].total_price + "元</p>"
-								);
-						}
-						else {
-							// if the data category of response is not in around
-							// around will add a property of data.
-							if (!(response[i].data in around)) {
-								console.log("found " + response[i].data);
-								around[response[i].data] = [];
-							}
-							// add the data into the corresponding category of
-							// around.
-							around[response[i].data].push(response[i]);
-							addAroundMarker(response[i]);
-						}
-					}	
+						// add the data into the corresponding category of
+						// around.
+						around[response[i].data].push(response[i]);
+						addAroundMarker(response[i]);
+					}
+				}
+
+				$("input").each(function (index) {
+					var cat = $(this).attr('name');
+					var labelID = $(this).next('label').attr('id');
+					var num = 0;		
+					if (cat in aroundMarkers) {
+						$(this).next('label').text(labelID + " (" + aroundMarkers[cat].length +")");	
+					}
+					else {
+						$(this).next('label').text(labelID + " (0)");
+					}
+				});		
         	},
         	error : function(err){
  
