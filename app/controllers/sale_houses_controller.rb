@@ -13,7 +13,21 @@ class SaleHousesController < ApplicationController
 		else
     		@data = SaleHouse.where("address like ?", "%#{@district}%")
 		end
-		
+			
+		if params[:rating]
+			@score_list = []
+			for house in @data
+				@tmp = 0
+				for i in 0...params[:rating].length
+					@tmp = @tmp + house['around_list'][i].to_i * params[:rating][i].to_i
+				end
+				@score_list << @tmp
+			end
+			@data = [@data] + [ @score_list.map.with_index.sort_by(&:first).map(&:last) ]
+		else
+			@data = [@data] + [nil]
+		end
+			
 		respond_to do |format|
 			format.json { render :json => @data }
 		end

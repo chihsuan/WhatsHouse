@@ -23,11 +23,14 @@ class EventsController < ApplicationController
 		@data += TainanMarket.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += TainanSchool.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += Dining.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
-		
+
+
+
 		respond_to do |format|
 			format.json { render :json => @data }
 		end
 	end
+	
 
 end
 

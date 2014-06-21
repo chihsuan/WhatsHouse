@@ -9,21 +9,19 @@
   <script>
 		
 $(document).ready(function() {
+		
 	$('.launch.button').click(function(){
 		$('#area').toggle();
 	});
 
 	$('.rating')
-	  .rating('enable');
-	
-		
+	  .rating('enable');	
 
+	$('.rate').click(function(){
+		 $("#rating_tag").val( $('.rating').rating('get rating') );
+	});
 });
 
-$('.rate').click(function() {
- 	console.log( $('.rating').rating('get rating') );
-
-} );
 
 </script>
 

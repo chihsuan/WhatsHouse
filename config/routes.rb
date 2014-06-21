@@ -2,16 +2,17 @@ Rails.application.routes.draw do
   get 'password_resets/new'
 
 	resources :users
-	resources :events
 	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :rent_houses, only: [:create, :destroy]
 	resources :sale_houses,  only: [:create, :destroy]
-	
+	resources :events 	
 	root :to => "content#content"
 	#get "map/index" => "map#index"
 	get "content" => "content#content"
 	get "static_pages" => "static_pages#index"
+  	get 'rent_houses/show' => "rent_houses#show"	
+  	get 'sale_houses/show' => "sale_houses#show"
 	match '/analysis', to: 'content#analysis', via: 'get'
 	match '/rent', to: 'content#rent', via: 'get'
 	match '/buy', to: 'content#buy', via: 'get'
@@ -21,8 +22,8 @@ Rails.application.routes.draw do
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
 	match '/get_json', to: 'static_pages#get_json', via: 'get'
-  	get 'rent_houses/show' => "rent_houses#show"	
-  	get 'sale_houses/show' => "sale_houses#show"	
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
