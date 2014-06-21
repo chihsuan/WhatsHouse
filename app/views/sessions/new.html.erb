@@ -1,6 +1,9 @@
 <% provide(:title, "Sign in") %>
 <div id = "sign_in">
 <div class="ui form signin segment">
+   <% flash.each do |key, value| %>
+		<span class="ui small error message alert-<%= key %>"><%= value %></span>
+   <% end %>
   <%= form_for(:session, url: sessions_path) do |f| %>
   <div class="field">
     <%= f.label :email%> 
