@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :rent_houses, only: [:create, :destroy]
-	resources :sale_houses, only: [:create, :destroy]
+	resources :sale_houses,  only: [:create, :destroy]
 	
 	root :to => "content#content"
 	#get "map/index" => "map#index"

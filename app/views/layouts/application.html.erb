@@ -14,7 +14,7 @@
 	<%= render 'layouts/header' %>
 	<div class="container">
     <% flash.each do |key, value| %>
-        <span class="ui small error message alert-<%= key %>"><%= value %></div>
+        <span class="ui small error message alert-<%= key %>"><%= value %>
       <% end %>
 	
 	<%= yield %>

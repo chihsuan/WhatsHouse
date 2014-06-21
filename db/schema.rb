@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621063526) do
+ActiveRecord::Schema.define(version: 20140621093821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140621063526) do
     t.string   "person_charge"
     t.integer  "size"
     t.string   "tel"
-    t.string   "addr"
+    t.string   "address"
     t.float    "lat"
     t.float    "lng"
     t.datetime "created_at"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140621063526) do
     t.string   "store_id"
     t.string   "name"
     t.string   "breif"
-    t.string   "addr"
+    t.string   "address"
     t.string   "tel"
     t.string   "time"
     t.float    "lng"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20140621063526) do
     t.string   "name"
     t.string   "country"
     t.string   "district"
-    t.string   "location"
+    t.string   "address"
     t.string   "tel"
     t.float    "lat"
     t.float    "lng"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20140621063526) do
 
   create_table "hospitals", force: true do |t|
     t.string   "name"
-    t.string   "addr"
+    t.string   "address"
     t.string   "tel"
     t.float    "lat"
     t.float    "lng"
@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 20140621063526) do
     t.string   "country"
     t.string   "area"
     t.string   "station"
-    t.string   "location"
+    t.string   "address"
     t.float    "lat"
     t.float    "lng"
     t.datetime "created_at"
@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(version: 20140621063526) do
     t.string   "merger"
     t.float    "lat"
     t.float    "lng"
-    t.string   "addr"
+    t.string   "address"
     t.string   "schooltype2"
     t.string   "stage"
     t.datetime "created_at"

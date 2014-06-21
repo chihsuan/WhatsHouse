@@ -5,15 +5,14 @@ class RentHousesController < ApplicationController
 
 	def show
 		@district = params[:district]
-		if !params[:price].empty? && !params[:district].empty?
+		if !params[:price] && !params[:district]
     		@data = RentHouse.where("address like ?", "%#{@district}%").where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
-		elsif params[:district].empty?
+		elsif params[:price]
     		@data = RentHouse.where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
 		else
     		@data = RentHouse.where("address like ?", "%#{@district}%")
 		end
 	
-
 		respond_to do |format|
 			format.json { render :json => @data }
 		end

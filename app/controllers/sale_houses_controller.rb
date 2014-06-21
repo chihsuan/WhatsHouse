@@ -6,9 +6,9 @@ class SaleHousesController < ApplicationController
 
 	def show
 		@district = params[:district]
-		if !params[:price].empty? && !params[:district].empty?
+		if !params[:price] && !params[:district]  
     		@data = SaleHouse.where("address like ?", "%#{@district}%").where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
-		elsif params[:district].empty?
+		elsif params[:price] 
     		@data = SaleHouse.where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
 		else
     		@data = SaleHouse.where("address like ?", "%#{@district}%")

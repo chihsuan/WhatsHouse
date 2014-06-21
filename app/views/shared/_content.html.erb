@@ -16,8 +16,10 @@
 							<a class="item" data-tab="Information">房屋資訊</a>
 							<a class="item" data-tab="Around">周邊</a>
 							<a class="item" data-tab="Comment">討論</a>
-							<a class="item" data-tab="Preference_score">喜好推薦</a>
-							<a class="item" data-tab="Advanced_Search">進階搜尋</a>
+							<% if current_page?("buy") || current_page?("rent") %>
+									<!--<a class="item" data-tab="Preference_score">喜好推薦</a>-->
+								<a class="item" data-tab="Advanced_Search">進階搜尋</a>
+							<% end %>
 						</div>
 					<div class="launch button"><i class='big red sort icon'></i></div>
 					<div id="area">
@@ -105,7 +107,7 @@
 						<div class="ui tab segment" id="advanced_search" data-tab="Advanced_Search">
 							<div class="ui form">	
 								<% if current_page?("rent") %>
-									<%= form_tag('/rent_houses/show', remote:true, method:'get') do%>
+									<%= form_tag('/rent_houses/show', remote:true, method:'get', class:"search_form") do%>
 									<%= label_tag(:district, "鄉鎮市區") %>
 									<div class="ui icon input">
 										 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
@@ -130,11 +132,11 @@
 											<%= label_tag(:price, "10000以上") %>
 										</div>	
 									</div>
-									<%= submit_tag("搜尋", class:"ui small red button") %>
+								<%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small red button") %>
 									<% end %>
 							<% end %>	
 							<% if current_page?("buy") %>
-								<%= form_tag('/sale_houses/show', remote:true, method:'get') do%>
+								<%= form_tag('/sale_houses/show', remote:true, method:'get', class:"search_form") do%>
 									<%= label_tag(:district, "鄉鎮市區") %>
 									<div class="ui icon input">
 										 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
@@ -159,7 +161,7 @@
 												<%= label_tag(:price, "1000萬以上") %>	
 										</div>	
 									</div>
-								<%= submit_tag("搜尋", class:"ui small red button") %>
+								<%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small red button") %>
 								<% end %>
 							<% end %>
 							</div>
