@@ -1,6 +1,8 @@
 var map;
 var services;
 var infowindow;
+var around = {};
+var aroundMarkers = {};
 var styledMap=
 [
     {
@@ -269,11 +271,47 @@ function initialize() {
 	var real_price_list = gon.real_price_list
 	
 	for (var i = 0; i < real_price_list.length; i++) {
-//		console.log( real_price_list[i].lat );
 		createMarker(real_price_list[i], markers);
 	}
 	//create clusterer and push the global array of markers into it.
 	var markerCluster = new MarkerClusterer(map, markers);  
+
+}
+
+// add marker into map and push it into aroundMarkers
+function addAroundMarker(obj) {
+	var iconCat = "";
+	if (obj.data === "stores") {
+		iconCat = '<%= asset_path '7_11.jpg' %>';
+	}
+
+	var iconImage = {
+		url: iconCat,
+		size: new google.maps.Size(30, 30)
+	};
+
+	var marker = new google.maps.Marker({
+		map: map,
+		position: new google.maps.LatLng(obj.lat, obj.lng),
+		id: obj.id,
+		data:obj.data,
+		lat: obj.lat,
+		lng: obj.lng,
+		icon: iconImage
+	});
+
+	google.maps.event.addListener(marker, 'mouseover', function(){
+		infowindow.open(map, this);
+	});
+
+	google.maps.event.addListener(marker, 'mouseout', function(){
+		infowindow.close(map, this);
+	});
+
+	if (!(obj.data in aroundMarkers)) { 
+		aroundMarkers[obj.data] = [];
+	}
+	aroundMarkers[obj.data].push(marker);
 }
 
 // add a marker to the map and push it to the map.
@@ -289,7 +327,6 @@ function createMarker(obj, markers) {
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(){
-		//infowindow.setContent(road);
 		infowindow.open(map, this);
 	});
 
@@ -298,7 +335,7 @@ function createMarker(obj, markers) {
 	});
 
 	google.maps.event.addListener(marker, 'click', function(){
-	
+		deleteAround();	
 		jQuery.ajax({
         	url : '/events/show',
         	dataType : 'json',
@@ -310,7 +347,6 @@ function createMarker(obj, markers) {
 				lng: marker.lng
         	},
         	success : function(response){
-				console.log("success");
 				for( i=0; i < response.length; ++i ){
 				
 					if( response[i].data == 'sale_houses'){
@@ -374,7 +410,14 @@ function createMarker(obj, markers) {
 								);
 						}
 						else {
-							console.log(response[i]);
+							// if the data category of response is not in around
+							// around will add a property of data.
+							if (!(response[i].data in around)) {
+								around[response[i].data] = [];	
+							}
+							// add the data into the corresponding category of
+							// around.
+							around[response[i].data].push(response[i]);
 						}
 					}	
         	},
@@ -394,7 +437,8 @@ function createMarker(obj, markers) {
 						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 						dsq.id = disqus_identifier;
 						dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						(document.getElementsByTagName('head')[0] || 
+								document.getElementsByTagName('body')[0]).appendChild(dsq);
 						})();
 			}else{
 				DISQUS.reset({
@@ -405,10 +449,66 @@ function createMarker(obj, markers) {
   					}
 				});	
 			}
-
 	});
-
 	markers.push(marker);
+}
+
+// add around to aroundMarkers
+function addAround (cat) {
+	if (cat in around) {
+		console.log(cat + "is in around");
+		for (var i = 0; i < around[cat].length; i++) {
+			addAroundMarker(around[cat][i]);
+		}
+	} 
+	else {
+		console.log(cat + "isn't in around");
+	}
+}
+
+
+function showAround (cat) {
+	// show all
+	if (cat === "all") {
+		for (var category in aroundMarkers) {
+			for(var i = 0; i != aroundMarkers[category].length; i++) {
+				aroundMarkers[category][i].setMap(map);
+			}				
+		}
+		return;
+	}
+	// show cat only
+	if (cat in aroundMarkers) {
+		for(var i = 0; i != aroundMarkers[cat].length; i++) {
+			aroundMarkers[cat][i].setMap(map);
+		}
+	}
+}
+
+// just hide from map
+function hideAround (cat) {
+	// hide all
+	if (cat === "all") {
+		for (var category in aroundMarkers) {
+			for(var i = 0; i != aroundMarkers[category].length; i++) {
+				aroundMarkers[category][i].setMap(null);
+			}				
+		}
+		return;
+	}
+	// hide cat only
+	if (cat in aroundMarkers) {
+		for(var i = 0; i != aroundMarkers[cat].length; i++) {
+			aroundMarkers[cat][i].setMap(null);
+		}
+	}
+}
+
+// delete "all" around and aroundmarkers.
+function deleteAround () {
+	hideAround("all");
+	around = {};
+	aroundMarkers = {};
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
