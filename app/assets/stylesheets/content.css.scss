@@ -6,24 +6,24 @@
 	height: 100%;
 }
 	  
-.ui.title_bar.menu{
+div.ui.fixed.inverted.title_bar.menu{
     position: absolute;
     top: 0px;
     width: 100%;
 	z-index: 10;
-	background: #c72200; /* Old browsers */
-	background: -moz-linear-gradient(left, #c72200 0%, #ff6a07 70%, #ff6a07 96%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c72200), color-stop(70%,#ff6a07), color-stop(96%,#ff6a07)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* IE10+ */
-	background: linear-gradient(to right, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c72200', endColorstr='#ff6a07',GradientType=1 ); /* IE6-9 */
+	background-color: #c72200; /* Old browsers */
+	//background: -moz-linear-gradient(left, #c72200 0%, #ff6a07 70%, #ff6a07 96%); /* FF3.6+ */
+	//background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c72200), color-stop(70%,#ff6a07), color-stop(96%,#ff6a07)); /* Chrome,Safari4+ */
+	//background: -webkit-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* Chrome10+,Safari5.1+ */
+	//background: -o-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* Opera 11.10+ */
+	//background: -ms-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* IE10+ */
+	//background: linear-gradient(to right, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* W3C */
+	//filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c72200', endColorstr='#ff6a07',GradientType=1 ); /* IE6-9 */
 }
 
 .ui.title_bar.menu .menu{
 	position: relative;
-	left: 40px;
+	//left: 40px;
 }
 
 .ui.title_bar.menu .menu h2 {
@@ -70,6 +70,11 @@ html, body, .container{
 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 	font-size: 13px/1.231;
 }
+
+body{
+	height: 92%;
+}
+
 .container{
 	margin-top: 42px;
 }
