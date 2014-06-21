@@ -1,6 +1,6 @@
 <div id = "sale_houses_page" >
 
-<div class="ui form rent segment">
+<div class="ui form rent segment" id="sale">
 	  
 <%= form_for(@sale_house) do |f| %>
   <%= render 'shared/error_messages', object: f.object%>
@@ -99,3 +99,79 @@
   <% end %>
 </div>
 </div>
+
+<script>
+$(document).ready(function(){
+$('#sale')
+  .form({
+    use: {
+      identifier : 'sale_house[use]',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : '請輸入類別'
+        }
+      ]
+    },
+    structure: {
+      identifier : 'sale_house[structure]',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : '請輸入格局'
+        }
+      ]
+    },
+    address: {
+      identifier : 'sale_house[address]',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : '請輸入地址'
+        }
+      ]
+    },
+    price: {
+      identifier : 'sale_house[price]',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : '請輸入售價'
+        }
+      ]
+    },
+    owner: {
+      identifier : 'sale_house[owner]',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : '請輸入聯絡人'
+        }
+      ]
+    },
+    tel: {
+      identifier : 'sale_house[tel]',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : '請輸入聯絡電話'
+        }
+      ]
+    },
+    breif: {
+      identifier : 'sale_house[breif]',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : '請輸入刊登資訊'
+        }
+      ]
+    }
+  },{
+    on: 'blur',
+    inline: 'true',
+    onSuccess : function() {
+    }
+  })
+});
+</script>
