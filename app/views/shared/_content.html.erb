@@ -42,7 +42,7 @@
 									</div>	
 									<div class="field">
 										<div class="ui slider checkbox">
-											<input name="dining" type="checkbox">
+											<input name="dinings" type="checkbox">
 											<label>餐廳</label>
 										</div>	
 									</div>	
@@ -60,8 +60,8 @@
 									</div>
 									<div class="field">
 										<div class="ui slider checkbox">
-											<input name="tainan_schools" type="checkbox">
-											<label>學校</label>
+											<input name="police_stations" type="checkbox">
+											<label>Police</label>
 										</div>	
 									</div>	
 									<div class="field">
@@ -88,9 +88,7 @@ $(document).ready(function() {
 
 	$('.form .fields .checkbox').click(function() {
 		$(this).checkbox();
-		//console.log();
 		if($(this).children('input').is(':checked')) {
-			console.log($(this).children('input').attr('name'));
 			showAround($(this).children('input').attr('name'));	
 		} else {
 			hideAround($(this).children('input').attr('name'));
