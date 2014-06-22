@@ -6,6 +6,7 @@ class ContentController < ApplicationController
 	end
 
 	def content
+		@user = User.new
 		@sale_houses = SaleHouse.select("id, lat, lng, address, data")
 		gon.real_price_list = @sale_houses.as_json()
 	end
