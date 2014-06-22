@@ -110,6 +110,12 @@ header .item{
 	height: 80px;
 }
 
+#information>:last-child {
+		margin-bottom: 0em;
+		width: 100%;
+		height: 100%;
+}
+
 .ui.tab.active, .ui.tab.open {
 		display: block;
 		box-shadow: 0.7px 0.8px 0.8px rgba(1,1,1,0.5);
