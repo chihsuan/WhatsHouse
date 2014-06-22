@@ -299,16 +299,16 @@ function addAroundMarker(obj) {
 		iconCat = '<%= asset_path 'stores.jpg' %>';
 	} 
 	else if (obj.data === "stations") {
-		iconCat = '<%= asset_path 'stations.jpg' %>';
+		iconCat = '<%= asset_path 'stations.png' %>';
 	}
 	else if (obj.data === "dinings") {
 		iconCat = '<%= asset_path 'dinings.png' %>';
 	}
 	else if (obj.data === "tainan_schools") {
-		iconCat = '<%= asset_path 'tainan_schools.jpg' %>';		
+		iconCat = '<%= asset_path 'tainan_schools.png' %>';		
 	}
 	else if (obj.data === "tainan_markets") {
-		iconCat = '<%= asset_path 'tainan_markets.jpg' %>';		
+		iconCat = '<%= asset_path 'tainan_markets.png' %>';		
 	}
 	else if (obj.data === "hospitals") {
 		iconCat = '<%= asset_path 'hospitals.png' %>';	
@@ -601,7 +601,7 @@ function search (){
 		markerCluster.setMap(null);
 		markerCluster = []
 		deleteMarkers();
-
+		deleteAround();
 		var rating_index = data[1];
 		if( rating_index != " "){
 		$('div.ui.form.success').hide();
