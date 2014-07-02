@@ -49,7 +49,7 @@ class RentHousesController < ApplicationController
      	 	flash[:success] = "RentHouse created!"
       		redirect_to renthouse_path
     	else
-      		render '/'
+      		redirect_to '/renthouse'
     	end
  	 end
 

@@ -5,6 +5,7 @@ var around = {};
 var aroundMarkers = {};
 var markers = [];
 var markerCluster;
+var getHouse;
 var focusPoint = {
 	lat: null,
 	lng: null
@@ -374,7 +375,7 @@ function createMarker(obj, markers) {
 		id: obj.id,
 		data:obj.data,
 		lat: obj.lat,
-		lng: obj.lng
+		lng: obj.lng,
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(){
@@ -438,8 +439,10 @@ function createMarker(obj, markers) {
 							);
 					}
 					else if( response[i].data == 'rent_houses' ){
+						getHouse = response[i]
+
 						$('#information').html(
-						'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+						'<button class="add_to_cart" onclick="addToCart()">add to cart</button><span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
 								"<p>" + response[i].use + "</p></span>" +
 
 						'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
@@ -648,6 +651,37 @@ function splitImgUrl(imgUrl) {
 		sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
 	}
 	return sliderHTML;
+}
+
+var house_number = $('.cart').length;
+var house_array = []
+function addToCart() {
+	
+	// add input field by jQuery
+	var max_input = 5;
+	var fieldCount = 1;
+
+	if ( house_number <= max_input ){
+		house_array.push(getHouse);
+
+		fieldCount++;
+		$('.cart').append('<div>' +
+						 getHouse.address + getHouse.price + 
+						 '<button onclick="javascript:removeFromCart(this)" id="house' +  house_number + '"' +
+						 		 'class="removeclass">×</button></div>'
+		);	
+		house_number++;
+	}
+	return false;
+}
+function removeFromCart (item) {
+				
+	if( house_number >= 1 ){
+		delete house_array[ item.id[4] ];
+		$(item).parent('div').remove();
+		house_number--;
+	}
+	return false;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
