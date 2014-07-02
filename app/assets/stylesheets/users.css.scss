@@ -21,26 +21,3 @@
 	background: image-url("background.jpg") repeat;
 }
 
-.ui.about.cell.grid {
-	position: absolute;
-  top: 80px;
-	right: 20%;
-	width: 60%;
-	display:table;
-}
-
-.ui.about.cell.grid .column{
-	padding-right: 30px;
-}
-
-.ui.about.cell.grid .column .ui.about.menu {
-	position: relative;
-}
-
-.ui.about.cell.grid .column .ui.tab.segmant {
-	display:table-cell;
-}
-
-#areaAbout{
-	position: relative;
-}
