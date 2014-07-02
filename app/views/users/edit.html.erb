@@ -2,9 +2,9 @@
 
 <div class="ui about cell grid">
 	<div class="column">
-		<div class="ui inverted pointing about menu">
-			<a class="avtive item" href="#AboutMe">About me</a>
-			<a class="item" href="#UpdateInfo">Update Info</a>
+		<div class="ui inverted pointing about menu">	
+		<a class="item" data-tab="AboutMe">About me</a>
+		<a class="item" data-tab="UpdateInfo">Update Info</a>
 		</div>
 		<div id="areaAbout">
 			<div class="ui tab segment" id="AboutMe" data-tab="AboutMe"></div>
@@ -61,7 +61,11 @@
 		</div>
 	</div>
 </div>		
-
+<script>
+$(document).ready(function(){
+		$('.about.menu .item').tab({history:false});
+});
+</script>
 <!--
 <div class="ui form edit segment">
     <%= form_for(@user) do |f| %>
