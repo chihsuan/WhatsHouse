@@ -42,6 +42,7 @@ class RentHousesController < ApplicationController
 
 	def create
     	@rent_house = current_user.rent_houses.build(rentHouses_params)
+      	@rent_house.img = params[:img].join(',')
     	if @rent_house.save
      	 	flash[:success] = "RentHouse created!"
       		redirect_to renthouse_path
@@ -61,7 +62,8 @@ class RentHousesController < ApplicationController
 
     def rentHouses_params
       params.require(:rent_house).permit(:use, :address, :price, :size, :owner,
-      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email, :district, :around_list)
+      									 :structure, :year, :floor, :breif, :note, :tel, :name, :email, :district, :around_list, :img)
+    
     end
 	
 	def correct_user

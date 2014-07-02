@@ -14,6 +14,9 @@
 					<div class="column">
 						<div class="ui inverted orange pointing response menu">
 							<a class="item" data-tab="Information">房屋資訊</a>
+							<% if current_page?("buy") || current_page?("rent") %>
+								<a class="item" data-tab="Show_Img">相片</a>
+							<% end %>
 							<a class="item" data-tab="Around">周邊</a>
 							<a class="item" data-tab="Comment">討論</a>
 							<% if current_page?("buy") || current_page?("rent") %>
@@ -23,6 +26,23 @@
 					<div class="launch button"><i class='big red sort icon'></i></div>
 					<div id="area">
 						<div class="ui tab segment" id="information" data-tab="Information"></div>
+						<div class="ui tab segment" id="show_img slider1_container" data-tab="Show_Img">
+							<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 480px; height: 300px;">
+									<!-- Slides Container -->
+									<div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 480px; height: 300px;">
+										<div>
+											<img u="image" src="<%= image_url '001.jpg' %>" />
+											<img u="thumb" src="<%= image_url '001.jpg' %>" />
+										</div>
+										<div><img u="image" src="<%= image_url '003.jpg' %>" /></div>
+									</div>
+									<!-- ThumbnailNavigator Skin Begin -->
+										<!-- open 'skin\thumbnail-...source.html', copy and paste thumbnail navigator skin here -->
+									<!-- ThumbnailNavigator Skin End -->
+									<!-- Trigger -->
+							<script>jssor_slider1_starter('slider1_container');</script>
+							</div>	
+						</div>
 						<div class="ui tab segment" id="around" data-tab="Around">
 							<div class="ui form">
 								<div class="field">

@@ -46,6 +46,7 @@ class SaleHousesController < ApplicationController
 
 	def create
     	@sale_house = current_user.sale_houses.build(saleHouses_params)
+      	@sale_house.img = params[:img].join(',')
     	if @sale_house.save
      	 	flash[:success] = "SaleHouse created!"
       		redirect_to salehouse_path

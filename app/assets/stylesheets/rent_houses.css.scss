@@ -34,3 +34,18 @@
 }
 
 
+.img_input_wrapper div.ui.left.labeled.icon.input{
+		width: 93%;
+}
+
+.img_input_wrapper .add .icon{
+	top: 5px;
+	position: relative;
+}
+
+#show_img{
+	position: relative; top: 0px; left: 0px; width: 600px; height: 300px;
+}
+#imgs{
+	cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;
+}

@@ -3,7 +3,6 @@
 
 
 <div class="ui form edit segment">
-<p class ="ui small message">更新個人檔案</p>
     <%= form_for(@user) do |f| %>
   	  <%= render 'shared/error_messages', object: f.object %>
 		  <div class="field">
@@ -49,7 +48,7 @@
 			</div>
 		  </div>
 
-  	  <%= f.submit "儲存變更", class:"ui blue button" %>
+  	  <%= f.submit "更新個人檔案", class:"ui blue button" %>
 
     <% end %>
 </div>

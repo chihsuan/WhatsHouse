@@ -8,7 +8,7 @@
     <%= f.label :'類型'%>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :use %>
-      <i class="user icon"></i>
+      <i class="home icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
 	  </div>
@@ -19,7 +19,7 @@
     <%= f.label :'格局' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :structure %>
-	  <i class="lock icon"></i>
+	  <i class="building icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
 	  </div>
@@ -30,7 +30,7 @@
     <%= f.label :'地址' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :address %>
-	  <i class="mail icon"></i>
+	  <i class="map marker icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
 	  </div>
@@ -43,7 +43,7 @@
 	<%= f.label :'售價' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :price %>
-	  <i class="lock icon"></i>
+	  <i class="dollar icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
 	  </div>
@@ -55,7 +55,7 @@
     <%= f.label :'聯絡人' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :owner %>
-	  <i class="lock icon"></i>
+	  <i class="user icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
 	  </div>
@@ -67,7 +67,7 @@
 	<%= f.label :'聯絡電話' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_field :tel %>
-	  <i class="lock icon"></i>
+	  <i class="phone icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
 	  </div>
@@ -78,12 +78,25 @@
     <%= f.label :'刊登資訊' %>
 	<div class="ui left labeled icon input">
 	  <%= f.text_area  :breif %>
-	  <i class="lock icon"></i>
+	  <i class="infor icon"></i>
       <div class="ui corner label">
         <i class="icon asterisk"></i>
 	  </div>
 	</div>
   </div>
+
+  <div class="field img_input_wrapper">
+	<%= f.label :'圖片連結' %>
+	<span class="i icon button add_more_button"><i class="add icon"></i></span>
+	<div class="ui left labeled icon input">
+		<%= text_field_tag 'img[]' %>
+	  <i class="photo icon"></i>
+      <div class="ui corner label">
+        <i class="icon asterisk"></i>
+	  </div>
+	</div>
+  </div>
+
 
   <%= f.submit "出售", class:"ui orange button" %>
 </div>
@@ -174,4 +187,42 @@ $('#sale')
     }
   })
 });
+
+// add input field by jQuery
+var max_input = 5;
+var inputs_wrapper = $('.img_input_wrapper');
+var add_button = $('.add_more_button');
+
+var x = inputs_wrapper.length;
+var fieldCount = 1;
+
+$(add_button).click( function(e) 
+{
+	if ( x <= max_input ){
+		fieldCount++;
+		$(inputs_wrapper).append('<div><div class="ui left labeled icon input"> \
+							     <input id="sale_house_img" name="img[]" type="text" > \
+					  			 	 	<i class="photo icon"></i> \
+					  	         		<div class="ui corner label"> \
+					  	         			<i class="icon asterisk"></i> \
+					  	         	  	</div> \
+								</div> \
+								<a href="#" class="removeclass">×</a></div>'
+								);
+		x++;
+	}
+	return false;
+});
+
+$('body').on('click', '.removeclass', function(e){
+
+		if( x > 1 ){
+			$(this).parent('div').remove();
+			x--;
+		}
+	return false;
+})
+
+
+
 </script>
