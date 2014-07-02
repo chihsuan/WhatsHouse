@@ -6,30 +6,29 @@
     	</script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 		<script src="https://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.1.2/src/markerclusterer.js" type="text/javascript"></script>
-   <%= javascript_include_tag "show" %>
+    <%= javascript_include_tag "show" %>
 	</head>
 	<body>
-  		<div id="map_canvas" style="width:100%; height:100%"></div>
-			<div class="ui response	cell grid">
-					<div class="column">
-						<div class="ui inverted orange pointing response menu">
-							<a class="item" data-tab="Information">房屋資訊</a>
-							<% if current_page?("buy") || current_page?("rent") %>
-								<a class="item" data-tab="Show_Img">相片</a>
-							<% end %>
-							<a class="item" data-tab="Around">周邊</a>
-							<a class="item" data-tab="Comment">討論</a>
-							<% if current_page?("buy") || current_page?("rent") %>
-								<a class="item" data-tab="Advanced_Search">進階搜尋</a>
-							<% end %>
-						</div>
-					<div class="launch button"><i class='big red sort icon'></i></div>
+  	<div id="map_canvas" style="width:100%; height:100%"></div>
+		<div class="ui response cell grid">
+			<div class="column">
+				<div class="ui inverted orange pointing response menu">
+					<a class="item" data-tab="Information">房屋資訊</a>
+					<% if current_page?("buy") || current_page?("rent") %>
+						<a class="item" data-tab="Show_Img">相片</a>
+					<% end %>
+					<a class="item" data-tab="Around">周邊</a>
+					<a class="item" data-tab="Comment">討論</a>
+					<% if current_page?("buy") || current_page?("rent") %>
+						<a class="item" data-tab="Advanced_Search">進階搜尋</a>
+					<% end %>
+				</div>
+				<div class="launch button"><i class='big red sort icon'></i></div>
 					<div id="area">
 						<div class="ui tab segment" id="information" data-tab="Information"></div>
 						<div class="ui tab segment" id="show_img slider1_container" data-tab="Show_Img">
 							<div id="slider1_container">
-								<div id = "images" u="slides">
-								</div>
+								<div id = "images" u="slides"></div>
 							</div>	
 						</div>
 						<div class="ui tab segment" id="around" data-tab="Around">

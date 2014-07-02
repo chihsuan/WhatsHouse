@@ -17,48 +17,31 @@
 	background-size: 100%;
 }
 
-
-
-.ui.feed {
-	position: relative;
-	width:100%;	
-	height:100%;
-	background: #c72200; /* Old browsers */
-	background: -moz-linear-gradient(left, #c72200 0%, #ff6a07 70%, #ff6a07 96%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c72200), color-stop(70%,#ff6a07), color-stop(96%,#ff6a07)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* IE10+ */
-	background: linear-gradient(to right, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c72200', endColorstr='#ff6a07',GradientType=1 ); /* IE6-9 */
-}
-
-.ui.feed .segmant {
-	position: absolute;
-	width: 70%;
-	top: 10%;
-	left:15%;
-}
-
-.ui.feed .segmant .header {
-	background-color: #393E46;
-	color: white;
-}
-
-.ui.feed .segmant .menu {
-	background-color: #DDE3E9;
-}
-
-.ui.feed .segmant .menu .item {
-	
-}
-
-.ui.form.edit {
-		position: absolute;
-		width: 30%;
-		top: 15%;
-		left: 20%;
-}
 .container{
 	background: image-url("background.jpg") repeat;
+}
+
+.ui.about.cell.grid {
+	position: absolute;
+  top: 80px;
+	right: 20%;
+	width: 60%;
+	display:table;
+}
+
+.ui.about.cell.grid .column{
+	padding-right: 30px;
+}
+
+.ui.about.cell.grid .column .ui.about.menu {
+	position: relative;
+}
+
+.ui.about.cell.grid .column .ui.tab.segmant {
+	display:table-cell;
+}
+
+
+#areaAbout{
+	position: relative;
 }
