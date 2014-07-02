@@ -439,7 +439,6 @@ function createMarker(obj, markers) {
 					}
 					else if( response[i].data == 'rent_houses' ){
 						$('#information').html(
-							
 						'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
 								"<p>" + response[i].use + "</p></span>" +
 
@@ -461,6 +460,9 @@ function createMarker(obj, markers) {
 						'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
 								"<p>" + response[i].breif + "</p></span>"  
 							);
+						var sliderHTML = splitImgUrl(response[i].img);
+						$('#slider1_container #images').html(sliderHTML);
+						jssor_slider1_starter('slider1_container');
 					}
 					else if( response[i].data == 'real_price_deals'){
 						$('#information').html(
@@ -625,7 +627,6 @@ function search (){
 			)
 		}
 
-
 		var real_price_list = data[0];
 		for (var i = 0; i < real_price_list.length; i++) {
 			createMarker(real_price_list[i], markers);
@@ -638,5 +639,15 @@ function search (){
 
 }
 
+function splitImgUrl(imgUrl) {
+	var img = imgUrl.split(",");
+	console.log(img);
+	var sliderHTML = "";
+	for (var i = 0; i < img.length; i++) {
+		console.log(img[i]);
+		sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
+	}
+	return sliderHTML;
+}
 
 google.maps.event.addDomListener(window, 'load', initialize);
