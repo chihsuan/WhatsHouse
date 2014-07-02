@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
 	def show
-    	if params[:data] == 'sale_houses'
+		#check user is in which page 
+		if params[:data] == 'sale_houses'
     		@data = [ SaleHouse.find(params[:real_price_id]) ]
 		elsif params[:data] == 'rent_houses'
     		@data = [ RentHouse.find(params[:real_price_id]) ]
@@ -10,11 +11,14 @@ class EventsController < ApplicationController
 		else 
 			# error
 		end
+
+		# find building around this house by lat, lng (around 1km)
 		@lat_upper = Float(params[:lat]) + 0.005
 		@lat_lower = Float(params[:lat]) - 0.005
 		@lng_upper = Float(params[:lng]) + 0.005
 		@lng_lower = Float(params[:lng]) - 0.005
 
+		#database select 
 		@data += Stores.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += Hospitals.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += Station.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
@@ -24,8 +28,7 @@ class EventsController < ApplicationController
 		@data += TainanSchool.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += Dining.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 
-
-
+		#return house information to user
 		respond_to do |format|
 			format.json { render :json => @data }
 		end

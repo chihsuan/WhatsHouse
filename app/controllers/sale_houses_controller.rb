@@ -40,6 +40,8 @@ class SaleHousesController < ApplicationController
 			@user = current_user
 			@sale_house = current_user.sale_houses.build
 			@sale_houses = current_user.sale_houses.paginate(page: params[:page])
+		else
+      		render 'sale'
 		end
 
 	end

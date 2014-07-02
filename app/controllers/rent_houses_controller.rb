@@ -37,6 +37,8 @@ class RentHousesController < ApplicationController
 			@user = current_user
 			@rent_house = current_user.rent_houses.build
 			@rent_houses = current_user.rent_houses.paginate(page: params[:page])
+		else
+      		render 'rent'
 		end
 	end
 
