@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621115757) do
+ActiveRecord::Schema.define(version: 20140702015343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20140621115757) do
     t.string   "use"
     t.string   "district"
     t.string   "around_list"
+    t.string   "img"
   end
 
   create_table "sale_houses", force: true do |t|
@@ -170,6 +171,7 @@ ActiveRecord::Schema.define(version: 20140621115757) do
     t.string   "use"
     t.string   "district"
     t.string   "around_list"
+    t.string   "img"
   end
 
   create_table "stations", force: true do |t|
