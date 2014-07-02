@@ -27,20 +27,9 @@
 					<div id="area">
 						<div class="ui tab segment" id="information" data-tab="Information"></div>
 						<div class="ui tab segment" id="show_img slider1_container" data-tab="Show_Img">
-							<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 480px; height: 300px;">
-									<!-- Slides Container -->
-									<div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 480px; height: 300px;">
-										<div>
-											<img u="image" src="<%= image_url '001.jpg' %>" />
-											<img u="thumb" src="<%= image_url '001.jpg' %>" />
-										</div>
-										<div><img u="image" src="<%= image_url '003.jpg' %>" /></div>
-									</div>
-									<!-- ThumbnailNavigator Skin Begin -->
-										<!-- open 'skin\thumbnail-...source.html', copy and paste thumbnail navigator skin here -->
-									<!-- ThumbnailNavigator Skin End -->
-									<!-- Trigger -->
-							<script>jssor_slider1_starter('slider1_container');</script>
+							<div id="slider1_container">
+								<div id = "images" u="slides">
+								</div>
 							</div>	
 						</div>
 						<div class="ui tab segment" id="around" data-tab="Around">
@@ -116,7 +105,6 @@
 
 <script>
 $(document).ready(function() {
-
 	$('.form .fields .checkbox').checkbox('disable');
 	$('.form .fields .checkbox').checkbox();
 	
