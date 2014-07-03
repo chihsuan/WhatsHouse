@@ -442,7 +442,7 @@ function createMarker(obj, markers) {
 						getHouse = response[i]
 
 						$('#information').html(
-						'<button class="add_to_cart" onclick="addToCart()">add to cart</button><span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+						'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
 								"<p>" + response[i].use + "</p></span>" +
 
 						'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
@@ -462,6 +462,7 @@ function createMarker(obj, markers) {
 							
 						'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
 								"<p>" + response[i].breif + "</p></span>"  
+						+ '<button class="add_to_cart ui orange mini button" onclick="addToCart()">加入清單</button>'
 							);
 						var sliderHTML = splitImgUrl(response[i].img);
 						$('#slider1_container #images').html(sliderHTML);
@@ -658,27 +659,24 @@ var house_array = []
 function addToCart() {
 	
 	// add input field by jQuery
-	var max_input = 5;
+	var max_input = 2;
 	var fieldCount = 1;
 
 	if ( house_number <= max_input ){
 		house_array.push(getHouse);
 
 		fieldCount++;
-		$('.cart').append('<div>' +
-						 getHouse.address + getHouse.price + 
-						 '<button onclick="javascript:removeFromCart(this)" id="house' +  house_number + '"' +
-						 		 'class="removeclass">×</button></div>'
+		$('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
+				'<span class="header">' + getHouse.address +  getHouse.price + "$ "  + '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' +  house_number + '" class="removeclass">x</a></div></li>'
 		);	
 		house_number++;
 	}
 	return false;
 }
 function removeFromCart (item) {
-				
 	if( house_number >= 1 ){
 		delete house_array[ item.id[4] ];
-		$(item).parent('div').remove();
+		$(item).parents('li').remove();
 		house_number--;
 	}
 	return false;

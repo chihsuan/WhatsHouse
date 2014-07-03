@@ -75,6 +75,9 @@ html, body, .container{
 	color: #555555;
 	min-width: 980px;
 }
+a{
+	text-decoration: blink;
+}
 
 body{
 	height: 92%;
@@ -256,12 +259,12 @@ div.house_cart {
 	position: relative;
 	height: 100px;
 	width: 300px;
-	top: -134px;
-	left: 39%;
-	background: white;
+	top: -140px;
+	float: left;
 	border-radius: 5px 5px 5px 5px;
+	background:transparent; 
 }
 
 .cart{
-	padding-top: 10px;
+	padding: 10px 10px 10px 10px;
 }

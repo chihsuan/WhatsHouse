@@ -6,7 +6,7 @@
     	</script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 		<script src="https://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.1.2/src/markerclusterer.js" type="text/javascript"></script>
-		<script src="https://b77ckups.googlecode.com/files/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
+		<!-- <script src="https://b77ckups.googlecode.com/files/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script> -->
 		<%= javascript_include_tag "show" %>
 	</head>
 	<body>
@@ -101,14 +101,14 @@
 		</div>
 		<div class="ui black button"></div>
 		<% if current_page?("buy") || current_page?("rent") %>
-				<div class="house_cart"> 
-					<div class="cart">
+				<div class="house_cart ui relaxed divided list"> 
+					<div class="cart item">
 						<ul class="house_list">
 						</ul>
 					</div>
 				</div>
-			</body>
 		<% end %>
+		</body>
 </html>
 
 <script>
