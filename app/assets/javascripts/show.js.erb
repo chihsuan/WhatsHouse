@@ -460,9 +460,8 @@ function createMarker(obj, markers) {
 						'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
 								"<p>" + response[i].tel + "</p></span>"  +
 							
-						'<span class="left-information"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
-								"<p>" + response[i].breif + "</p></span>"  
-						+ '<button class="add_to_cart ui orange mini button" onclick="addToCart()">加入清單</button>'
+						'<div class="left-information" id="main_infor"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+								"<p>" + response[i].breif + '</p><button class="add_to_cart ui orange mini button" onclick="addToCart()">加入清單</button></div>'
 							);
 						var sliderHTML = splitImgUrl(response[i].img);
 						$('#slider1_container #images').html(sliderHTML);

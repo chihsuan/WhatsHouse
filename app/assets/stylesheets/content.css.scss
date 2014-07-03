@@ -101,6 +101,10 @@ header .item{
 	font-weight: 700;
 }
 
+#information{
+	overflow: auto;
+}
+
 .left-information{
 	float:left;
 	width:45%;
@@ -267,4 +271,13 @@ div.house_cart {
 
 .cart{
 	padding: 10px 10px 10px 10px;
+}
+
+#main_infor{
+	width:auto;
+
+}
+#main_infor button {
+		width: 100%;
+		padding-top:5px;
 }
