@@ -100,14 +100,16 @@
 			</div>
 		</div>
 		<div class="ui black button"></div>
-		<div class="house_cart"> 
-			<div class="cart">
-				<ul class="house_list">
+		<% if current_page?("buy") || current_page?("rent") %>
+				<div class="house_cart"> 
+					<div class="cart">
+						<ul class="house_list">
 
-				</ul>
-			</div>
-		</div>
-	</body>
+						</ul>
+					</div>
+				</div>
+			</body>
+		<% end %>
 </html>
 
 <script>
