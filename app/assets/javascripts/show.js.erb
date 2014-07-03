@@ -643,14 +643,16 @@ function search (){
 }
 
 function splitImgUrl(imgUrl) {
-	var img = imgUrl.split(",");
-	console.log(img);
-	var sliderHTML = "";
-	for (var i = 0; i < img.length; i++) {
-		console.log(img[i]);
-		sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
+	if( imgUrl ){	
+		var img = imgUrl.split(",");
+		console.log(img);
+		var sliderHTML = "";
+		for (var i = 0; i < img.length; i++) {
+			console.log(img[i]);
+			sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
+		}
+		return sliderHTML;
 	}
-	return sliderHTML;
 }
 
 var house_number = $('.cart').length;
