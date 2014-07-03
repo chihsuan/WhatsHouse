@@ -29,8 +29,7 @@ var rent_page = function () {
 			next_fs = $(this).parent().next();
 			
 			//activate next step on progressbar using the index of next_fs
-			$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-			
+			$("#progressbar div").eq($("fieldset").index(next_fs)).addClass("active");
 			//show the next fieldset
 			next_fs.show(); 
 			//hide the current fieldset with style
@@ -64,7 +63,7 @@ var rent_page = function () {
 			previous_fs = $(this).parent().prev();
 			
 			//de-activate current step on progressbar
-			$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+			$("#progressbar div").eq($("fieldset").index(current_fs)).removeClass("active");
 			
 			//show the previous fieldset
 			previous_fs.show(); 
