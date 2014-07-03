@@ -2,7 +2,7 @@ class RentHouse < ActiveRecord::Base
 	belongs_to :user
 	validates :user_id, presence: true
 	validates_presence_of :use, :structure, :address, :price, :owner, :tel, :breif, :img
-	validates_numericality_of :price, :only_integer => true 
+	#validates_numericality_of :price, :only_integer => true 
 	validates :breif, :length => { :minimum => 1, :maximum => 120 }
 	default_scope -> { order('created_at DESC') }
 
