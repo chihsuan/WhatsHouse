@@ -33,7 +33,6 @@
 	padding-right: 5%;
 }
 
-
 .img_input_wrapper div.ui.left.labeled.icon.input{
 		width: 88%;
 }
@@ -49,8 +48,6 @@
 #imgs{
 	cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;
 }
-
-
 
 /*custom font*/
 
@@ -71,9 +68,7 @@
 	padding: 20px 30px;
 	
 	box-sizing: border-box;
-	width: 80%;
-	margin: 0 10%;
-	
+	width: 100%;
 	/*stacking fieldsets above each other*/
 	position: absolute;
 }
@@ -88,6 +83,19 @@
 	border-radius: 3px;
 	margin-bottom: 10px;
 	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+#msform textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	height: 150px;
 	box-sizing: border-box;
 	font-family: montserrat;
 	color: #2C3E50;
@@ -108,6 +116,7 @@
 #msform .action-button:hover, #msform .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
+
 /*headings*/
 .fs-title {
 	font-size: 15px;
@@ -128,58 +137,12 @@
 	/*CSS counters to number the steps*/
 	counter-reset: step;
 }
-#progressbar li {
-	list-style-type: none;
-	color: white;
-	text-transform: uppercase;
-	font-size: 9px;
-	width: 33.33%;
-	float: left;
-	position: relative;
-}
-#progressbar li:before {
-	content: counter(step);
-	counter-increment: step;
-	width: 20px;
-	line-height: 20px;
-	display: block;
-	font-size: 10px;
-	color: #333;
-	background: white;
-	border-radius: 3px;
-	margin: 0 auto 5px auto;
-}
-/*progressbar connectors*/
-#progressbar li:after {
-	content: '';
+
+#rent_houses_page .ui.left.labeled.icon.input {
 	width: 100%;
-	height: 2px;
-	background: white;
-	position: absolute;
-	left: -50%;
-	top: 9px;
-	z-index: -1; /*put it behind the numbers*/
-}
-#progressbar li:first-child:after {
-	/*connector not needed before the first step*/
-	content: none; 
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
-	background: #27AE60;
-	color: white;
-}
-.rent_page div.ui.left.labeled.icon.input {
-	width: 95%;
 }
 
 div.field.img_input_wrapper{
-	width: 96%;
+	width: 100%;
 }
 
-#progressbar p {
-		font-size: 14px;
-		/* color: black; */
-		font-weight: 800;
-}

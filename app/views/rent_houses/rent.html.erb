@@ -1,5 +1,6 @@
 <html>
 		<head>
+
 		</head>
 <body>
 
@@ -7,29 +8,31 @@
 			
 		<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
 		<!-- progressbar -->
-		<ul id="progressbar">
-			<li class="active"><p>基本資訊</p></li>
-			<li><p>聯絡資訊</p></li>
-			<li><p>刊登內容</p></li>
-		</ul>	
+		<div class="ui three steps" id="progressbar">
+			<div class="ui active step">基本資訊</div>
+			<div class="ui step">聯絡資訊</div>
+			<div class="ui step">刊登內容</div>
+		</div>
 		<fieldset>
 		  <%= render 'shared/error_messages', object: f.object%>
-		  <div class="field use">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :use , :placeholder => "類別"%>
-			  <i class="home icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
+		  <div class="two fields">
+			<div class="field use">
+			  <div class="ui left labeled icon input">
+			  	<%= f.text_field :use , :placeholder => "類別"%>
+			  	<i class="home icon"></i>
+			  	<div class="ui corner label">
+				  <i class="icon asterisk"></i>
+			  	</div>
 			  </div>
 			</div>
-		  </div> 
 
-		  <div class="field structure">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :structure, :placeholder => "格局"%>
-			  <i class="building icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
+			<div class="field structure">
+			  <div class="ui left labeled icon input">
+			    <%= f.text_field :structure, :placeholder => "格局"%>
+			  	<i class="building icon"></i>
+			  	<div class="ui corner label">
+				  <i class="icon asterisk"></i>
+			  	</div>
 			  </div>
 			</div>
 		  </div>
@@ -81,8 +84,8 @@
 
 		 <fieldset>
 		  <div class="field">
-			<div class="ui left labeled icon input">
-					<%= f.text_area  :breif, :placeholder => "刊登資訊" %>
+			<div class="ui left labeled icon input" id="info">
+			  <%= f.text_area  :breif, :placeholder => "刊登資訊" %>
 			  <i class="infor icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
@@ -117,10 +120,86 @@
 		</div>
 
 
+<script>
+	$(document).ready(function(){
+		//jQuery time
+		var current_fs, next_fs, previous_fs; //fieldsets
+		var left, opacity, scale; //fieldset properties which we will animate
+		var animating; //flag to prevent quick multi-click glitches
 
-		<script>
-		$(document).ready(function(){
+		$(".next.action-button").click(function(){
+			if(animating) return false;
+			animating = true;
+			
+			current_fs = $(this).parent();
+			next_fs = $(this).parent().next();
+			
+			//activate next step on progressbar using the index of next_fs
+			$("#progressbar .ui.step").eq($("fieldset").index(next_fs)).addClass("active");
+			
+			//show the next fieldset
+			next_fs.show(); 
+			//hide the current fieldset with style
+			current_fs.animate({opacity: 0}, {
+				step: function(now, mx) {
+					//as the opacity of current_fs reduces to 0 - stored in "now"
+					//1. scale current_fs down to 80%
+					scale = 1 - (1 - now) * 0.2;
+					//2. bring next_fs from the right(50%)
+					left = (now * 50)+"%";
+					//3. increase opacity of next_fs to 1 as it moves in
+					opacity = 1 - now;
+					current_fs.css({'transform': 'scale('+scale+')'});
+					next_fs.css({'left': left, 'opacity': opacity});
+				}, 
+				duration: 800, 
+				complete: function(){
+					current_fs.hide();
+					animating = false;
+				}, 
+				//this comes from the custom easing plugin
+				easing: 'easeInOutBack'
+			});
+		});
 
+		$(".previous").click(function(){
+			if(animating) return false;
+			animating = true;
+			
+			current_fs = $(this).parent();
+			previous_fs = $(this).parent().prev();
+			
+			//de-activate current step on progressbar
+			$("#progressbar .ui.step").eq($("fieldset").index(current_fs)).removeClass("active");
+			
+			//show the previous fieldset
+			previous_fs.show(); 
+			//hide the current fieldset with style
+			current_fs.animate({opacity: 0}, {
+				step: function(now, mx) {
+					//as the opacity of current_fs reduces to 0 - stored in "now"
+					//1. scale previous_fs from 80% to 100%
+					scale = 0.8 + (1 - now) * 0.2;
+					//2. take current_fs to the right(50%) - from 0%
+					left = ((1-now) * 50)+"%";
+					//3. increase opacity of previous_fs to 1 as it moves in
+					opacity = 1 - now;
+					current_fs.css({'left': left});
+					previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+				}, 
+				duration: 800, 
+				complete: function(){
+					current_fs.hide();
+					animating = false;
+				}, 
+				//this comes from the custom easing plugin
+				easing: 'easeInOutBack'
+			});
+		});
+
+		$(".submit").click(function(){
+			return false;
+		});
 		$('#msform')
 		  .form({
 			use: {
@@ -193,8 +272,6 @@
 			}
 		  })
 		});
-
-
 
 		// add input field by jQuery
 		var max_input = 5;

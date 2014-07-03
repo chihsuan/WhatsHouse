@@ -8,9 +8,12 @@ jssor_slider1_starter = function (containerId) {
             }
         };
         var jssor_slider1 = new $JssorSlider$(containerId, options);
-    };
+};
 
-jQuery(document).ready(function(){
+// because rent.html.erb cannot completely load this function, I 
+// remove this to the script in rent.html.erb
+/*
+$(document).ready(function(){
 
 		//jQuery time
 		var current_fs, next_fs, previous_fs; //fieldsets
@@ -18,6 +21,8 @@ jQuery(document).ready(function(){
 		var animating; //flag to prevent quick multi-click glitches
 
 		$(".next.action-button").click(function(){
+			alert('');
+
 			if(animating) return false;
 			animating = true;
 			
@@ -90,4 +95,4 @@ jQuery(document).ready(function(){
 		$(".submit").click(function(){
 			return false;
 		});
-});
+});*/
