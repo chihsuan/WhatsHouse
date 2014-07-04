@@ -1,5 +1,5 @@
+<div class="ui form reset segment">
 <h1>Reset Password</h1>
-
 <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
@@ -11,13 +11,27 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit "Update Password" %></div>
+	  <div class="field">
+		<%= f.label :'密碼' %>
+		<div class="ui left labeled icon input">
+		  <%= f.password_field :password %>
+		  <i class="lock icon"></i>
+		  <div class="ui corner label">
+			<i class="icon asterisk"></i>
+		  </div>
+		</div>
+	  </div> 
+
+	  <div class="field">
+		<%= f.label :'密碼確認' %>
+		<div class="ui left labeled icon input">
+		  <%= f.password_field :password_confirmation %>
+		  <i class="lock icon"></i>
+		  <div class="ui corner label">
+			<i class="icon asterisk"></i>
+		  </div>
+		</div>
+	  </div>
+  <div class="actions"><%= f.submit "Update Password", class:"ui blue button"%></div>
 <% end %>
+</div>
