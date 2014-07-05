@@ -7,7 +7,16 @@
 		<a class="item" data-tab="UpdateInfo">Update Info</a>
 		</div>
 		<div id="areaAbout">
-			<div class="ui tab segment" id="AboutMe" data-tab="AboutMe"></div>
+				<div class="ui tab segment" id="AboutMe" data-tab="AboutMe">
+						<table>		
+							<tr>
+								<td>姓名:</td><td><%= @user.name %> </td>
+							</tr>
+							<tr>
+								<td>Email:</td><td><%= @user.email %></td>
+							</tr>
+						</table>
+				</div>
 			<div class="ui tab segment" id="UpdateInfo" data-tab="UpdateInfo">
 				<div class="ui form edit segment">
 			    <%= form_for(@user) do |f| %>

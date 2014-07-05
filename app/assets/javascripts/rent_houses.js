@@ -1,7 +1,7 @@
 // image slider show
 //
 
-var rent_page = function () {
+var jssor_slider1 = null;
 
 	jssor_slider1_starter = function (containerId) {
    	     var options = {
@@ -10,8 +10,15 @@ var rent_page = function () {
    	             $ChanceToShow: 2
         	    }
        	 };
-       	 var jssor_slider1 = new $JssorSlider$(containerId, options);
+		if( jssor_slider1 ){
+			delete jssor_slider1;
+		}
+       	 jssor_slider1 = new $JssorSlider$(containerId, options);
 	};
+
+
+var rent_page = function () {
+
 
 	// because rent.html.erb cannot completely load this function, I 
 	// remove this to the script in rent.html.erb
@@ -27,7 +34,7 @@ var rent_page = function () {
 			
 			current_fs = $(this).parent();
 			next_fs = $(this).parent().next();
-			
+		
 			//activate next step on progressbar using the index of next_fs
 			$("#progressbar div").eq($("fieldset").index(next_fs)).addClass("active");
 			//show the next fieldset
