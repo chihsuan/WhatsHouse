@@ -20,6 +20,7 @@ div.ui.fixed.inverted.title_bar.menu{
 	//background: -ms-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* IE10+ */
 	//background: linear-gradient(to right, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* W3C */
 	//filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c72200', endColorstr='#ff6a07',GradientType=1 ); /* IE6-9 */
+	height: 49px;
 }
 
 .ui.title_bar.menu .menu{
@@ -35,6 +36,7 @@ div.ui.fixed.inverted.title_bar.menu{
 	position: relative;
 	left: -70px;
 	top: 4px;
+	min-width: 10%;
 }
 
 .ui.launch.button {

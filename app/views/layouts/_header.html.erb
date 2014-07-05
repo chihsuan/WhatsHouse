@@ -6,15 +6,20 @@
 	<% end %>
 <!--	<%= link_to "買房", buy_path, class:"item", 'data-no-turbolink' => true %> -->
 	<%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %>
-   	<%= link_to "房地產分析", analysis_path, class:"item", 'data-no-turbolink' => true %>
-
+	<!--  <%= link_to "房地產分析", analysis_path, class:"item", 'data-no-turbolink' => true %> -->
 	<div class="right menu">
-    <% if signed_in? %>
-  <!--     	<%= link_to "出售", salehouse_path, class:"item"%> -->
-       	<%= link_to "出租", renthouse_path, class:"item"%>
-		<%= link_to "個人檔案", edit_user_path(current_user), class:"item"%> 
-		<!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
-		<%= link_to "登出", signout_path, method: "delete" , class:"sign_in item" %>
+	<% if signed_in? %>
+		<div class="ui floating dropdown item">
+				<%= current_user.name %><i class="icon dropdown"></i>
+			<div class="menu">
+	 			 <!-- <%= link_to "出售", salehouse_path, class:"item"%> -->
+	       		<%= link_to "出租", renthouse_path, class:"item"%>
+				<%= link_to "個人檔案", edit_user_path(current_user), class:"item"%> 
+				<!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
+			<%= link_to "登出", signout_path, method: "delete" , class:"sign_in item" %>
+			</div>
+		</div>
+
 	<% else %>
 		<%= link_to "登入", signin_path, class:"item"%>
    		<%= link_to "註冊", signup_path, class:"item"%>

@@ -5,5 +5,7 @@
 jQuery ->
 	$('.response.menu .item')        
     	.tab('change tab', '.response.menu .item');
-
+	$('.ui.dropdown')
+	  .dropdown()
+	  ;
 
