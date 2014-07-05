@@ -1,4 +1,6 @@
 var page = function () {
+	$('.response.menu .item')        
+    	.tab();
 	$('.ui.dropdown')
 	  .dropdown()
 	  ;
