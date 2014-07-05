@@ -10,4 +10,9 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail to: user.email, :subject => "WhatsHouse :Password Reset"
   end
+
+  def confirm(email)
+  	@message = "Thank you for confirmation!"
+  	mail(:to => email, :subject => "Registered")  
+  end  
 end
