@@ -23,12 +23,12 @@ default: &default
 
 development:
   adapter: postgresql
-  database: ddssc8n1eqsnl3
+  database: Whatshouse_development
   encoding: utf8
-  host: ec2-23-21-101-129.compute-1.amazonaws.com
+  host: localhost
   pool: 5
-  username: iwurgjyzhlmsuj
-  password: 5L_bFoFDh_slRqrhq1l0pPmwJW
+  username: hacker
+  password: password1
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

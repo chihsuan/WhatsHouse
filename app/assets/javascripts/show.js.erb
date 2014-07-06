@@ -613,8 +613,8 @@ function search (){
 		if( rating_index != " "){
 		$('div.ui.form.success').hide();
 			var first = data[0][rating_index[0]]
-			$('div#advanced_search').html( 
-				"<h3>搜尋排名</h3>" +
+			$('div#search_show').html( 
+			'<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
 				"<ol id='search_result'>" +  
 				"<li>" + first.address + " " + first.price + "元</li>" 
 			);
@@ -640,9 +640,29 @@ function search (){
 		//create clusterer and push the global array of markers into it.
 		markerCluster = new MarkerClusterer(map, markers);  
 			
+		$("div#advanced_search form").hide();	
+		$("div#search_show").show();
 	});
 
 }
+
+function searchUndo(){
+		$("div#advanced_search form").show();	
+		$("div#search_show").hide();
+}
+function initalCheckbox(){
+	$('.form .fields .checkbox').checkbox('disable');
+	$('.form .fields .checkbox').checkbox();
+	
+	$('.form .fields .checkbox').click(function() {	
+		if($(this).children('input').is(':checked')) {
+			showAround($(this).children('input').attr('name'));	
+		} else {
+			hideAround($(this).children('input').attr('name'));
+		}
+	});
+}
+
 
 function splitImgUrl(imgUrl) {
 	if( imgUrl ){	
@@ -688,4 +708,5 @@ function removeFromCart (item) {
 	return false;
 }
 
+$(document).ready(initalCheckbox)
 google.maps.event.addDomListener(window, 'load', initialize);

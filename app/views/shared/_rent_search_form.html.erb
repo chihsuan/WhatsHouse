@@ -1,17 +1,17 @@
 <%= form_tag('/rent_houses/show', remote:true, method:'get', class:"search_form") do%>
 	<div class="search_form">	
-		<%= label_tag(:district, "鄉鎮市區") %>
+		<%= label_tag(:district, "鄉鎮市區", class: "ui ribbon label") %>
 		<div class="ui icon input">
 			 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
 			<i class="search icon"></i>
 		</div>
 	</div>
-	<%= label_tag(:price, "月租") %>
+	<%= label_tag(:price, "月租", class:"ui teal ribbon label") %>
 	<div class="radio fields">
 		<div class="ui radio checkbox">
 			<%= radio_button_tag(:price, [0, 4000], checked = true)  %>
 			<%= label_tag(:price, "4000") %>
-			<i class="small long arrow down icon"></i>
+			 <i class="small long arrow down icon"></i>
 		</div>	
 		<div class="ui radio checkbox">
 				<%= radio_button_tag(:price, [4000, 6000]) %>
@@ -27,6 +27,7 @@
 			<i class="long arrow up icon"></i>
 		</div>	
 	</div>
+	<%= label_tag(:rating, "喜愛程度", class:"ui red ribbon label") %>
 	 <%= render :partial => "shared/rating" %>
 	 <%= text_field_tag(:rating, nil, :id=>'rating_tag' ) %>
 <%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small red button") %>

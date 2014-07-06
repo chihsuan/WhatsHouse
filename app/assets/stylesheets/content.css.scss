@@ -72,7 +72,7 @@ html, body, .container{
 	padding:0px;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
-	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-family: Helvetica,Arial,Verdana,sans-serif;
 	font-size: 13px/1.231;
 	color: #555555;
 	min-width: 980px;
@@ -162,9 +162,17 @@ div.launch.button {
 		margin: 0px;
 }
 
+i.small.long.arrow.down.icon {
+		padding-left: 5px;
+}
+div.search_form > .ui.icon.input{
+	width: 67%;
+	display: block;
+}
+
 div.content{
 	display: inline;
-	color: rgba(0, 0, 0, 0.6);
+	color: #555555;;
 	-webkit-transition: color 0.2s ease;
 	transition: color 0.2s ease;
 }
@@ -196,8 +204,17 @@ i.small.long.arrow.icon{
 	display: inline;
 }
 
+#advanced_search form{
+	box-sizing: border-box;
+	border-radius: 0.325em 0.325em 0.325em 0.325em;
+}
+
 .search_form{
-	width: 75%;
+	width: 100%;
+}
+
+#heart_rating{
+	padding: 1em;
 }
 
 #rating_tag{
@@ -247,7 +264,6 @@ input.ui.red.button {
 		position: relative; 
 		top: 0px; 
 		left: 0px; 
-		width: 480px; 
 		height: 300px;
 }
 
@@ -282,4 +298,8 @@ div.house_cart {
 #main_infor button {
 		width: 100%;
 		padding-top:5px;
+}
+
+.undo{
+	float:right;
 }
