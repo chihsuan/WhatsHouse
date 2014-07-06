@@ -664,7 +664,7 @@ function search (){
 function appendSerachContent(data, rating_index){
 
 	var item;
-	for( var i = 0; i < 3 && i < data.length; ++i){
+	for( var i = 0; i < 3 && i < data[0].length; ++i){
 			item = (rating_index != " " ) ? data[0][rating_index[i]] : data[0][i];
 			$('#search_result').append(
 				"<li><a class='marker_link' href='#' id='" + item.id + "' onclick='moveToMarker(event,this.id)'>" + item.address + " " + item.price + "元</a></li>" 

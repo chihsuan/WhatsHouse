@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702015343) do
+ActiveRecord::Schema.define(version: 20140706112740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 20140702015343) do
     t.string   "owner"
     t.string   "address"
     t.string   "structure"
-    t.string   "price"
     t.string   "size"
     t.string   "year"
     t.string   "floor"
@@ -148,6 +147,7 @@ ActiveRecord::Schema.define(version: 20140702015343) do
     t.string   "district"
     t.string   "around_list"
     t.string   "img"
+    t.integer  "price"
   end
 
   create_table "sale_houses", force: true do |t|
