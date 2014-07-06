@@ -26,7 +26,6 @@ class RentHousesController < ApplicationController
 		else
 			@data = [@data] + [" "]
 		end
-	
 		respond_to do |format|
 			format.json { render :json => @data }
 		end

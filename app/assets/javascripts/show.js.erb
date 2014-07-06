@@ -6,6 +6,8 @@ var aroundMarkers = {};
 var markers = [];
 var markerCluster;
 var getHouse;
+var id_markers = {}
+
 var focusPoint = {
 	lat: null,
 	lng: null
@@ -533,8 +535,15 @@ function createMarker(obj, markers) {
   					}
 				});	
 			}
+
+			$('div.ui.inverted.orange.pointing.response.menu .item')
+				.tab('change tab', 'Information')
+			;
+			window.location.hash = 'Information';
+
 	});
 	markers.push(marker);
+	id_markers[marker.id] = marker;
 }
 
 function showAround (cat) {
@@ -610,27 +619,32 @@ function search (){
 		deleteMarkers();
 		deleteAround();
 		var rating_index = data[1];
-		if( rating_index != " "){
-		$('div.ui.form.success').hide();
-			var first = data[0][rating_index[0]]
+		if( rating_index != " " && data[0].length > 0){
+			$('div.ui.form.success').hide();
+			
 			$('div#search_show').html( 
 			'<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-				"<ol id='search_result'>" +  
-				"<li>" + first.address + " " + first.price + "元</li>" 
+				"<ol id='search_result'>" 
 			);
-			for( i = 1; i < 3; ++i){
-				if( rating_index.length <= i ){
-					break;
-				}
-				var item = data[0][rating_index[i]];
-				$('#search_result').append(
-					"<li>" + item.address + " " + item.price + "元</li>"
-				)
-			}
-			$('#search_result').append(
-				"</ol>"
-			)
+			
+			appendSerachContent(data, rating_index);	
 		}
+		else if( data[0].length > 0 ){
+		
+			$('div.ui.form.success').hide();
+			$('div#search_show').html( 
+			'<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+				"<ol id='search_result'>" 
+			);
+			
+			appendSerachContent(data, rating_index);	
+		}
+		else{
+			$('div.ui.form.success').hide();
+			$('div#search_show').html( 
+			'<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>'); 
+		}
+			
 
 		var real_price_list = data[0];
 		for (var i = 0; i < real_price_list.length; i++) {
@@ -642,8 +656,31 @@ function search (){
 			
 		$("div#advanced_search form").hide();	
 		$("div#search_show").show();
+
 	});
 
+}
+
+function appendSerachContent(data, rating_index){
+
+	var item;
+	for( var i = 0; i < 3 && i < data.length; ++i){
+			item = (rating_index != " " ) ? data[0][rating_index[i]] : data[0][i];
+			$('#search_result').append(
+				"<li><a class='marker_link' href='#' id='" + item.id + "' onclick='moveToMarker(event,this.id)'>" + item.address + " " + item.price + "元</a></li>" 
+			)
+	}
+	$('#search_result').append(
+		"</ol>"
+	)
+
+}
+
+function moveToMarker(event, markerID){
+	event.preventDefault();
+	var newCenter = new google.maps.LatLng( id_markers[markerID].lat, id_markers[markerID].lng);
+	map.setCenter(newCenter);	
+	map.setZoom(17);
 }
 
 function searchUndo(){
@@ -669,12 +706,11 @@ function splitImgUrl(imgUrl) {
 		var img = imgUrl.split(",");
 		var sliderHTML = "";
 		for (var i = 0; i < img.length; i++) {
-			console.log(img[i]);
 			sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
 		}
-		return sliderHTML;
 	}
 	else{
+		sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
 		sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
 	}
 	return sliderHTML;
