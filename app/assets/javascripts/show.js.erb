@@ -444,26 +444,26 @@ function createMarker(obj, markers) {
 						getHouse = response[i]
 
 						$('#information').html(
-						'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+						'<span class="left-information"><div class="red ui ribbon label">' + "類型" + '</div>' +
 								"<p>" + response[i].use + "</p></span>" +
 
-						'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+						'<span class="right-information"><div class="red ui ribbon label">' + "格局" + '</div>' + 
 								"<p>" + response[i].structure + "</p></span>" + 
 							
-						'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+						'<span class="left-information"><div class="red ui ribbon label">' + "地址" + '</div>' + 
 								"<p>" + response[i].address + "</p></span>" +
 							
-						'<span class="right-information"><div class="orange ui ribbon label">' + "租金" + '</div>' + 
+						'<span class="right-information"><div class="red ui ribbon label">' + "租金" + '</div>' + 
 								"<p>" + response[i].price + "</p></span>" +
 
-						'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+						'<span class="left-information"><div class="red ui ribbon label">' + "聯絡人" + '</div>' + 
 								"<p>" + response[i].owner + "</p></span>"  +
 							
-						'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+						'<span class="right-information"><div class="red ui ribbon label">' + "聯絡電話" + '</div>' + 
 								"<p>" + response[i].tel + "</p></span>"  +
 							
-						'<div class="left-information" id="main_infor"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
-								"<p>" + response[i].breif + '</p><button class="add_to_cart ui orange mini button" onclick="addToCart()">加入清單</button></div>'
+						'<div class="left-information" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' + 
+								"<p>" + response[i].breif + '</p><button class="add_to_cart ui red mini button" onclick="addToCart()">加入清單</button></div>'
 							);
 						var sliderHTML = splitImgUrl(response[i].img);
 						if( sliderHTML ){
