@@ -38,6 +38,29 @@
 			</div>
 		  </div>
 
+		 <div class="two fields">
+		  <div class="field price">
+			<div class="ui left labeled icon input">
+				<%= f.text_field :price, :placeholder => "租金"%>
+			  <i class="dollar icon"></i>
+			  <div class="ui corner label">
+				<i class="icon asterisk"></i>
+			  </div>
+			</div>
+		 </div> 
+
+		  <div class="field people">
+			<div class="ui left labeled icon input">
+				<%= f.text_field :people, :placeholder => "人數"%>
+			  <i class="users icon"></i>
+			  <div class="ui corner label">
+				<i class="icon asterisk"></i>
+			  </div>
+			</div>
+		</div> 
+
+		</div>
+
 		  <div class="field">
 			<div class="ui left labeled icon input">
 				<%= f.text_field :address, :placeholder => "地址"%>
@@ -48,15 +71,7 @@
 			</div>
 		  </div> 
 
-		  <div class="field price">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :price, :placeholder => "租金"%>
-			  <i class="dollar icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-		  </div> 
+
 			<input type="button" name="next" class="next action-button" value="下一步" />
 		  </fieldset>
 		 <fieldset>

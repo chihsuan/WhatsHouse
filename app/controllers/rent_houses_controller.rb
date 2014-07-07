@@ -6,11 +6,11 @@ class RentHousesController < ApplicationController
 	def show
 		@district = params[:district]
 		if !params[:price] && !params[:district]
-    		@data = RentHouse.where("address like ?", "%#{@district}%").where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
+    		@data = RentHouse.where("address like ?", "%#{@district}%").where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]).where(:people => params[:people]) 
 		elsif params[:price]
-    		@data = RentHouse.where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]) 
+    		@data = RentHouse.where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]).where(:people => params[:people] ) 
 		else
-    		@data = RentHouse.where("address like ?", "%#{@district}%")
+    		@data = RentHouse.where("address like ?", "%#{@district}%").where(:people => params[:people])
 		end
 				
 		if params[:rating] && !params[:rating].empty?

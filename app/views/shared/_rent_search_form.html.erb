@@ -6,6 +6,10 @@
 			<i class="search icon"></i>
 		</div>
 	</div>
+	<%= label_tag(:people, "人數", class: "ui red ribbon label") %>
+	<div class="people_select">
+			<%= select_tag(:people, options_for_select([['1人', 1], ['2人', 2], ['3人', 3], ['4人', 4], ['5人', 5], ['6人以上', 6]], selected: :people )) %>	</div>
+
 	<%= label_tag(:price, "月租", class:"ui red ribbon label") %>
 	<div class="radio fields">
 		<div class="ui radio checkbox">

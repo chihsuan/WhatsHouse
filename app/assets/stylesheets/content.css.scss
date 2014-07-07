@@ -130,6 +130,8 @@ header .item{
 
 #main_infor p{
 	overflow: auto;
+	height: 80px;
+	line-height: 30px;
 }
 
 .left-information{
@@ -312,6 +314,9 @@ div.house_cart {
 	background:transparent; 
 	color: #720000;
 }
+.div.cart.item li{
+	line-height: 25px;
+}
 
 .cart{
 	padding: 10px 10px 10px 10px;
@@ -376,3 +381,25 @@ div.house_cart {
 	list-style:none;
 }
 
+#disqus_thread{
+	height: 400px;
+	overflow: auto;
+}
+
+div.heart.item {
+	width: 50%;
+	float: left;
+}
+
+.people_select{
+	padding: 10px 10px 15px 10px;
+}
+
+select#people {
+	height: 30px;
+	font-weight: 400;
+	-webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+	box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+	border-radius: .1875rem;
+	background: white;
+}

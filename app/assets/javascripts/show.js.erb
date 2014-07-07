@@ -447,8 +447,8 @@ function createMarker(obj, markers) {
 						'<span class="left-information"><div class="red ui ribbon label">' + "類型" + '</div>' +
 								"<p>" + response[i].use + "</p></span>" +
 
-						'<span class="right-information"><div class="red ui ribbon label">' + "格局" + '</div>' + 
-								"<p>" + response[i].structure + "</p></span>" + 
+						'<span class="right-information"><div class="red ui ribbon label">' + "格局 / 人數" + '</div>' + 
+								"<p>" + response[i].structure + " / "  + response[i].people + "</p></span>" + 
 							
 						'<span class="left-information"><div class="red ui ribbon label">' + "地址" + '</div>' + 
 								"<p>" + response[i].address + "</p></span>" +
@@ -516,25 +516,13 @@ function createMarker(obj, markers) {
 			});
 
 
-			if (!window.DISQUS) {
-				var disqus_shortname = 'whatshouse';
-				var disqus_identifier = marker.id;
-					(function() {
-						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-						dsq.id = disqus_identifier;
-						dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-						(document.getElementsByTagName('head')[0] || 
-								document.getElementsByTagName('body')[0]).appendChild(dsq);
-						})();
-			}else{
 				DISQUS.reset({
   					reload: true,
   					config: function () {  
     					this.page.identifier = marker.id;  
-    					this.page.url = "https://example.com/#!newthread";
+    					this.page.url = "https://whatshouse.herokuapp.com/#!newthread";
   					}
 				});	
-			}
 
 			$('div.ui.inverted.orange.pointing.response.menu .item')
 				.tab('change tab', 'Information')
@@ -735,7 +723,10 @@ function addToCart() {
 
 		fieldCount++;
 		$('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
-				'<span class="header">' + getHouse.address +  getHouse.price + "$ "  + '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' +  house_number + '" class="removeclass">x</a></div></li>'
+				'<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
+								+ getHouse.address + " " +  getHouse.price + "$ </a>" 
+				+ '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' 
+				+  house_number + '" class="removeclass">x</a></div></li>'
 		);	
 		house_number++;
 	}
