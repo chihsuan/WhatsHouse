@@ -77,6 +77,10 @@ html, body, .container{
 	color: #555555;
 	min-width: 980px;
 }
+.container{
+	height: 92%;
+}
+
 a{
 	text-decoration: blink;
 }
@@ -94,11 +98,31 @@ header{
 }
 
 footer{
-	display:none;
-	height: 40px;
-	background : black;
+	display:block;
+	height: 50px;
+	background : white;
+	position: relative;
+	border-top: 1px solid #E2E2E2;
+	font-size: 13px;
+	line-height: 16px;
 }
 
+footer ul{
+	list-style-type: none;
+}
+
+footer li{
+	float: left;
+	padding: 10px 10px 10px 10px;
+}
+
+footer a{
+	color: #720000;
+}
+
+footer a:hover{
+	color: #570000;
+}
 header .item{
 	font-weight: 700;
 }
@@ -268,27 +292,36 @@ input.ui.red.button {
 }
 
 #images {
-		cursor: move; 
-		top: 0px; 
-		left: 0px; 
-		position: absolute; 
-		overflow: hidden;
-		width: 480px; 
-		height: 300px;
+	cursor: move; 
+	top: 0px; 
+	left: 0px; 
+	position: absolute; 
+	overflow: hidden;
+	width: 480px; 
+	height: 300px;
 }
 
 div.house_cart {
-	position: relative;
+	position: absolute;
 	height: 100px;
 	width: 300px;
-	top: -140px;
+	top: 77%;
 	float: left;
 	border-radius: 5px 5px 5px 5px;
 	background:transparent; 
+	color: #720000;
 }
 
 .cart{
 	padding: 10px 10px 10px 10px;
+}
+
+.cart span{
+	color: #720000;
+	
+}
+.cart a{
+	color: #720000;
 }
 
 #main_infor{
@@ -303,3 +336,42 @@ div.house_cart {
 .undo{
 	float:right;
 }
+
+#about_us, #contact_us{
+	width: 70%;
+	margin: auto;
+	padding: 10px 10px 10px 10px;
+	color: white;
+}
+
+.author{
+	height: 200px;
+	width: 90%;
+	line-height: 40px;
+	margin: auto;
+	padding-top: 20px;
+}
+
+#about_us a{
+	padding-left: 5px;
+}
+
+#about_us a:hover{
+	color: #720000;
+}
+
+.author_img img, .author_img{
+	height: 150px;
+	width: 150px;
+	float:left;
+}
+
+.author_brief{
+	width: 50%;
+	margin:auto;
+}
+
+.author_brief li{
+	list-style:none;
+}
+

@@ -3,6 +3,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta property="og:type" content="website">
+  <link href="<%= asset_path '006.jpg' %>" rel="image_src" type="image/jpeg">
+  <%= favicon_link_tag '/favicon.ico' %>
   <title><%= full_title(yield(:title)) %></title>
   <%= include_gon %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
