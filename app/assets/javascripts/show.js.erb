@@ -6,13 +6,13 @@ var aroundMarkers = {};
 var markers = [];
 var markerCluster;
 var getHouse;
-var id_markers = {}
+var id_markers = {};
 
 var focusPoint = {
-	lat: null,
-	lng: null
+    lat: null,
+    lng: null
 };
-var styledMap=
+var styledMap =
 [
     {
         "featureType": "water",
@@ -106,639 +106,487 @@ var styledMap=
     }
 ];
 
-var TainanRealPrice = 
-[
-	{	
-		name: "東區",
-		location:  new google.maps.LatLng(22.999255, 120.215013)
-	},
-	{
-		name: "永康區",
-		location:  new google.maps.LatLng(23.021604,120.251487)
-	},
-	{
-		name: "中西區",
-		location:  new google.maps.LatLng(22.996086,120.196939)
-	},
-	{
-		name: "北區",
-		location:  new google.maps.LatLng(23.010149,120.208012)
-	},
-	{
-		name: "安南區",
-		location:  new google.maps.LatLng(23.064255,120.135101)
-	},
-	{
-		name: "新營區",
-		location:  new google.maps.LatLng(23.312937,120.313286)
-	},
-	{
-		name: "南區",
-		location:  new google.maps.LatLng(22.9595,120.187313)
-	},
-	{
-		name: "歸仁區",
-		location:  new google.maps.LatLng(22.972302,120.282387)
-	},
-	{
-		name: "仁德區",
-		location:  new google.maps.LatLng(22.972618,120.251831)
-	},
-	{
-		name: "安平區",
-		location:  new google.maps.LatLng(22.996639,120.164997)
-	},
-	{
-		name: "麻豆區",
-		location:  new google.maps.LatLng(23.189285,120.251144)
-	},
-	{
-		name: "善化區",
-		location:  new google.maps.LatLng(23.136572,120.300094)
-	},
-	{
-		name: "佳里區",
-		location:  new google.maps.LatLng(23.177923,120.17012)
-	},
-	{
-		name: "白河區",
-		location:  new google.maps.LatLng(23.340995,120.458854)
-	},
-	{
-		name: "新市區",
-		location:  new google.maps.LatLng(23.085891,120.300609)
-	},
-	{
-		name: "新化區",
-		location:  new google.maps.LatLng(23.043405,120.310196)
-	},
-	{
-		name: "七股區",
-		location:  new google.maps.LatLng(23.126468,120.103515)
-	},
-	{
-		name: "東山區",
-		location:  new google.maps.LatLng(23.290549,120.448211)
-	},
-	{
-		name: "關廟區",
-		location:  new google.maps.LatLng(22.966296,120.327705)
-	},
-	{
-		name: "官田區",
-		location:  new google.maps.LatLng(23.189285,120.332855)
-	},
-	{
-		name: "柳營區",
-		location:  new google.maps.LatLng(23.282665,120.317405)
-	},
-	{
-		name: "玉井區",
-		location:  new google.maps.LatLng(23.124219,120.460085)
-	},
-	{
-		name: "鹽水區",
-		location:  new google.maps.LatLng(23.27415,120.241134)
-	},
-	{
-		name: "學甲區",
-		location:  new google.maps.LatLng(23.263111,120.169777)
-	},
-	{
-		name: "後壁區",
-		location:  new google.maps.LatLng(23.372199,120.355858)
-	},
-	{
-		name: "六甲區",
-		location:  new google.maps.LatLng(23.232316,120.34711)
-	},
-	{	
-		name: "南化區",
-		location:  new google.maps.LatLng(23.116365,120.565231)
-	},
-	{
-		name: "安定區",
-		location:  new google.maps.LatLng(23.098681,120.216839)
-	},
-	{
-		name: "楠西區",
-		location:  new google.maps.LatLng(23.174727,120.486392)
-	},
-	{
-		name: "西港區",
-		location:  new google.maps.LatLng(23.123587,120.203387)
-	},
-	{
-		name: "將軍區",
-		location:  new google.maps.LatLng(23.199699,120.158991)
-	},
-	{
-		name: "下營區",
-		location:  new google.maps.LatLng(23.232355,120.268337)
-	},
-	{
-		name: "龍崎區",
-		location:  new google.maps.LatLng(22.961238,120.37886)
-	},
-	{
-		name: "北門區",
-		location:  new google.maps.LatLng(23.292757,120.126518)
-	},
-	{
-		name: "大內區",
-		location:  new google.maps.LatLng(23.148884,120.401863)
-	},
-	{
-		name: "左鎮區",
-		location:  new google.maps.LatLng(23.034875,120.426925)
-	},
-	{
-		name: "山上區",
-		location:  new google.maps.LatLng(23.098997,120.373024)
-	}
-];
-
 function initialize() {
-	var tmpCenter = new google.maps.LatLng(22.999255, 120.215013);
-	var zoomLevel = 12;
-	
-	var mapOptions = {
-    	center: tmpCenter,
+    var tmpCenter = new google.maps.LatLng(22.999255, 120.215013);
+    var zoomLevel = 12;
+    
+    var mapOptions = {
+        center: tmpCenter,
         zoom: zoomLevel,
         styles: styledMap,
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-	map = new google.maps.Map(document.getElementById("map_canvas"),
-    		mapOptions);
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
 
-	// pop up window for the marker
-	infowindow = new google.maps.InfoWindow();
+    // pop up window for the marker
+    infowindow = new google.maps.InfoWindow();
 
-	markers = [];
-	var real_price_list = gon.real_price_list
-	
-	for (var i = 0; i < real_price_list.length; i++) {
-		createMarker(real_price_list[i], markers);
-	}
-	//create clusterer and push the global array of markers into it.
-	markerCluster = new MarkerClusterer(map, markers);  
+    markers = [];
+    var real_price_list = gon.real_price_list
+    
+    for (var i = 0; i < real_price_list.length; i++) {
+        createMarker(real_price_list[i], markers);
+    }
+    //create clusterer and push the global array of markers into it.
+    markerCluster = new MarkerClusterer(map, markers);  
 }
 
 // add marker into map and push it into aroundMarkers
 function addAroundMarker(obj) {
-	// there are some duplicate data in police_stations,
-	// I have to delete it by myself here... 
-	if (obj.data === "police_stations") {
-		for (var p in aroundMarkers["police_stations"]) {
-			if (p.addr === obj.addr) {
-				return;
-			}
-		}
-	}
-	var iconCat = "";
-	if (obj.data === "stores") {
-		iconCat = '<%= asset_path 'stores.jpg' %>';
-	} 
-	else if (obj.data === "stations") {
-		iconCat = '<%= asset_path 'stations.png' %>';
-	}
-	else if (obj.data === "dinings") {
-		iconCat = '<%= asset_path 'dinings.png' %>';
-	}
-	else if (obj.data === "tainan_schools") {
-		iconCat = '<%= asset_path 'tainan_schools.png' %>';		
-	}
-	else if (obj.data === "tainan_markets") {
-		iconCat = '<%= asset_path 'tainan_markets.png' %>';		
-	}
-	else if (obj.data === "hospitals") {
-		iconCat = '<%= asset_path 'hospitals.png' %>';	
-	}
-	else if (obj.data === "police_stations") {
-		iconCat = '<%= asset_path 'police_stations.png' %>';	
-	}
-	var iconImage = {
-		url: iconCat,
-		size: new google.maps.Size(30, 30)
-	};
+    // there are some duplicate data in police_stations,
+    // I have to delete it by myself here... 
+    if (obj.data === "police_stations") {
+        for (var p in aroundMarkers["police_stations"]) {
+            if (p.addr === obj.addr) {
+                return;
+            }
+        }
+    }
+    var iconCat = "";
+    if (obj.data === "stores") {
+        iconCat = '<%= asset_path 'stores.jpg' %>';
+    } 
+    else if (obj.data === "stations") {
+        iconCat = '<%= asset_path 'stations.png' %>';
+    }
+    else if (obj.data === "dinings") {
+        iconCat = '<%= asset_path 'dinings.png' %>';
+    }
+    else if (obj.data === "tainan_schools") {
+        iconCat = '<%= asset_path 'tainan_schools.png' %>';		
+    }
+    else if (obj.data === "tainan_markets") {
+        iconCat = '<%= asset_path 'tainan_markets.png' %>';		
+    }
+    else if (obj.data === "hospitals") {
+        iconCat = '<%= asset_path 'hospitals.png' %>';	
+    }
+    else if (obj.data === "police_stations") {
+        iconCat = '<%= asset_path 'police_stations.png' %>';	
+    }
+    var iconImage = {
+        url: iconCat,
+        size: new google.maps.Size(30, 30)
+    };
 
-	var marker = new google.maps.Marker({
-		map: null,
-		position: new google.maps.LatLng(obj.lat, obj.lng),
-		id: obj.id,
-		data:obj.data,
-		lat: obj.lat,
-		lng: obj.lng,
-		icon: iconImage
-	});
-	google.maps.event.addListener(marker, 'mouseover', function(){
-		infowindow = new google.maps.InfoWindow();
-		var html = "";
-		for (var key in obj) {
-			if (key === "name") {
-				html += "<p>"+ "名稱" + ": " + obj["name"] +"</p>"; 
-			} else if (key === "address") {
-				html += "<p>"+ "address" + ": " + obj["address"] +"</p>"; 
-			} else if (key === "addr") {
-				html += "<p>"+ "addr" + ": " + obj["addr"] +"</p>"; 
-			} else if (key === "location") {
-				html += "<p>"+ "location" + ": " + obj["location"] +"</p>";
-			} else if (key === "breif") {
-				html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
-			} else if (key === "tel") {
-				html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
-			} else if (key === "time") {
-				html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
-			}
-		}
+    var marker = new google.maps.Marker({
+        map: null,
+        position: new google.maps.LatLng(obj.lat, obj.lng),
+        id: obj.id,
+        data:obj.data,
+        lat: obj.lat,
+        lng: obj.lng,
+        icon: iconImage
+    });
+    google.maps.event.addListener(marker, 'mouseover', function(){
+        infowindow = new google.maps.InfoWindow();
+        var html = "";
+        for (var key in obj) {
+            if (key === "name") {
+                html += "<p>"+ "名稱" + ": " + obj["name"] +"</p>"; 
+            } else if (key === "address") {
+                html += "<p>"+ "address" + ": " + obj["address"] +"</p>"; 
+            } else if (key === "addr") {
+                html += "<p>"+ "addr" + ": " + obj["addr"] +"</p>"; 
+            } else if (key === "location") {
+                html += "<p>"+ "location" + ": " + obj["location"] +"</p>";
+            } else if (key === "breif") {
+                html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
+            } else if (key === "tel") {
+                html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
+            } else if (key === "time") {
+                html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
+            }
+        }
 
-		infowindow.setContent(html);
-		infowindow.open(map, this);
-	});
+        infowindow.setContent(html);
+        infowindow.open(map, this);
+    });
 
-	google.maps.event.addListener(marker, 'mouseout', function(){
-		infowindow.close(map, this);
-	});
+    google.maps.event.addListener(marker, 'mouseout', function(){
+        infowindow.close(map, this);
+    });
 
-	if (!(obj.data in aroundMarkers)) { 
-		aroundMarkers[obj.data] = [];
-	}
-	aroundMarkers[obj.data].push(marker);
+    if (!(obj.data in aroundMarkers)) { 
+        aroundMarkers[obj.data] = [];
+    }
+    aroundMarkers[obj.data].push(marker);
 }
 
 // add a marker to the map and push it to the map.
 function createMarker(obj, markers) {
-	
-	var marker = new google.maps.Marker({
-		map: map,
-		position: new google.maps.LatLng(obj.lat, obj.lng),
-		id: obj.id,
-		data:obj.data,
-		lat: obj.lat,
-		lng: obj.lng,
-	});
+    
+    var marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng(obj.lat, obj.lng),
+        id: obj.id,
+        data:obj.data,
+        lat: obj.lat,
+        lng: obj.lng,
+    });
 
-	google.maps.event.addListener(marker, 'mouseover', function(){
-		//infowindow.open(map, this);
-	});
+    google.maps.event.addListener(marker, 'mouseover', function(){
+        //infowindow.open(map, this);
+    });
 
-	google.maps.event.addListener(marker, 'mouseout', function(){
-		//infowindow.close(map, this);
-	});
+    google.maps.event.addListener(marker, 'mouseout', function(){
+        //infowindow.close(map, this);
+    });
 
-	google.maps.event.addListener(marker, 'click', function(){
-		// check if the click is the same
-		if (focusPoint.lat === marker.lat && 
-				focusPoint.lng === marker.lng) {
-			return;
-		}
-		// let the current be the focus point.
-		focusPoint.lat = marker.lat;
-		focusPoint.lng = marker.lng;
-		// delete the previous around point.
-		deleteAround();	
-		// disable all checkbox in the html
-		$('.form .fields .checkbox').checkbox('disable');
-		// request the data from database.
-		jQuery.ajax({
-        	url : '/events/show',
-        	dataType : 'json',
-        	type : 'GET',
-        	data : {
-				real_price_id : marker.id,
-				data: marker.data,
-				lat: marker.lat,
-				lng: marker.lng
-        	},
-        	success : function(response){
-				for( i=0; i < response.length; ++i ){
-				
-					if( response[i].data == 'sale_houses'){
-						$('#information').html(
-						'<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
-								"<p>" + response[i].use + "</p></span>" +
+    google.maps.event.addListener(marker, 'click', function(){
+        // check if the click is the same
+        if (focusPoint.lat === marker.lat && 
+                focusPoint.lng === marker.lng) {
+            return;
+        }
+        // let the current be the focus point.
+        focusPoint.lat = marker.lat;
+        focusPoint.lng = marker.lng;
+        // delete the previous around point.
+        deleteAround();	
+        // disable all checkbox in the html
+        $('.form .fields .checkbox').checkbox('disable');
+        // request the data from database.
+        jQuery.ajax({
+            url : '/events/show',
+            dataType : 'json',
+            type : 'GET',
+            data : {
+                real_price_id : marker.id,
+                data: marker.data,
+                lat: marker.lat,
+                lng: marker.lng
+            },
+            success : function(response){
+                for( i=0; i < response.length; ++i ){
+                
+                    if( response[i].data == 'sale_houses'){
+                        $('#information').html(
+                        '<span class="left-information"><div class="orange ui ribbon label">' + "類型" + '</div>' +
+                                "<p>" + response[i].use + "</p></span>" +
 
-						'<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
-								"<p>" + response[i].structure + "</p></span>" + 
-							
-						'<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
-								"<p>" + response[i].address + "</p></span>" +
-							
-						'<span class="right-information"><div class="orange ui ribbon label">' + "售價" + '</div>' + 
-								"<p>" + response[i].price + "</p></span>" +
+                        '<span class="right-information"><div class="orange ui ribbon label">' + "格局" + '</div>' + 
+                                "<p>" + response[i].structure + "</p></span>" + 
+                            
+                        '<span class="left-information"><div class="orange ui ribbon label">' + "地址" + '</div>' + 
+                                "<p>" + response[i].address + "</p></span>" +
+                            
+                        '<span class="right-information"><div class="orange ui ribbon label">' + "售價" + '</div>' + 
+                                "<p>" + response[i].price + "</p></span>" +
 
-						'<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
-								"<p>" + response[i].owner + "</p></span>"  +
-							
-						'<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
-								"<p>" + response[i].tel + "</p></span>"  +
-							
-						'<span class="brief"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
-								"<p>" + response[i].breif + "</p></span>"  
-		
-							);
-					}
-					else if( response[i].data == 'rent_houses' ){
-						getHouse = response[i]
+                        '<span class="left-information"><div class="orange ui ribbon label">' + "聯絡人" + '</div>' + 
+                                "<p>" + response[i].owner + "</p></span>"  +
+                            
+                        '<span class="right-information"><div class="orange ui ribbon label">' + "聯絡電話" + '</div>' + 
+                                "<p>" + response[i].tel + "</p></span>"  +
+                            
+                        '<span class="brief"><div class="orange ui ribbon label">' + "刊登資訊" + '</div>' + 
+                                "<p>" + response[i].breif + "</p></span>"  
+        
+                            );
+                    }
+                    else if( response[i].data == 'rent_houses' ){
+                        getHouse = response[i]
 
-						$('#information').html(
-						'<span class="left-information"><div class="red ui ribbon label">' + "類型" + '</div>' +
-								"<p>" + response[i].use + "</p></span>" +
+                        $('#information').html(
+                        '<span class="left-information"><div class="red ui ribbon label">' + "類型" + '</div>' +
+                                "<p>" + response[i].use + "</p></span>" +
 
-						'<span class="right-information"><div class="red ui ribbon label">' + "格局 / 人數" + '</div>' + 
-								"<p>" + response[i].structure + " / "  + response[i].people + "</p></span>" + 
-							
-						'<span class="left-information"><div class="red ui ribbon label">' + "地址" + '</div>' + 
-								"<p>" + response[i].address + "</p></span>" +
-							
-						'<span class="right-information"><div class="red ui ribbon label">' + "租金" + '</div>' + 
-								"<p>" + response[i].price + "</p></span>" +
+                        '<span class="right-information"><div class="red ui ribbon label">' + "格局 / 人數" + '</div>' + 
+                                "<p>" + response[i].structure + " / "  + response[i].people + "</p></span>" + 
+                            
+                        '<span class="left-information"><div class="red ui ribbon label">' + "地址" + '</div>' + 
+                                "<p>" + response[i].address + "</p></span>" +
+                            
+                        '<span class="right-information"><div class="red ui ribbon label">' + "租金" + '</div>' + 
+                                "<p>" + response[i].price + "</p></span>" +
 
-						'<span class="left-information"><div class="red ui ribbon label">' + "聯絡人" + '</div>' + 
-								"<p>" + response[i].owner + "</p></span>"  +
-							
-						'<span class="right-information"><div class="red ui ribbon label">' + "聯絡電話" + '</div>' + 
-								"<p>" + response[i].tel + "</p></span>"  +
-							
-						'<div class="left-information" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' + 
-								"<p>" + response[i].breif + '</p><button class="add_to_cart ui red mini button" onclick="addToCart()">加入清單</button></div>'
-							);
-						var sliderHTML = splitImgUrl(response[i].img);
-						if( sliderHTML ){
-						$('#slider1_container').html( '<div id = "images" u="slides">' + sliderHTML + '</div>');
-							jssor_slider1_starter('slider1_container');
-						}
-					}
-					else if( response[i].data == 'real_price_deals'){
-						$('#information').html(
-						'"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
-							"<p>" + response[i].area + "</p>" + 
-						'"<div class="green ui ribbon label">' + "土地路段" + '</div>' + 
-							"<p>" + response[i].location + "</p>" + 
-						'"<div class="blue ui ribbon label">' + "總成交價" + '</div>' + 
-							"<p>" + response[i].total_price + "元</p>"
-							);
-					}
-					else {
-						// if the data category of response is not in around
-						// around will add a property of data.
-						if (!(response[i].data in around)) {
-							console.log("found " + response[i].data);
-							around[response[i].data] = [];
-						}
-						// add the data into the corresponding category of
-						// around.
-						around[response[i].data].push(response[i]);
-						addAroundMarker(response[i]);
-					}
-				}
-								
-				$("#around_services").find("input").each(function (index) {
-					var cat = $(this).attr('name');
-					var labelID = $(this).next('label').attr('id');
-					var num = 0;		
-					if (cat in aroundMarkers) {
-						$(this).next('label').text(labelID + " (" + aroundMarkers[cat].length +")");	
-					}
-					else {
-						$(this).next('label').text(labelID + " (0)");
-					}
-				});		
-        	},
-        	error : function(err){
+                        '<span class="left-information"><div class="red ui ribbon label">' + "聯絡人" + '</div>' + 
+                                "<p>" + response[i].owner + "</p></span>"  +
+                            
+                        '<span class="right-information"><div class="red ui ribbon label">' + "聯絡電話" + '</div>' + 
+                                "<p>" + response[i].tel + "</p></span>"  +
+                            
+                        '<div class="left-information" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' + 
+                                "<p>" + response[i].breif + '</p><button class="add_to_cart ui red mini button" onclick="addToCart()">加入清單</button></div>'
+                            );
+                        var sliderHTML = splitImgUrl(response[i].img);
+                        if( sliderHTML ){
+                        $('#slider1_container').html( '<div id = "images" u="slides">' + sliderHTML + '</div>');
+                            jssor_slider1_starter('slider1_container');
+                        }
+                    }
+                    else if( response[i].data == 'real_price_deals'){
+                        $('#information').html(
+                        '"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
+                            "<p>" + response[i].area + "</p>" + 
+                        '"<div class="green ui ribbon label">' + "土地路段" + '</div>' + 
+                            "<p>" + response[i].location + "</p>" + 
+                        '"<div class="blue ui ribbon label">' + "總成交價" + '</div>' + 
+                            "<p>" + response[i].total_price + "元</p>"
+                            );
+                    }
+                    else {
+                        // if the data category of response is not in around
+                        // around will add a property of data.
+                        if (!(response[i].data in around)) {
+                            console.log("found " + response[i].data);
+                            around[response[i].data] = [];
+                        }
+                        // add the data into the corresponding category of
+                        // around.
+                        around[response[i].data].push(response[i]);
+                        addAroundMarker(response[i]);
+                    }
+                }
+                                
+                $("#around_services").find("input").each(function (index) {
+                    var cat = $(this).attr('name');
+                    var labelID = $(this).next('label').attr('id');
+                    var num = 0;		
+                    if (cat in aroundMarkers) {
+                        $(this).next('label').text(labelID + " (" + aroundMarkers[cat].length +")");	
+                    }
+                    else {
+                        $(this).next('label').text(labelID + " (0)");
+                    }
+                });		
+            },
+            error : function(err){
  
-        		// do error checking
-        		alert("something went wrong");
-        		console.error(err);
-        	}
-			});
+                // do error checking
+                alert("something went wrong");
+                console.error(err);
+            }
+            });
 
 
-				DISQUS.reset({
-  					reload: true,
-  					config: function () {  
-    					this.page.identifier = marker.id;  
-    					this.page.url = "https://whatshouse.herokuapp.com/#!newthread";
-  					}
-				});	
+                DISQUS.reset({
+                    reload: true,
+                    config: function () {  
+                        this.page.identifier = marker.id;  
+                        this.page.url = "https://whatshouse.herokuapp.com/#!newthread";
+                    }
+                });	
 
-			$('div.ui.inverted.orange.pointing.response.menu .item')
-				.tab('change tab', 'Information')
-			;
-			window.location.hash = 'Information';
+            $('div.ui.inverted.orange.pointing.response.menu .item')
+                .tab('change tab', 'Information')
+            ;
+            window.location.hash = 'Information';
 
-	});
-	markers.push(marker);
-	id_markers[marker.id] = marker;
+    });
+    markers.push(marker);
+    id_markers[marker.id] = marker;
 }
 
 function showAround (cat) {
-	// show all
-	if (cat === "all") {
-		for (var category in aroundMarkers) {
-			for(var i = 0; i != aroundMarkers[category].length; i++) {
-				aroundMarkers[category][i].setMap(map);
-			}				
-		}
-		return;
-	}
-	// show cat only
-	if (cat in aroundMarkers) {
-		for(var i = 0; i != aroundMarkers[cat].length; i++) {
-			aroundMarkers[cat][i].setMap(map);
-		}
-	}
+    // show all
+    if (cat === "all") {
+        for (var category in aroundMarkers) {
+            for(var i = 0; i != aroundMarkers[category].length; i++) {
+                aroundMarkers[category][i].setMap(map);
+            }				
+        }
+        return;
+    }
+    // show cat only
+    if (cat in aroundMarkers) {
+        for(var i = 0; i != aroundMarkers[cat].length; i++) {
+            aroundMarkers[cat][i].setMap(map);
+        }
+    }
 }
 
 
 
 // just hide from map
 function hideAround (cat) {
-	// hide all
-	if (cat === "all") {
-		for (var category in aroundMarkers) {
-			for(var i = 0; i != aroundMarkers[category].length; i++) {
-				aroundMarkers[category][i].setMap(null);
-			}				
-		}
-		return;
-	}
-	// hide cat only
-	if (cat in aroundMarkers) {
-		for(var i = 0; i != aroundMarkers[cat].length; i++) {
-			aroundMarkers[cat][i].setMap(null);
-		}
-	}
+    // hide all
+    if (cat === "all") {
+        for (var category in aroundMarkers) {
+            for(var i = 0; i != aroundMarkers[category].length; i++) {
+                aroundMarkers[category][i].setMap(null);
+            }
+        }
+        return;
+    }
+    // hide cat only
+    if (cat in aroundMarkers) {
+        for(var i = 0; i != aroundMarkers[cat].length; i++) {
+            aroundMarkers[cat][i].setMap(null);
+        }
+    }
 }
 
 // delete "all" around and aroundmarkers.
 function deleteAround () {
-	hideAround("all");
-	around = {};
-	aroundMarkers = {};
+    hideAround("all");
+    around = {};
+    aroundMarkers = {};
 }
 
 // Sets the map on all markers in the array.
 function setAllMap(map) {
-	for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(map);
-	}
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
 }
 
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() {
-	setAllMap(null);
+    setAllMap(null);
 }
 
 
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
-	clearMarkers();
-	markers = [];
+    clearMarkers();
+    markers = [];
 }
 
 function search (){
 
-	$('.search_form').on('ajax:success', function(xha, data, status) {
-		markerCluster.setMap(null);
-		markerCluster = []
-		deleteMarkers();
-		deleteAround();
-		var rating_index = data[1];
-		if( rating_index != " " && data[0].length > 0){
-			$('div.ui.form.success').hide();
-			
-			$('div#search_show').html( 
-			'<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-				"<ol id='search_result'>" 
-			);
-			
-			appendSerachContent(data, rating_index);	
-		}
-		else if( data[0].length > 0 ){
-		
-			$('div.ui.form.success').hide();
-			$('div#search_show').html( 
-			'<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-				"<ol id='search_result'>" 
-			);
-			
-			appendSerachContent(data, rating_index);	
-		}
-		else{
-			$('div.ui.form.success').hide();
-			$('div#search_show').html( 
-			'<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>'); 
-		}
-			
+    $('.search_form').on('ajax:success', function(xha, data, status) {
+        markerCluster.setMap(null);
+        markerCluster = []
+        deleteMarkers();
+        deleteAround();
+        var rating_index = data[1];
+        if( rating_index != " " && data[0].length > 0){
+            $('div.ui.form.success').hide();
+            
+            $('div#search_show').html( 
+            '<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+                "<ol id='search_result'>" 
+            );
+            
+            appendSerachContent(data, rating_index);	
+        }
+        else if( data[0].length > 0 ){
+        
+            $('div.ui.form.success').hide();
+            $('div#search_show').html( 
+            '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+                "<ol id='search_result'>" 
+            );
+            
+            appendSerachContent(data, rating_index);	
+        }
+        else{
+            $('div.ui.form.success').hide();
+            $('div#search_show').html( 
+            '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>'); 
+        }
+            
 
-		var real_price_list = data[0];
-		for (var i = 0; i < real_price_list.length; i++) {
-			createMarker(real_price_list[i], markers);
-		}
+        var real_price_list = data[0];
+        for (var i = 0; i < real_price_list.length; i++) {
+            createMarker(real_price_list[i], markers);
+        }
 
-		//create clusterer and push the global array of markers into it.
-		markerCluster = new MarkerClusterer(map, markers);  
-			
-		$("div#advanced_search form").hide();	
-		$("div#search_show").show();
+        //create clusterer and push the global array of markers into it.
+        markerCluster = new MarkerClusterer(map, markers);  
+            
+        $("div#advanced_search form").hide();	
+        $("div#search_show").show();
 
-	});
+    });
 
 }
 
 function appendSerachContent(data, rating_index){
 
-	var item;
-	for( var i = 0; i < 3 && i < data[0].length; ++i){
-			if( rating_index != " " ){
-				item = data[0][ rating_index[ rating_index.length - i - 1 ] ];
-			}
-			else{
-				item = data[0][i];
-			}	
+    var item;
+    for( var i = 0; i < 3 && i < data[0].length; ++i){
+            if( rating_index != " " ){
+                item = data[0][ rating_index[ rating_index.length - i - 1 ] ];
+            }
+            else{
+                item = data[0][i];
+            }	
 
-			$('#search_result').append(
-				"<li><a class='marker_link' href='#' id='" + item.id + "' onclick='moveToMarker(event,this.id)'>" + item.address + " " + item.price + "元</a></li>" 
-			)
-	}
-	$('#search_result').append(
-		"</ol>"
-	)
+            $('#search_result').append(
+                "<li><a class='marker_link' href='#' id='" + item.id + "' onclick='moveToMarker(event,this.id)'>" + item.address + " " + item.price + "元</a></li>" 
+            )
+    }
+    $('#search_result').append(
+        "</ol>"
+    )
 
 }
 
 function moveToMarker(event, markerID){
-	event.preventDefault();
-	var newCenter = new google.maps.LatLng( id_markers[markerID].lat, id_markers[markerID].lng);
-	map.setCenter(newCenter);	
-	map.setZoom(17);
+    event.preventDefault();
+    var newCenter = new google.maps.LatLng( id_markers[markerID].lat, id_markers[markerID].lng);
+    map.setCenter(newCenter);	
+    map.setZoom(17);
 }
 
 function searchUndo(){
-		$("div#advanced_search form").show();	
-		$("div#search_show").hide();
+        $("div#advanced_search form").show();	
+        $("div#search_show").hide();
 }
 function initalCheckbox(){
-	$('.form .fields .checkbox').checkbox('disable');
-	$('.form .fields .checkbox').checkbox();
-	
-	$('.form .fields .checkbox').click(function() {	
-		if($(this).children('input').is(':checked')) {
-			showAround($(this).children('input').attr('name'));	
-		} else {
-			hideAround($(this).children('input').attr('name'));
-		}
-	});
+    $('.form .fields .checkbox').checkbox('disable');
+    $('.form .fields .checkbox').checkbox();
+    
+    $('.form .fields .checkbox').click(function() {	
+        if($(this).children('input').is(':checked')) {
+            showAround($(this).children('input').attr('name'));	
+        } else {
+            hideAround($(this).children('input').attr('name'));
+        }
+    });
 }
 
 
 function splitImgUrl(imgUrl) {
-	if( imgUrl ){	
-		var img = imgUrl.split(",");
-		var sliderHTML = "";
-		for (var i = 0; i < img.length; i++) {
-			sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
-		}
-	}
-	else{
-		sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
-		sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
-	}
-	return sliderHTML;
+    if( imgUrl ){	
+        var img = imgUrl.split(",");
+        var sliderHTML = "";
+        for (var i = 0; i < img.length; i++) {
+            sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
+        }
+    }
+    else{
+        sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
+        sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
+    }
+    return sliderHTML;
 }
 
 var house_number = $('.cart').length;
 var house_array = []
 function addToCart() {
-	
-	// add input field by jQuery
-	var max_input = 2;
-	var fieldCount = 1;
+    
+    // add input field by jQuery
+    var max_input = 2;
+    var fieldCount = 1;
 
-	if ( house_number <= max_input ){
-		house_array.push(getHouse);
+    if ( house_number <= max_input ){
+        house_array.push(getHouse);
 
-		fieldCount++;
-		$('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
-				'<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
-								+ getHouse.address + " " +  getHouse.price + "$ </a>" 
-				+ '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' 
-				+  house_number + '" class="removeclass">x</a></div></li>'
-		);	
-		house_number++;
-	}
-	return false;
+        fieldCount++;
+        $('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
+                '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
+                                + getHouse.address + " " +  getHouse.price + "$ </a>" 
+                + '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' 
+                +  house_number + '" class="removeclass">x</a></div></li>'
+        );	
+        house_number++;
+    }
+    return false;
 }
 function removeFromCart (item) {
-	if( house_number >= 1 ){
-		delete house_array[ item.id[4] ];
-		$(item).parents('li').remove();
-		house_number--;
-	}
-	return false;
+    if( house_number >= 1 ){
+        delete house_array[ item.id[4] ];
+        $(item).parents('li').remove();
+        house_number--;
+    }
+    return false;
 }
 
 $(document).ready(initalCheckbox)
