@@ -29,11 +29,14 @@
 	<% end %>
 	<div class="right menu">
 	<% if signed_in? %>
-		<div class="ui floating dropdown item">
-				<%= current_user.name %><i class="icon dropdown"></i>
+		<%= link_to renthouse_path, class:"item" do%>
+			<i class="add icon"></i>
+		<% end %>
+		<div class="ui pointing dropdown item">
+		<%= current_user.name %>
+			<i class="icon dropdown"></i>
 			<div class="menu">
 	 			 <!-- <%= link_to "出售", salehouse_path, class:"item"%> -->
-	       		<%= link_to "出租", renthouse_path, class:"item"%>
 				<%= link_to "個人檔案", edit_user_path(current_user), class:"item"%> 
 				<!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
 			<%= link_to "登出", signout_path, method: "delete" , class:"sign_in item" %>
