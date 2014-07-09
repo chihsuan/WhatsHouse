@@ -251,7 +251,9 @@ function createMarker(obj, markers) {
       .tab('activate navigation', 'Information')
     ;
     window.location.hash = 'Information';
-    console.log('212');
+
+    //if information area is hide, show it
+    $('#area').show();
 
     // check if user click on the same marker
     if (focusPoint.lat === marker.lat &&
