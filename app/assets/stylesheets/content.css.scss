@@ -406,3 +406,38 @@ select#people {
 	border-radius: .1875rem;
 	background: white;
 }
+
+.menu_search_form{
+	display: inline;
+}
+
+.menu_search_form > div.item{
+	padding: 0px;
+	margin: 0px;
+	height: 50px;
+}
+
+.menu_search_form form{
+	top: -20px;
+	position: relative;
+}
+
+.menu_search_form .input{
+	width: 90%;
+}
+
+.menu_search_form input{
+	height: 32px;
+}
+.menu_search_form .ui.icon.input > .icon{
+	top: -4px;
+}
+
+.menu_search_form  .ui.icon.input input.search_submit{
+	background: transparent;
+	position: absolute;
+	top: 0px;
+	left: 204px;
+	width: 15px;
+	border: none;
+}

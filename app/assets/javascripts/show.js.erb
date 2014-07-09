@@ -465,39 +465,46 @@ function deleteMarkers() {
 
 function search (){
 
-  $('.search_form').on('ajax:success', function(xha, data, status) {
-    markerCluster.setMap(null);
+  $('.search_form, .menu_search_form').on('ajax:success', function(xha, data, status) {
+    markerCluster.  setMap(null);
     markerCluster = []
     deleteMarkers();
     deleteAround();
-    var rating_index = data[1];
-    if( rating_index != " " && data[0].length > 0){
-      $('div.ui.form.success').hide();
-
-      $('div#search_show').html( 
-        '<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-        "<ol id='search_result'>" 
-      );
-
-      appendSerachContent(data, rating_index);	
-    }
-    else if( data[0].length > 0 ){
-
-      $('div.ui.form.success').hide();
-      $('div#search_show').html( 
-        '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-        "<ol id='search_result'>" 
-      );
-
-      appendSerachContent(data, rating_index);
-    }
-    else{
-      $('div.ui.form.success').hide();
-      $('div#search_show').html( 
-        '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>'); 
-    }
 
 
+      var rating_index = data[1];
+      if( rating_index != " " && data[0].length > 0){
+        $('div.ui.form.success').hide();
+
+        $('div#search_show').html( 
+         '<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+         "<ol id='search_result'>" 
+       );
+
+        appendSerachContent(data, rating_index);	
+      }
+      else if( data[0].length > 0 ){
+
+        $('div.ui.form.success').hide();
+        $('div#search_show').html( 
+         '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+         "<ol id='search_result'>" 
+        );
+
+        appendSerachContent(data, rating_index);
+        var newCenter = new google.maps.LatLng( data[0][0].lat, data[0][0].lng);
+        map.setCenter(newCenter);
+        map.setZoom(13);
+      }
+      else {
+
+        $('div.ui.form.success').hide();
+        $('div#search_show').html( 
+          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>'); 
+      }
+   
+    
+    
     var real_price_list = data[0];
     for (var i = 0; i < real_price_list.length; i++) {
       createMarker(real_price_list[i], markers);
@@ -508,6 +515,7 @@ function search (){
 
     $("div#advanced_search form").hide();
     $("div#search_show").show();
+
 
   });
 

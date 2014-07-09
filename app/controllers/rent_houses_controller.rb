@@ -31,6 +31,15 @@ class RentHousesController < ApplicationController
 		end
 	end
 
+	def search
+		@keyword = params[:district]
+    	@data = RentHouse.where("address like ?", "%#{@keyword}%")
+		@data = [ @data, " "]
+		respond_to do |format|
+			format.json { render :json => @data }
+		end
+	end
+
 	def rent
 		if signed_in?
 			@user = current_user
