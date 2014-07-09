@@ -241,6 +241,18 @@ function createMarker(obj, markers) {
   });
 */
   google.maps.event.addListener(marker, 'click', function(){
+
+
+    // whenever click the marker change the menu tab to information
+    $('div.ui.inverted.orange.pointing.response.menu .item')
+      .tab('change tab', 'Information')
+      .tab('deactivate all')
+      .tab('activate tab', 'Information')
+      .tab('activate navigation', 'Information')
+    ;
+    window.location.hash = 'Information';
+    console.log('212');
+
     // check if user click on the same marker
     if (focusPoint.lat === marker.lat &&
         focusPoint.lng === marker.lng) {
@@ -251,6 +263,9 @@ function createMarker(obj, markers) {
     focusPoint.lng = marker.lng;
     // delete the around points of previous marker.
     deleteAround();
+
+
+
     // disable all checkbox in the html
     $('.form .fields .checkbox').checkbox('disable');
     // request the data from database.
@@ -377,14 +392,10 @@ function createMarker(obj, markers) {
       }
     });
 
-    $('div.ui.inverted.orange.pointing.response.menu .item')
-    .tab('change tab', 'Information')
-    ;
-    window.location.hash = 'Information';
-
   });
   markers.push(marker);
   id_markers[marker.id] = marker;
+  
 }
 
 function showAround (cat) {
