@@ -2,7 +2,11 @@
 	<div class="heading">
 				<h1>簡單、直覺、友善</h1>
 				<h6>提供更輕鬆的方式尋找您心目中的家</h6>
-				<div id = "sign_up">
+				<div class="enter">
+					<%= link_to "找房子", rent_path, class:"ui red button", 'data-no-turbolink' => true %>
+					<%= link_to "出租", signup_path, class:"ui red button", 'data-no-turbolink' => true %>
+				</div>
+				<!-- div id = "sign_up">
 				<div class="ui form signup segment" id="signup">
 				  <%= form_for(@user) do |f| %>
 				  <%= render 'shared/error_messages', object: f.object%>
@@ -45,7 +49,7 @@
 					</div>
 				  </div>
 				  <%= f.submit "註冊", class:"ui red button" %>
-				<% end %>
-				</div>
+				  <% end %> 
+		  </div> -->
 		</div>		
 </div>

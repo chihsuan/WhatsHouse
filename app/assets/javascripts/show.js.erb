@@ -244,7 +244,7 @@ function createMarker(obj, markers) {
 
 
     // whenever click the marker change the menu tab to information
-    $('div.ui.inverted.orange.pointing.response.menu .item')
+    $('div.ui.inverted.red.pointing.response.menu .item')
       .tab('change tab', 'Information')
       .tab('deactivate all')
       .tab('activate tab', 'Information')
@@ -471,6 +471,13 @@ function search (){
     deleteMarkers();
     deleteAround();
 
+  $('div.ui.inverted.red.pointing.response.menu .item')
+    .tab('change tab', 'Advanced_Search')
+    .tab('deactivate all')
+    .tab('activate tab', 'Advanced_Search')
+    .tab('activate navigation', 'Advanced_Search')
+  ;
+  window.location.hash = 'Advanced_search';
 
       var rating_index = data[1];
       if( rating_index != " " && data[0].length > 0){
@@ -490,11 +497,13 @@ function search (){
          '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
          "<ol id='search_result'>" 
         );
+        
 
         appendSerachContent(data, rating_index);
         var newCenter = new google.maps.LatLng( data[0][0].lat, data[0][0].lng);
         map.setCenter(newCenter);
         map.setZoom(13);
+
       }
       else {
 
