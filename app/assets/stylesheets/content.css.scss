@@ -8,7 +8,6 @@
 }
 	  
 div.ui.fixed.inverted.title_bar.menu{
-    position: absolute;
     top: 0px;
     width: 100%;
     min-width:980px;
@@ -28,14 +27,28 @@ div.ui.fixed.inverted.title_bar.menu{
 	position: relative;
 	//left: 40px;
 }
-header .ui.inverted.menu a.item, div.ui.pointing.dropdown.item{
+header .ui.inverted.menu a.item, 
+header div.ui.pointing.dropdown.item{
 	color: #BE3535;
 	font-size: 14px;
 	margin-left: 21px;
 }
-header .ui.inverted.menu a.item:hover, div.ui.pointing.dropdown.item:hover{
-	color: #D50909;;
+div.ui.pointing.dropdown.item{
+	left: -21px;
+}
+
+header .ui.inverted.menu a.item:hover, 
+div.ui.pointing.dropdown.item:hover,
+header div.ui.pointing.dropdown.item.active.visible{
+	color: #D50909 !important;
 	border-bottom: 4px solid;
+}
+
+header .ui.inverted.menu .dropdown .menu .item, 
+header .ui.inverted.menu .dropdown .menu .item a {
+	color: #BE3535 !important;
+	left: -20px;
+	text-align: center;
 }
 
 .ui.title_bar.menu .menu h2 {
@@ -489,7 +502,7 @@ select#people {
 }
 
 .right.menu .add.icon{
-	padding-right: 5px;
+	padding-top: 3px;
 }
 
 .right.menu .dropdown .icon{
@@ -531,4 +544,7 @@ div.ui.pointing.dropdown.item{
 }
 .container div.ui.vertical.menu{
 	border-radius: 0px;
+}
+#area div.ui.message {
+		color: rgb(204, 107, 107);
 }
