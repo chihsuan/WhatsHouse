@@ -109,8 +109,8 @@ var styledMap =
     ];
 
 function initialize() {
-  var tmpCenter = new google.maps.LatLng(22.999255, 120.215013);
-  var zoomLevel = 12;
+  var tmpCenter = new google.maps.LatLng(23.9486886,122.7529241); //tainan 22.999255, 120.215013
+  var zoomLevel = 7;
   var mapOptions = {
     center: tmpCenter,
     zoom: zoomLevel,
@@ -477,7 +477,7 @@ function search (){
     .tab('activate tab', 'Advanced_Search')
     .tab('activate navigation', 'Advanced_Search')
   ;
-  window.location.hash = 'Advanced_search';
+  window.location.hash = 'Advanced_Search';
 
       var rating_index = data[1];
       if( rating_index != " " && data[0].length > 0){
@@ -494,7 +494,7 @@ function search (){
 
         $('div.ui.form.success').hide();
         $('div#search_show').html( 
-         '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+         '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
          "<ol id='search_result'>" 
         );
         

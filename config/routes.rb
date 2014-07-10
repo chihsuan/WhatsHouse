@@ -8,20 +8,17 @@ Rails.application.routes.draw do
 	resources :sale_houses,  only: [:create, :destroy]
 	resources :events 	
 	root :to => "content#content"
-	#get "map/index" => "map#index"
 	get "content" => "content#content"
-	get "static_pages" => "static_pages#index"
   	get 'rent_houses/show' => "rent_houses#show"	
-  	get 'sale_houses/show' => "sale_houses#show"
+  	#get 'sale_houses/show' => "sale_houses#show"
 	match '/analysis', to: 'content#analysis', via: 'get'
 	match '/rent', to: 'content#rent', via: 'get'
 	match '/buy', to: 'content#buy', via: 'get'
-	match '/renthouse',  to: 'rent_houses#rent',            via: 'get'
+	match '/renthouse',  to: 'rent_houses#rentHouse',            via: 'get'
 	match '/salehouse',  to: 'sale_houses#sale',            via: 'get'
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
-	match '/get_json', to: 'static_pages#get_json', via: 'get'
 	match '/about_us', to: 'content#about', via: 'get'
 	match '/contact', to: 'content#contact', via: 'get'
 	match '/rent_houses/search', to: 'rent_houses#search', via: 'get'

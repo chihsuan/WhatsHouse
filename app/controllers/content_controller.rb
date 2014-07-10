@@ -6,9 +6,12 @@ class ContentController < ApplicationController
 	end
 
 	def content
+		if signed_in? 
+			redirect_to rent_path
+		end
 		@user = User.new
-		@sale_houses = SaleHouse.select("id, lat, lng, address, data")
-		gon.real_price_list = @sale_houses.as_json()
+		#@sale_houses = SaleHouse.select("id, lat, lng, address, data")
+		#gon.real_price_list = @sale_houses.as_json()
 	end
 
 	def rent
