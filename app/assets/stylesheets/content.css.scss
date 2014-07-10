@@ -4,15 +4,14 @@
 
 #map_canvas { 
 	height: 100%;
+	z-index: 1;
 }
 	  
 div.ui.fixed.inverted.title_bar.menu{
-    position: absolute;
     top: 0px;
     width: 100%;
-    min-width:980px;
 	z-index: 10;
-	background-color: #720000;; /* Old browsers */
+	background-color: white;; /* Old browsers */
 	//background: -moz-linear-gradient(left, #c72200 0%, #ff6a07 70%, #ff6a07 96%); /* FF3.6+ */
 	//background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c72200), color-stop(70%,#ff6a07), color-stop(96%,#ff6a07)); /* Chrome,Safari4+ */
 	//background: -webkit-linear-gradient(left, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* Chrome10+,Safari5.1+ */
@@ -21,21 +20,58 @@ div.ui.fixed.inverted.title_bar.menu{
 	//background: linear-gradient(to right, #c72200 0%,#ff6a07 70%,#ff6a07 96%); /* W3C */
 	//filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c72200', endColorstr='#ff6a07',GradientType=1 ); /* IE6-9 */
 	height: 49px;
+	box-shadow: 1px 1px 1px rgba(1,1,1,0.2);
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+#wrap{
+	position: relative;
+    min-height: 100%;
+    vertical-align:bottom;
+    margin:0 auto;
+    height:100%;
 }
 
 .ui.title_bar.menu .menu{
 	position: relative;
 	//left: 40px;
 }
+header .ui.inverted.menu a.item, 
+header div.ui.pointing.dropdown.item{
+	color: #df4119;
+	font-size: 14px;
+	margin-left: 21px;
+	height: 49px;
+}
+div.ui.pointing.dropdown.item{
+	left: -21px;
+	top: 3px;
+}
+
+header .ui.inverted.menu a.item:hover, 
+div.ui.pointing.dropdown.item:hover,
+header div.ui.pointing.dropdown.item.active.visible{
+	color: #D50909 !important;
+	border-bottom: 4px solid;
+}
+
+header .ui.inverted.menu .dropdown .menu .item, 
+header .ui.inverted.menu .dropdown .menu .item a {
+	color: #df4119 !important;
+	left: -20px;
+	text-align: center;
+}
 
 .ui.title_bar.menu .menu h2 {
 	margin: 0px;
+	position: relative;
 }
 
 .ui.title_bar.menu .menu .right.menu {
 	position: relative;
-	left: -70px;
-	top: 4px;
 	min-width: 14%;
 }
 
@@ -46,10 +82,11 @@ div.ui.fixed.inverted.title_bar.menu{
 
 .ui.response.cell.grid {
 	position: absolute;
-  top: 10%;
+  	top: 10%;
 	right: 2%;
 	width: 40%;
 	display:table;
+	z-index: 2;
 }
 
 .ui.response.cell.grid .column .ui.response.menu {
@@ -58,6 +95,10 @@ div.ui.fixed.inverted.title_bar.menu{
 
 .ui.response.cell.grid .column .ui.tab.segmant {
 	display:table-cell;
+}
+
+div.ui.inverted.red.pointing.response.menu{
+	background: #df4119;
 }
 
 .ui.response.cell.grid .column{
@@ -78,24 +119,29 @@ html, body, .container{
 	min-width: 980px;
 }
 .container{
-	height: 92%;
-	min-height: 520px;
+	background: #eee;
+	position: relative;
+	zoom:1;
+	margin: auto;
+	min-height: 93%;
+    height: 93%;
+	margin:0 auto -30px;
 }
+
+footer, .push { width:100%; height:158px; position:relative; bottom:0; }
 
 a{
 	text-decoration: blink;
 }
 
 body{
-	height: 92%;
+	height: 100%;
 }
 
-.container{
-	margin-top: 42px;
-}
 
 header{
-	height: 7px;
+	height: 49px;
+	position: relative;
 }
 
 footer{
@@ -118,7 +164,7 @@ footer li{
 }
 
 footer a{
-	color: #720000;
+	color: #df4119;
 }
 
 footer a:hover{
@@ -183,7 +229,23 @@ div.launch.button {
 #area{
 	top: -30px;
 	position: relative;
+	overflow: auto;
+	height: 450px;
 }
+
+::-webkit-scrollbar {  
+    width: 12px;  
+}  
+::-webkit-scrollbar-track {  
+    background-color: #eaeaea;  
+    border-left: 1px solid #ccc;  
+}  
+::-webkit-scrollbar-thumb {  
+    background-color: #ccc;  
+}  
+::-webkit-scrollbar-thumb:hover {  
+    background-color: #aaa;  
+}  
 
 .ui.tab.active, .ui.tab.open {
 		margin: 0px;
@@ -224,7 +286,7 @@ div.ui.radio.checkbox {
 
 
 div.ui.icon.input {
-	margin: 15px 10px 15px 2px;
+	margin: 17px 10px 15px 2px;
 }
 
 i.small.long.arrow.icon{
@@ -260,7 +322,10 @@ i.small.long.arrow.icon{
 	color: #ffffff;
 	font-weight: 700;
 	font-size: 36px;
-	background: image-url("background.jpg") repeat;
+	background: image-url("006.jpg") no-repeat;
+	background-position: 0px;
+	opacity: 0.95;
+	min-height: 520px;
 }
 
 .heading{
@@ -268,6 +333,7 @@ i.small.long.arrow.icon{
 	width: 980px;
 	margin-right: auto;
 	margin-left: auto;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
 }
 
 .heading #signup{
@@ -313,6 +379,7 @@ div.house_cart {
 	border-radius: 5px 5px 5px 5px;
 	background:transparent; 
 	color: #720000;
+	z-index: 10;
 }
 .div.cart.item li{
 	line-height: 25px;
@@ -347,7 +414,7 @@ div.house_cart {
 	width: 70%;
 	margin: auto;
 	padding: 10px 10px 10px 10px;
-	color: white;
+	color: black;
 }
 
 .author{
@@ -361,12 +428,12 @@ div.house_cart {
 #contact_us a,
 #about_us a{
 	padding-left: 5px;
-	color: aliceblue;
+	color: #444;
 }
 
 #contact_us a:hover,
 #about_us a:hover{
-	color: #EB0000;
+	color: #df4119;;
 }
 
 .author_img img, .author_img{
@@ -423,23 +490,27 @@ select#people {
 }
 
 .menu_search_form .input{
-	width: 90%;
+	width: 194%;
 }
 
 .menu_search_form input{
 	height: 32px;
 }
 .menu_search_form .ui.icon.input > .icon{
-	top: -4px;
+	background: rgb(223, 65, 25);
+	color: white;
+	padding: 10px;
+	opacity: 1;
 }
 
 .menu_search_form  .ui.icon.input input.search_submit{
 	background: transparent;
 	position: absolute;
 	top: 0px;
-	left: 204px;
 	width: 15px;
+	left: 206px;
 	border: none;
+	box-shadow: none;
 }
 .enter{
 	width: 41%;
@@ -462,16 +533,19 @@ select#people {
 }
 
 .enter a.ui.red.button:last-child{
-	background: transparent;
+	background: white;
 	border: 2px solid white;
+	color: #444;;
+	font-weight: normal;
 }
 .enter a.ui.red.button:last-child:hover{
-	background: white;
-	color: #444;;
+	background: rgba(255, 255, 255, 0);
+	color: white;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 
 .right.menu .add.icon{
-	padding-right: 5px;
+	padding-top: 3px;
 }
 
 .right.menu .dropdown .icon{
@@ -480,8 +554,67 @@ select#people {
 }
 
 div.ui.pointing.dropdown.item{
-	position: absolute;
-	width: 100%;
-	height: 43px;
+	height: 49px;
+	text-align: center;
+	min-width: 165px;
+}
+#sidebar {
+    float: left;
+    padding-right: 4px;
+    padding-bottom: 120px;
+    height: 600px;
+ }
+
+.container .ui.vertical.menu .item > i.icon {
+	float: left;
+}
+.container .ui.vertical.menu .item {
+	color: #df4119;
 }
 
+.ui.vertical.menu .item{
+	color: #737373;
+	display: inline-block;
+	font-size: 14px;
+	margin-left: 8px;
+	margin-bottom: 2px;
+	overflow: hidden;
+	padding-top: 12px;
+	text-overflow: ellipsis;
+	vertical-align: bottom;
+	white-space: nowrap;
+}
+ .toggle.icon{
+	z-index: 9;
+	position: fixed;
+	color: #df4119;
+	left: 28px;
+}
+.ui.vertical.menu{
+	float: left;
+	position: fixed;
+	z-index: 10;
+	top: 30px;
+	height:100%;
+	display: none;
+}
+.toggle.icon:hover + .ui.vertical.menu {
+	display: block;
+}
+
+.ui.vertical.menu:hover{
+	display: block;
+}
+.container div.ui.vertical.menu{
+	border-radius: 0px;
+}
+#area div.message {
+	color: #df4119;
+}
+.welcome_message{
+	color: #df4119;
+	position: relative;
+	top: 20px;
+	left: 10%;
+	font-size: 20px;
+}

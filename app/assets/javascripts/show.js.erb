@@ -22,6 +22,7 @@ function initialize() {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
   markerCluster = L.markerClusterGroup();
+
   markers = [];
   var real_price_list = gon.real_price_list;
 
@@ -182,25 +183,25 @@ function createMarker(obj, markers) {
           else if ( response[i].data == 'rent_houses' ){
             getHouse = response[i];
             $('#information').html(
-              '<span class="left-information"><div class="red ui ribbon label">'
+              '<span class=""><div class="red ui ribbon label">'
               + "類型" + '</div>' +
               "<p>" + response[i].use + "</p></span>" +
-              '<span class="right-information"><div class="red ui ribbon label">'
+              '<span class=""><div class="red ui ribbon label">'
               + "格局 / 人數" + '</div>' +
               "<p>" + response[i].structure + " / " + response[i].people + "</p></span>" +
-              '<span class="left-information"><div class="red ui ribbon label">'
+              '<span class=""><div class="red ui ribbon label">'
               + "地址" + '</div>' +
               "<p>" + response[i].address + "</p></span>" +
-              '<span class="right-information"><div class="red ui ribbon label">'
+              '<span class=""><div class="red ui ribbon label">'
               + "租金" + '</div>' +
               "<p>" + response[i].price + "</p></span>" +
-              '<span class="left-information"><div class="red ui ribbon label">'
+              '<span class=""><div class="red ui ribbon label">'
               + "聯絡人" + '</div>' +
               "<p>" + response[i].owner + "</p></span>" +
-              '<span class="right-information"><div class="red ui ribbon label">' +
+              '<span class=""><div class="red ui ribbon label">' +
               "聯絡電話" + '</div>' +
               "<p>" + response[i].tel + "</p></span>" +
-              '<div class="left-information" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' +
+              '<div class="" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' +
               "<p>" + response[i].breif + '</p><button class="add_to_cart ui red mini button" onclick="addToCart()">加入清單</button></div>'
             );
             // add the pictures of house to the slider.
@@ -337,38 +338,46 @@ function search (){
     deleteMarkers();
     deleteAround();
 
-    $('div.ui.inverted.red.pointing.response.menu .item')
-      .tab('change tab', 'Advanced_Search')
-      .tab('deactivate all')
-      .tab('activate tab', 'Advanced_Search')
-      .tab('activate navigation', 'Advanced_Search')
-    ;
-    window.location.hash = 'Advanced_search';
+  $('div.ui.inverted.red.pointing.response.menu .item')
+    .tab('change tab', 'Advanced_Search')
+    .tab('deactivate all')
+    .tab('activate tab', 'Advanced_Search')
+    .tab('activate navigation', 'Advanced_Search')
+  ;
+  window.location.hash = 'Advanced_Search';
 
-    var rating_index = data[1];
-    if (rating_index != " " && data[0].length > 0) {
-      $('div.ui.form.success').hide();
-      $('div#search_show').html(
-       '<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-       "<ol id='search_result'>");
-      appendSerachContent(data, rating_index);
-    }
-    else if (data[0].length > 0) {
-      $('div.ui.form.success').hide();
-      $('div#search_show').html(
-       '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-       "<ol id='search_result'>"
-      );
-      appendSerachContent(data, rating_index);
-      var newCenter = [data[0][0].lat, data[0][0].lng];
-      map.setView(newCenter);
-      map.setZoom(13);
-    }
-    else {
-      $('div.ui.form.success').hide();
-      $('div#search_show').html(
-          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>');
-    }
+      var rating_index = data[1];
+      if( rating_index != " " && data[0].length > 0){
+        $('div.ui.form.success').hide();
+
+        $('div#search_show').html(
+         '<span id="serach_rating">搜尋排名</span><button class="undo ui orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+         "<ol id='search_result'>"
+       );
+
+        appendSerachContent(data, rating_index);
+      }
+      else if( data[0].length > 0 ){
+
+        $('div.ui.form.success').hide();
+        $('div#search_show').html(
+         '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui mini orange icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+         "<ol id='search_result'>"
+        );
+
+
+        appendSerachContent(data, rating_index);
+        var newCenter = new google.maps.LatLng( data[0][0].lat, data[0][0].lng);
+        map.setCenter(newCenter);
+        map.setZoom(13);
+
+      }
+      else {
+
+        $('div.ui.form.success').hide();
+        $('div#search_show').html(
+          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui mini orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>');
+      }
 
     var real_price_list = data[0];
     for (var i = 0; i < real_price_list.length; i++) {

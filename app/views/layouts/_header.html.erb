@@ -1,19 +1,15 @@
 <header>
 <div class="ui fixed inverted title_bar menu">
 	<div class="menu">
-	<% if signed_in? %>
-			<%= link_to rent_path, class:"item", 'data-no-turbolink' => true do %>
+		<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
 			<h2><i class="home icon"></i>WhatsHouse</h2>
-			<% end %>
-	<% else %>		
-			<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
-			<h2><i class="home icon"></i>WhatsHouse</h2>
-			<% end %>
-			<%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %>
+		<% end %>
+		<% if !signed_in? %>
+				<!-- <%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %> -->
 			<!--<%= link_to "買房", buy_path, class:"item", 'data-no-turbolink' => true %> -->
 			<!--  <%= link_to "房地產分析", analysis_path, class:"item", 'data-no-turbolink' => true %> -->
-	<% end %>
-	<% if current_page?("buy") || current_page?("rent") %>
+		<% end %>
+	<% if current_page?("rent") %>
 	<div class="menu_search_form">	
 		<div class="item">
 		<%= form_tag('/rent_houses/search', remote:true, method:'get', class:"search_form") do%>
@@ -30,14 +26,14 @@
 	<div class="right menu">
 	<% if signed_in? %>
 		<%= link_to renthouse_path, class:"item" do%>
-			<i class="add icon"></i>
+			<i class="add icon"></i>出租
 		<% end %>
 		<div class="ui pointing dropdown item">
 		<%= current_user.name %>
 			<i class="icon dropdown"></i>
 			<div class="menu">
 	 			 <!-- <%= link_to "出售", salehouse_path, class:"item"%> -->
-				<%= link_to "個人檔案", edit_user_path(current_user), class:"item"%> 
+			<%= link_to "編輯個人檔案", edit_user_path(current_user), class:"item", 'data-no-turbolink' => true %> 
 				<!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
 			<%= link_to "登出", signout_path, method: "delete" , class:"sign_in item" %>
 			</div>

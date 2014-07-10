@@ -17,11 +17,14 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-	<%= render 'layouts/header' %>
-	<div class="container">
-		<%= yield %>
+	<div id="wrap">
+		<%= render 'layouts/header' %>
+		<div class="container clearfix">
+		 <%= render :partial => "shared/sidebar" %>	
+		 <%= yield %>
+		</div>
+		<%= render 'layouts/footer' %>
+		<%= debug(params) if Rails.env.development? %>
 	</div>
-	<%= render 'layouts/footer' %>
-	<%= debug(params) if Rails.env.development? %>
 </body>
 </html>
