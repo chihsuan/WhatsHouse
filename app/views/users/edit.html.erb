@@ -1,5 +1,5 @@
 <% provide(:title, "個人檔案") %>
-
+<div class="">
 <div class="ui about cell grid">
 	<div class="column">
 		<div class="ui inverted pointing about menu">	
@@ -29,7 +29,8 @@
 			<div class="ui tab segment" id="UpdateInfo" data-tab="UpdateInfo">
 				<div class="ui form edit segment">
 			    <%= form_for(@user) do |f| %>
-			  	  <%= render 'shared/error_messages', object: f.object %>
+						<%= render 'shared/error_messages', object: f.object %>
+
 					  <div class="field">
 						<div class="ui left labeled icon input">
 						  <%= f.text_field :name, placeholder:'使用者名稱'%>
@@ -68,13 +69,14 @@
 						  </div>
 						</div>
 					  </div>
-			  	  <%= f.submit "更新個人檔案", class:"ui red button" %>
+			  	  <%= f.submit "更新個人檔案", class:"ui orange button" %>
 			    <% end %>
 				</div>	
 			</div>	
 		</div>
 	</div>
 </div>		
+</div>
 <script>
 $(document).ready(function(){
 		$('.about.menu .item').tab({history:false});

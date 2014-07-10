@@ -15,11 +15,9 @@
 	height: 100%;
 	background-repeat: no-repeat;
 	background-size: 100%;
+	min-height: 580px;
 }
 
-.container{
-	background: image-url("background.jpg") repeat;
-}
 
 .ui.about.cell.grid {
 	position: absolute;
@@ -56,4 +54,14 @@
 
 #areaAbout table td{
 	padding-left: 5px;
+}
+
+div.ui.inverted.pointing.about.menu{
+	background: #df4119;
+}
+
+.ui.inverted.pointing.menu .active.item:after{
+	background: #df4119;
+
+	
 }
