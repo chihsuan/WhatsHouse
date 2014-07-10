@@ -6,7 +6,7 @@
 <body>
 
 		<div id = "rent_houses_page">
-			
+
 		<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
 		<!-- progressbar -->
 		<div class="ui three steps" id="progressbar">
@@ -47,7 +47,7 @@
 				<i class="icon asterisk"></i>
 			  </div>
 			</div>
-		 </div> 
+		 </div>
 
 		  <div class="field people">
 			<div class="ui left labeled icon input">
@@ -57,7 +57,7 @@
 				<i class="icon asterisk"></i>
 			  </div>
 			</div>
-		</div> 
+		</div>
 
 		</div>
 
@@ -69,7 +69,7 @@
 				<i class="icon asterisk"></i>
 			  </div>
 			</div>
-		  </div> 
+		  </div>
 
 
 			<input type="button" name="next" class="next action-button" value="下一步" />
@@ -125,7 +125,7 @@
 		</div>
 		<% end %>
 
-		<div class="house_list">
+		<!-- <div class="house_list">
 		  <% if @user.rent_houses.any? %>
 			<h3>出租中 (<%= @user.rent_houses.count %>)</h3>
 			<ol class="rent_houses">
@@ -133,12 +133,12 @@
 			</ol>
 			<%= will_paginate @rent_houses %>
 		  <% end %>
-		</div>
+	  </div> -->
 
 
 <script>
 	$(document).ready(function(){
-			
+
 		$('#msform')
 		  .form({
 			use: {
