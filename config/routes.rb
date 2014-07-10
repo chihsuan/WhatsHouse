@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 	match '/analysis', to: 'content#analysis', via: 'get'
 	match '/rent', to: 'content#rent', via: 'get'
 	match '/buy', to: 'content#buy', via: 'get'
-	match '/renthouse',  to: 'rent_houses#rent',            via: 'get'
+	match '/renthouse',  to: 'rent_houses#rentHouse',            via: 'get'
 	match '/salehouse',  to: 'sale_houses#sale',            via: 'get'
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'

@@ -1,5 +1,4 @@
 var map;
-var infowindow;
 var services;
 var around = {};
 var aroundMarkers = {};
@@ -13,117 +12,16 @@ var focusPoint = {
   lng: null
 };
 
-// map style
-var styledMap =
-    [
-      {
-        "featureType": "water",
-        "stylers": [
-          {
-            "visibility": "on"
-          },
-          {
-            "color": "#acbcc9"
-          }
-        ]
-      },
-      {
-        "featureType": "landscape",
-        "stylers": [
-          {
-            "color": "#f2e5d4"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#c5c6c6"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#e4d7c6"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#fbfaf7"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#c5dac6"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "stylers": [
-          {
-            "visibility": "on"
-          },
-          {
-            "lightness": 33
-          }
-        ]
-      },
-      {
-        "featureType": "road"
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "labels",
-        "stylers": [
-          {
-            "visibility": "on"
-          },
-          {
-            "lightness": 20
-          }
-        ]
-      },
-      {},
-      {
-        "featureType": "road",
-        "stylers": [
-          {
-            "lightness": 20
-          }
-        ]
-      }
-    ];
-
 function initialize() {
-  var tmpCenter = new google.maps.LatLng(22.999255, 120.215013);
+  // set zoom level
   var zoomLevel = 12;
-  var mapOptions = {
-    center: tmpCenter,
-    zoom: zoomLevel,
-    styles: styledMap,
-    disableDefaultUI: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-
-  map = new google.maps.Map(document.getElementById("map_canvas"),
-                            mapOptions);
-  // pop up window for the marker
-  infowindow = new google.maps.InfoWindow();
-
+  // set center
+  map = L.map('map_canvas').setView([22.999255, 120.215013], zoomLevel);
+  // add tile layer to map
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  markerCluster = L.markerClusterGroup();
   markers = [];
   var real_price_list = gon.real_price_list;
 
@@ -131,7 +29,8 @@ function initialize() {
     createMarker(real_price_list[i], markers);
   }
   //create clusterer and push the global array of markers into it.
-  markerCluster = new MarkerClusterer(map, markers);
+  markerCluster.addLayers(markers);
+  map.addLayer(markerCluster);
 }
 
 // add marker into map and push it into aroundMarkers, the
@@ -151,71 +50,54 @@ function addAroundMarker(obj) {
   var iconCat = "";
   // switch icon pictures of markers by icon category
   if (obj.data === "stores") {
-    iconCat = '<%= asset_path 'stores.jpg' %>';
-  }
-  else if (obj.data === "stations") {
-    iconCat = '<%= asset_path 'stations.png' %>';
-  }
-  else if (obj.data === "dinings") {
-    iconCat = '<%= asset_path 'dinings.png' %>';
-  }
-  else if (obj.data === "tainan_schools") {
-    iconCat = '<%= asset_path 'tainan_schools.png' %>';		
-  }
-  else if (obj.data === "tainan_markets") {
-    iconCat = '<%= asset_path 'tainan_markets.png' %>';		
-  }
-  else if (obj.data === "hospitals") {
-    iconCat = '<%= asset_path 'hospitals.png' %>';	
-  }
-  else if (obj.data === "police_stations") {
-    iconCat = '<%= asset_path 'police_stations.png' %>';	
+    iconCat = '<%= asset_path "stores.jpg" %>';
+  } else if (obj.data === "stations") {
+    iconCat = '<%= asset_path "stations.png" %>';
+  } else if (obj.data === "dinings") {
+    iconCat = '<%= asset_path "dinings.png" %>';
+  } else if (obj.data === "tainan_schools") {
+    iconCat = '<%= asset_path "tainan_schools.png" %>';
+  } else if (obj.data === "tainan_markets") {
+    iconCat = '<%= asset_path "tainan_markets.png" %>';
+  } else if (obj.data === "hospitals") {
+    iconCat = '<%= asset_path "hospitals.png" %>';
+  } else if (obj.data === "police_stations") {
+    iconCat = '<%= asset_path "police_stations.png" %>';
   }
   // icon image setting
-  var iconImage = {
-    url: iconCat,
-    size: new google.maps.Size(30, 30)
-  };
+  var iconImage = L.icon({
+    iconUrl: iconCat,
+    iconSize: [30, 30]
+  });
 
-  var marker = new google.maps.Marker({
-    map: null,
-    position: new google.maps.LatLng(obj.lat, obj.lng),
+  var marker = L.marker(new L.LatLng([obj.lat, obj.lng]), {
     id: obj.id,
     data:obj.data,
     lat: obj.lat,
     lng: obj.lng,
     icon: iconImage
   });
-  google.maps.event.addListener(marker, 'mouseover', function(){
-    infowindow = new google.maps.InfoWindow();
-    var html = "";
-    for (var key in obj) {
-      if (key === "name") {
-        html += "<p>"+ "名稱" + ": " + obj["name"] +"</p>"; 
-      } else if (key === "address") {
-        html += "<p>"+ "address" + ": " + obj["address"] +"</p>"; 
-      } else if (key === "addr") {
-        html += "<p>"+ "addr" + ": " + obj["addr"] +"</p>";
-      } else if (key === "location") {
-        html += "<p>"+ "location" + ": " + obj["location"] +"</p>";
-      } else if (key === "breif") {
-        html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
-      } else if (key === "tel") {
-        html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
-      } else if (key === "time") {
-        html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
-      }
+  var html = "";
+  for (var key in obj) {
+    if (key === "name") {
+      html += "<p>"+ "名稱" + ": " + obj["name"] +"</p>";
+    } else if (key === "address") {
+      html += "<p>"+ "address" + ": " + obj["address"] +"</p>";
+    } else if (key === "addr") {
+      html += "<p>"+ "addr" + ": " + obj["addr"] +"</p>";
+    } else if (key === "location") {
+      html += "<p>"+ "location" + ": " + obj["location"] +"</p>";
+    } else if (key === "breif") {
+      html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
+    } else if (key === "tel") {
+      html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
+    } else if (key === "time") {
+      html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
     }
+  }
+  marker.bindPopup(html);
 
-    infowindow.setContent(html);
-    infowindow.open(map, this);
-  });
-  /*
-  google.maps.event.addListener(marker, 'mouseout', function(){
-    infowindow.close(map, this);
-  });*/
-
-  if (!(obj.data in aroundMarkers)) { 
+  if (!(obj.data in aroundMarkers)) {
     aroundMarkers[obj.data] = [];
   }
   aroundMarkers[obj.data].push(marker);
@@ -223,39 +105,28 @@ function addAroundMarker(obj) {
 
 // add a marker to the map and push it to the map.
 function createMarker(obj, markers) {
-  var marker = new google.maps.Marker({
-    map: map,
-    position: new google.maps.LatLng(obj.lat, obj.lng),
+  var marker = L.marker(new L.LatLng([obj.lat, obj.lng]), {
     id: obj.id,
     data:obj.data,
     lat: obj.lat,
     lng: obj.lng,
   });
-/*
-  google.maps.event.addListener(marker, 'mouseover', function(){
-    //infowindow.open(map, this);
-  });
-
-  google.maps.event.addListener(marker, 'mouseout', function(){
-    //infowindow.close(map, this);
-  });
-*/
-  google.maps.event.addListener(marker, 'click', function(){
-
-
+  marker.bindPopup();
+  marker.on('click', function(){
     // whenever click the marker change the menu tab to information
     $('div.ui.inverted.red.pointing.response.menu .item')
       .tab('change tab', 'Information')
       .tab('deactivate all')
       .tab('activate tab', 'Information')
-      .tab('activate navigation', 'Information')
-    ;
+      .tab('activate navigation', 'Information');
+
     window.location.hash = 'Information';
 
     //if information area is hide, show it
     $('#area').show();
 
-    // check if user click on the same marker
+    // check if user click on the same marker, yes
+    // then do nothing.
     if (focusPoint.lat === marker.lat &&
         focusPoint.lng === marker.lng) {
       return;
@@ -265,8 +136,6 @@ function createMarker(obj, markers) {
     focusPoint.lng = marker.lng;
     // delete the around points of previous marker.
     deleteAround();
-
-
 
     // disable all checkbox in the html
     $('.form .fields .checkbox').checkbox('disable');
@@ -300,12 +169,12 @@ function createMarker(obj, markers) {
               + "售價" + '</div>' +
               "<p>" + response[i].price + "</p></span>" +
               '<span class="left-information"><div class="orange ui ribbon label">'
-              + "聯絡人" + '</div>' + 
+              + "聯絡人" + '</div>' +
               "<p>" + response[i].owner + "</p></span>" +
               '<span class="right-information"><div class="orange ui ribbon label">'
               + "聯絡電話" + '</div>' +
               "<p>" + response[i].tel + "</p></span>" +
-              '<span class="brief"><div class="orange ui ribbon label">' 
+              '<span class="brief"><div class="orange ui ribbon label">'
               + "刊登資訊" + '</div>' +
               "<p>" + response[i].breif + "</p></span>"
             );
@@ -328,7 +197,7 @@ function createMarker(obj, markers) {
               '<span class="left-information"><div class="red ui ribbon label">'
               + "聯絡人" + '</div>' +
               "<p>" + response[i].owner + "</p></span>" +
-              '<span class="right-information"><div class="red ui ribbon label">' + 
+              '<span class="right-information"><div class="red ui ribbon label">' +
               "聯絡電話" + '</div>' +
               "<p>" + response[i].tel + "</p></span>" +
               '<div class="left-information" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' +
@@ -345,7 +214,7 @@ function createMarker(obj, markers) {
           else if( response[i].data == 'real_price_deals'){
             $('#information').html(
               '"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
-              "<p>" + response[i].area + "</p>" + 
+              "<p>" + response[i].area + "</p>" +
               '"<div class="green ui ribbon label">' + "土地路段" + '</div>' +
               "<p>" + response[i].location + "</p>" +
               '"<div class="blue ui ribbon label">' + "總成交價" + '</div>' +
@@ -388,16 +257,14 @@ function createMarker(obj, markers) {
     // comment
     DISQUS.reset({
       reload: true,
-      config: function () {  
-        this.page.identifier = marker.id;  
+      config: function () {
+        this.page.identifier = marker.id;
         this.page.url = "https://whatshouse.herokuapp.com/#!newthread";
       }
     });
-
   });
   markers.push(marker);
   id_markers[marker.id] = marker;
-  
 }
 
 function showAround (cat) {
@@ -405,7 +272,7 @@ function showAround (cat) {
   if (cat === "all") {
     for (var category in aroundMarkers) {
       for(var i = 0; i != aroundMarkers[category].length; i++) {
-        aroundMarkers[category][i].setMap(map);
+        aroundMarkers[category][i].addTo(map);
       }
     }
     return;
@@ -413,7 +280,7 @@ function showAround (cat) {
   // show cat only
   if (cat in aroundMarkers) {
     for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      aroundMarkers[cat][i].setMap(map);
+      aroundMarkers[cat][i].addTo(map);
     }
   }
 }
@@ -424,7 +291,7 @@ function hideAround (cat) {
   if (cat === "all") {
     for (var category in aroundMarkers) {
       for(var i = 0; i != aroundMarkers[category].length; i++) {
-        aroundMarkers[category][i].setMap(null);
+        aroundMarkers[category][i].addTo(null);
       }
     }
     return;
@@ -432,7 +299,7 @@ function hideAround (cat) {
   // hide cat only
   if (cat in aroundMarkers) {
     for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      aroundMarkers[cat][i].setMap(null);
+      aroundMarkers[cat][i].addTo(null);
     }
   }
 }
@@ -447,7 +314,7 @@ function deleteAround () {
 // Sets the map on all markers in the array.
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
+    markers[i].addTo(map);
   }
 }
 
@@ -464,95 +331,83 @@ function deleteMarkers() {
 }
 
 function search (){
-
   $('.search_form, .menu_search_form').on('ajax:success', function(xha, data, status) {
-    markerCluster.  setMap(null);
+    markerCluster.setMap(null);
     markerCluster = []
     deleteMarkers();
     deleteAround();
 
-  $('div.ui.inverted.red.pointing.response.menu .item')
-    .tab('change tab', 'Advanced_Search')
-    .tab('deactivate all')
-    .tab('activate tab', 'Advanced_Search')
-    .tab('activate navigation', 'Advanced_Search')
-  ;
-  window.location.hash = 'Advanced_search';
+    $('div.ui.inverted.red.pointing.response.menu .item')
+      .tab('change tab', 'Advanced_Search')
+      .tab('deactivate all')
+      .tab('activate tab', 'Advanced_Search')
+      .tab('activate navigation', 'Advanced_Search')
+    ;
+    window.location.hash = 'Advanced_search';
 
-      var rating_index = data[1];
-      if( rating_index != " " && data[0].length > 0){
-        $('div.ui.form.success').hide();
+    var rating_index = data[1];
+    if (rating_index != " " && data[0].length > 0) {
+      $('div.ui.form.success').hide();
+      $('div#search_show').html(
+       '<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+       "<ol id='search_result'>");
+      appendSerachContent(data, rating_index);
+    }
+    else if (data[0].length > 0) {
+      $('div.ui.form.success').hide();
+      $('div#search_show').html(
+       '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+       "<ol id='search_result'>"
+      );
+      appendSerachContent(data, rating_index);
+      var newCenter = [data[0][0].lat, data[0][0].lng];
+      map.setView(newCenter);
+      map.setZoom(13);
+    }
+    else {
+      $('div.ui.form.success').hide();
+      $('div#search_show').html(
+          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>');
+    }
 
-        $('div#search_show').html( 
-         '<span id="serach_rating">搜尋排名</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-         "<ol id='search_result'>" 
-       );
-
-        appendSerachContent(data, rating_index);	
-      }
-      else if( data[0].length > 0 ){
-
-        $('div.ui.form.success').hide();
-        $('div#search_show').html( 
-         '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-         "<ol id='search_result'>" 
-        );
-        
-
-        appendSerachContent(data, rating_index);
-        var newCenter = new google.maps.LatLng( data[0][0].lat, data[0][0].lng);
-        map.setCenter(newCenter);
-        map.setZoom(13);
-
-      }
-      else {
-
-        $('div.ui.form.success').hide();
-        $('div#search_show').html( 
-          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui green mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>'); 
-      }
-   
-    
-    
     var real_price_list = data[0];
     for (var i = 0; i < real_price_list.length; i++) {
       createMarker(real_price_list[i], markers);
     }
 
     //create clusterer and push the global array of markers into it.
-    markerCluster = new MarkerClusterer(map, markers);  
+    markerCluster = L.markerClusterGroup();
+    markers.addLayer(markers);
+    map.addLayer(markers);
 
     $("div#advanced_search form").hide();
     $("div#search_show").show();
 
-
   });
-
 }
 
-function appendSerachContent(data, rating_index){
+function appendSerachContent(data, rating_index) {
   var item;
-  for( var i = 0; i < 3 && i < data[0].length; ++i){
-    if( rating_index != " " ){
+  for (var i = 0; i < 3 && i < data[0].length; ++i) {
+    if (rating_index != " ") {
       item = data[0][ rating_index[ rating_index.length - i - 1 ] ];
     }
-    else{
+    else {
       item = data[0][i];
     }
-
     $('#search_result').append(
-      "<li><a class='marker_link' href='#' id='" + item.id + "' onclick='moveToMarker(event,this.id)'>" + item.address + " " + item.price + "元</a></li>" 
-    )
+        "<li><a class='marker_link' href='#' id='" + item.id +
+        "' onclick='moveToMarker(event,this.id)'>" + item.address +
+        " " + item.price + "元</a></li>"
+    );
   }
-  $('#search_result').append(
-    "</ol>"
-  )
+  $('#search_result').append("</ol>");
 }
 
 function moveToMarker(event, markerID){
   event.preventDefault();
-  var newCenter = new google.maps.LatLng( id_markers[markerID].lat, id_markers[markerID].lng);
-  map.setCenter(newCenter);
+  var newCenter = [id_markers[markerID].lat, id_markers[markerID].lng];
+  map.setView(newCenter);
   map.setZoom(17);
 }
 
@@ -560,28 +415,30 @@ function searchUndo(){
   $("div#advanced_search form").show();
   $("div#search_show").hide();
 }
+
 function initalCheckbox(){
   $('.form .fields .checkbox').checkbox('disable');
   $('.form .fields .checkbox').checkbox();
 
   $('.form .fields .checkbox').click(function() {
-    if($(this).children('input').is(':checked')) {
+    if ($(this).children('input').is(':checked')) {
       showAround($(this).children('input').attr('name'));
-    } else {
+    }
+    else {
       hideAround($(this).children('input').attr('name'));
     }
   });
 }
 
 function splitImgUrl(imgUrl) {
-  if( imgUrl ){
+  if (imgUrl) {
     var img = imgUrl.split(",");
     var sliderHTML = "";
     for (var i = 0; i < img.length; i++) {
       sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
     }
   }
-  else{
+  else {
     sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
     sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
   }
@@ -591,21 +448,22 @@ function splitImgUrl(imgUrl) {
 var house_number = $('.cart').length;
 var house_array = []
 function addToCart() {
-
   // add input field by jQuery
   var max_input = 2;
   var fieldCount = 1;
 
   if ( house_number <= max_input ){
     house_array.push(getHouse);
-
     fieldCount++;
-    $('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
-                      '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
-                      + getHouse.address + " " +  getHouse.price + "$ </a>" 
-                      + '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' 
-                      +  house_number + '" class="removeclass">x</a></div></li>'
-                     );
+    $('.cart').append('<li>' +
+        '<i class="map marker icon"></i><div class="content">' +
+        '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' +
+        getHouse.id + '">' +
+        getHouse.address + " " +
+        getHouse.price + "$ </a>" +
+        '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' +
+        house_number + '" class="removeclass">x</a></div></li>'
+    );
     house_number++;
   }
   return false;
@@ -620,5 +478,4 @@ function removeFromCart (item) {
   return false;
 }
 
-$(document).ready(initalCheckbox)
-google.maps.event.addDomListener(window, 'load', initialize);
+$(document).ready(initalCheckbox);

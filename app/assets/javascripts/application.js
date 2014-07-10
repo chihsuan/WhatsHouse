@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jssor.slider.min
+//= require leaflet_0.7.2
+//= require leaflet.markercluster-src
 //= require_tree .
