@@ -44,9 +44,11 @@ header div.ui.pointing.dropdown.item{
 	color: #df4119;
 	font-size: 14px;
 	margin-left: 21px;
+	height: 49px;
 }
 div.ui.pointing.dropdown.item{
 	left: -21px;
+	top: 3px;
 }
 
 header .ui.inverted.menu a.item:hover, 
@@ -70,7 +72,6 @@ header .ui.inverted.menu .dropdown .menu .item a {
 
 .ui.title_bar.menu .menu .right.menu {
 	position: relative;
-	top: 4px;
 	min-width: 14%;
 }
 
@@ -553,7 +554,7 @@ select#people {
 }
 
 div.ui.pointing.dropdown.item{
-	height: 43px;
+	height: 49px;
 	text-align: center;
 	min-width: 165px;
 }

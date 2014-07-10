@@ -57,7 +57,6 @@ div.two.fields > .field{
 	text-align: center;
 	position: relative;
 	top: 40px;
-	left: -16%;
 }
 #msform fieldset {
 	background: white;
@@ -103,7 +102,7 @@ div.two.fields > .field{
 /*buttons*/
 #msform .action-button {
 	width: 100px;
-	background: #27AE60;
+	background: #D50909;
 	font-weight: bold;
 	color: white;
 	border: 0 none;
@@ -144,4 +143,9 @@ div.two.fields > .field{
 div.field.img_input_wrapper{
 	width: 100%;
 }
-
+#rent_houses_page .ui.steps .step.active, 
+#rent_houses_page .ui.active.step, 
+#rent_houses_page .ui.steps .step.active:after, 
+#rent_houses_page .ui.active.steps:after{
+	background-color: #D50909;
+}
