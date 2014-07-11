@@ -22,8 +22,8 @@ Rails.application.routes.draw do
 	match '/about_us', to: 'content#about', via: 'get'
 	match '/contact', to: 'content#contact', via: 'get'
 	match '/rent_houses/search', to: 'rent_houses#search', via: 'get'
-
-
+	match 'auth/failure', to: redirect('/'), via: [:get, :post]
+	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
