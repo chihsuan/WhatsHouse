@@ -41,7 +41,6 @@ gem 'rails_12factor', group: :production
 ruby "2.1.1"
 gem 'gon'
 
-gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby'
 
 gem 'therubyracer', platforms: :ruby # or any other runtime
