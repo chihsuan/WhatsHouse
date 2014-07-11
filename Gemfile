@@ -41,7 +41,6 @@ gem 'rails_12factor', group: :production
 ruby "2.1.1"
 gem 'gon'
 
-gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby'
 
 gem 'therubyracer', platforms: :ruby # or any other runtime
@@ -51,3 +50,9 @@ gem 'semantic-ui-rails'
 gem 'will_paginate', '3.0.4'
 gem 'geocoder'
 gem 'font-awesome-rails'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'certified'
+gem 'oauth2'
+gem "settingslogic"

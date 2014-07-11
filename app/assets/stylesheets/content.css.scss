@@ -326,6 +326,7 @@ i.small.long.arrow.icon{
 	background-position: 0px;
 	opacity: 0.95;
 	min-height: 520px;
+    background-size: 100%;
 }
 
 .heading{
@@ -570,6 +571,8 @@ div.ui.pointing.dropdown.item{
 }
 .container .ui.vertical.menu .item {
 	color: #df4119;
+	width: 100%;
+	display: block;
 }
 
 .ui.vertical.menu .item{

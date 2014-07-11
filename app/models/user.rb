@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
  	has_many :sale_houses, dependent: :destroy
  	has_many :rent_houses, dependent: :destroy
+ 	has_many :authorizations, dependent: :destroy
   	before_save { self.email = email.downcase }
   	before_create :create_remember_token
   	before_create { generate_token(:auth_token) }
@@ -26,6 +27,13 @@ class User < ActiveRecord::Base
   		self.password = SecureRandom.urlsafe_base64
   		save!
   		UserMailer.password_reset(self).deliver
+	end
+
+	def add_provider(auth_hash)
+		# Check if the provider already exists, so we don't add it twice
+		unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+			Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+		end
 	end
 
   private

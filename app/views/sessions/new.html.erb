@@ -27,7 +27,8 @@
     <p><%= link_to "忘記密碼", new_password_reset_path %></p>
     <%= f.submit "登入", class: "ui red button" %>
     <p>新的使用者? <%= link_to "現在註冊!", signup_path %></p>
-    <% end %>
+	<% end %>
+	<%= link_to "Connect with Facebook", "/auth/facebook" %>
   </div>
 </div>
 

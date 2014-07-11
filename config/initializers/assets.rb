@@ -1,1 +1,2 @@
-Rails.application.config.assets.precompile += %w( show.js )
+Rails.application.config.assets.precompile += %w( *.js )
+Rails.application.config.assets.precompile += %w( *.css )

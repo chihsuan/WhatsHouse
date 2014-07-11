@@ -11,6 +11,8 @@ class EventsController < ApplicationController
 		else 
 			# error
 		end
+		
+		@data[0].increase_browse_rates
 
 		# find building around this house by lat, lng (around 1km)
 		@lat_upper = Float(params[:lat]) + 0.005
