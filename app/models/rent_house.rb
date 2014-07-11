@@ -28,4 +28,8 @@ class RentHouse < ActiveRecord::Base
 		#@number_list += TainanSchool.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper).length.to_s + " "
 		self.around_list = @number_list
 	end
+
+	def increase_browse_rates
+		update_attributes(:browse_rate => browse_rate +  1)
+	end
 end
