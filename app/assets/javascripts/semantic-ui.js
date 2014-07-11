@@ -2,6 +2,7 @@
 //= require semantic-ui/modules/tab.js 
 //= require semantic-ui/modules/behavior/state.js 
 //= require semantic-ui/modules/behavior/colorize.js 
+//= require semantic-ui/modules/behavior/state.js 
 //= require semantic-ui/modules/behavior/form.js 
 //= require semantic-ui/modules/behavior/api.js 
 //= require semantic-ui/modules/nag.js 
