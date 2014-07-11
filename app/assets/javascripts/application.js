@@ -14,6 +14,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require leaflet
-//= require leaflet.markercluster-src
 //= require semantic-ui

@@ -21,6 +21,7 @@ function initialize() {
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+
   markerCluster = L.markerClusterGroup();
 
   markers = [];
@@ -28,6 +29,8 @@ function initialize() {
 
   for (var i = 0; i < real_price_list.length; i++) {
     createMarker(real_price_list[i], markers);
+    console.log(markers[i].getLatLng());
+    console.log(markers[i]);
   }
   //create clusterer and push the global array of markers into it.
   markerCluster.addLayers(markers);
@@ -71,13 +74,14 @@ function addAroundMarker(obj) {
     iconSize: [30, 30]
   });
 
-  var marker = L.marker(new L.LatLng([obj.lat, obj.lng]), {
+  var marker = L.marker([obj.lat, obj.lng], {
     id: obj.id,
     data:obj.data,
     lat: obj.lat,
     lng: obj.lng,
     icon: iconImage
   });
+
   var html = "";
   for (var key in obj) {
     if (key === "name") {
@@ -91,7 +95,7 @@ function addAroundMarker(obj) {
     } else if (key === "breif") {
       html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
     } else if (key === "tel") {
-      html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
+        html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
     } else if (key === "time") {
       html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
     }
@@ -106,12 +110,15 @@ function addAroundMarker(obj) {
 
 // add a marker to the map and push it to the map.
 function createMarker(obj, markers) {
-  var marker = L.marker(new L.LatLng([obj.lat, obj.lng]), {
-    id: obj.id,
-    data:obj.data,
-    lat: obj.lat,
-    lng: obj.lng,
-  });
+  console.log(obj.lat + ',' + obj.lng);
+  var marker = L.marker([obj.lat, obj.lng]);
+
+  // add additional property (what we need : need to be modified here.)
+  marker.id = obj.id;
+  marker.data = obj.datas;
+  marker.lat = obj.lat;
+  marker.lng = obj.lng;
+
   marker.bindPopup();
   marker.on('click', function(){
     // whenever click the marker change the menu tab to information
@@ -201,7 +208,7 @@ function createMarker(obj, markers) {
               '<span class=""><div class="red ui ribbon label">' +
               "聯絡電話" + '</div>' +
               "<p>" + response[i].tel + "</p></span>" +
-              '<div class="" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' + "點擊率" + response[i].browse_rate +	
+              '<div class="" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' + "點擊率" + response[i].browse_rate +
               "<p>" + response[i].breif + '</p><button class="add_to_cart ui red mini button" onclick="addToCart()">加入清單</button></div>'
             );
             // add the pictures of house to the slider.
@@ -331,10 +338,10 @@ function deleteMarkers() {
   markers = [];
 }
 
-function search (){
+function search () {
   $('.search_form, .menu_search_form').on('ajax:success', function(xha, data, status) {
     markerCluster.setMap(null);
-    markerCluster = []
+    markerCluster = [];
     deleteMarkers();
     deleteAround();
 

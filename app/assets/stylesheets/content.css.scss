@@ -1,12 +1,13 @@
 // Place all the styles related to the content controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//= require leaflet
 
-#map_canvas { 
+#map_canvas {
 	height: 100%;
 	z-index: 1;
 }
-	  
+
 div.ui.fixed.inverted.title_bar.menu{
     top: 0px;
     width: 100%;
@@ -39,7 +40,7 @@ div.ui.fixed.inverted.title_bar.menu{
 	position: relative;
 	//left: 40px;
 }
-header .ui.inverted.menu a.item, 
+header .ui.inverted.menu a.item,
 header div.ui.pointing.dropdown.item{
 	color: #df4119;
 	font-size: 14px;
@@ -51,14 +52,14 @@ div.ui.pointing.dropdown.item{
 	top: 3px;
 }
 
-header .ui.inverted.menu a.item:hover, 
+header .ui.inverted.menu a.item:hover,
 div.ui.pointing.dropdown.item:hover,
 header div.ui.pointing.dropdown.item.active.visible{
 	color: #D50909 !important;
 	border-bottom: 4px solid;
 }
 
-header .ui.inverted.menu .dropdown .menu .item, 
+header .ui.inverted.menu .dropdown .menu .item,
 header .ui.inverted.menu .dropdown .menu .item a {
 	color: #df4119 !important;
 	left: -20px;
@@ -233,19 +234,19 @@ div.launch.button {
 	height: 450px;
 }
 
-::-webkit-scrollbar {  
-    width: 12px;  
-}  
-::-webkit-scrollbar-track {  
-    background-color: #eaeaea;  
-    border-left: 1px solid #ccc;  
-}  
-::-webkit-scrollbar-thumb {  
-    background-color: #ccc;  
-}  
-::-webkit-scrollbar-thumb:hover {  
-    background-color: #aaa;  
-}  
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
 
 .ui.tab.active, .ui.tab.open {
 		margin: 0px;
@@ -355,19 +356,19 @@ input.ui.red.button {
 }
 
 #slider1_container {
-		position: relative; 
-		top: 0px; 
-		left: 0px; 
+		position: relative;
+		top: 0px;
+		left: 0px;
 		height: 300px;
 }
 
 #images {
-	cursor: move; 
-	top: 0px; 
-	left: 0px; 
-	position: absolute; 
+	cursor: move;
+	top: 0px;
+	left: 0px;
+	position: absolute;
 	overflow: hidden;
-	width: 480px; 
+	width: 480px;
 	height: 300px;
 }
 
@@ -378,7 +379,7 @@ div.house_cart {
 	top: 77%;
 	float: left;
 	border-radius: 5px 5px 5px 5px;
-	background:transparent; 
+	background:transparent;
 	color: #720000;
 	z-index: 10;
 }
@@ -392,7 +393,7 @@ div.house_cart {
 
 .cart span{
 	color: #720000;
-	
+
 }
 .cart a{
 	color: #720000;
