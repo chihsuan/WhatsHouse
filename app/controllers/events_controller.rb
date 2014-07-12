@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
 
+	# event for search houses in database 
 	def show
 		#check user is in which page 
 		if params[:data] == 'sale_houses'
