@@ -2,31 +2,50 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#map_canvas { 
+html, body{
+	background-color:  white;
+	width: 100%;
 	height: 100%;
-	z-index: 1;
-}
-	  
-div.ui.fixed.inverted.title_bar.menu{
-    top: 0px;
-    width: 100%;
-	z-index: 10;
-	background-color: white;; /* Old browsers */
-	height: 49px;
-	box-shadow: 1px 1px 1px rgba(1,1,1,0.2);
-}
-
-.clearfix {
-	zoom: 1;
+	margin: 0px;
+	padding:0px;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	font-family: Helvetica,Arial,Verdana,sans-serif;
+	font-size: 13px/1.231;
+	color: #555555;
+	min-width: 980px;
 }
 
 #wrap{
 	position: relative;
-    min-height: 100%;
-    vertical-align:bottom;
-    margin:0 auto;
-    height:100%;
+	min-height: 100%;
+	vertical-align:bottom;
+	margin:0 auto;
+	height:100%;
 }
+
+.container{
+	@extend .html;
+	background: #eee;
+	position: relative;
+	zoom:1;
+	margin: auto;
+	min-height: 93%;
+  height: 93%;
+	margin:0 auto -30px;
+}
+
+
+div.ui.fixed.inverted.title_bar.menu{
+  top: 0px;
+  width: 100%;
+	z-index: 10;
+	background-color: white; /* Old browsers */
+	height: 49px;
+	box-shadow: 1px 1px 1px rgba(1,1,1,0.2);
+}
+
+
 
 .ui.title_bar.menu .menu{
 	position: relative;
@@ -67,64 +86,6 @@ header .ui.inverted.menu .dropdown .menu .item a {
 	min-width: 14%;
 }
 
-.ui.launch.button {
-	width: 100%;
-	margin-bottom: 10px;
-}
-
-.ui.response.cell.grid {
-	position: absolute;
-  	top: 10%;
-	right: 2%;
-	width: 40%;
-	display:table;
-	z-index: 2;
-}
-
-.ui.response.cell.grid .column .ui.response.menu {
-	position: relative;
-}
-
-.ui.response.cell.grid .column .ui.tab.segmant {
-	display:table-cell;
-}
-
-div.ui.inverted.red.pointing.response.menu{
-	background: #df4119;
-}
-
-.ui.response.cell.grid .column{
-	padding-right: 30px;
-}
-
-html, body, .container{
-	background-color:  white;
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding:0px;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-	font-family: Helvetica,Arial,Verdana,sans-serif;
-	font-size: 13px/1.231;
-	color: #555555;
-	min-width: 980px;
-}
-.container{
-	background: #eee;
-	position: relative;
-	zoom:1;
-	margin: auto;
-	min-height: 93%;
-    height: 93%;
-	margin:0 auto -30px;
-}
-
-footer, .push { width:100%; height:158px; position:relative; bottom:0; }
-
-a{
-	text-decoration: blink;
-}
 
 body{
 	height: 100%;
@@ -165,6 +126,128 @@ footer a:hover{
 header .item{
 	font-weight: 700;
 }
+
+
+
+
+#map_canvas { 
+	height: 100%;
+	z-index: 1;
+}
+	  
+
+
+.clearfix {
+	zoom: 1;
+}
+
+
+
+
+.ui.launch.button {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.ui.response.cell.grid {
+	position: absolute;
+  	top: 10%;
+	right: 2%;
+	width: 40%;
+	display:table;
+	z-index: 2;
+}
+
+.ui.response.cell.grid .column .ui.response.menu {
+	position: relative;
+}
+
+.ui.response.cell.grid .column .ui.tab.segmant {
+	display:table-cell;
+}
+
+div.ui.inverted.red.pointing.response.menu{
+	background: #df4119;
+}
+
+.ui.response.cell.grid .column{
+	padding-right: 30px;
+}
+
+footer, .push { width:100%; height:158px; position:relative; bottom:0; }
+
+a{
+	text-decoration: blink;
+}
+
+.right.menu .add.icon{
+	padding-top: 3px;
+}
+
+.right.menu .dropdown .icon{
+	position: relative;
+	float: right;
+}
+
+div.ui.pointing.dropdown.item{
+	height: 49px;
+	text-align: center;
+	min-width: 165px;
+}
+#sidebar {
+    float: left;
+    padding-right: 4px;
+    padding-bottom: 120px;
+    height: 600px;
+ }
+
+.container .ui.vertical.menu .item > i.icon {
+	float: left;
+}
+.container .ui.vertical.menu .item {
+	color: #df4119;
+	width: 100%;
+	display: block;
+}
+
+.ui.vertical.menu .item{
+	color: #737373;
+	display: inline-block;
+	font-size: 14px;
+	margin-left: 8px;
+	margin-bottom: 2px;
+	overflow: hidden;
+	padding-top: 12px;
+	text-overflow: ellipsis;
+	vertical-align: bottom;
+	white-space: nowrap;
+}
+ .toggle.icon{
+	z-index: 9;
+	position: fixed;
+	color: #df4119;
+	left: 28px;
+}
+.ui.vertical.menu{
+	float: left;
+	position: fixed;
+	z-index: 10;
+	top: 30px;
+	height:100%;
+	display: none;
+}
+.toggle.icon:hover + .ui.vertical.menu {
+	display: block;
+}
+
+.ui.vertical.menu:hover{
+	display: block;
+}
+.container div.ui.vertical.menu{
+	border-radius: 0px;
+}
+
+
 
 #main_infor p{
 	overflow: auto;
@@ -537,72 +620,7 @@ select#people {
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 
-.right.menu .add.icon{
-	padding-top: 3px;
-}
 
-.right.menu .dropdown .icon{
-	position: relative;
-	float: right;
-}
-
-div.ui.pointing.dropdown.item{
-	height: 49px;
-	text-align: center;
-	min-width: 165px;
-}
-#sidebar {
-    float: left;
-    padding-right: 4px;
-    padding-bottom: 120px;
-    height: 600px;
- }
-
-.container .ui.vertical.menu .item > i.icon {
-	float: left;
-}
-.container .ui.vertical.menu .item {
-	color: #df4119;
-	width: 100%;
-	display: block;
-}
-
-.ui.vertical.menu .item{
-	color: #737373;
-	display: inline-block;
-	font-size: 14px;
-	margin-left: 8px;
-	margin-bottom: 2px;
-	overflow: hidden;
-	padding-top: 12px;
-	text-overflow: ellipsis;
-	vertical-align: bottom;
-	white-space: nowrap;
-}
- .toggle.icon{
-	z-index: 9;
-	position: fixed;
-	color: #df4119;
-	left: 28px;
-}
-.ui.vertical.menu{
-	float: left;
-	position: fixed;
-	z-index: 10;
-	top: 30px;
-	height:100%;
-	display: none;
-}
-.toggle.icon:hover + .ui.vertical.menu {
-	display: block;
-}
-
-.ui.vertical.menu:hover{
-	display: block;
-}
-.container div.ui.vertical.menu{
-	border-radius: 0px;
-}
 #area div.message {
 	color: #df4119;
 }
