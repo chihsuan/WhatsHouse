@@ -16,18 +16,18 @@ html, body{
 	color: #555555;
 }
 
-
-
-body{
-	height: 100%;
+a{
+	text-decoration: blink;
 }
 
 
 header{
 	height: 49px;
 	position: relative;
+	.item{
+		font-weight: 700;
+	}
 }
-
 
 #wrap{
 	position: relative;
@@ -57,38 +57,24 @@ footer{
 	border-top: 1px solid #E2E2E2;
 	font-size: 13px;
 	line-height: 16px;
+	
+	ul{
+		list-style-type: none;
+	}
+	
+	li{
+		float: left;
+		padding: 10px 10px 10px 10px;
+	}
+	
+	 a{
+		color: $orange;
+		 
+		 &:hover{
+			 color: #570000;
+		 }
+	 }
 }
-
-footer ul{
-	list-style-type: none;
-}
-
-footer li{
-	float: left;
-	padding: 10px 10px 10px 10px;
-}
-
-footer a{
-	color: $orange;
-}
-
-footer a:hover{
-	color: #570000;
-}
-header .item{
-	font-weight: 700;
-}
-
-footer, .push { width:100%; height:158px; position:relative; bottom:0; }
-
-
-
-
-a{
-	text-decoration: blink;
-}
-
-
 
 div.ui.fixed.inverted.title_bar.menu{
   top: 0px;
@@ -116,7 +102,7 @@ div.ui.fixed.inverted.title_bar.menu{
 
 header .ui.inverted.menu a.item, 
 header div.ui.pointing.dropdown.item{
-	color: $orange;
+	color: $orange;	
 	font-size: 14px;
 	margin-left: 21px;
 	height: 49px;
@@ -144,13 +130,16 @@ div.ui.pointing.dropdown.item{
 	top: 3px;
 }
 
-.right.menu .add.icon{
-	padding-top: 3px;
-}
-
-.right.menu .dropdown .icon{
-	position: relative;
-	float: right;
+.right.menu{
+	
+	.add.icon{
+		padding-top: 3px;	
+	}
+	
+	dropdown .icon{
+		position: relative;
+		float: right;
+	}
 }
 
 div.ui.pointing.dropdown.item{
@@ -158,6 +147,40 @@ div.ui.pointing.dropdown.item{
 	text-align: center;
 	min-width: 165px;
 }
+
+.container div.ui.vertical.menu{ 
+
+	border-radius: 0px;
+	float: left;
+	position: fixed;
+	z-index: 10;
+	top: 30px;
+	height:100%;
+	display: none;
+	&:hover{
+		display: block;
+	}
+	
+	.item{
+		color: #737373;
+		display: inline-block;
+		font-size: 14px;
+		margin-left: 8px;
+		margin-bottom: 2px;
+		overflow: hidden;
+		padding-top: 12px;
+		text-overflow: ellipsis;
+		vertical-align: bottom;
+		white-space: nowrap;
+		color:  $orange;
+		width: 100%;
+		display: block;
+		&> i.icon {
+			float: left;
+		}
+	}
+}
+
 #sidebar {
     float: left;
     padding-right: 4px;
@@ -165,51 +188,18 @@ div.ui.pointing.dropdown.item{
     height: 600px;
  }
 
-.container .ui.vertical.menu .item > i.icon {
-	float: left;
-}
-.container .ui.vertical.menu .item {
-	color:  $orange;
-	width: 100%;
-	display: block;
-}
 
-.ui.vertical.menu .item{
-	color: #737373;
-	display: inline-block;
-	font-size: 14px;
-	margin-left: 8px;
-	margin-bottom: 2px;
-	overflow: hidden;
-	padding-top: 12px;
-	text-overflow: ellipsis;
-	vertical-align: bottom;
-	white-space: nowrap;
-}
- .toggle.icon{
+.toggle.icon{
 	z-index: 9;
 	position: fixed;
 	color:  $orange;
 	left: 28px;
 }
-.ui.vertical.menu{
-	float: left;
-	position: fixed;
-	z-index: 10;
-	top: 30px;
-	height:100%;
-	display: none;
-}
+
 .toggle.icon:hover + .ui.vertical.menu {
 	display: block;
 }
 
-.ui.vertical.menu:hover{
-	display: block;
-}
-.container div.ui.vertical.menu{
-	border-radius: 0px;
-}
 
 .welcome_message{
 	color:  $orange;
