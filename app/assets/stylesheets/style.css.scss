@@ -20,12 +20,37 @@ a{
 	text-decoration: blink;
 }
 
-
 header{
 	height: 49px;
 	position: relative;
 	.item{
 		font-weight: 700;
+	}
+	
+	
+	.ui.inverted.menu a.item, 
+  div.ui.pointing.dropdown.item{
+		color: $orange;	
+		font-size: 14px;
+		margin-left: 21px;
+		height: 49px;
+		&:hover{
+			color: #D50909 !important;
+			border-bottom: 4px solid;
+		} 
+	}
+	
+	div.ui.pointing.dropdown.item.active.visible{
+		color: #D50909 !important;
+		border-bottom: 4px solid;
+	}
+
+	
+	.ui.inverted.menu .dropdown .menu .item, 
+	.ui.inverted.menu .dropdown .menu .item a {
+		color: $orange !important;
+		left: -20px;
+		text-align: center;
 	}
 }
 
@@ -100,30 +125,6 @@ div.ui.fixed.inverted.title_bar.menu{
 }
 
 
-header .ui.inverted.menu a.item, 
-header div.ui.pointing.dropdown.item{
-	color: $orange;	
-	font-size: 14px;
-	margin-left: 21px;
-	height: 49px;
-	&:hover{
-		color: #D50909 !important;
-		border-bottom: 4px solid;
-	} 
-}
-
-
-header div.ui.pointing.dropdown.item.active.visible{
-	color: #D50909 !important;
-	border-bottom: 4px solid;
-}
-
-header .ui.inverted.menu .dropdown .menu .item, 
-header .ui.inverted.menu .dropdown .menu .item a {
-	color: $orange !important;
-	left: -20px;
-	text-align: center;
-}
 
 div.ui.pointing.dropdown.item{
 	left: -21px;
