@@ -79,18 +79,32 @@ $orange: #df4119;
 	z-index: 1;
 }
 	  
-.clearfix {
-	zoom: 1;
+#area{
+	top: -30px;
+	position: relative;
+	overflow: auto;
+	height: 450px;
+	div.message {
+		color: $orange;
+	}
 }
-
-.ui.launch.button {
-	width: 100%;
-	margin-bottom: 10px;
-}
-
 
 div.ui.inverted.red.pointing.response.menu{
 	background: $orange;
+}
+
+.ui.tab.active, 
+.ui.tab.open {
+		display: block;
+		box-shadow: 0.7px 0.8px 0.8px rgba(1,1,1,0.5);
+		border-radius: 3px 3px 3px 3px;
+}
+
+div.launch.button {
+		position: relative;
+		right: 9%;
+		top: -45px;
+		width: 20px;
 }
 
 .ui.response.cell.grid {
@@ -125,6 +139,7 @@ div.ui.inverted.red.pointing.response.menu{
 	.ui.form .error.message {
 		display: block !important;
 	}
+	
 }
 
 #main_infor p{
@@ -133,48 +148,18 @@ div.ui.inverted.red.pointing.response.menu{
 	line-height: 30px;
 }
 
-.left-information{
-	float:left;
-	width:45%;
-	height: 80px;
-}
-
-.right-information{
-	float:right;
-	width:45%;
-	height: 80px;
-}
-
 #information>:last-child {
 		margin-bottom: 0em;
 		width: 100%;
 		height: 100%;
 }
 
-.ui.tab.active, 
-.ui.tab.open {
-		display: block;
-		box-shadow: 0.7px 0.8px 0.8px rgba(1,1,1,0.5);
-		border-radius: 3px 3px 3px 3px;
-}
-
-div.launch.button {
-		position: relative;
-		right: 9%;
-		top: -45px;
-		width: 20px;
-}
 
 #comments{
 	margin: 0px;
 }
 
-#area{
-	top: -30px;
-	position: relative;
-	overflow: auto;
-	height: 450px;
-}
+
 
 ::-webkit-scrollbar {  
     width: 12px;  
@@ -190,7 +175,8 @@ div.launch.button {
     background-color: #aaa;  
 }  
 
-.ui.tab.active, .ui.tab.open {
+.ui.tab.active, 
+.ui.tab.open {
 		margin: 0px;
 }
 
@@ -296,15 +282,15 @@ div.house_cart {
 
 .cart{
 	padding: 10px 10px 10px 10px;
+	
+	span{
+		color: #720000;
+	}
+	a{
+		color: #720000;
+	}
 }
 
-.cart span{
-	color: #720000;
-	
-}
-.cart a{
-	color: #720000;
-}
 
 #main_infor{
 	width:auto;
@@ -352,18 +338,29 @@ select#people {
 	height: 50px;
 }
 
-.menu_search_form form{
-	top: -20px;
-	position: relative;
+.menu_search_form{ 
+	form{
+		top: -20px;
+		position: relative;
+	}
+	.input{
+		width: 194%;
+	}
+	input{
+		height: 32px;
+	}
+	
+	.ui.icon.input input.search_submit{
+		background: transparent;
+		position: absolute;
+		top: 0px;
+		width: 15px;
+		left: 206px;
+		border: none;
+		box-shadow: none;
+	}
 }
 
-.menu_search_form .input{
-	width: 194%;
-}
-
-.menu_search_form input{
-	height: 32px;
-}
 .menu_search_form .ui.icon.input > .icon{
 	background: rgb(223, 65, 25);
 	color: white;
@@ -371,19 +368,19 @@ select#people {
 	opacity: 1;
 }
 
-.menu_search_form  .ui.icon.input input.search_submit{
-	background: transparent;
-	position: absolute;
-	top: 0px;
-	width: 15px;
-	left: 206px;
-	border: none;
-	box-shadow: none;
+
+/*
+.left-information{
+	float:left;
+	width:45%;
+	height: 80px;
 }
 
-#area div.message {
-	color: $orange;
-}
+.right-information{
+	float:right;
+	width:45%;
+	height: 80px;
+}*/
 
 
 
