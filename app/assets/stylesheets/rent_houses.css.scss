@@ -1,11 +1,12 @@
 // Place all the styles related to the rent_houses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .ui.form.rent {
 	position: absolute;
-    width: 30%;
-    top: 15%;
-    left: 20%;
+	width: 30%;
+	top: 15%;
+	left: 20%;
 }
 
 .house_list{
@@ -21,7 +22,18 @@
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: 100%;
+	.ui.steps .step.active, 
+	.ui.active.step, 
+	.ui.steps .step.active:after, 
+	.ui.active.steps:after{
+			background-color: #D50909;
+	}
+	
+	.ui.left.labeled.icon.input {
+		width: 100%;
+	}
 }
+
 
 div.two.fields > .field{
 	clear: none !important;
@@ -32,14 +44,18 @@ div.two.fields > .field{
 	padding-right: 5%;
 }
 
-.img_input_wrapper div.ui.left.labeled.icon.input{
+.img_input_wrapper{
+
+	div.ui.left.labeled.icon.input{
 		width: 88%;
+	}
+	
+	.add .icon{
+		top: 5px;
+		position: relative;
+	}
 }
 
-.img_input_wrapper .add .icon{
-	top: 5px;
-	position: relative;
-}
 
 #show_img{
 	position: relative; top: 0px; left: 0px; width: 600px; height: 300px;
@@ -57,62 +73,52 @@ div.two.fields > .field{
 	text-align: center;
 	position: relative;
 	top: 40px;
-}
-#msform fieldset {
-	background: white;
-	border: 0 none;
-	border-radius: 3px;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	padding: 20px 30px;
 	
-	box-sizing: border-box;
-	width: 100%;
-	/*stacking fieldsets above each other*/
-	position: absolute;
-}
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
-	display: none;
-}
-/*inputs*/
-#msform input, #msform textarea {
-	padding: 15px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	margin-bottom: 10px;
-	width: 100%;
-	box-sizing: border-box;
-	font-family: montserrat;
-	color: #2C3E50;
-	font-size: 13px;
-}
+	fieldset {
+		background: white;
+		border: 0 none;
+		border-radius: 3px;
+		box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+		padding: 20px 30px;
+	
+		box-sizing: border-box;
+		width: 100%;
+		/*stacking fieldsets above each other*/
+		position: absolute;
+		&:not(:first-of-type) {
+			display: none;
+		}
+	}
+	
+	input, textarea {
+		padding: 15px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		margin-bottom: 10px;
+		width: 100%;
+		box-sizing: border-box;
+		font-family: montserrat;
+		color: #2C3E50;
+		font-size: 13px;
+	}
 
-#msform textarea {
-	padding: 15px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	margin-bottom: 10px;
-	width: 100%;
-	height: 150px;
-	box-sizing: border-box;
-	font-family: montserrat;
-	color: #2C3E50;
-	font-size: 13px;
-}
-/*buttons*/
-#msform .action-button {
-	width: 100px;
-	background: #D50909;
-	font-weight: bold;
-	color: white;
-	border: 0 none;
-	border-radius: 1px;
-	cursor: pointer;
-	padding: 10px 5px;
-	margin: 10px 5px;
-}
-#msform .action-button:hover, #msform .action-button:focus {
-	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+	.action-button {
+		width: 100px;
+		background: #D50909;
+		font-weight: bold;
+		color: white;
+		border: 0 none;
+		border-radius: 1px;
+		cursor: pointer;
+		padding: 10px 5px;
+		margin: 10px 5px;
+	}
+
+	.action-button{
+		&:hover, &:focus {
+			box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+		}
+	}
 }
 
 /*headings*/
@@ -136,16 +142,6 @@ div.two.fields > .field{
 	counter-reset: step;
 }
 
-#rent_houses_page .ui.left.labeled.icon.input {
-	width: 100%;
-}
-
 div.field.img_input_wrapper{
 	width: 100%;
-}
-#rent_houses_page .ui.steps .step.active, 
-#rent_houses_page .ui.active.step, 
-#rent_houses_page .ui.steps .step.active:after, 
-#rent_houses_page .ui.active.steps:after{
-	background-color: #D50909;
 }
