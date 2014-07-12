@@ -1,7 +1,7 @@
 // Place all the styles related to the content controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+$orange: #df4119;
 
 //home page
 
@@ -90,7 +90,7 @@
 
 
 div.ui.inverted.red.pointing.response.menu{
-	background: #df4119;
+	background: $orange;
 }
 
 .ui.response.cell.grid {
@@ -382,7 +382,7 @@ select#people {
 }
 
 #area div.message {
-	color: #df4119;
+	color: $orange;
 }
 
 
@@ -412,7 +412,7 @@ select#people {
 
 #contact_us a:hover,
 #about_us a:hover{
-	color: #df4119;;
+	color: $orange;
 }
 
 .author_img img, .author_img{
