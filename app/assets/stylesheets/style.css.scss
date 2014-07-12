@@ -1,5 +1,7 @@
 @import "font-awesome";
 
+$orange: #df4119;
+
 html, body{
 	background-color:  white;
 	width: 100%;
@@ -50,7 +52,7 @@ div.ui.fixed.inverted.title_bar.menu{
 }
 header .ui.inverted.menu a.item, 
 header div.ui.pointing.dropdown.item{
-	color: #df4119;
+	color: $orange
 	font-size: 14px;
 	margin-left: 21px;
 	height: 49px;
@@ -69,7 +71,7 @@ header div.ui.pointing.dropdown.item.active.visible{
 
 header .ui.inverted.menu .dropdown .menu .item, 
 header .ui.inverted.menu .dropdown .menu .item a {
-	color: #df4119 !important;
+	color: $orange !important;
 	left: -20px;
 	text-align: center;
 }
@@ -115,7 +117,7 @@ footer li{
 }
 
 footer a{
-	color: #df4119;
+	color: $orange;
 }
 
 footer a:hover{
@@ -159,7 +161,7 @@ div.ui.pointing.dropdown.item{
 	float: left;
 }
 .container .ui.vertical.menu .item {
-	color: #df4119;
+	color:  $orange;
 	width: 100%;
 	display: block;
 }
@@ -179,7 +181,7 @@ div.ui.pointing.dropdown.item{
  .toggle.icon{
 	z-index: 9;
 	position: fixed;
-	color: #df4119;
+	color:  $orange;
 	left: 28px;
 }
 .ui.vertical.menu{
@@ -202,7 +204,7 @@ div.ui.pointing.dropdown.item{
 }
 
 .welcome_message{
-	color: #df4119;
+	color:  $orange;
 	position: relative;
 	top: 20px;
 	left: 10%;

@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$orange: #df4119;
+
+
 .ui.form.signup {
 	position: absolute;
   width: 30%;
@@ -59,9 +62,9 @@
 
 div.ui.inverted.pointing.about.menu{
 	
-	background: #df4119;
+	background: $orange;
 	
 	.active.item:after{
-		background: #df4119;
+		background: $orange;
 	}
 }
