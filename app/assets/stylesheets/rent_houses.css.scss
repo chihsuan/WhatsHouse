@@ -1,7 +1,9 @@
 // Place all the styles related to the rent_houses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "compass";
+@import "compass/css3/border-radius";
+@import "compass/css3/background-size";
+@import "compass/css3/box-shadow";
 
 .ui.form.rent {
 	position: absolute;
@@ -79,7 +81,7 @@ div.two.fields > .field{
 		background: white;
 		border: 0 none;
 		@include border-radius(3px);
-		box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+		@include box-shadow(rgba(0, 0, 0, 0.4) 0 0 15px 1px);
 		padding: 20px 30px;
 	
 		box-sizing: border-box;
@@ -117,7 +119,7 @@ div.two.fields > .field{
 
 	.action-button{
 		&:hover, &:focus {
-			box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+			@include box-shadow( white  0 0 0 2px #27AE60 0 0 0 3px);
 		}
 	}
 }

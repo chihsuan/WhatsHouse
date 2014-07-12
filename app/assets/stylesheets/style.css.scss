@@ -1,7 +1,11 @@
 @import "font-awesome";
-@import "compass";
+@import "compass/css3/border-radius";
+@import "compass/css3/background-size";
+@import "compass/css3/box-shadow";
+@import "compass/layout/sticky-footer";
 $orange: #df4119;
 
+@include sticky-footer(72px, ".container ", "#layout_footer", "#footer");
 
 html, body{
 	background-color:  white;
@@ -62,7 +66,7 @@ div.ui.fixed.inverted.title_bar.menu{
 	z-index: 10;
 	background-color: white; /* Old browsers */
 	height: 49px;
-	box-shadow: 1px 1px 1px rgba(1,1,1,0.2);
+	@include box-shadow(rgba(1,1,1,0.2) 1px 1px 1px );
 	
 	.menu{
 		position: relative;
@@ -172,7 +176,7 @@ div.ui.pointing.dropdown.item{
 	zoom:1;
 	margin: auto;
 	min-height: 93%;
-  height: 93%;
+  height: 93% !important;
 	margin:0 auto -30px;
 }
 

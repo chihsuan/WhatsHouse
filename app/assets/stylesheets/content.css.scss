@@ -1,7 +1,11 @@
 // Place all the styles related to the content controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "compass";
+@import "compass/css3/border-radius";
+@import "compass/css3/background-size";
+@import "compass/css3/box-shadow";
+@import "compass/css3/opacity";
+@import "compass/css3/text-shadow";
 $orange: #df4119;
 
 //home page
@@ -15,9 +19,9 @@ $orange: #df4119;
 	font-size: 36px;
 	background: image-url("006.jpg") no-repeat;
 	background-position: 0px;
-	opacity: 0.95;
 	min-height: 520px;
-	background-size: 100%;
+	@include background-size(100%);
+	@include opacity(0.95);
 }
 
 .heading{
@@ -25,7 +29,7 @@ $orange: #df4119;
 	width: 980px;
 	margin-right: auto;
 	margin-left: auto;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+	@include text-shadow(rgba(0,0,0,0.4) 1px 1px 1px);
 	
 	#signup{
 		font-size: 15px;
@@ -68,7 +72,7 @@ $orange: #df4119;
 		&:last-child:hover{
 			background: rgba(255, 255, 255, 0);
 			color: white;
-			text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+			@include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
 	 	}
 	}
 }
@@ -98,7 +102,7 @@ div.ui.inverted.red.pointing.response.menu{
 .ui.tab.active, 
 .ui.tab.open {
 	display: block;
-	box-shadow: 0.7px 0.8px 0.8px rgba(1,1,1,0.5);
+	@include box-shadow(rgba(1,1,1,0.5) 0.7px 0.8px 0.8px);
 	@include border-radius(3px);
 }
 
@@ -129,7 +133,7 @@ div.launch.button {
 		
 		.ui.response.menu {
 			position: relative;
-			box-shadow: 0.6px 0.7px 0.7px rgba(1,1,1,0.5);
+			@include box-shadow(rgba(1,1,1,0.5) 0.6px 0.7px 0.7px);
 	}
 		
 		.item:after{
@@ -213,7 +217,7 @@ div.radio{
 }
 
 div.ui.icon.input {
-	margin: 17px 10px 15px 2px;
+	margin: 14px 10px 15px 2px;
 }
 
 i.small.long.arrow.icon{
@@ -306,8 +310,7 @@ div.heart.item {
 select#people {
 	height: 30px;
 	font-weight: 400;
-	-webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.1);
-	box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+	@include box-shadow(rgba(0,0,0,.1) 0 0 0 1px);
 	@include border-radius(.1875rem);
 	background: white;
 }
@@ -323,7 +326,7 @@ select#people {
 		width: 194%;
 	}
 	input{
-		height: 32px;
+		height: 38px;
 	}
 	
 	.ui.icon.input input.search_submit{
@@ -345,7 +348,7 @@ select#people {
 		background: rgb(223, 65, 25);
 		color: white;
 		padding: 10px;
-		opacity: 1;
+		@include opacity(1);
 	}
 }
 
