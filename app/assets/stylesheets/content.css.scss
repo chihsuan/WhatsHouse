@@ -386,11 +386,19 @@ select#people {
 
 //about_us contac_us
 
-#about_us, #contact_us{
+#about_us,
+#contact_us{
 	width: 70%;
 	margin: auto;
 	padding: 10px 10px 10px 10px;
 	color: black;
+	a{
+		padding-left: 5px;
+		color: #444;
+		&:hover{
+				color: $orange;
+		}
+	}
 }
 
 .author{
@@ -401,18 +409,8 @@ select#people {
 	padding-top: 20px;
 }
 
-#contact_us a,
-#about_us a{
-	padding-left: 5px;
-	color: #444;
-}
-
-#contact_us a:hover,
-#about_us a:hover{
-	color: $orange;
-}
-
-.author_img img, .author_img{
+.author_img img, 
+.author_img{
 	height: 150px;
 	width: 150px;
 	float:left;
@@ -421,8 +419,7 @@ select#people {
 .author_brief{
 	width: 95%;
 	margin:auto;
-}
-
-.author_brief li{
-	list-style:none;
+	li{
+		list-style:none;
+	}
 }
