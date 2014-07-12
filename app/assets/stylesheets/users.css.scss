@@ -1,7 +1,7 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "compass/css3/background-size"
 $orange: #df4119;
 
 
@@ -17,7 +17,7 @@ $orange: #df4119;
 	background-image: image-url("008.jpg");
 	height: 100%;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	@include background-size(100%);
 	min-height: 580px;
 }
 
