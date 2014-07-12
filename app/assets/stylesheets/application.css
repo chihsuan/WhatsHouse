@@ -12,8 +12,8 @@
  *
  *  require_tree .
  *= require_self
+ *= require style
  *= require semantic-ui
- *= require content
  */
 
 /*
