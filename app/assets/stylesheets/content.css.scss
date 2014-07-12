@@ -1,6 +1,7 @@
 // Place all the styles related to the content controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass";
 $orange: #df4119;
 
 //home page
@@ -35,7 +36,8 @@ $orange: #df4119;
 	}
 	
 	div.ui.left.labeled.icon.input {
-		border-radius: 5px 5px 5px 5px;
+		@include border-radius(5px);
+
 	}
 
 }
@@ -97,7 +99,7 @@ div.ui.inverted.red.pointing.response.menu{
 .ui.tab.open {
 	display: block;
 	box-shadow: 0.7px 0.8px 0.8px rgba(1,1,1,0.5);
-	border-radius: 3px 3px 3px 3px;
+	@include border-radius(3px);
 }
 
 div.launch.button {
@@ -220,7 +222,7 @@ i.small.long.arrow.icon{
 
 #advanced_search form{
 	box-sizing: border-box;
-	border-radius: 0.325em 0.325em 0.325em 0.325em;
+	@include border-radius(0.325em);
 }
 
 .search_form{
@@ -263,7 +265,7 @@ div.house_cart {
 	width: 300px;
 	top: 77%;
 	float: left;
-	border-radius: 5px 5px 5px 5px;
+	@include border-radius(5px);
 	background:transparent; 
 	color: #720000;
 	z-index: 10;
@@ -306,7 +308,7 @@ select#people {
 	font-weight: 400;
 	-webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.1);
 	box-shadow: 0 0 0 1px rgba(0,0,0,.1);
-	border-radius: .1875rem;
+	@include border-radius(.1875rem);
 	background: white;
 }
 

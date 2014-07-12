@@ -1,6 +1,7 @@
 @import "font-awesome";
-
+@import "compass";
 $orange: #df4119;
+
 
 html, body{
 	background-color:  white;
@@ -124,7 +125,7 @@ div.ui.pointing.dropdown.item{
 
 .container div.ui.vertical.menu{ 
 
-	border-radius: 0px;
+	@include border-radius(0px);
 	float: left;
 	position: fixed;
 	z-index: 10;
