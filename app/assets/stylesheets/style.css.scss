@@ -65,7 +65,7 @@ div.ui.fixed.inverted.title_bar.menu{
 	z-index: 10;
 	background-color: white; /* Old browsers */
 	height: 49px;
-	box-shadow: 1px 1px 1px rgba(1,1,1,0.2);
+	@include box-shadow(rgba(1,1,1,0.2) 1px 1px 1px );
 	
 	.menu{
 		position: relative;
