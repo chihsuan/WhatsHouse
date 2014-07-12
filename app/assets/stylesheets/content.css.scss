@@ -16,7 +16,7 @@
 	background-position: 0px;
 	opacity: 0.95;
 	min-height: 520px;
-    background-size: 100%;
+	background-size: 100%;
 }
 
 .heading{
@@ -25,52 +25,51 @@
 	margin-right: auto;
 	margin-left: auto;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
-}
-
-.heading #signup{
-	font-size: 15px;
-	padding: 10px 10px 10px 10px;
-	margin-left: 26%;
-	margin-left: 330px;
-	background: transparent;
-}
-
-.heading div.ui.left.labeled.icon.input {
+	
+	#signup{
+		font-size: 15px;
+		padding: 10px 10px 10px 10px;
+		margin-left: 26%;
+		margin-left: 330px;
+		background: transparent;
+	}
+	
+	div.ui.left.labeled.icon.input {
 		border-radius: 5px 5px 5px 5px;
+	}
+
 }
 
 .enter{
 	width: 41%;
 	left: 30%;
 	position: relative;
+	
+	a.ui.red.button{
+		background: #720000;
+		height: 57px;
+		width: 42%;
+		text-align: center;
+		padding-top: 18px;
+		margin: 10px 10px 10px 10px;
+		font-size: 18px;
+		&:hover{
+			background-color: #E75859;
+			color: #FFFFFF;	
+		}
+		&:last-child{
+			background: white;
+			border: 2px solid white;
+			color: #444;;
+			font-weight: normal;
+		}
+		&:last-child:hover{
+			background: rgba(255, 255, 255, 0);
+			color: white;
+			text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	 	}
+	}
 }
-
-.enter a.ui.red.button{
-	background: #720000;
-	height: 57px;
-	width: 42%;
-	text-align: center;
-	padding-top: 18px;
-	margin: 10px 10px 10px 10px;
-	font-size: 18px;
-}
-.enter a.ui.red.button:hover{
-	background-color: #E75859;
-	color: #FFFFFF;
-}
-
-.enter a.ui.red.button:last-child{
-	background: white;
-	border: 2px solid white;
-	color: #444;;
-	font-weight: normal;
-}
-.enter a.ui.red.button:last-child:hover{
-	background: rgba(255, 255, 255, 0);
-	color: white;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-}
-
 
 //rent page
 
