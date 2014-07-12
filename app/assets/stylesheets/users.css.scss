@@ -2,12 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$orange: #df4119;
+
+
 .ui.form.signup {
 	position: absolute;
-    width: 30%;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);	
+  width: 30%;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);	
 }
 
 #sign_up {
@@ -25,18 +28,19 @@
 	right: 20%;
 	width: 60%;
 	display:table;
-}
+	
+	 .column{
+		 padding-right: 30px;
+		
+		.ui.about.menu {
+			position: relative;	
+		}
+		.ui.tab.segmant {
+			display:table-cell;
+		}
 
-.ui.about.cell.grid .column{
-	padding-right: 30px;
-}
-
-.ui.about.cell.grid .column .ui.about.menu {
-	position: relative;
-}
-
-.ui.about.cell.grid .column .ui.tab.segmant {
-	display:table-cell;
+	 }	
+		
 }
 
 #areaAbout{
@@ -50,18 +54,17 @@
 #areaAbout table{
 	line-height: 30px;
 	
+	td{
+		padding-left: 5px;
+	}
 }
 
-#areaAbout table td{
-	padding-left: 5px;
-}
 
 div.ui.inverted.pointing.about.menu{
-	background: #df4119;
-}
-
-.ui.inverted.pointing.menu .active.item:after{
-	background: #df4119;
-
 	
+	background: $orange;
+	
+	.active.item:after{
+		background: $orange;
+	}
 }
