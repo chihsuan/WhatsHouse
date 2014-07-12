@@ -142,11 +142,22 @@ div.launch.button {
 	
 }
 
-#main_infor p{
-	overflow: auto;
-	height: 80px;
-	line-height: 30px;
+
+#main_infor{
+	width:auto;
+
+	p{
+		overflow: auto;
+		height: 80px;
+		line-height: 30px;
+	}
+	
+	 button {
+		width: 100%;
+		padding-top:5px;
+	 }
 }
+
 
 #information>:last-child {
 	margin-bottom: 0em;
@@ -159,21 +170,6 @@ div.launch.button {
 	margin: 0px;
 }
 
-
-
-::-webkit-scrollbar {  
-	width: 12px;  
-}  
-::-webkit-scrollbar-track {  
-	background-color: #eaeaea;  
-	border-left: 1px solid #ccc;  
-}  
-::-webkit-scrollbar-thumb {  
-	background-color: #ccc;  
-}  
-::-webkit-scrollbar-thumb:hover {  
-	background-color: #aaa;  
-}  
 
 .ui.tab.active, 
 .ui.tab.open {
@@ -229,23 +225,19 @@ i.small.long.arrow.icon{
 
 .search_form{
 	width: 100%;
-}
-
-#heart_rating{
-	padding: 1em;
-}
-
-#rating_tag{
-	display: none;
+	
+	#heart_rating{
+		padding: 1em;
+	}
+	#rating_tag{
+		display: none;
+	}
+	
 }
 
 #search_result li {
 	line-height: 18px;
 	padding: 5px 5px 5px 5px;
-}
-
-input.ui.red.button {
-	background: #720000;
 }
 
 #slider1_container {
@@ -291,16 +283,6 @@ div.house_cart {
 	}
 }
 
-
-#main_infor{
-	width:auto;
-
-}
-#main_infor button {
-	width: 100%;
-	padding-top:5px;
-}
-
 .undo{
 	float:right;
 }
@@ -328,17 +310,9 @@ select#people {
 	background: white;
 }
 
-.menu_search_form{
-	display: inline;
-}
-
-.menu_search_form > div.item{
-	padding: 0px;
-	margin: 0px;
-	height: 50px;
-}
-
 .menu_search_form{ 
+	display: inline;
+	
 	form{
 		top: -20px;
 		position: relative;
@@ -359,15 +333,19 @@ select#people {
 		border: none;
 		box-shadow: none;
 	}
+	>div.item{
+		padding: 0px;
+		margin: 0px;
+		height: 50px;
+	}
+	
+	>.icon{
+		background: rgb(223, 65, 25);
+		color: white;
+		padding: 10px;
+		opacity: 1;
+	}
 }
-
-.menu_search_form .ui.icon.input > .icon{
-	background: rgb(223, 65, 25);
-	color: white;
-	padding: 10px;
-	opacity: 1;
-}
-
 
 /*
 .left-information{
