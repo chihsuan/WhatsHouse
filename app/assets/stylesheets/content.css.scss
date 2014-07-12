@@ -1,7 +1,8 @@
 // Place all the styles related to the content controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "compass";
+@import "compass/css3/border-radius";
+@import "compass/css3/background-size";
 $orange: #df4119;
 
 //home page
@@ -17,7 +18,7 @@ $orange: #df4119;
 	background-position: 0px;
 	opacity: 0.95;
 	min-height: 520px;
-	background-size: 100%;
+	@include background-size(100%);
 }
 
 .heading{
