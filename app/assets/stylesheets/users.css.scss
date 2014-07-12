@@ -4,10 +4,10 @@
 
 .ui.form.signup {
 	position: absolute;
-    width: 30%;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);	
+  width: 30%;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);	
 }
 
 #sign_up {
@@ -62,6 +62,4 @@ div.ui.inverted.pointing.about.menu{
 
 .ui.inverted.pointing.menu .active.item:after{
 	background: #df4119;
-
-	
 }
