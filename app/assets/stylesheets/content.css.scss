@@ -4,7 +4,8 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/background-size";
 @import "compass/css3/box-shadow";
-
+@import "compass/css3/opacity";
+@import "compass/css3/text-shadow";
 $orange: #df4119;
 
 //home page
@@ -18,9 +19,9 @@ $orange: #df4119;
 	font-size: 36px;
 	background: image-url("006.jpg") no-repeat;
 	background-position: 0px;
-	opacity: 0.95;
 	min-height: 520px;
 	@include background-size(100%);
+	@include opacity(0.95);
 }
 
 .heading{
@@ -28,7 +29,7 @@ $orange: #df4119;
 	width: 980px;
 	margin-right: auto;
 	margin-left: auto;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+	@include text-shadow(rgba(0,0,0,0.4) 1px 1px 1px);
 	
 	#signup{
 		font-size: 15px;
@@ -71,7 +72,7 @@ $orange: #df4119;
 		&:last-child:hover{
 			background: rgba(255, 255, 255, 0);
 			color: white;
-			text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+			@include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
 	 	}
 	}
 }
@@ -347,7 +348,7 @@ select#people {
 		background: rgb(223, 65, 25);
 		color: white;
 		padding: 10px;
-		opacity: 1;
+		@include opacity(1);
 	}
 }
 
