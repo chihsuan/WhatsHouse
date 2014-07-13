@@ -89,10 +89,13 @@ $orange: #df4119;
 	top: -30px;
 	position: relative;
 	overflow: auto;
-	height: 450px;
+	height: auto;
+	max-height: 420px;
+	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
 	div.message {
 		color: $orange;
 	}
+	
 }
 
 div.ui.inverted.red.pointing.response.menu{
@@ -115,8 +118,8 @@ div.launch.button {
 
 .ui.response.cell.grid {
 	position: absolute;
-  top: 10%;
-	right: 2%;
+  top: 5%;
+	right: 4%;
 	width: 40%;
 	display:table;
 	z-index: 2;
@@ -147,6 +150,8 @@ div.launch.button {
 	}
 	
 }
+
+
 
 
 #main_infor{
@@ -227,6 +232,12 @@ i.small.long.arrow.icon{
 #advanced_search form{
 	box-sizing: border-box;
 	@include border-radius(0.325em);
+	
+	input.adsearch.ui.small.orange.button{
+		background: $orange;
+		position:relative;
+		width: 30%;
+	}
 }
 
 .search_form{
@@ -264,38 +275,51 @@ i.small.long.arrow.icon{
 }
 
 div.house_cart {
-	position: absolute;
-	height: 100px;
-	width: 300px;
-	top: 77%;
-	float: left;
+	position: relative;
+	height: auto;
+	width: 100%;
+	bottom: 17px;
+	left: 0;
 	@include border-radius(5px);
-	background:transparent; 
-	color: #720000;
+	background: white; 
+	color: $orange;
 	z-index: 10;
-}
-.div.cart.item li{
-	line-height: 25px;
+	.cart.item{
+		line-height: 35px;
+	}
+	.div.cart.item li{
+		line-height: 25px;
+	}
+
+	.cart{
+		padding: 10px 10px 10px 10px;
+	
+		span{
+			color: $orange;
+		}
+		a{
+		color: $orange;
+		}
+	}
 }
 
-.cart{
+
+#wrap button.add_to_cart.ui.orange.mini.button{
+	position: fixed;
+	bottom: 30px;
+	right: 4.5%;
 	padding: 10px 10px 10px 10px;
-	
-	span{
-		color: #720000;
-	}
-	a{
-		color: #720000;
-	}
+	background: $orange;
+	z-index: 100;
+	width: 37.3%;
 }
 
 .undo{
 	float:right;
 }
 
-#disqus_thread{
-	height: 400px;
-	overflow: auto;
+#disqus_thread{	
+	height: auto;
 }
 
 div.heart.item {
