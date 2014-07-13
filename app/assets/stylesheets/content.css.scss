@@ -305,13 +305,11 @@ div.house_cart {
 
 
 #wrap button.add_to_cart.ui.orange.mini.button{
-	position: fixed;
-	bottom: 30px;
-	right: 4.5%;
+	position: relative;
 	padding: 10px 10px 10px 10px;
 	background: $orange;
 	z-index: 100;
-	width: 37.3%;
+	width: 100%;
 }
 
 .undo{
