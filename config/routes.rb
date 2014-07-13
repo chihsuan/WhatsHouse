@@ -1,30 +1,37 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-
 	resources :users
 	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :rent_houses, only: [:create, :destroy]
 	resources :sale_houses,  only: [:create, :destroy]
 	root :to => "content#content"
-	get "content" => "content#content"
-	match '/analysis', to: 'content#analysis', via: 'get'
-	match '/rent', to: 'content#rent', via: 'get'
-	match '/buy', to: 'content#buy', via: 'get'
-	match '/renthouse',  to: 'rent_houses#rentHouse',            via: 'get'
-	match '/salehouse',  to: 'sale_houses#sale',            via: 'get'
+	
+	# main page router
+	get 'content' => 'content#content'
+	get 'rent' => 'content#rent'
+	get 'about_us' => 'content#about'
+	get 'contact' => 'content#contact'
+	
+	# login system router
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
-	match '/about_us', to: 'content#about', via: 'get'
-	match '/contact', to: 'content#contact', via: 'get'
+  	get 'password_resets/new'
 	
+	# rent house router
+	match '/renthouse',  to: 'rent_houses#rentHouse',            via: 'get'
+	match '/salehouse',  to: 'sale_houses#sale',            via: 'get'
+	
+	# ajax router
 	match '/events/advancedSearch', to: 'events#advancedSearch', via: 'get'
 	match '/events/search', to: 'events#search', via: 'get'
 	
+	# socialnewtwork login router
 	match 'auth/failure', to: redirect('/'), via: [:get, :post]
 	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
 
+	match '/analysis', to: 'content#analysis', via: 'get'
+	match '/buy', to: 'content#buy', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
