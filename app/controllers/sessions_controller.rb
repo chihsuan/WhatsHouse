@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
     	if user && user.authenticate(params[:session][:password])
       		sign_in user
     		redirect_back_or rent_path
-    	else if user
-			flash.now[:error = "密碼輸入錯誤"
+    	elsif user
+			flash.now[:error] = "密碼輸入錯誤"
     		render 'new'
     	else
         	flash.now[:error] = '不存在使用者email'
