@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+	
+	# event that handle ajax get or post
 
 	# event for search houses in database 
 	def show
