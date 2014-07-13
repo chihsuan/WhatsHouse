@@ -119,7 +119,7 @@ div.launch.button {
 .ui.response.cell.grid {
 	position: absolute;
   top: 5%;
-	right: 2%;
+	right: 4%;
 	width: 40%;
 	display:table;
 	z-index: 2;
@@ -269,41 +269,43 @@ i.small.long.arrow.icon{
 }
 
 div.house_cart {
-	position: fixed;
-	height: 100px;
-	width: 300px;
+	position: relative;
+	height: auto;
+	width: 100%;
 	bottom: 17px;
 	left: 0;
 	@include border-radius(5px);
-	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
 	background: white; 
 	color: $orange;
 	z-index: 10;
+	.cart.item{
+		line-height: 35px;
+	}
+	.div.cart.item li{
+		line-height: 25px;
+	}
+
+	.cart{
+		padding: 10px 10px 10px 10px;
 	
-}
-.div.cart.item li{
-	line-height: 25px;
+		span{
+			color: $orange;
+		}
+		a{
+		color: $orange;
+		}
+	}
 }
 
-.cart{
-	padding: 10px 10px 10px 10px;
-	
-	span{
-		color: $orange;
-	}
-	a{
-		color: $orange;
-	}
-}
 
 #wrap button.add_to_cart.ui.orange.mini.button{
 	position: fixed;
 	bottom: 30px;
-	right: 37px;
+	right: 4.5%;
 	padding: 10px 10px 10px 10px;
 	background: $orange;
 	z-index: 100;
-	width: 503px;
+	width: 37.3%;
 }
 
 .undo{
