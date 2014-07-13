@@ -16,13 +16,13 @@
 								<td>Email</td><td><%= @user.email %></td>
 							</tr>
 							<tr>
+								<td>出租中 (<%= @user.rent_houses.count %>)</td>
+								 <td><ol class="rent_houses">
 							<% if @user.rent_houses.any? %>
-									<td>出租中 (<%= @user.rent_houses.count %>)</td>
-								 	<td><ol class="rent_houses">
 							 	  <%= render @user.rent_houses %>
+							<% end %>
 									</ol>
 								</td>
-							<% end %>
 							</tr>
 						</table>
 				</div>
