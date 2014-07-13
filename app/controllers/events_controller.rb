@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+	
+	# event that handle ajax get or post
 
 	# event for search houses in database 
 	def show
@@ -36,7 +38,45 @@ class EventsController < ApplicationController
 			format.json { render :json => @data }
 		end
 	end
+
+
+	def search
+		@keyword = params[:district]
+    	@data = RentHouse.where("address like ?", "%#{@keyword}%")
+		@data = [ @data, " "]
+		respond_to do |format|
+			format.json { render :json => @data }
+		end
+	end
+
 	
+	def advancedSearch
+		@district = params[:district]
+		if !params[:price] && !params[:district]
+    		@data = RentHouse.where("address like ?", "%#{@district}%").where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]).where(:people => params[:people]) 
+		elsif params[:price]
+    		@data = RentHouse.where(:price => params[:price].split(" ")[0]...params[:price].split(" ")[1]).where(:people => params[:people] ) 
+		else
+    		@data = RentHouse.where("address like ?", "%#{@district}%").where(:people => params[:people])
+		end
+				
+		if params[:rating] && !params[:rating].empty?
+			@score_list = []
+			for house in @data
+				@tmp = 0
+				for i in 0...params[:rating].length
+					@tmp = @tmp + house['around_list'][i].to_i * params[:rating][i].to_i
+				end
+				@score_list << @tmp
+			end
+			@data = [@data] + [ @score_list.map.with_index.sort_by(&:first).map(&:last) ]
+		else
+			@data = [@data] + [" "]
+		end
+		respond_to do |format|
+			format.json { render :json => @data }
+		end
+	end
 
 end
 
