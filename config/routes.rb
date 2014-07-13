@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 	get 'rent' => 'content#rent'
 	get 'about_us' => 'content#about'
 	get 'contact' => 'content#contact'
-	
+		
 	# login system router
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 	# ajax router
 	match '/events/advancedSearch', to: 'events#advancedSearch', via: 'get'
 	match '/events/search', to: 'events#search', via: 'get'
-	
+	match '/events/show', to: 'events#show', via: 'get'
+
 	# socialnewtwork login router
 	match 'auth/failure', to: redirect('/'), via: [:get, :post]
 	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
