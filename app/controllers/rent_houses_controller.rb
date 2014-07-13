@@ -1,10 +1,30 @@
 class RentHousesController < ApplicationController
-	before_action :signed_in_user, only: [:create, :destroy]
+	before_action :signed_in_user, only: [:create, :destroy, :update, :edit]
 	before_action :correct_user,   only: :destroy
 
 	def show
+  		if signed_in?
+  			@rentHouse = RentHouse.find(params[:id])
+  		else 
+  			redirect_to 'signin'
+		end
 	end
 
+	def edit
+		@rent_house = RentHouse.find(params[:id])
+	end
+
+	# upadet user profile
+	def update
+		@current_houses = RentHouse.find(params[:id])
+    	if @current_houses.update_attributes(rentHouses_params)
+      	  flash[:success] = "更新成功!"
+      	  redirect_to @current_houses
+    	else
+      	  render 'edit'
+   		end
+  	end
+	
 
 	def rentHouse
 		if signed_in?
