@@ -6,11 +6,8 @@ Rails.application.routes.draw do
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :rent_houses, only: [:create, :destroy]
 	resources :sale_houses,  only: [:create, :destroy]
-	resources :events 	
 	root :to => "content#content"
 	get "content" => "content#content"
-  	get 'rent_houses/show' => "rent_houses#show"	
-  	#get 'sale_houses/show' => "sale_houses#show"
 	match '/analysis', to: 'content#analysis', via: 'get'
 	match '/rent', to: 'content#rent', via: 'get'
 	match '/buy', to: 'content#buy', via: 'get'
@@ -21,9 +18,13 @@ Rails.application.routes.draw do
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
 	match '/about_us', to: 'content#about', via: 'get'
 	match '/contact', to: 'content#contact', via: 'get'
-	match '/rent_houses/search', to: 'rent_houses#search', via: 'get'
+	
+	match '/events/advancedSearch', to: 'events#advancedSearch', via: 'get'
+	match '/events/search', to: 'events#search', via: 'get'
+	
 	match 'auth/failure', to: redirect('/'), via: [:get, :post]
 	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
