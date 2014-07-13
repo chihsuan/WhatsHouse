@@ -232,6 +232,12 @@ i.small.long.arrow.icon{
 #advanced_search form{
 	box-sizing: border-box;
 	@include border-radius(0.325em);
+	
+	input.adsearch.ui.small.orange.button{
+		background: $orange;
+		position:relative;
+		width: 30%;
+	}
 }
 
 .search_form{
