@@ -118,7 +118,7 @@ div.launch.button {
 
 .ui.response.cell.grid {
 	position: absolute;
-  top: 3%;
+  top: 5%;
 	right: 2%;
 	width: 40%;
 	display:table;
@@ -272,7 +272,7 @@ div.house_cart {
 	position: fixed;
 	height: 100px;
 	width: 300px;
-	bottom: 12px;
+	bottom: 17px;
 	left: 0;
 	@include border-radius(5px);
 	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
@@ -299,19 +299,19 @@ div.house_cart {
 #wrap button.add_to_cart.ui.orange.mini.button{
 	position: fixed;
 	bottom: 0;
-	left: 0;
+	right: 37px;
 	padding: 10px 10px 10px 10px;
 	background: $orange;
 	z-index: 100;
+	width: 503px;
 }
 
 .undo{
 	float:right;
 }
 
-#disqus_thread{
-	height: 400px;
-	overflow: auto;
+#disqus_thread{	
+	height: auto;
 }
 
 div.heart.item {
