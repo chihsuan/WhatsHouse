@@ -1,10 +1,3 @@
-<% provide(:title, '出租') %>
-<html>
-		<head>
-
-		</head>
-<body>
-
 		<div id = "rent_houses_page">
 			
 		<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
@@ -125,16 +118,6 @@
 		</div>
 		<% end %>
 
-		<!-- <div class="house_list">
-		  <% if @user.rent_houses.any? %>
-			<h3>出租中 (<%= @user.rent_houses.count %>)</h3>
-			<ol class="rent_houses">
-			  <%= render @rent_houses %>
-			</ol>
-			<%= will_paginate @rent_houses %>
-		  <% end %>
-	  </div> -->
-
 
 <script>
 	$(document).ready(function(){
@@ -213,5 +196,3 @@
 		});
 		
 		</script>
-	</body>
-</html>
