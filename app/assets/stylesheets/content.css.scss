@@ -89,10 +89,13 @@ $orange: #df4119;
 	top: -30px;
 	position: relative;
 	overflow: auto;
-	height: 450px;
+	height: auto;
+	max-height: 420px;
+	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
 	div.message {
 		color: $orange;
 	}
+	
 }
 
 div.ui.inverted.red.pointing.response.menu{
@@ -115,7 +118,7 @@ div.launch.button {
 
 .ui.response.cell.grid {
 	position: absolute;
-  top: 10%;
+  top: 3%;
 	right: 2%;
 	width: 40%;
 	display:table;
@@ -147,6 +150,8 @@ div.launch.button {
 	}
 	
 }
+
+
 
 
 #main_infor{
@@ -264,15 +269,17 @@ i.small.long.arrow.icon{
 }
 
 div.house_cart {
-	position: absolute;
+	position: fixed;
 	height: 100px;
 	width: 300px;
-	top: 77%;
-	float: left;
+	bottom: 12px;
+	left: 0;
 	@include border-radius(5px);
-	background:transparent; 
-	color: #720000;
+	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
+	background: white; 
+	color: $orange;
 	z-index: 10;
+	
 }
 .div.cart.item li{
 	line-height: 25px;
@@ -282,11 +289,20 @@ div.house_cart {
 	padding: 10px 10px 10px 10px;
 	
 	span{
-		color: #720000;
+		color: $orange;
 	}
 	a{
-		color: #720000;
+		color: $orange;
 	}
+}
+
+#wrap button.add_to_cart.ui.orange.mini.button{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 10px 10px 10px 10px;
+	background: $orange;
+	z-index: 100;
 }
 
 .undo{
