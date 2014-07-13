@@ -1,21 +1,25 @@
 class UsersController < ApplicationController
   	before_action :signed_in_user, only: [:edit, :update]	
   	before_action :correct_user,   only: [:edit, :update]		
+	# sign up controller
+
 
 	def show
   		@user = User.find(params[:id])
   	end
 
+	# new user for sign up form
  	def new
 		@user = User.new
  	end
 	
+	# create new user by user input
 	def create
     	@user = User.new(user_params)
    		if @user.save
    			UserMailer.confirm(@user.email).deliver
      	 	sign_in @user
-     	 	flash[:success] = "Welcome to the Whatshouse!"
+     	 	flash[:success] = "註冊成功!"
       		redirect_to @user
     	else
       		render 'new'
@@ -25,10 +29,11 @@ class UsersController < ApplicationController
 	def edit
 	end
 
+	# upadet user profile
 	def update	
   	  	@user = User.find(params[:id])
     	if @user.update_attributes(user_params)
-      	flash[:success] = "Profile updated"
+      	flash[:success] = "更新成功!"
       	redirect_to @user
     	else
       	 render 'edit'

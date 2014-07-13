@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+	
+	#sign in and sign out controller, create remember token to cookie
 
 	def new
 	end
@@ -8,12 +10,16 @@ class SessionsController < ApplicationController
     	if user && user.authenticate(params[:session][:password])
       		sign_in user
     		redirect_back_or rent_path
+    	elsif user
+			flash.now[:error] = "密碼輸入錯誤"
+    		render 'new'
     	else
-        	flash.now[:error] = 'Invalid email/password combination'
+        	flash.now[:error] = '不存在使用者email'
     		render 'new'
     	end
  	end 
 
+	# facebook sign in
 	def facebook
 		auth_hash = request.env['omniauth.auth']
 		@authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"] )
@@ -28,6 +34,7 @@ class SessionsController < ApplicationController
     	redirect_back_or rent_path
 	end
 
+	# sign out
 	def destroy
 		sign_out
 		redirect_to root_path
