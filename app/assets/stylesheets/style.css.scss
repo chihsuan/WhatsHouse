@@ -7,6 +7,8 @@
 @import "compass/css3/box-shadow";
 @import "compass/layout/sticky-footer";
 $orange: #df4119;
+$min-web-size: 920px;
+$max-phone-size: 768px;
 
 @include sticky-footer(72px, ".container ", "#layout_footer", "#footer");
 
@@ -82,6 +84,12 @@ div.ui.fixed.inverted.title_bar.menu{
 	.right.menu {
 		position: relative;
 		min-width: 14%;
+		
+		#renthouse_link{
+			@media screen and (max-width: $max-phone-size) {
+				display: none;
+			}
+		}
 	}
 }
 

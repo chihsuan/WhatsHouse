@@ -70,6 +70,11 @@ div.ui.form.edit.segment {
 
 .edit div.field{
 	width: 50%;
+	
+	@media screen and (max-width: $max-phone-size) {
+		width: 100%;
+	
+	}
 }
 
 #areaAbout table{
