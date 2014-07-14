@@ -25,7 +25,7 @@
 	<% end %>
 	<div class="right menu">
 	<% if signed_in? %>
-		<%= link_to renthouse_path, class:"item" do%>
+		<%= link_to renthouse_path, id:"renthouse_link", class:"item" do%>
 			<i class="add icon"></i>出租
 		<% end %>
 		<div class="ui pointing dropdown item">
