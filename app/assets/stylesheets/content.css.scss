@@ -128,6 +128,7 @@ $max-phone-size: 768px;
 	height: auto;
 	max-height: 420px;
 	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
+	
 	div.message {
 		color: $orange;
 	}
@@ -165,6 +166,15 @@ div.launch.button {
 	display:table;
 	z-index: 2;
 
+	@media screen and (max-width: $max-phone-size) {
+			width: 50%;
+	}
+	@media screen and (max-width: $max-phone-size - 200px) {
+		width: 60%;
+		height: 100px;
+	}
+	
+	
 	.column{
 		padding-right: 30px;
 		
