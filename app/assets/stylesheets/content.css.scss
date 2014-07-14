@@ -196,6 +196,11 @@ div.launch.button {
 		
 	}
 	
+	.ui.tab.active, 
+	.ui.tab.open {
+		margin: 0px;
+	}
+	
 	.ui.form .error.message {
 		display: block !important;
 	}
@@ -233,10 +238,7 @@ div.launch.button {
 }
 
 
-.ui.tab.active, 
-.ui.tab.open {
-	margin: 0px;
-}
+
 
 i.small.long.arrow.down.icon {
 	padding-left: 5px;
@@ -354,7 +356,7 @@ div.house_cart {
 	}
 }
 
-
+/*
 #wrap button.add_to_cart.ui.orange.mini.button{
 	position: relative;
 	padding: 10px 10px 10px 10px;
@@ -362,6 +364,7 @@ div.house_cart {
 	z-index: 100;
 	width: 100%;
 }
+*/
 
 .undo{
 	float:right;
