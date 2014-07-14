@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "compass/css3/background-size";
 $orange: #df4119;
+$min-web-size: 920px;
+$max-phone-size: 768px;
 
 
 .ui.form.signup {
@@ -11,6 +13,15 @@ $orange: #df4119;
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);	
+	min-width: 329px;
+	
+	@media screen and (max-width: $min-web-size) {
+		width: 36%;
+  }
+	
+	@media screen and (max-width: $max-phone-size) {
+		width: 48%;
+  }
 }
 
 #sign_up {
@@ -19,6 +30,9 @@ $orange: #df4119;
 	background-repeat: no-repeat;
 	@include background-size(100%);
 	min-height: 580px;
+	@media screen and (max-width: $max-phone-size) {
+		background-image: none;
+  }
 }
 
 
