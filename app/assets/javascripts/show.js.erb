@@ -171,6 +171,15 @@ function addAroundMarker(obj) {
   else if (obj.data === "police_stations") {
     iconCat = '<%= asset_path 'police_stations.png' %>';	
   }
+	else if (obj.data === "gas_stations") {
+    iconCat = '<%= asset_path 'gas_stations.png' %>';	
+  }
+	else if (obj.data === "post_offices") {
+    iconCat = '<%= asset_path 'post_offices.png' %>';	
+  }
+	else if (obj.data === "subways") {
+    iconCat = '<%= asset_path 'subways.png' %>';	
+  }
   // icon image setting
   var iconImage = {
     url: iconCat,
@@ -185,7 +194,8 @@ function addAroundMarker(obj) {
     lat: obj.lat,
     lng: obj.lng,
     icon: iconImage
-  });
+  });	
+	
   google.maps.event.addListener(marker, 'mouseover', function(){
     infowindow = new google.maps.InfoWindow();
     var html = "";
@@ -346,7 +356,7 @@ function createMarker(obj, markers) {
             // if the data category of response is not in around
             // around will add a property of data.
             if (!(response[i].data in around)) {
-              console.log("found " + response[i].data);
+              //console.log("found " + response[i].data);
               around[response[i].data] = [];
             }
             // add the data into the corresponding category of
@@ -403,7 +413,7 @@ function showAround (cat) {
   // show cat only
   if (cat in aroundMarkers) {
     for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      aroundMarkers[cat][i].setMap(map);
+      	aroundMarkers[cat][i].setMap(map);
     }
   }
 }
