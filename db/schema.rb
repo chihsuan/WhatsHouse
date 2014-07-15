@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711055547) do
+ActiveRecord::Schema.define(version: 20140715050100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20140711055547) do
     t.string   "img"
     t.integer  "price"
     t.integer  "people"
+    t.integer  "browse_rate", default: 0
   end
 
   create_table "sale_houses", force: true do |t|
@@ -184,7 +185,7 @@ ActiveRecord::Schema.define(version: 20140711055547) do
   end
 
   create_table "stations", force: true do |t|
-    t.string   "country"
+    t.string   "city"
     t.string   "area"
     t.string   "station"
     t.string   "address"
@@ -205,6 +206,7 @@ ActiveRecord::Schema.define(version: 20140711055547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "data",       default: "stores"
+    t.string   "tel"
   end
 
   create_table "tainan_markets", force: true do |t|
