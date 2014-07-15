@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715050100) do
+ActiveRecord::Schema.define(version: 20140715065307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,17 @@ ActiveRecord::Schema.define(version: 20140715050100) do
     t.string   "data",       default: "drugstores"
   end
 
+  create_table "gas_stations", force: true do |t|
+    t.string   "city"
+    t.string   "district"
+    t.string   "name"
+    t.string   "address"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "hospitals", force: true do |t|
     t.string   "name"
     t.string   "address"
@@ -97,6 +108,17 @@ ActiveRecord::Schema.define(version: 20140715050100) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "data",       default: "police_stations"
+  end
+
+  create_table "post_offices", force: true do |t|
+    t.string   "city"
+    t.string   "district"
+    t.string   "name"
+    t.string   "address"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "real_price_deals", force: true do |t|
@@ -207,6 +229,17 @@ ActiveRecord::Schema.define(version: 20140715050100) do
     t.datetime "updated_at"
     t.string   "data",       default: "stores"
     t.string   "tel"
+  end
+
+  create_table "subways", force: true do |t|
+    t.string   "city"
+    t.string   "district"
+    t.string   "name"
+    t.string   "address"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tainan_markets", force: true do |t|
