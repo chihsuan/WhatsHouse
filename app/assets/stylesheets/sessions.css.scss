@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "compass/css3/background-size";
+$min-web-size: 920px;
+$max-phone-size: 768px;
 
 .ui.form.signin {
 	position: absolute;
@@ -9,6 +11,15 @@
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);	
+	min-width: 329px;
+	
+	@media screen and (max-width: $min-web-size) {
+		width: 36%;
+  }
+	
+	@media screen and (max-width: $max-phone-size) {
+		width: 48%;
+  }
 }
 
 #sign_in{
@@ -17,5 +28,8 @@
 	min-height: 580px;
 	background-repeat: no-repeat;
 	@include background-size(100%);
+	@media screen and (max-width: $max-phone-size) {
+		background-image: none;
+  }
 }
 

@@ -1,16 +1,20 @@
+/* all common css style include html, body, header ...
+*/
+
 @import "font-awesome";
 @import "compass/css3/border-radius";
 @import "compass/css3/background-size";
 @import "compass/css3/box-shadow";
 @import "compass/layout/sticky-footer";
 $orange: #df4119;
+$min-web-size: 920px;
+$max-phone-size: 768px;
 
 @include sticky-footer(72px, ".container ", "#layout_footer", "#footer");
 
 html, body{
 	background-color:  white;
 	width: 100%;
-	min-width: 980px;
 	height: 100%;
 	margin: 0px;
 	padding:0px;
@@ -80,6 +84,12 @@ div.ui.fixed.inverted.title_bar.menu{
 	.right.menu {
 		position: relative;
 		min-width: 14%;
+		
+		#renthouse_link{
+			@media screen and (max-width: $max-phone-size) {
+				display: none;
+			}
+		}
 	}
 }
 
@@ -126,6 +136,9 @@ div.ui.pointing.dropdown.item{
 	display: block;
 }
 
+i.toggle.big.angle.down.icon{
+	background: white;
+}
 
 .container div.ui.vertical.menu{ 
 
@@ -218,9 +231,9 @@ footer{
 }
 
 
-input.ui.red.button {
+/*input.ui.red.button {
 	background: #720000;
-}
+}*/
 
 
 ::-webkit-scrollbar {  
@@ -236,4 +249,9 @@ input.ui.red.button {
 ::-webkit-scrollbar-thumb:hover {  
 	background-color: #aaa;  
 }  
+
+a.ui.red.button, input.ui.red.button{
+	width: 100%;
+	background-color: $orange;
+}
 

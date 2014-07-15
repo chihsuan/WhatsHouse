@@ -1,6 +1,7 @@
 # !/usr/bin/evn python
 # -*- coding: utf8 -*-
 '''
+argv1 data_sourc, argv2 table_name
 1. get data source url from a file, 
 2. load url data and save them to database
 '''
@@ -101,7 +102,7 @@ def insertCSV( mydb, table_name, data ):
 		for col in datum:
 			if not first:
 				data_list.append(  col )		
-				if len(data_list) == 3:
+				if len(data_list) == 4:
 					lat, lng = converToCor( col )
 					if lat == "Error":
 						break
@@ -115,7 +116,7 @@ def insertCSV( mydb, table_name, data ):
 			if 'lat' not in key_list:
 				key_list.append('lat')	
 				key_list.append('lng')	
-			key_list[0] = "area"
+			#key_list[0] = "area"
 			first = False
 
 # filter data by city 
@@ -163,8 +164,7 @@ def converToCor(addr):
 if __name__=='__main__':
 	# database object
 	#mydb = DataDB( 'localhost', 'mydb', 'root', 'axszdc', 'utf8', "" )
-	#mydb = DataDB( 'PostgreSQL' , 'localhost', 'Whatshouse_development', 'hacker', 'password1', 'utf8', "")
-	mydb = DataDB( 'PostgreSQL', 'ec2-23-21-101-129.compute-1.amazonaws.com', 'ddssc8n1eqsnl3', 'iwurgjyzhlmsuj', '5L_bFoFDh_slRqrhq1l0pPmwJW', 'utf8', '5432')
+	mydb = DataDB( 'PostgreSQL' , 'localhost', 'Whatshouse_development', 'hacker', 'password1', 'utf8', "")
 	
 	if len( sys.argv ) == 3:
 		input_File, data = loadData(sys.argv[1])

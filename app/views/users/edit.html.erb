@@ -7,8 +7,8 @@
 		<a class="item" data-tab="UpdateInfo">更新資訊</a>
 		</div>
 		<div id="areaAbout">
-				<div class="ui tab segment" id="AboutMe" data-tab="AboutMe">
-						<table>		
+				<div class="ui tab active segment" id="AboutMe" data-tab="AboutMe">
+						<table class="ui table">		
 							<tr>
 								<td>使用者名稱</td><td><%= @user.name %> </td>
 							</tr>
@@ -16,13 +16,13 @@
 								<td>Email</td><td><%= @user.email %></td>
 							</tr>
 							<tr>
+								<td>出租中 (<%= @user.rent_houses.count %>)</td>
+								 <td><ol class="rent_houses">
 							<% if @user.rent_houses.any? %>
-									<td>出租中 (<%= @user.rent_houses.count %>)</td>
-								 	<td><ol class="rent_houses">
-							 	  <%= render @user.rent_houses %>
+									<%= render @user.rent_houses %>
+							<% end %>
 									</ol>
 								</td>
-							<% end %>
 							</tr>
 						</table>
 				</div>

@@ -1,14 +1,22 @@
  <i class="toggle big angle down icon"></i>
 <div class="ui vertical menu">
-	<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
-			<i class="home icon"></i>
-			首頁
-  	<% end %>
-  </a>
+	<% if !signed_in? %>
+		<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
+				<i class="home icon"></i>
+				首頁
+		<% end %>
+	<% end%>
   <%= link_to rent_path, class:"item", 'data-no-turbolink' => true do %>
     	<i class="map marker icon"></i>
      		租屋
   <% end %>
+  <% if signed_in? %>
+		<%= link_to renthouse_path, class:"item", 'data-no-turbolink' => true do %>
+				<i class="add icon"></i>
+				出租
+		<% end %>
+ <% end%>
+
   <div class="item">
     <b>More</b>
     <div class="menu">

@@ -1,4 +1,5 @@
 	//= require jquery.easing.min
+	//= require jquery.address
 	// image slider show
 
 	var rent_page = function () {

@@ -171,6 +171,15 @@ function addAroundMarker(obj) {
   else if (obj.data === "police_stations") {
     iconCat = '<%= asset_path 'police_stations.png' %>';	
   }
+	else if (obj.data === "gas_stations") {
+    iconCat = '<%= asset_path 'gas_stations.png' %>';	
+  }
+	else if (obj.data === "post_offices") {
+    iconCat = '<%= asset_path 'post_offices.png' %>';	
+  }
+	else if (obj.data === "subways") {
+    iconCat = '<%= asset_path 'subways.png' %>';	
+  }
   // icon image setting
   var iconImage = {
     url: iconCat,
@@ -185,7 +194,8 @@ function addAroundMarker(obj) {
     lat: obj.lat,
     lng: obj.lng,
     icon: iconImage
-  });
+  });	
+	
   google.maps.event.addListener(marker, 'mouseover', function(){
     infowindow = new google.maps.InfoWindow();
     var html = "";
@@ -313,26 +323,16 @@ function createMarker(obj, markers) {
           else if ( response[i].data == 'rent_houses' ){
             getHouse = response[i];
             $('#information').html(
-              '<span class=""><div class="red ui ribbon label">'
-              + "類型" + '</div>' +
-              "<p>" + response[i].use + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "格局 / 人數" + '</div>' +
-              "<p>" + response[i].structure + " / " + response[i].people + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "地址" + '</div>' +
-              "<p>" + response[i].address + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "租金" + '</div>' +
-              "<p>" + response[i].price + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "聯絡人" + '</div>' +
-              "<p>" + response[i].owner + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">' + 
-              "聯絡電話" + '</div>' +
-              "<p>" + response[i].tel + "</p></span>" +
-              '<div class="" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' + "點擊率" + response[i].browse_rate +	
-              "<p>" + response[i].breif + '</p><button class="add_to_cart ui red mini button" onclick="addToCart()">加入清單</button></div>'
+							'			<div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
+							'<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
+              '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
+						  '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
+							'<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
+              '<tr class="structure row"><td class="first"><i class="building icon"></i>格局</td>' +  '<td class="second"><p>' + response[i].structure + '</p></td</tr>' +
+							'<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
+              '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
+              '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
+              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].breif + '</p></td></tr><tbody></talbe>'  
             );
             // add the pictures of house to the slider.
             var sliderHTML = splitImgUrl(response[i].img);
@@ -356,7 +356,7 @@ function createMarker(obj, markers) {
             // if the data category of response is not in around
             // around will add a property of data.
             if (!(response[i].data in around)) {
-              console.log("found " + response[i].data);
+              //console.log("found " + response[i].data);
               around[response[i].data] = [];
             }
             // add the data into the corresponding category of
@@ -413,7 +413,7 @@ function showAround (cat) {
   // show cat only
   if (cat in aroundMarkers) {
     for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      aroundMarkers[cat][i].setMap(map);
+      	aroundMarkers[cat][i].setMap(map);
     }
   }
 }
@@ -593,9 +593,18 @@ var house_array = []
 function addToCart() {
 
   // add input field by jQuery
-  var max_input = 2;
+  var max_input = 4;
   var fieldCount = 1;
 
+	 // whenever add the house to cart change the menu tab to List
+   $('div.ui.inverted.red.pointing.response.menu .item')
+      .tab('change tab', 'List')
+      .tab('deactivate all')
+      .tab('activate tab', 'List')
+      .tab('activate navigation', 'List')
+    ;
+   window.location.hash = 'List';
+	
   if ( house_number <= max_input ){
     house_array.push(getHouse);
 
@@ -603,7 +612,7 @@ function addToCart() {
     $('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
                       '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
                       + getHouse.address + " " +  getHouse.price + "$ </a>" 
-                      + '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' 
+                      + '</span><a href="#" onclick="removeFromCart(this)" id="house' 
                       +  house_number + '" class="removeclass">x</a></div></li>'
                      );
     house_number++;
