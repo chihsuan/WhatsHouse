@@ -198,6 +198,9 @@ div.launch.button {
 	.ui.tab.active, 
 	.ui.tab.open {
 		margin: 0px;
+		td.first{
+			min-width: 78px;
+		}
 	}
 	
 	.ui.form .error.message {
