@@ -84,7 +84,6 @@ $max-phone-size: 768px;
 			}
 			
 			a.ui.red.button{
-				background: #720000;
 				height: 57px;
 				width: 42%;
 				text-align: center;
@@ -398,39 +397,43 @@ select#people {
 		display: none;
 	}
 	
-	form{
-		top: -20px;
-		position: relative;
-	}
-	.input{
-		width: 174%;
-	}
-	input{
-		height: 38px;
-	}
-	
-	.ui.icon.input input.search_submit{
-		background: transparent;
-		position: absolute;
-		top: 0px;
-		width: 15px;
-		left: 206px;
-		border: none;
-		box-shadow: none;
-		left: 88%;	
-	}
-	>div.item{
+	div.item{
 		padding: 0px;
 		margin: 0px;
 		height: 50px;
 		width: 23%;
-	}
+		
+		form{
+				top: -20px;
+				position: relative;
+		
+			.ui.input{
+					width: 174%;
+			
+				input{
+					height: 38px;
+				}
 	
-	>.icon{
-		background: rgb(223, 65, 25);
-		color: white;
-		padding: 10px;
-		@include opacity(1);
+				input.search_submit{
+					background: transparent;
+					position: absolute;
+					top: 0px;
+					width: 15px;
+					left: 206px;
+					border: none;
+					box-shadow: none;
+					left: 88%;	
+				}
+
+				.icon{
+					background: rgb(223, 65, 25);
+					color: white;
+					padding: 10px;
+					@include opacity(1);
+				}
+			}		
+		}
+		
 	}
 }
 

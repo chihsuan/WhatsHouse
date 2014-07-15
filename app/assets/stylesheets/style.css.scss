@@ -231,9 +231,9 @@ footer{
 }
 
 
-input.ui.red.button {
+/*input.ui.red.button {
 	background: #720000;
-}
+}*/
 
 
 ::-webkit-scrollbar {  
@@ -250,4 +250,8 @@ input.ui.red.button {
 	background-color: #aaa;  
 }  
 
+a.ui.red.button, input.ui.red.button{
+	width: 100%;
+	background-color: $orange;
+}
 
