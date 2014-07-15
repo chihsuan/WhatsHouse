@@ -586,7 +586,7 @@ function addToCart() {
   var max_input = 4;
   var fieldCount = 1;
 
-	 // whenever click the marker change the menu tab to information
+	 // whenever add the house to cart change the menu tab to List
    $('div.ui.inverted.red.pointing.response.menu .item')
       .tab('change tab', 'List')
       .tab('deactivate all')
@@ -602,7 +602,7 @@ function addToCart() {
     $('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
                       '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
                       + getHouse.address + " " +  getHouse.price + "$ </a>" 
-                      + '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' 
+                      + '</span><a href="#" onclick="removeFromCart(this)" id="house' 
                       +  house_number + '" class="removeclass">x</a></div></li>'
                      );
     house_number++;

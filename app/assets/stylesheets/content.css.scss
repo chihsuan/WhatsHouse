@@ -410,8 +410,10 @@ select#people {
 			.ui.input{
 					width: 174%;
 			
-				input{
-					height: 38px;
+				input{	
+					height: 33px;
+					border-radius: 0px;
+					padding: 7px 0px 6px 20px;
 				}
 	
 				input.search_submit{
