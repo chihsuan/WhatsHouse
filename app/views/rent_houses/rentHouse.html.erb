@@ -1,19 +1,12 @@
 <% provide(:title, '出租') %>
 
 		<div id = "rent_houses_page">
-			
 		<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
 		<!-- progressbar -->
-		<div class="ui three steps" id="progressbar">
-			<div class="ui active step">基本資訊</div>
-			<div class="ui step">聯絡資訊</div>
-			<div class="ui step">刊登內容</div>
-		</div>
-		<fieldset>
 		  <%= render 'shared/error_messages', object: f.object%>
 		  <div class="two fields">
 			<div class="field use">
-			  <div class="ui left labeled icon input">
+				<div class="ui left labeled icon input">
 			  	<%= f.text_field :use , :placeholder => "類別"%>
 			  	<i class="home icon"></i>
 			  	<div class="ui corner label">
@@ -67,9 +60,6 @@
 		  </div> 
 
 
-			<input type="button" name="next" class="next action-button" value="下一步" />
-		  </fieldset>
-		 <fieldset>
 		  <div class="field">
 			<div class="ui left labeled icon input">
 				<%= f.text_field :owner, :placeholder => "聯絡人"%>
@@ -89,11 +79,6 @@
 			  </div>
 			</div>
 		  </div>
-		<input type="button" name="previous" class="previous action-button" value="上一步" />
-		<input type="button" name="next" class="next action-button" value="下一步" />
-		 </fieldset>
-
-		 <fieldset>
 		  <div class="field">
 			<div class="ui left labeled icon input" id="info">
 			  <%= f.text_area  :breif, :placeholder => "刊登資訊" %>
@@ -103,7 +88,6 @@
 			  </div>
 			</div>
 		  </div>
-
 		  <div class="field img_input_wrapper">
 			<div class="ui left labeled icon input">
 			  <%= text_field_tag 'img[]',  nil, :placeholder => "照片URL" %>
@@ -114,9 +98,7 @@
 			</div>
 			<span class="i icon button add_more_button"><i class="add icon"></i></span>
 		  </div>
-		<input type="button" name="previous" class="previous action-button" value="上一步" />
 		  <%= f.submit "出租", class:"submit action-button" %>
-		</fieldset>
 		</div>
 		<% end %>
 
