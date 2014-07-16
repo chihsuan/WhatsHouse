@@ -6,18 +6,19 @@
 		  <%= render 'shared/error_messages', object: f.object%>
 		  <div class="two fields">
 			<div class="field use">
+				<%= f.label :'類別' %>
 				<div class="ui left labeled icon input">
-			  	<%= f.text_field :use , :placeholder => "類別"%>
+			  	<%= f.text_field :use %>
 			  	<i class="home icon"></i>
 			  	<div class="ui corner label">
 				  <i class="icon asterisk"></i>
 			  	</div>
 			  </div>
 			</div>
-
 			<div class="field structure">
+				<%= f.label :'格局' %>
 			  <div class="ui left labeled icon input">
-			    <%= f.text_field :structure, :placeholder => "格局"%>
+			    <%= f.text_field :structure %>
 			  	<i class="building icon"></i>
 			  	<div class="ui corner label">
 				  <i class="icon asterisk"></i>
@@ -28,8 +29,9 @@
 
 		 <div class="two fields">
 		  <div class="field price">
+			<%= f.label :'租金' %>	
 			<div class="ui left labeled icon input">
-				<%= f.text_field :price, :placeholder => "租金"%>
+				<%= f.text_field :price %>
 			  <i class="dollar icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
@@ -38,41 +40,41 @@
 		 </div> 
 
 		  <div class="field people">
+			<%= f.label :'人數' %>
 			<div class="ui left labeled icon input">
-				<%= f.text_field :people, :placeholder => "人數"%>
+				<%= f.text_field :people %>
 			  <i class="users icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
 			  </div>
 			</div>
-		</div> 
-
+			</div> 
 		</div>
 
 		  <div class="field">
+			<%= f.label :'地址' %>
 			<div class="ui left labeled icon input">
-				<%= f.text_field :address, :placeholder => "地址"%>
+				<%= f.text_field :address %>
 			  <i class="map marker icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
 			  </div>
 			</div>
 		  </div> 
-
-
 		  <div class="field">
+			<%= f.label :'聯絡人' %>	
 			<div class="ui left labeled icon input">
-				<%= f.text_field :owner, :placeholder => "聯絡人"%>
+				<%= f.text_field :owner %>
 			  <i class="user icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
 			  </div>
 			</div>
 		  </div>
-
 		  <div class="field">
+				<%= f.label :'聯絡電話' %>
 			<div class="ui left labeled icon input">
-				<%= f.text_field :tel, :placeholder => "聯絡電話"%>
+				<%= f.text_field :tel %>
 			  <i class="phone icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
@@ -80,8 +82,9 @@
 			</div>
 		  </div>
 		  <div class="field">
+					<%= f.label :'刊登資訊' %>
 			<div class="ui left labeled icon input" id="info">
-			  <%= f.text_area  :breif, :placeholder => "刊登資訊" %>
+			  <%= f.text_area  :breif  %>
 			  <i class="infor icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
@@ -89,8 +92,9 @@
 			</div>
 		  </div>
 		  <div class="field img_input_wrapper">
+				<%= f.label :'照片連結(url)' %>
 			<div class="ui left labeled icon input">
-			  <%= text_field_tag 'img[]',  nil, :placeholder => "照片URL" %>
+			  <%= text_field_tag 'img[]',  nil %>
 			  <i class="photo icon"></i>
 			  <div class="ui corner label">
 				<i class="icon asterisk"></i>
