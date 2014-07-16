@@ -10,6 +10,9 @@
 @import "compass/css3/opacity";
 @import "compass/css3/text-shadow";
 $orange: #df4119;
+$min-web-size: 920px;
+$max-phone-size: 768px;
+
 
 //home page
 #site-container{
@@ -24,58 +27,91 @@ $orange: #df4119;
 	min-height: 520px;
 	@include background-size(100%);
 	@include opacity(0.95);
-}
 
-.heading{
-	padding: 15px 15px 15px 20px;
-	width: 980px;
-	margin-right: auto;
-	margin-left: auto;
-	@include text-shadow(rgba(0,0,0,0.4) 1px 1px 1px);
+	@media screen and (max-width: $min-web-size) {
+    height: auto;
+		width: auto;
+  }
+	@media screen and (max-width: $max-phone-size) {
+   	top: -104px;
+  }
 
-	#signup{
-		font-size: 15px;
-		padding: 10px 10px 10px 10px;
-		margin-left: 26%;
-		margin-left: 330px;
-		background: transparent;
+	@media screen and (max-width: $max-phone-size - 78px ) {
+		background-image: none;
 	}
 
-	div.ui.left.labeled.icon.input {
-		@include border-radius(5px);
-	}
-}
+	.heading{
+		padding: 20px 15px 15px 107px;
+		margin-right: auto;
+		margin-left: auto;
+		@include text-shadow(rgba(0,0,0,0.4) 1px 1px 1px);
 
-.enter{
-	width: 41%;
-	left: 30%;
-	position: relative;
-
-	a.ui.red.button{
-		background: #720000;
-		height: 57px;
-		width: 42%;
-		text-align: center;
-		padding-top: 18px;
-		margin: 10px 10px 10px 10px;
-		font-size: 18px;
-		&:hover{
-			background-color: #E75859;
-			color: #FFFFFF;
+		@media screen and (max-width: $max-phone-size) {
+			padding: 14%
 		}
-		&:last-child{
-			background: white;
-			border: 2px solid white;
-			color: #444;;
-			font-weight: normal;
+
+		h1{
+			@media screen and (max-width: $max-phone-size) {
+   			display: none;
+			}
 		}
-		&:last-child:hover{
-			background: rgba(255, 255, 255, 0);
-			color: white;
-			@include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
-	 	}
+
+		#signup{
+			font-size: 15px;
+			padding: 10px 10px 10px 10px;
+			margin-left: 26%;
+			margin-left: 330px;
+			background: transparent;
+		}
+
+		div.ui.left.labeled.icon.input {
+			@include border-radius(5px);
+
+		}
+
+		.enter{
+			width: 41%;
+			left: 30%;
+			position: relative;
+
+			@media screen and (max-width: $min-web-size) {
+				width: 56%;
+  		}
+
+			a.ui.button{
+				@media screen and (max-width: $max-phone-size) {
+					width: 68% !important;
+  			}
+			}
+
+			a.ui.red.button{
+				height: 57px;
+				width: 42%;
+				text-align: center;
+				padding-top: 18px;
+				margin: 10px 10px 10px 10px;
+				font-size: 18px;
+			&:hover{
+				background-color: #E75859;
+				color: #FFFFFF;
+			}
+			&:last-child{
+				background: white;
+				border: 2px solid white;
+				color: #444;;
+				font-weight: normal;
+			}
+			&:last-child:hover{
+				background: rgba(255, 255, 255, 0);
+				color: white;
+				@include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
+	 			}
+			}
+		}
 	}
 }
+
+
 
 //rent page
 
@@ -91,6 +127,7 @@ $orange: #df4119;
 	height: auto;
 	max-height: 420px;
 	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
+
 	div.message {
 		color: $orange;
 	}
@@ -113,6 +150,11 @@ div.launch.button {
 	right: 9%;
 	top: -45px;
 	width: 20px;
+
+	@media screen and (max-width: 1210px) {
+		right: 14%;
+		top: -94px;
+  }
 }
 
 .ui.response.cell.grid {
@@ -122,6 +164,15 @@ div.launch.button {
 	width: 40%;
 	display:table;
 	z-index: 2;
+
+	@media screen and (max-width: $max-phone-size) {
+			width: 50%;
+	}
+	@media screen and (max-width: $max-phone-size - 200px) {
+		width: 60%;
+		height: 100px;
+	}
+
 
 	.column{
 		padding-right: 30px;
@@ -142,6 +193,14 @@ div.launch.button {
 			top: 45px;
 	}
 
+	}
+
+	.ui.tab.active,
+	.ui.tab.open {
+		margin: 0px;
+		td.first{
+			min-width: 78px;
+		}
 	}
 
 	.ui.form .error.message {
@@ -177,11 +236,6 @@ div.launch.button {
 
 
 #comments{
-	margin: 0px;
-}
-
-.ui.tab.active,
-.ui.tab.open {
 	margin: 0px;
 }
 
@@ -301,16 +355,15 @@ div.house_cart {
 	}
 }
 
-
+/*
 #wrap button.add_to_cart.ui.orange.mini.button{
-	position: fixed;
-	bottom: 30px;
-	right: 4.5%;
+	position: relative;
 	padding: 10px 10px 10px 10px;
 	background: $orange;
 	z-index: 100;
-	width: 37.3%;
+	width: 100%;
 }
+*/
 
 .undo{
 	float:right;
@@ -340,37 +393,52 @@ select#people {
 .menu_search_form{
 	display: inline;
 
-	form{
-		top: -20px;
-		position: relative;
-	}
-	.input{
-		width: 194%;
-	}
-	input{
-		height: 38px;
+	@media screen and (max-width: $max-phone-size - 78px) {
+		display: none;
 	}
 
-	.ui.icon.input input.search_submit{
-		background: transparent;
-		position: absolute;
-		top: 0px;
-		width: 15px;
-		left: 206px;
-		border: none;
-		box-shadow: none;
-	}
-	>div.item{
+	div.item{
 		padding: 0px;
 		margin: 0px;
 		height: 50px;
-	}
+		width: 23%;
 
-	>.icon{
-		background: rgb(223, 65, 25);
-		color: white;
-		padding: 10px;
-		@include opacity(1);
+		form{
+				top: -20px;
+				position: relative;
+
+			.ui.input{
+					width: 174%;
+
+				input{
+					height: 33px;
+					border-radius: 0px;
+					padding: 7px 0px 6px 20px;
+
+					&:focus{
+						border-color: $orange;
+					}
+				}
+
+				input.search_submit{
+					background: transparent;
+					position: absolute;
+					top: 0px;
+					width: 15px;
+					left: 206px;
+					border: none;
+					box-shadow: none;
+					left: 88%;
+				}
+
+				.icon{
+					background: rgb(223, 65, 25);
+					color: white;
+					padding: 10px;
+					@include opacity(1);
+				}
+			}
+		}
 	}
 }
 

@@ -28,11 +28,14 @@ class EventsController < ApplicationController
 		@data += Stores.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += Hospitals.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += Station.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
-		@data += Childcareroster.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
-		@data += PoliceStation.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+		#@data += Childcareroster.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+		#@data += PoliceStation.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += TainanMarket.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
-		@data += TainanSchool.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+		#@data += TainanSchool.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 		@data += Dining.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+		@data += PostOffice.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+		@data += GasStation.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+		@data += Subway.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
 
 		#return house information to user
 		respond_to do |format|

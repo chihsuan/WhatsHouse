@@ -2,19 +2,15 @@ var map;
 var services;
 var around = {};
 var aroundMarkers = {};
+// add aroundMarkers to aroundLayers, since
+// leaflet don't have hide/show property on markers like
+// google map, I have to add them on layers and then add to map
+// remove on map to hide/show the markers.
 var aroundLayers = [];
 var markers = [];
 var markerCluster;
 var getHouse;
 var id_markers = {};
-
-var sevenElevens = [],
-    schools = [],
-    restaurants = [],
-    trainStations = [],
-    hospitals = [],
-    policeOffices = [],
-    markets = [];
 
 var focusPoint = {
   lat: null,
@@ -77,6 +73,15 @@ function addAroundMarker(obj) {
   } else if (obj.data === "police_stations") {
     iconCat = '<%= asset_path "police_stations.png" %>';
   }
+  else if (obj.data === "gas_stations") {
+    iconCat = '<%= asset_path 'gas_stations.png' %>';
+  }
+  else if (obj.data === "post_offices") {
+    iconCat = '<%= asset_path 'post_offices.png' %>';
+  }
+  else if (obj.data === "subways") {
+    iconCat = '<%= asset_path 'subways.png' %>';
+  }
   // icon image setting
   var iconImage = L.icon({
     iconUrl: iconCat,
@@ -104,7 +109,7 @@ function addAroundMarker(obj) {
     } else if (key === "breif") {
       html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
     } else if (key === "tel") {
-        html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
+      html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
     } else if (key === "time") {
       html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
     }
@@ -198,13 +203,13 @@ function createMarker(obj, markers) {
           else if ( response[i].data == 'rent_houses' ){
             getHouse = response[i];
             $('#information').html(
-							'<div class="ui left corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
-							'<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
+              '      <div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
+              '<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
               '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
-						  '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
-							'<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
+              '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
+              '<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
               '<tr class="structure row"><td class="first"><i class="building icon"></i>格局</td>' +  '<td class="second"><p>' + response[i].structure + '</p></td</tr>' +
-							'<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
+              '<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
               '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
               '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
               '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].breif + '</p></td></tr><tbody></talbe>'
@@ -231,7 +236,7 @@ function createMarker(obj, markers) {
             // if the data category of response is not in around
             // around will add a property of data.
             if (!(response[i].data in around)) {
-              console.log("found " + response[i].data);
+              //console.log("found " + response[i].data);
               around[response[i].data] = [];
             }
             // add the data into the corresponding category of
@@ -277,9 +282,7 @@ function showAround (cat) {
   // show all
   if (cat === "all") {
     for (var category in aroundMarkers) {
-      // for(var i = 0; i != aroundMarkers[category].length; i++) {
-      //   aroundMarkers[category][i].addTo(map);
-      // }
+      // add all around markers on layer
       aroundLayers[category] = L.layerGroup(aroundMarkers[category]);
       map.addLayer(aroundLayers[category]);
     }
@@ -287,9 +290,7 @@ function showAround (cat) {
   }
   // show cat only
   if (cat in aroundMarkers) {
-    // for(var i = 0; i != aroundMarkers[cat].length; i++) {
-    //   aroundMarkers[cat][i].addTo(map);
-    // }
+    // add markers with category:cat on layer
     aroundLayers[cat] = L.layerGroup(aroundMarkers[cat]);
     map.addLayer(aroundLayers[cat]);
   }
@@ -300,18 +301,13 @@ function hideAround (cat) {
   // hide all
   if (cat === "all") {
     for (var category in aroundMarkers) {
-      // for(var i = 0; i != aroundMarkers[category].length; i++) {
-      //   aroundMarkers[category][i].addTo(null);
-      // }
+      // remove layer to hide the markers
       map.removeLayer(aroundLayers[category]);
     }
     return;
   }
   // hide cat only
   if (cat in aroundMarkers) {
-    // for(var i = 0; i != aroundMarkers[cat].length; i++) {
-    //   aroundMarkers[cat][i].addTo(null);
-    // }
     map.removeLayer(aroundLayers[cat]);
   }
 }
@@ -471,7 +467,7 @@ function addToCart() {
   var max_input = 4;
   var fieldCount = 1;
 
-	 // whenever click the marker change the menu tab to information
+   // whenever add the house to cart change the menu tab to List
    $('div.ui.inverted.red.pointing.response.menu .item')
       .tab('change tab', 'List')
       .tab('deactivate all')
@@ -483,15 +479,12 @@ function addToCart() {
   if ( house_number <= max_input ){
     house_array.push(getHouse);
     fieldCount++;
-    $('.cart').append('<li>' +
-        '<i class="map marker icon"></i><div class="content">' +
-        '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' +
-        getHouse.id + '">' +
-        getHouse.address + " " +
-        getHouse.price + "$ </a>" +
-        '</span><a href="#" onclick="javascript:removeFromCart(this)" id="house' +
-        house_number + '" class="removeclass">x</a></div></li>'
-    );
+    $('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
+                      '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
+                      + getHouse.address + " " +  getHouse.price + "$ </a>"
+                      + '</span><a href="#" onclick="removeFromCart(this)" id="house'
+                      +  house_number + '" class="removeclass">x</a></div></li>'
+                     );
     house_number++;
   }
   return false;

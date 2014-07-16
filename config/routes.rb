@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 	resources :users
 	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
-	resources :rent_houses, only: [:create, :destroy]
+	resources :rent_houses
 	resources :sale_houses,  only: [:create, :destroy]
 	root :to => "content#content"
 	

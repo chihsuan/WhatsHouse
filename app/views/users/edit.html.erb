@@ -19,7 +19,7 @@
 								<td>出租中 (<%= @user.rent_houses.count %>)</td>
 								 <td><ol class="rent_houses">
 							<% if @user.rent_houses.any? %>
-							 	  <%= render @user.rent_houses %>
+									<%= render @user.rent_houses %>
 							<% end %>
 									</ol>
 								</td>

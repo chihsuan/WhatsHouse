@@ -27,16 +27,17 @@ class UsersController < ApplicationController
   	end
 
 	def edit
+		@user = User.find(params[:id])
 	end
 
 	# upadet user profile
 	def update	
   	  	@user = User.find(params[:id])
     	if @user.update_attributes(user_params)
-      	flash[:success] = "更新成功!"
-      	redirect_to @user
+      	  flash[:success] = "更新成功!"
+      	  redirect_to @user
     	else
-      	 render 'edit'
+      	  render 'edit'
    		end
   	end
 	
