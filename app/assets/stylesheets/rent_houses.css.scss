@@ -5,20 +5,6 @@
 @import "compass/css3/background-size";
 @import "compass/css3/box-shadow";
 
-.ui.form.rent {
-	position: absolute;
-	width: 30%;
-	top: 15%;
-	left: 20%;
-}
-
-.house_list{
-	width: 30%;
-	position: absolute;
-	top: 15%;
-	left: 60%;
-	color: white;
-}
 
 #rent_houses_page{
 	height: 100%;
@@ -78,6 +64,18 @@ div.two.fields > .field{
 	top: 40px;
 	
 	
+	div.ui.left.labeled.icon.input{
+		padding: 0px 0px 10px 0px;
+	}
+	
+	label{
+		float: left;
+		font-weight: bold;
+		font-size: 15px;
+		padding: 10px 0px 10px 0px;
+	}
+	
+	
 	textarea {
 		padding: 15px;
 		border: 1px solid #ccc;
@@ -89,7 +87,16 @@ div.two.fields > .field{
 		color: #2C3E50;
 		font-size: 13px;
 	}
+	
+	textarea ,	input{
+		border: 1px solid rgb(220, 220, 220);
+		@include box-shadow(rgba(0, 0, 0, 0.0392157) 0px 2px 4px 0px inset)
+	}
 
+	input.ui.red.button.submit{
+		margin-bottom: 20px;
+		margin-top: 10px;
+	}
 
 }
 
@@ -98,6 +105,14 @@ div.field.img_input_wrapper{
 	width: 100%;
 }
 
+
+.house_list{
+	width: 30%;
+	position: absolute;
+	top: 15%;
+	left: 60%;
+	color: white;
+}
 
 
 // show house information page
