@@ -77,23 +77,8 @@ div.two.fields > .field{
 	position: relative;
 	top: 40px;
 	
-	fieldset {
-		background: white;
-		border: 0 none;
-		@include border-radius(3px);
-		@include box-shadow(rgba(0, 0, 0, 0.4) 0 0 15px 1px);
-		padding: 20px 30px;
 	
-		box-sizing: border-box;
-		width: 100%;
-		/*stacking fieldsets above each other*/
-		position: absolute;
-		&:not(:first-of-type) {
-			display: none;
-		}
-	}
-	
-	input, textarea {
+	textarea {
 		padding: 15px;
 		border: 1px solid #ccc;
 		@include border-radius(3px);
@@ -105,45 +90,9 @@ div.two.fields > .field{
 		font-size: 13px;
 	}
 
-	.action-button {
-		width: 100px;
-		background: #D50909;
-		font-weight: bold;
-		color: white;
-		border: 0 none;
-		@include border-radius(1px);
-		cursor: pointer;
-		padding: 10px 5px;
-		margin: 10px 5px;
-	}
 
-	.action-button{
-		&:hover, &:focus {
-			@include box-shadow( white  0 0 0 2px #27AE60 0 0 0 3px);
-		}
-	}
 }
 
-/*headings*/
-.fs-title {
-	font-size: 15px;
-	text-transform: uppercase;
-	color: #2C3E50;
-	margin-bottom: 10px;
-}
-.fs-subtitle {
-	font-weight: normal;
-	font-size: 13px;
-	color: #666;
-	margin-bottom: 20px;
-}
-/*progressbar*/
-#progressbar {
-	margin-bottom: 30px;
-	overflow: hidden;
-	/*CSS counters to number the steps*/
-	counter-reset: step;
-}
 
 div.field.img_input_wrapper{
 	width: 100%;
