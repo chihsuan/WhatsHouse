@@ -24,6 +24,7 @@
 					<a class="item" data-tab="Comment">討論</a>
 					<% if current_page?("buy") || current_page?("rent") %>
 						<a class="item" data-tab="Advanced_Search">進階搜尋</a>
+						<a class="item" data-tab="List">清單</a>
 					<% end %>
 				</div>
 				<div class="launch button"><i class='big red sort icon'></i></div>
@@ -103,18 +104,21 @@
 							<div id="search_show" class="" style="display:none">
 							</div>
 						</div>
+						<div class="ui tab segment" id="list" data-tab="List">
+							<% if current_page?("buy") || current_page?("rent") %>
+								<div class="house_cart ui relaxed divided list">
+									<div class="cart item">
+										<ul class="house_list">
+										</ul>
+									</div>
+								</div>
+	 						<% end %>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<% if current_page?("buy") || current_page?("rent") %>
-				<div class="house_cart ui relaxed divided list">
-					<div class="cart item">
-						<ul class="house_list">
-						</ul>
-					</div>
-				</div>
-		<% end %>
+			'<button class="add_to_cart ui orange mini button" onclick="addToCart()">加入清單</button></div>'
 	</body>
 	<script type="text/javascript">
 			var disqus_shortname = 'whatshouse';

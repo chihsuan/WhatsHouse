@@ -57,3 +57,4 @@ gem 'omniauth-facebook'
 gem 'certified'
 gem 'oauth2'
 gem "settingslogic"
+gem 'compass-rails'

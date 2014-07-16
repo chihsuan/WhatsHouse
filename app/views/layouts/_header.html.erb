@@ -12,7 +12,7 @@
 	<% if current_page?("rent") %>
 	<div class="menu_search_form">	
 		<div class="item">
-		<%= form_tag('/rent_houses/search', remote:true, method:'get', class:"search_form") do%>
+		<%= form_tag('/events/search', remote:true, method:'get', class:"search_form") do%>
 			<div class="ui icon input">
 				 <%= text_field_tag(:district, nil,placeholder: "搜尋城市、鄉鎮市區") %>
 				<i class="search icon">

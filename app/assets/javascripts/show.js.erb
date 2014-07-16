@@ -2,10 +2,19 @@ var map;
 var services;
 var around = {};
 var aroundMarkers = {};
+var aroundLayers = [];
 var markers = [];
 var markerCluster;
 var getHouse;
 var id_markers = {};
+
+var sevenElevens = [],
+    schools = [],
+    restaurants = [],
+    trainStations = [],
+    hospitals = [],
+    policeOffices = [],
+    markets = [];
 
 var focusPoint = {
   lat: null,
@@ -75,12 +84,12 @@ function addAroundMarker(obj) {
   });
 
   var marker = L.marker([obj.lat, obj.lng], {
-    id: obj.id,
-    data:obj.data,
-    lat: obj.lat,
-    lng: obj.lng,
     icon: iconImage
   });
+  marker.id = obj.id;
+  marker.data = obj.data;
+  marker.lat = obj.lat;
+  marker.lng = obj.lng;
 
   var html = "";
   for (var key in obj) {
@@ -119,7 +128,6 @@ function createMarker(obj, markers) {
   marker.lat = obj.lat;
   marker.lng = obj.lng;
 
-  marker.bindPopup();
   marker.on('click', function(){
     // whenever click the marker change the menu tab to information
     $('div.ui.inverted.red.pointing.response.menu .item')
@@ -190,26 +198,16 @@ function createMarker(obj, markers) {
           else if ( response[i].data == 'rent_houses' ){
             getHouse = response[i];
             $('#information').html(
-              '<span class=""><div class="red ui ribbon label">'
-              + "類型" + '</div>' +
-              "<p>" + response[i].use + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "格局 / 人數" + '</div>' +
-              "<p>" + response[i].structure + " / " + response[i].people + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "地址" + '</div>' +
-              "<p>" + response[i].address + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "租金" + '</div>' +
-              "<p>" + response[i].price + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">'
-              + "聯絡人" + '</div>' +
-              "<p>" + response[i].owner + "</p></span>" +
-              '<span class=""><div class="red ui ribbon label">' +
-              "聯絡電話" + '</div>' +
-              "<p>" + response[i].tel + "</p></span>" +
-              '<div class="" id="main_infor"><div class="red ui ribbon label">' + "刊登資訊" + '</div>' + "點擊率" + response[i].browse_rate +
-              "<p>" + response[i].breif + '</p><button class="add_to_cart ui red mini button" onclick="addToCart()">加入清單</button></div>'
+							'<div class="ui left corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
+							'<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
+              '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
+						  '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
+							'<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
+              '<tr class="structure row"><td class="first"><i class="building icon"></i>格局</td>' +  '<td class="second"><p>' + response[i].structure + '</p></td</tr>' +
+							'<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
+              '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
+              '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
+              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].breif + '</p></td></tr><tbody></talbe>'
             );
             // add the pictures of house to the slider.
             var sliderHTML = splitImgUrl(response[i].img);
@@ -279,17 +277,21 @@ function showAround (cat) {
   // show all
   if (cat === "all") {
     for (var category in aroundMarkers) {
-      for(var i = 0; i != aroundMarkers[category].length; i++) {
-        aroundMarkers[category][i].addTo(map);
-      }
+      // for(var i = 0; i != aroundMarkers[category].length; i++) {
+      //   aroundMarkers[category][i].addTo(map);
+      // }
+      aroundLayers[category] = L.layerGroup(aroundMarkers[category]);
+      map.addLayer(aroundLayers[category]);
     }
     return;
   }
   // show cat only
   if (cat in aroundMarkers) {
-    for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      aroundMarkers[cat][i].addTo(map);
-    }
+    // for(var i = 0; i != aroundMarkers[cat].length; i++) {
+    //   aroundMarkers[cat][i].addTo(map);
+    // }
+    aroundLayers[cat] = L.layerGroup(aroundMarkers[cat]);
+    map.addLayer(aroundLayers[cat]);
   }
 }
 
@@ -298,17 +300,19 @@ function hideAround (cat) {
   // hide all
   if (cat === "all") {
     for (var category in aroundMarkers) {
-      for(var i = 0; i != aroundMarkers[category].length; i++) {
-        aroundMarkers[category][i].addTo(null);
-      }
+      // for(var i = 0; i != aroundMarkers[category].length; i++) {
+      //   aroundMarkers[category][i].addTo(null);
+      // }
+      map.removeLayer(aroundLayers[category]);
     }
     return;
   }
   // hide cat only
   if (cat in aroundMarkers) {
-    for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      aroundMarkers[cat][i].addTo(null);
-    }
+    // for(var i = 0; i != aroundMarkers[cat].length; i++) {
+    //   aroundMarkers[cat][i].addTo(null);
+    // }
+    map.removeLayer(aroundLayers[cat]);
   }
 }
 
@@ -317,6 +321,7 @@ function deleteAround () {
   hideAround("all");
   around = {};
   aroundMarkers = {};
+  aroundLayers = {};
 }
 
 // Sets the map on all markers in the array.
@@ -372,12 +377,10 @@ function search () {
          "<ol id='search_result'>"
         );
 
-
         appendSerachContent(data, rating_index);
         var newCenter = new google.maps.LatLng( data[0][0].lat, data[0][0].lng);
         map.setCenter(newCenter);
         map.setZoom(13);
-
       }
       else {
 
@@ -465,8 +468,17 @@ var house_number = $('.cart').length;
 var house_array = []
 function addToCart() {
   // add input field by jQuery
-  var max_input = 2;
+  var max_input = 4;
   var fieldCount = 1;
+
+	 // whenever click the marker change the menu tab to information
+   $('div.ui.inverted.red.pointing.response.menu .item')
+      .tab('change tab', 'List')
+      .tab('deactivate all')
+      .tab('activate tab', 'List')
+      .tab('activate navigation', 'List')
+    ;
+   window.location.hash = 'List';
 
   if ( house_number <= max_input ){
     house_array.push(getHouse);

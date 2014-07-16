@@ -23,6 +23,7 @@
 		<div class="container clearfix">
 		 <%= render :partial => "shared/sidebar" %>	
 		 <%= yield %>
+		<div id='layout_footer'></div>
 		</div>
 		<%= render 'layouts/footer' %>
 		<%= debug(params) if Rails.env.development? %>
