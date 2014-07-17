@@ -1,11 +1,14 @@
 <% provide(:title, '出租') %>
 
 		<div id = "rent_houses_page">
+		<h1>設定出租資料</h1>	
+			
 		<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
 		<!-- progressbar -->
 		  <%= render 'shared/error_messages', object: f.object%>
 		  <div class="two fields">
 			<div class="field use">
+				<abbr title="required">*</abbr>
 				<%= f.label :'類別' %>
 				<div class="ui left labeled icon input">
 			  	<%= f.text_field :use %>
@@ -16,6 +19,7 @@
 			  </div>
 			</div>
 			<div class="field structure">
+				<abbr title="required">*</abbr>
 				<%= f.label :'格局' %>
 			  <div class="ui left labeled icon input">
 			    <%= f.text_field :structure %>
@@ -29,6 +33,7 @@
 
 		 <div class="two fields">
 		  <div class="field price">
+				<abbr title="required">*</abbr>
 			<%= f.label :'租金' %>	
 			<div class="ui left labeled icon input">
 				<%= f.text_field :price %>
@@ -40,6 +45,7 @@
 		 </div> 
 
 		  <div class="field people">
+				<abbr title="required">*</abbr>
 			<%= f.label :'人數' %>
 			<div class="ui left labeled icon input">
 				<%= f.text_field :people %>
@@ -52,6 +58,7 @@
 		</div>
 
 		  <div class="field">
+				<abbr title="required">*</abbr>
 			<%= f.label :'地址' %>
 			<div class="ui left labeled icon input">
 				<%= f.text_field :address %>
@@ -62,6 +69,7 @@
 			</div>
 		  </div> 
 		  <div class="field">
+				<abbr title="required">*</abbr>
 			<%= f.label :'聯絡人' %>	
 			<div class="ui left labeled icon input">
 				<%= f.text_field :owner %>
@@ -72,6 +80,7 @@
 			</div>
 		  </div>
 		  <div class="field">
+				<abbr title="required">*</abbr>
 				<%= f.label :'聯絡電話' %>
 			<div class="ui left labeled icon input">
 				<%= f.text_field :tel %>
@@ -82,6 +91,7 @@
 			</div>
 		  </div>
 		  <div class="field">
+				<abbr title="required">*</abbr>
 					<%= f.label :'刊登資訊' %>
 			<div class="ui left labeled icon input" id="info">
 			  <%= f.text_area  :breif  %>
@@ -102,7 +112,9 @@
 			</div>
 			<span class="i icon button add_more_button"><i class="add icon"></i></span>
 		  </div>
-		  <%= f.submit "出租", class:"submit action-button" %>
+			<div class="submit_area">
+		  	<%= f.submit "出租", class:"ui red button submit" %>
+			</div>
 		</div>
 		<% end %>
 

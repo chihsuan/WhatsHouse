@@ -2,14 +2,18 @@ class User < ActiveRecord::Base
  	has_many :sale_houses, dependent: :destroy
  	has_many :rent_houses, dependent: :destroy
  	has_many :authorizations, dependent: :destroy
+
   	before_save { self.email = email.downcase }
   	before_create :create_remember_token
   	before_create { generate_token(:auth_token) }
+  	
   	validates :name, presence: true, length: { maximum: 50 }
   	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   	validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  	validates :password, confirmation: true
+  	validates :password_confirmation, presence: true
   	has_secure_password
   		validates :password, length: { minimum: 6 }
 	

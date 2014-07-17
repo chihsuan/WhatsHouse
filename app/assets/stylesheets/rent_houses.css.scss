@@ -8,13 +8,16 @@
 
 #rent_houses_page{
 	height: 100%;
-	width: 100%;
+	width: 60%;
 	background-repeat: no-repeat;
 	background-size: 100%;
+	margin: auto;
+	background-color: white;
+	@include box-shadow(rgba(0,0,0,0.1) 0px 1px 2px 1px);
+	position: relative;
+  padding: 20px 0px 100px 66px;
 	
-	
-	
-	#msform {
+	form {
 		margin: auto;
 		width: 500px;
 		text-align: center;
@@ -27,6 +30,13 @@
 			width: 100%;
 		}
 
+		abbr{
+			color: #c07525;
+			margin-right: 5px;
+			padding: 10px 0px 10px;
+			float:left;
+		}
+		
 		label{
 			float: left;
 			font-weight: bold;
@@ -73,7 +83,11 @@
 				position: relative;
 			}
 		}
-
+		
+		.submit_area{
+			border-top: 1px solid #D3D3D3; 
+			margin-top: 32px;
+		}
 
 		#show_img{
 			position: relative; 

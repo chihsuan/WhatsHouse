@@ -116,8 +116,9 @@ $max-phone-size: 768px;
 
 
 #map_canvas { 
-	height: 100%;
+	height: 96% !important;
 	z-index: 1;
+	position: absolute;
 }
 	  
 #area{
