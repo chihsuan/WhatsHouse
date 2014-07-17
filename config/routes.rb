@@ -2,10 +2,9 @@ Rails.application.routes.draw do
 	resources :users
 	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
+	 resources :rent_houses
 	
-	resources :users do
-	  resources :rent_houses
-	end 
+	resources :users
 	resources :sale_houses,  only: [:create, :destroy]
 	root :to => "content#content"
 	
@@ -19,7 +18,7 @@ Rails.application.routes.draw do
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
-  	get 'password_resets/new'
+  get 'password_resets/new'
 	
 	# rent house router
 	match '/renthouse',  to: 'rent_houses#rentHouse',            via: 'get'
