@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   	before_action :signed_in_user, only: [:edit, :update]	
   	before_action :correct_user,   only: [:edit, :update]		
+	before_filter :find_user, :only => [ :show, :edit, :update, :destroy]
 	# sign up controller
 
 
+
 	def show
-  		@user = User.find(params[:id])
   	end
 
 	# new user for sign up form
@@ -27,12 +28,10 @@ class UsersController < ApplicationController
   	end
 
 	def edit
-		@user = User.find(params[:id])
 	end
 
 	# upadet user profile
 	def update	
-  	  	@user = User.find(params[:id])
     	if @user.update_attributes(user_params)
       	  flash[:success] = "更新成功!"
       	  redirect_to @user
@@ -52,5 +51,11 @@ class UsersController < ApplicationController
   	def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
+    end
+
+	protected
+
+    def find_user
+	  @user = User.find(params[:id])
     end
 end
