@@ -6,7 +6,7 @@ class RentHousesController < ApplicationController
   		if signed_in?
   			@rentHouse = RentHouse.find(params[:id])
   		else 
-  			redirect_to 'signin'
+  			redirect_to '/signin'
 		end
 	end
 
@@ -21,7 +21,7 @@ class RentHousesController < ApplicationController
       	  flash[:success] = "更新成功!"
       	  redirect_to @current_houses
     	else
-      	  render 'edit'
+      	  render :edit
    		end
   	end
 	
@@ -42,13 +42,14 @@ class RentHousesController < ApplicationController
       		@rent_house.img = params[:img].join(',')
    	 		if @rent_house.save
      		 	flash[:success] = "RentHouse created!"
-      			redirect_to renthouse_path
+      			redirect_to rent_path
     		else
-      			redirect_to '/renthouse'
+    			@user = current_user
+      			render :new
     		end
     	rescue Exception => ex
     		flash[:error] = "#{ex}"
-      	redirect_to '/renthouse'
+			render :new
 		end
 	end
 

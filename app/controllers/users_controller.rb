@@ -22,7 +22,7 @@ class UsersController < ApplicationController
      	 	flash[:success] = "註冊成功!"
       		redirect_to @user
     	else
-      		render 'new'
+      		render :new
     	end
   	end
 
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       	  flash[:success] = "更新成功!"
       	  redirect_to @user
     	else
-      	  render 'edit'
+      	  render :edit
    		end
   	end
 	
