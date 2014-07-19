@@ -19,10 +19,8 @@ Rails.application.routes.draw do
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
-  get 'password_resets/new'
+	get 'password_resets/new'
 	
-	# rent house router
-	match '/salehouse',  to: 'sale_houses#sale',            via: 'get'
 	
 	# ajax router
 	match '/events/advancedSearch', to: 'events#advancedSearch', via: 'get'
@@ -33,8 +31,6 @@ Rails.application.routes.draw do
 	match 'auth/failure', to: redirect('/'), via: [:get, :post]
 	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
 
-	match '/analysis', to: 'content#analysis', via: 'get'
-	match '/buy', to: 'content#buy', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

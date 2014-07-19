@@ -6,8 +6,6 @@
 		<% end %>
 		<% if !signed_in? %>
 				<!-- <%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %> -->
-			<!--<%= link_to "買房", buy_path, class:"item", 'data-no-turbolink' => true %> -->
-			<!--  <%= link_to "房地產分析", analysis_path, class:"item", 'data-no-turbolink' => true %> -->
 		<% end %>
 	<% if current_page?("rent") %>
 	<div class="menu_search_form">	
@@ -43,14 +41,6 @@
    		<%= link_to "註冊", signup_path, class:"item"%>
 	<% end %>	
 	</div>
-<!-- search button
-      	<div class="item">
-        	<div class="ui icon input">
-          		<input placeholder="Search..." type="text">
-          		<i class="search icon"></i>
-        	</div>
-      	</div>
--->
 	</div>
 
 </div>
