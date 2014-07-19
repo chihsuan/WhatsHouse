@@ -11,7 +11,7 @@
      		租屋
   <% end %>
   <% if signed_in? %>
-		<%= link_to renthouse_path, class:"item", 'data-no-turbolink' => true do %>
+		<%= link_to new_rent_house_path, class:"item", 'data-no-turbolink' => true do %>
 				<i class="add icon"></i>
 				出租
 		<% end %>

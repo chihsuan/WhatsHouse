@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   get 'password_resets/new'
 	
 	# rent house router
-	match '/renthouse',  to: 'rent_houses#rentHouse',            via: 'get'
 	match '/salehouse',  to: 'sale_houses#sale',            via: 'get'
 	
 	# ajax router

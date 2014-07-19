@@ -26,7 +26,7 @@ class RentHousesController < ApplicationController
   	end
 	
 
-	def rentHouse
+	def new
 		if signed_in?
 			@user = current_user
 			@rent_house = current_user.rent_houses.build
