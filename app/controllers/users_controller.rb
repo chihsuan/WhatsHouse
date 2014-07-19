@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 	# sign up controller
 
 
-
 	def show
   	end
 
@@ -56,6 +55,7 @@ class UsersController < ApplicationController
 	protected
 
     def find_user
-	  @user = User.find(params[:id])
+	  	#@user = User.find(params[:id])
+	  	@user = @current_user
     end
 end

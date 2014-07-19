@@ -48,12 +48,12 @@ class RentHousesController < ApplicationController
     		end
     	rescue Exception => ex
     		flash[:error] = "#{ex}"
-      		redirect_to '/renthouse'
+      	redirect_to '/renthouse'
 		end
 	end
 
   	def destroy
- 		@rent_house.destroy
+ 			@rent_house.destroy
   		redirect_to renthouse_path
   	end
 
