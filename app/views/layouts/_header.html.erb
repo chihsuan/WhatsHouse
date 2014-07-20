@@ -30,7 +30,6 @@
 		<%= current_user.name %>
 			<i class="icon dropdown"></i>
 			<div class="menu">
-	 			 <!-- <%= link_to "出售", salehouse_path, class:"item"%> -->
 			<%= link_to "編輯個人檔案", edit_user_path(current_user), class:"item", 'data-no-turbolink' => true %> 
 				<!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
 			<%= link_to "登出", signout_path, method: "delete" , class:"sign_in item" %>
