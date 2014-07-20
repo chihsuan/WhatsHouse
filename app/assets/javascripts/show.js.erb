@@ -1,8 +1,7 @@
 var map;
 var services;
 var around = {};
-var aroundMarkers = {};
-// add aroundMarkers to aroundLayers, since
+// add around markers to aroundLayers, since
 // leaflet don't have hide/show property on markers like
 // google map, I have to add them on layers and then add to map
 // remove on map to hide/show the markers.
@@ -34,21 +33,178 @@ function initialize() {
 
   for (var i = 0; i < real_price_list.length; i++) {
     createMarker(real_price_list[i], markers);
-    console.log(markers[i].getLatLng());
-    console.log(markers[i]);
   }
   //create clusterer and push the global array of markers into it.
   markerCluster.addLayers(markers);
   map.addLayer(markerCluster);
 }
 
-// add marker into map and push it into aroundMarkers, the
+// add a marker to the map and push it to the map.
+function createMarker(obj, markers) {
+  var marker = L.marker([obj.lat, obj.lng]);
+
+  // add additional property (what we need : need to be modified here.)
+  marker.id = obj.id;
+  marker.data = obj.data;
+  marker.lat = obj.lat;
+  marker.lng = obj.lng;
+
+  marker.on('click', function(){
+    console.log("click");
+    console.log(marker.id);
+    // whenever click the marker change the menu tab to information
+    $('div.ui.inverted.red.pointing.response.menu .item')
+      .tab('change tab', 'Information')
+      .tab('deactivate all')
+      .tab('activate tab', 'Information')
+      .tab('activate navigation', 'Information');
+
+    window.location.hash = 'Information';
+
+    //if information area is hide, show it
+    $('#area').show();
+
+    // check if user click on the same marker, yes
+    // then do nothing.
+    if (focusPoint.lat === marker.lat &&
+        focusPoint.lng === marker.lng) {
+      return;
+    }
+    // let the current marker be the focus point.
+    focusPoint.lat = marker.lat;
+    focusPoint.lng = marker.lng;
+    // delete the around points of previous marker.
+    deleteAround();
+
+    // disable all checkbox in the html
+    $('.form .fields .checkbox').checkbox('disable');
+    // request the data from database.
+    jQuery.ajax({
+      url : '/events/show',
+      dataType : 'json',
+      type : 'GET',
+      data : {
+        real_price_id : marker.id,
+        data: marker.data,
+        lat: marker.lat,
+        lng: marker.lng
+      },
+      // if success, check the data type and send the information to the
+      // corresponding block.
+      success : function(response) {
+        // console.log(response);
+        for ( i=0; i < response.length; ++i ){
+          if ( response[i].data == 'sale_houses'){
+            $('#information').html(
+              '<span class="left-information"><div class="orange ui ribbon label">'
+                + "類型" + '</div>' +
+              "<p>" + response[i].use + "</p></span>" +
+              '<span class="right-information"><div class="orange ui ribbon label">'
+              + "格局" + '</div>' +
+              "<p>" + response[i].structure + "</p></span>" +
+              '<span class="left-information"><div class="orange ui ribbon label">'
+              + "地址" + '</div>' +
+              "<p>" + response[i].address + "</p></span>" +
+              '<span class="right-information"><div class="orange ui ribbon label">'
+              + "售價" + '</div>' +
+              "<p>" + response[i].price + "</p></span>" +
+              '<span class="left-information"><div class="orange ui ribbon label">'
+              + "聯絡人" + '</div>' +
+              "<p>" + response[i].owner + "</p></span>" +
+              '<span class="right-information"><div class="orange ui ribbon label">'
+              + "聯絡電話" + '</div>' +
+              "<p>" + response[i].tel + "</p></span>" +
+              '<span class="brief"><div class="orange ui ribbon label">'
+              + "刊登資訊" + '</div>' +
+              "<p>" + response[i].breif + "</p></span>"
+            );
+          }
+          else if ( response[i].data == 'rent_houses' ){
+            getHouse = response[i];
+            $('#information').html(
+              '      <div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
+              '<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
+              '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
+              '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
+              '<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
+              '<tr class="structure row"><td class="first"><i class="building icon"></i>格局</td>' +  '<td class="second"><p>' + response[i].structure + '</p></td</tr>' +
+              '<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
+              '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
+              '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
+              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].breif + '</p></td></tr><tbody></talbe>'
+            );
+            // add the pictures of house to the slider.
+            var sliderHTML = splitImgUrl(response[i].img);
+            if (sliderHTML) {
+              $('#slider1_container').html( '<div id = "images" u="slides">'
+                  + sliderHTML + '</div>');
+              jssor_slider1_starter('slider1_container');
+            }
+            console.log(response[i].address);
+          }
+          else if( response[i].data == 'real_price_deals'){
+            $('#information').html(
+              '"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
+              "<p>" + response[i].area + "</p>" +
+              '"<div class="green ui ribbon label">' + "土地路段" + '</div>' +
+              "<p>" + response[i].location + "</p>" +
+              '"<div class="blue ui ribbon label">' + "總成交價" + '</div>' +
+              "<p>" + response[i].total_price + "元</p>"
+            );
+          }
+          else {
+            // if the data category of response is not in around
+            // around will add a property of data.
+            if (!(response[i].data in around)) {
+              console.log("found " + response[i].data);
+              around[response[i].data] = [];
+            }
+            // add the data into the corresponding category of
+            // around.
+            // around[response[i].data].push(response[i]);
+            addAroundMarker(response[i]);
+          }
+        }
+        // add the numbers of around services after its name EX. 7-11(10),
+        // this means there are 10 7-11s around the house.
+        $("#around_services").find("input").each(function (index) {
+          var cat = $(this).attr('name');
+          var labelID = $(this).next('label').attr('id');
+          var num = 0;
+          if (cat in around) {
+            $(this).next('label').text(labelID + " (" + around[cat].length +")");
+          }
+          else {
+            $(this).next('label').text(labelID + " (0)");
+          }
+        });
+      },
+      error : function(err){
+        // do error checking
+        alert("something went wrong");
+        console.error(err);
+      }
+    });
+    // comment
+    DISQUS.reset({
+      reload: true,
+      config: function () {
+        this.page.identifier = marker.id;
+        this.page.url = "https://whatshouse.herokuapp.com/#!newthread";
+      }
+    });
+  });
+  markers.push(marker);
+  id_markers[marker.id] = marker;
+}
+
+// add marker into map and push it into around, the
 // obj should be the data of surrounded information from server.
 function addAroundMarker(obj) {
   // there are some duplicate data in police_stations,
   // I have to delete it by myself here...
   if (obj.data === "police_stations") {
-    for (var p in aroundMarkers["police_stations"]) {
+    for (var p in around["police_stations"]) {
       if (p.addr === obj.addr) {
         return;
       }
@@ -115,183 +271,23 @@ function addAroundMarker(obj) {
     }
   }
   marker.bindPopup(html);
-
-  if (!(obj.data in aroundMarkers)) {
-    aroundMarkers[obj.data] = [];
-  }
-  aroundMarkers[obj.data].push(marker);
-}
-
-// add a marker to the map and push it to the map.
-function createMarker(obj, markers) {
-  console.log(obj.lat + ',' + obj.lng);
-  var marker = L.marker([obj.lat, obj.lng]);
-
-  // add additional property (what we need : need to be modified here.)
-  marker.id = obj.id;
-  marker.data = obj.datas;
-  marker.lat = obj.lat;
-  marker.lng = obj.lng;
-
-  marker.on('click', function(){
-    // whenever click the marker change the menu tab to information
-    $('div.ui.inverted.red.pointing.response.menu .item')
-      .tab('change tab', 'Information')
-      .tab('deactivate all')
-      .tab('activate tab', 'Information')
-      .tab('activate navigation', 'Information');
-
-    window.location.hash = 'Information';
-
-    //if information area is hide, show it
-    $('#area').show();
-
-    // check if user click on the same marker, yes
-    // then do nothing.
-    if (focusPoint.lat === marker.lat &&
-        focusPoint.lng === marker.lng) {
-      return;
-    }
-    // let the current marker be the focus point.
-    focusPoint.lat = marker.lat;
-    focusPoint.lng = marker.lng;
-    // delete the around points of previous marker.
-    deleteAround();
-
-    // disable all checkbox in the html
-    $('.form .fields .checkbox').checkbox('disable');
-    // request the data from database.
-    jQuery.ajax({
-      url : '/events/show',
-      dataType : 'json',
-      type : 'GET',
-      data : {
-        real_price_id : marker.id,
-        data: marker.data,
-        lat: marker.lat,
-        lng: marker.lng
-      },
-      // if success, check the data type and send the information to the
-      // corresponding block.
-      success : function(response){
-        for ( i=0; i < response.length; ++i ){
-          if ( response[i].data == 'sale_houses'){
-            $('#information').html(
-              '<span class="left-information"><div class="orange ui ribbon label">'
-                + "類型" + '</div>' +
-              "<p>" + response[i].use + "</p></span>" +
-              '<span class="right-information"><div class="orange ui ribbon label">'
-              + "格局" + '</div>' +
-              "<p>" + response[i].structure + "</p></span>" +
-              '<span class="left-information"><div class="orange ui ribbon label">'
-              + "地址" + '</div>' +
-              "<p>" + response[i].address + "</p></span>" +
-              '<span class="right-information"><div class="orange ui ribbon label">'
-              + "售價" + '</div>' +
-              "<p>" + response[i].price + "</p></span>" +
-              '<span class="left-information"><div class="orange ui ribbon label">'
-              + "聯絡人" + '</div>' +
-              "<p>" + response[i].owner + "</p></span>" +
-              '<span class="right-information"><div class="orange ui ribbon label">'
-              + "聯絡電話" + '</div>' +
-              "<p>" + response[i].tel + "</p></span>" +
-              '<span class="brief"><div class="orange ui ribbon label">'
-              + "刊登資訊" + '</div>' +
-              "<p>" + response[i].breif + "</p></span>"
-            );
-          }
-          else if ( response[i].data == 'rent_houses' ){
-            getHouse = response[i];
-            $('#information').html(
-              '      <div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
-              '<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
-              '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
-              '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
-              '<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
-              '<tr class="structure row"><td class="first"><i class="building icon"></i>格局</td>' +  '<td class="second"><p>' + response[i].structure + '</p></td</tr>' +
-              '<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
-              '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
-              '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
-              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].breif + '</p></td></tr><tbody></talbe>'
-            );
-            // add the pictures of house to the slider.
-            var sliderHTML = splitImgUrl(response[i].img);
-            if (sliderHTML) {
-              $('#slider1_container').html( '<div id = "images" u="slides">'
-                  + sliderHTML + '</div>');
-              jssor_slider1_starter('slider1_container');
-            }
-          }
-          else if( response[i].data == 'real_price_deals'){
-            $('#information').html(
-              '"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
-              "<p>" + response[i].area + "</p>" +
-              '"<div class="green ui ribbon label">' + "土地路段" + '</div>' +
-              "<p>" + response[i].location + "</p>" +
-              '"<div class="blue ui ribbon label">' + "總成交價" + '</div>' +
-              "<p>" + response[i].total_price + "元</p>"
-            );
-          }
-          else {
-            // if the data category of response is not in around
-            // around will add a property of data.
-            if (!(response[i].data in around)) {
-              //console.log("found " + response[i].data);
-              around[response[i].data] = [];
-            }
-            // add the data into the corresponding category of
-            // around.
-            around[response[i].data].push(response[i]);
-            addAroundMarker(response[i]);
-          }
-        }
-        // add the numbers of around services after its name EX. 7-11(10),
-        // this means there are 10 7-11s around the house.
-        $("#around_services").find("input").each(function (index) {
-          var cat = $(this).attr('name');
-          var labelID = $(this).next('label').attr('id');
-          var num = 0;
-          if (cat in aroundMarkers) {
-            $(this).next('label').text(labelID + " (" + aroundMarkers[cat].length +")");
-          }
-          else {
-            $(this).next('label').text(labelID + " (0)");
-          }
-        });
-      },
-      error : function(err){
-        // do error checking
-        alert("something went wrong");
-        console.error(err);
-      }
-    });
-    // comment
-    DISQUS.reset({
-      reload: true,
-      config: function () {
-        this.page.identifier = marker.id;
-        this.page.url = "https://whatshouse.herokuapp.com/#!newthread";
-      }
-    });
-  });
-  markers.push(marker);
-  id_markers[marker.id] = marker;
+  around[obj.data].push(marker);
 }
 
 function showAround (cat) {
   // show all
   if (cat === "all") {
-    for (var category in aroundMarkers) {
+    for (var category in around) {
       // add all around markers on layer
-      aroundLayers[category] = L.layerGroup(aroundMarkers[category]);
+      aroundLayers[category] = L.layerGroup(around[category]);
       map.addLayer(aroundLayers[category]);
     }
     return;
   }
   // show cat only
-  if (cat in aroundMarkers) {
+  if (cat in around) {
     // add markers with category:cat on layer
-    aroundLayers[cat] = L.layerGroup(aroundMarkers[cat]);
+    aroundLayers[cat] = L.layerGroup(around[cat]);
     map.addLayer(aroundLayers[cat]);
   }
 }
@@ -300,23 +296,22 @@ function showAround (cat) {
 function hideAround (cat) {
   // hide all
   if (cat === "all") {
-    for (var category in aroundMarkers) {
+    for (var category in around) {
       // remove layer to hide the markers
       map.removeLayer(aroundLayers[category]);
     }
     return;
   }
   // hide cat only
-  if (cat in aroundMarkers) {
+  if (cat in around) {
     map.removeLayer(aroundLayers[cat]);
   }
 }
 
-// delete "all" around and aroundmarkers.
+// delete "all" around and around.
 function deleteAround () {
   hideAround("all");
   around = {};
-  aroundMarkers = {};
   aroundLayers = {};
 }
 
