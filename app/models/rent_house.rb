@@ -1,15 +1,14 @@
 class RentHouse < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :user, :counter_cache => true
 	validates :user_id, presence: true
 	validates_presence_of :use, :structure, :address, :price, :owner, :tel, :breif, :img
-	#validates_numericality_of :price, :only_integer => true 
 	validates :breif, :length => { :minimum => 1, :maximum => 120 }
-	default_scope -> { order('created_at DESC') }
-
 	geocoded_by :address,
-		 :latitude => :lat, :longitude => :lng
+		:latitude => :lat, :longitude => :lng
 	after_validation :geocode
 	before_create :set_around_list
+	
+	scope :initial, -> { select("id, lat, lng, address, data") }
 
 	def set_around_list
 
