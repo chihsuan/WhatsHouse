@@ -1,61 +1,53 @@
 class UsersController < ApplicationController
-  	before_action :signed_in_user, only: [:edit, :update]	
-  	before_action :correct_user,   only: [:edit, :update]		
-	before_filter :find_user, :only => [ :show, :edit, :update, :destroy]
-	# sign up controller
+	before_action :signed_in_user, only: [:show, :edit, :update]	
+	before_action :correct_user,   only: [:show, :edit, :update]		
 
+	# sign_up
+	def new
+		@user = User.new
+	end
+
+	# create new user
+	def create
+		@user = User.new(user_params)
+		if @user.save
+			sign_in @user
+			flash[:success] = "註冊成功!"
+			UserMailer.confirm(@user.email).deliver
+			redirect_to @user
+		else
+			render :new
+		end
+	end
 
 	def show
-  	end
-
-	# new user for sign up form
- 	def new
-		@user = User.new
- 	end
-	
-	# create new user by user input
-	def create
-    	@user = User.new(user_params)
-   		if @user.save
-   			UserMailer.confirm(@user.email).deliver
-     	 	sign_in @user
-     	 	flash[:success] = "註冊成功!"
-      		redirect_to @user
-    	else
-      		render :new
-    	end
-  	end
+	end
 
 	def edit
 	end
 
 	# upadet user profile
 	def update	
-    	if @user.update_attributes(user_params)
-      	  flash[:success] = "更新成功!"
-      	  redirect_to @user
-    	else
-      	  render :edit
-   		end
-  	end
-	
+		if @user.update_attributes(user_params)
+			flash[:success] = "更新成功!"
+			redirect_to @user
+		else
+			render :edit
+		end
+	end
 
-  	private
+	private
 
-    def user_params
-    	params.require(:user).permit(:name, :email, :password,
-      	                           :password_confirmation)
-    end
+	def user_params
+		params.require(:user).permit(:name, :email, :password,
+																 :password_confirmation)
+	end
 
-  	def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
-    end
+	def correct_user
+		@user = User.find(params[:id])
+		redirect_to(root_path) unless current_user?(@user)
+	end
 
 	protected
 
-    def find_user
-	  	#@user = User.find(params[:id])
-	  	@user = @current_user
-    end
 end
