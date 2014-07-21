@@ -1,6 +1,9 @@
 // Place all the styles related to the content controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//= require leaflet
+//= require MarkerCluster
+//= require MarkerCluster.Default
 @import "compass/css3/border-radius";
 @import "compass/css3/background-size";
 @import "compass/css3/box-shadow";
@@ -12,7 +15,6 @@ $max-phone-size: 768px;
 
 
 //home page
-
 #site-container{
 	width: 100%;
 	height: 100%;
@@ -25,8 +27,7 @@ $max-phone-size: 768px;
 	min-height: 520px;
 	@include background-size(100%);
 	@include opacity(0.95);
-	
-	
+
 	@media screen and (max-width: $min-web-size) {
     height: auto;
 		width: auto;
@@ -34,27 +35,27 @@ $max-phone-size: 768px;
 	@media screen and (max-width: $max-phone-size) {
    	top: -104px;
   }
-	
+
 	@media screen and (max-width: $max-phone-size - 78px ) {
 		background-image: none;
-	}	
-	
+	}
+
 	.heading{
 		padding: 20px 15px 15px 107px;
 		margin-right: auto;
 		margin-left: auto;
 		@include text-shadow(rgba(0,0,0,0.4) 1px 1px 1px);
-		
+
 		@media screen and (max-width: $max-phone-size) {
 			padding: 14%
 		}
-		
+
 		h1{
 			@media screen and (max-width: $max-phone-size) {
    			display: none;
 			}
 		}
-		
+
 		#signup{
 			font-size: 15px;
 			padding: 10px 10px 10px 10px;
@@ -62,7 +63,7 @@ $max-phone-size: 768px;
 			margin-left: 330px;
 			background: transparent;
 		}
-	
+
 		div.ui.left.labeled.icon.input {
 			@include border-radius(5px);
 
@@ -72,17 +73,17 @@ $max-phone-size: 768px;
 			width: 41%;
 			left: 30%;
 			position: relative;
-	
+
 			@media screen and (max-width: $min-web-size) {
 				width: 56%;
   		}
-			
+
 			a.ui.button{
 				@media screen and (max-width: $max-phone-size) {
 					width: 68% !important;
   			}
 			}
-			
+
 			a.ui.red.button{
 				height: 57px;
 				width: 42%;
@@ -92,7 +93,7 @@ $max-phone-size: 768px;
 				font-size: 18px;
 			&:hover{
 				background-color: #E75859;
-				color: #FFFFFF;	
+				color: #FFFFFF;
 			}
 			&:last-child{
 				background: white;
@@ -107,20 +108,19 @@ $max-phone-size: 768px;
 	 			}
 			}
 		}
-	}	
-}	
+	}
+}
 
 
 
 //rent page
-
 
 #map_canvas { 
 	height: 96% !important;
 	z-index: 1;
 	position: absolute;
 }
-	  
+
 #area{
 	top: -30px;
 	position: relative;
@@ -128,18 +128,18 @@ $max-phone-size: 768px;
 	height: auto;
 	max-height: 420px;
 	@include box-shadow(rgba(1, 1, 1, 0.2) 1px 1px 1px);
-	
+
 	div.message {
 		color: $orange;
 	}
-	
+
 }
 
 div.ui.inverted.red.pointing.response.menu{
 	background: $orange;
 }
 
-.ui.tab.active, 
+.ui.tab.active,
 .ui.tab.open {
 	display: block;
 	@include box-shadow(rgba(1,1,1,0.5) 0.7px 0.8px 0.8px);
@@ -151,7 +151,7 @@ div.launch.button {
 	right: 9%;
 	top: -45px;
 	width: 20px;
-	
+
 	@media screen and (max-width: 1210px) {
 		right: 14%;
 		top: -94px;
@@ -173,41 +173,41 @@ div.launch.button {
 		width: 60%;
 		height: 100px;
 	}
-	
-	
+
+
 	.column{
 		padding-right: 30px;
-		
+
 		.ui.response.menu {
 			position: relative;
 	}
 		.ui.tab.segmant {
 			display:table-cell;
 	}
-		
+
 		.ui.response.menu {
 			position: relative;
 			@include box-shadow(rgba(1,1,1,0.5) 0.6px 0.7px 0.7px);
 	}
-		
+
 		.item:after{
 			top: 45px;
 	}
-		
+
 	}
-	
-	.ui.tab.active, 
+
+	.ui.tab.active,
 	.ui.tab.open {
 		margin: 0px;
 		td.first{
 			min-width: 78px;
 		}
 	}
-	
+
 	.ui.form .error.message {
 		display: block !important;
 	}
-	
+
 }
 
 
@@ -221,7 +221,7 @@ div.launch.button {
 		height: 80px;
 		line-height: 30px;
 	}
-	
+
 	 button {
 		width: 100%;
 		padding-top:5px;
@@ -239,9 +239,6 @@ div.launch.button {
 #comments{
 	margin: 0px;
 }
-
-
-
 
 i.small.long.arrow.down.icon {
 	padding-left: 5px;
@@ -288,7 +285,7 @@ i.small.long.arrow.icon{
 #advanced_search form{
 	box-sizing: border-box;
 	@include border-radius(0.325em);
-	
+
 	input.adsearch.ui.small.orange.button{
 		background: $orange;
 		position:relative;
@@ -298,14 +295,14 @@ i.small.long.arrow.icon{
 
 .search_form{
 	width: 100%;
-	
+
 	#heart_rating{
 		padding: 1em;
 	}
 	#rating_tag{
 		display: none;
 	}
-	
+
 }
 
 #search_result li {
@@ -314,19 +311,19 @@ i.small.long.arrow.icon{
 }
 
 #slider1_container {
-	position: relative; 
-	top: 0px; 
-	left: 0px; 
+	position: relative;
+	top: 0px;
+	left: 0px;
 	height: 300px;
 }
 
 #images {
-	cursor: move; 
-	top: 0px; 
-	left: 0px; 
-	position: absolute; 
+	cursor: move;
+	top: 0px;
+	left: 0px;
+	position: absolute;
 	overflow: hidden;
-	width: 480px; 
+	width: 480px;
 	height: 300px;
 }
 
@@ -337,7 +334,7 @@ div.house_cart {
 	bottom: 17px;
 	left: 0;
 	@include border-radius(5px);
-	background: white; 
+	background: white;
 	color: $orange;
 	z-index: 10;
 	.cart.item{
@@ -349,7 +346,7 @@ div.house_cart {
 
 	.cart{
 		padding: 10px 10px 10px 10px;
-	
+
 		span{
 			color: $orange;
 		}
@@ -373,7 +370,7 @@ div.house_cart {
 	float:right;
 }
 
-#disqus_thread{	
+#disqus_thread{
 	height: auto;
 }
 
@@ -394,36 +391,36 @@ select#people {
 	background: white;
 }
 
-.menu_search_form{ 
+.menu_search_form{
 	display: inline;
-	
+
 	@media screen and (max-width: $max-phone-size - 78px) {
 		display: none;
 	}
-	
+
 	div.item{
 		padding: 0px;
 		margin: 0px;
 		height: 50px;
 		width: 23%;
-		
+
 		form{
 				top: -20px;
 				position: relative;
-		
+
 			.ui.input{
 					width: 174%;
-			
-				input{	
+
+				input{
 					height: 33px;
 					border-radius: 0px;
 					padding: 7px 0px 6px 20px;
-					
+
 					&:focus{
 						border-color: $orange;
 					}
 				}
-	
+
 				input.search_submit{
 					background: transparent;
 					position: absolute;
@@ -432,7 +429,7 @@ select#people {
 					left: 206px;
 					border: none;
 					box-shadow: none;
-					left: 88%;	
+					left: 88%;
 				}
 
 				.icon{
@@ -441,9 +438,8 @@ select#people {
 					padding: 10px;
 					@include opacity(1);
 				}
-			}		
+			}
 		}
-		
 	}
 }
 
@@ -487,7 +483,7 @@ select#people {
 	padding-top: 20px;
 }
 
-.author_img img, 
+.author_img img,
 .author_img{
 	height: 150px;
 	width: 150px;

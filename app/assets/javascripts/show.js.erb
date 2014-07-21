@@ -1,8 +1,11 @@
 var map;
-var infowindow;
 var services;
 var around = {};
-var aroundMarkers = {};
+// add around markers to aroundLayers, since
+// leaflet don't have hide/show property on markers like
+// google map, I have to add them on layers and then add to map
+// remove on map to hide/show the markers.
+var aroundLayers = [];
 var markers = [];
 var markerCluster;
 var getHouse;
@@ -13,116 +16,17 @@ var focusPoint = {
   lng: null
 };
 
-// map style
-var styledMap =
-    [
-      {
-        "featureType": "water",
-        "stylers": [
-          {
-            "visibility": "on"
-          },
-          {
-            "color": "#acbcc9"
-          }
-        ]
-      },
-      {
-        "featureType": "landscape",
-        "stylers": [
-          {
-            "color": "#f2e5d4"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#c5c6c6"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#e4d7c6"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#fbfaf7"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#c5dac6"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "stylers": [
-          {
-            "visibility": "on"
-          },
-          {
-            "lightness": 33
-          }
-        ]
-      },
-      {
-        "featureType": "road"
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "labels",
-        "stylers": [
-          {
-            "visibility": "on"
-          },
-          {
-            "lightness": 20
-          }
-        ]
-      },
-      {},
-      {
-        "featureType": "road",
-        "stylers": [
-          {
-            "lightness": 20
-          }
-        ]
-      }
-    ];
-
 function initialize() {
-  var tmpCenter = new google.maps.LatLng(23.9486886,122.7529241); //tainan 22.999255, 120.215013
-  var zoomLevel = 7;
-  var mapOptions = {
-    center: tmpCenter,
-    zoom: zoomLevel,
-    styles: styledMap,
-    disableDefaultUI: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
+  // set zoom level
+  var zoomLevel = 12;
+  // set center
+  map = L.map('map_canvas').setView([22.999255, 120.215013], zoomLevel);
+  // add tile layer to map
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-  map = new google.maps.Map(document.getElementById("map_canvas"),
-                            mapOptions);
-  // pop up window for the marker
-  infowindow = new google.maps.InfoWindow();
+  markerCluster = L.markerClusterGroup();
 
   markers = [];
   var real_price_list = gon.real_price_list;
@@ -131,141 +35,37 @@ function initialize() {
     createMarker(real_price_list[i], markers);
   }
   //create clusterer and push the global array of markers into it.
-  markerCluster = new MarkerClusterer(map, markers);
-}
-
-// add marker into map and push it into aroundMarkers, the
-// obj should be the data of surrounded information from server.
-function addAroundMarker(obj) {
-  // there are some duplicate data in police_stations,
-  // I have to delete it by myself here...
-  if (obj.data === "police_stations") {
-    for (var p in aroundMarkers["police_stations"]) {
-      if (p.addr === obj.addr) {
-        return;
-      }
-    }
-  }
-
-  // icon category
-  var iconCat = "";
-  // switch icon pictures of markers by icon category
-  if (obj.data === "stores") {
-    iconCat = '<%= asset_path 'stores.jpg' %>';
-  }
-  else if (obj.data === "stations") {
-    iconCat = '<%= asset_path 'stations.png' %>';
-  }
-  else if (obj.data === "dinings") {
-    iconCat = '<%= asset_path 'dinings.png' %>';
-  }
-  else if (obj.data === "tainan_schools") {
-    iconCat = '<%= asset_path 'tainan_schools.png' %>';		
-  }
-  else if (obj.data === "tainan_markets") {
-    iconCat = '<%= asset_path 'tainan_markets.png' %>';		
-  }
-  else if (obj.data === "hospitals") {
-    iconCat = '<%= asset_path 'hospitals.png' %>';	
-  }
-  else if (obj.data === "police_stations") {
-    iconCat = '<%= asset_path 'police_stations.png' %>';	
-  }
-	else if (obj.data === "gas_stations") {
-    iconCat = '<%= asset_path 'gas_stations.png' %>';	
-  }
-	else if (obj.data === "post_offices") {
-    iconCat = '<%= asset_path 'post_offices.png' %>';	
-  }
-	else if (obj.data === "subways") {
-    iconCat = '<%= asset_path 'subways.png' %>';	
-  }
-  // icon image setting
-  var iconImage = {
-    url: iconCat,
-    size: new google.maps.Size(30, 30)
-  };
-
-  var marker = new google.maps.Marker({
-    map: null,
-    position: new google.maps.LatLng(obj.lat, obj.lng),
-    id: obj.id,
-    data:obj.data,
-    lat: obj.lat,
-    lng: obj.lng,
-    icon: iconImage
-  });	
-	
-  google.maps.event.addListener(marker, 'mouseover', function(){
-    infowindow = new google.maps.InfoWindow();
-    var html = "";
-    for (var key in obj) {
-      if (key === "name") {
-        html += "<p>"+ "名稱" + ": " + obj["name"] +"</p>"; 
-      } else if (key === "address") {
-        html += "<p>"+ "address" + ": " + obj["address"] +"</p>"; 
-      } else if (key === "addr") {
-        html += "<p>"+ "addr" + ": " + obj["addr"] +"</p>";
-      } else if (key === "location") {
-        html += "<p>"+ "location" + ": " + obj["location"] +"</p>";
-      } else if (key === "breif") {
-        html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
-      } else if (key === "tel") {
-        html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
-      } else if (key === "time") {
-        html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
-      }
-    }
-
-    infowindow.setContent(html);
-    infowindow.open(map, this);
-  });
-  /*
-  google.maps.event.addListener(marker, 'mouseout', function(){
-    infowindow.close(map, this);
-  });*/
-
-  if (!(obj.data in aroundMarkers)) { 
-    aroundMarkers[obj.data] = [];
-  }
-  aroundMarkers[obj.data].push(marker);
+  markerCluster.addLayers(markers);
+  map.addLayer(markerCluster);
 }
 
 // add a marker to the map and push it to the map.
 function createMarker(obj, markers) {
-  var marker = new google.maps.Marker({
-    map: map,
-    position: new google.maps.LatLng(obj.lat, obj.lng),
-    id: obj.id,
-    data:obj.data,
-    lat: obj.lat,
-    lng: obj.lng,
-  });
-/*
-  google.maps.event.addListener(marker, 'mouseover', function(){
-    //infowindow.open(map, this);
-  });
+  var marker = L.marker([obj.lat, obj.lng]);
 
-  google.maps.event.addListener(marker, 'mouseout', function(){
-    //infowindow.close(map, this);
-  });
-*/
-  google.maps.event.addListener(marker, 'click', function(){
+  // add additional property (what we need : need to be modified here.)
+  marker.id = obj.id;
+  marker.data = obj.data;
+  marker.lat = obj.lat;
+  marker.lng = obj.lng;
 
-
+  marker.on('click', function(){
+    console.log("click");
+    console.log(marker.id);
     // whenever click the marker change the menu tab to information
     $('div.ui.inverted.red.pointing.response.menu .item')
       .tab('change tab', 'Information')
       .tab('deactivate all')
       .tab('activate tab', 'Information')
-      .tab('activate navigation', 'Information')
-    ;
+      .tab('activate navigation', 'Information');
+
     window.location.hash = 'Information';
 
     //if information area is hide, show it
     $('#area').show();
 
-    // check if user click on the same marker
+    // check if user click on the same marker, yes
+    // then do nothing.
     if (focusPoint.lat === marker.lat &&
         focusPoint.lng === marker.lng) {
       return;
@@ -275,8 +75,6 @@ function createMarker(obj, markers) {
     focusPoint.lng = marker.lng;
     // delete the around points of previous marker.
     deleteAround();
-
-
 
     // disable all checkbox in the html
     $('.form .fields .checkbox').checkbox('disable');
@@ -293,7 +91,8 @@ function createMarker(obj, markers) {
       },
       // if success, check the data type and send the information to the
       // corresponding block.
-      success : function(response){
+      success : function(response) {
+        // console.log(response);
         for ( i=0; i < response.length; ++i ){
           if ( response[i].data == 'sale_houses'){
             $('#information').html(
@@ -310,12 +109,12 @@ function createMarker(obj, markers) {
               + "售價" + '</div>' +
               "<p>" + response[i].price + "</p></span>" +
               '<span class="left-information"><div class="orange ui ribbon label">'
-              + "聯絡人" + '</div>' + 
+              + "聯絡人" + '</div>' +
               "<p>" + response[i].owner + "</p></span>" +
               '<span class="right-information"><div class="orange ui ribbon label">'
               + "聯絡電話" + '</div>' +
               "<p>" + response[i].tel + "</p></span>" +
-              '<span class="brief"><div class="orange ui ribbon label">' 
+              '<span class="brief"><div class="orange ui ribbon label">'
               + "刊登資訊" + '</div>' +
               "<p>" + response[i].breif + "</p></span>"
             );
@@ -323,13 +122,13 @@ function createMarker(obj, markers) {
           else if ( response[i].data == 'rent_houses' ){
             getHouse = response[i];
             $('#information').html(
-							'			<div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
-							'<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
+              '      <div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
+              '<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
               '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
-						  '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
-							'<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
+              '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
+              '<tr class="type row"><td class="first"><i class="home icon"></i>類型</td>' +  '<td class="second"><p>' + response[i].use + '</p></td></tr>' +
               '<tr class="structure row"><td class="first"><i class="building icon"></i>格局</td>' +  '<td class="second"><p>' + response[i].structure + '</p></td</tr>' +
-							'<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
+              '<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
               '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
               '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
               '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].information + '</p></td></tr><tbody></talbe>'  
@@ -341,11 +140,12 @@ function createMarker(obj, markers) {
                   + sliderHTML + '</div>');
               jssor_slider1_starter('slider1_container');
             }
+            console.log(response[i].address);
           }
           else if( response[i].data == 'real_price_deals'){
             $('#information').html(
               '"<div class="red ui ribbon label">' + "鄉鎮市區" + '</div>' +
-              "<p>" + response[i].area + "</p>" + 
+              "<p>" + response[i].area + "</p>" +
               '"<div class="green ui ribbon label">' + "土地路段" + '</div>' +
               "<p>" + response[i].location + "</p>" +
               '"<div class="blue ui ribbon label">' + "總成交價" + '</div>' +
@@ -356,12 +156,12 @@ function createMarker(obj, markers) {
             // if the data category of response is not in around
             // around will add a property of data.
             if (!(response[i].data in around)) {
-              //console.log("found " + response[i].data);
+              console.log("found " + response[i].data);
               around[response[i].data] = [];
             }
             // add the data into the corresponding category of
             // around.
-            around[response[i].data].push(response[i]);
+            // around[response[i].data].push(response[i]);
             addAroundMarker(response[i]);
           }
         }
@@ -371,8 +171,8 @@ function createMarker(obj, markers) {
           var cat = $(this).attr('name');
           var labelID = $(this).next('label').attr('id');
           var num = 0;
-          if (cat in aroundMarkers) {
-            $(this).next('label').text(labelID + " (" + aroundMarkers[cat].length +")");
+          if (cat in around) {
+            $(this).next('label').text(labelID + " (" + around[cat].length +")");
           }
           else {
             $(this).next('label').text(labelID + " (0)");
@@ -388,33 +188,107 @@ function createMarker(obj, markers) {
     // comment
     DISQUS.reset({
       reload: true,
-      config: function () {  
-        this.page.identifier = marker.id;  
+      config: function () {
+        this.page.identifier = marker.id;
         this.page.url = "https://whatshouse.herokuapp.com/#!newthread";
       }
     });
-
   });
   markers.push(marker);
   id_markers[marker.id] = marker;
-  
+}
+
+// add marker into map and push it into around, the
+// obj should be the data of surrounded information from server.
+function addAroundMarker(obj) {
+  // there are some duplicate data in police_stations,
+  // I have to delete it by myself here...
+  if (obj.data === "police_stations") {
+    for (var p in around["police_stations"]) {
+      if (p.addr === obj.addr) {
+        return;
+      }
+    }
+  }
+
+  // icon category
+  var iconCat = "";
+  // switch icon pictures of markers by icon category
+  if (obj.data === "stores") {
+    iconCat = '<%= asset_path "stores.jpg" %>';
+  } else if (obj.data === "stations") {
+    iconCat = '<%= asset_path "stations.png" %>';
+  } else if (obj.data === "dinings") {
+    iconCat = '<%= asset_path "dinings.png" %>';
+  } else if (obj.data === "tainan_schools") {
+    iconCat = '<%= asset_path "tainan_schools.png" %>';
+  } else if (obj.data === "tainan_markets") {
+    iconCat = '<%= asset_path "tainan_markets.png" %>';
+  } else if (obj.data === "hospitals") {
+    iconCat = '<%= asset_path "hospitals.png" %>';
+  } else if (obj.data === "police_stations") {
+    iconCat = '<%= asset_path "police_stations.png" %>';
+  }
+  else if (obj.data === "gas_stations") {
+    iconCat = '<%= asset_path 'gas_stations.png' %>';
+  }
+  else if (obj.data === "post_offices") {
+    iconCat = '<%= asset_path 'post_offices.png' %>';
+  }
+  else if (obj.data === "subways") {
+    iconCat = '<%= asset_path 'subways.png' %>';
+  }
+  // icon image setting
+  var iconImage = L.icon({
+    iconUrl: iconCat,
+    iconSize: [30, 30]
+  });
+
+  var marker = L.marker([obj.lat, obj.lng], {
+    icon: iconImage
+  });
+  marker.id = obj.id;
+  marker.data = obj.data;
+  marker.lat = obj.lat;
+  marker.lng = obj.lng;
+
+  var html = "";
+  for (var key in obj) {
+    if (key === "name") {
+      html += "<p>"+ "名稱" + ": " + obj["name"] +"</p>";
+    } else if (key === "address") {
+      html += "<p>"+ "address" + ": " + obj["address"] +"</p>";
+    } else if (key === "addr") {
+      html += "<p>"+ "addr" + ": " + obj["addr"] +"</p>";
+    } else if (key === "location") {
+      html += "<p>"+ "location" + ": " + obj["location"] +"</p>";
+    } else if (key === "breif") {
+      html += "<p>"+ "brief" + ": " + obj["breif"] +"</p>";
+    } else if (key === "tel") {
+      html += "<p>"+ "tel" + ": " + obj["tel"] +"</p>";
+    } else if (key === "time") {
+      html += "<p>"+ "time" + ": " + obj["time"] +"</p>";
+    }
+  }
+  marker.bindPopup(html);
+  around[obj.data].push(marker);
 }
 
 function showAround (cat) {
   // show all
   if (cat === "all") {
-    for (var category in aroundMarkers) {
-      for(var i = 0; i != aroundMarkers[category].length; i++) {
-        aroundMarkers[category][i].setMap(map);
-      }
+    for (var category in around) {
+      // add all around markers on layer
+      aroundLayers[category] = L.layerGroup(around[category]);
+      map.addLayer(aroundLayers[category]);
     }
     return;
   }
   // show cat only
-  if (cat in aroundMarkers) {
-    for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      	aroundMarkers[cat][i].setMap(map);
-    }
+  if (cat in around) {
+    // add markers with category:cat on layer
+    aroundLayers[cat] = L.layerGroup(around[cat]);
+    map.addLayer(aroundLayers[cat]);
   }
 }
 
@@ -422,32 +296,29 @@ function showAround (cat) {
 function hideAround (cat) {
   // hide all
   if (cat === "all") {
-    for (var category in aroundMarkers) {
-      for(var i = 0; i != aroundMarkers[category].length; i++) {
-        aroundMarkers[category][i].setMap(null);
-      }
+    for (var category in around) {
+      // remove layer to hide the markers
+      map.removeLayer(aroundLayers[category]);
     }
     return;
   }
   // hide cat only
-  if (cat in aroundMarkers) {
-    for(var i = 0; i != aroundMarkers[cat].length; i++) {
-      aroundMarkers[cat][i].setMap(null);
-    }
+  if (cat in around) {
+    map.removeLayer(aroundLayers[cat]);
   }
 }
 
-// delete "all" around and aroundmarkers.
+// delete "all" around and around.
 function deleteAround () {
   hideAround("all");
   around = {};
-  aroundMarkers = {};
+  aroundLayers = {};
 }
 
 // Sets the map on all markers in the array.
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
+    markers[i].addTo(map);
   }
 }
 
@@ -463,11 +334,10 @@ function deleteMarkers() {
   markers = [];
 }
 
-function search (){
-
+function search () {
   $('.search_form, .menu_search_form').on('ajax:success', function(xha, data, status) {
-    markerCluster.  setMap(null);
-    markerCluster = []
+    markerCluster.setMap(null);
+    markerCluster = [];
     deleteMarkers();
     deleteAround();
 
@@ -483,76 +353,71 @@ function search (){
       if( rating_index != " " && data[0].length > 0){
         $('div.ui.form.success').hide();
 
-        $('div#search_show').html( 
+        $('div#search_show').html(
          '<span id="serach_rating">搜尋排名</span><button class="undo ui orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-         "<ol id='search_result'>" 
+         "<ol id='search_result'>"
        );
 
-        appendSerachContent(data, rating_index);	
+        appendSerachContent(data, rating_index);
       }
       else if( data[0].length > 0 ){
 
         $('div.ui.form.success').hide();
-        $('div#search_show').html( 
+        $('div#search_show').html(
          '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui mini orange icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-         "<ol id='search_result'>" 
+         "<ol id='search_result'>"
         );
-        
 
         appendSerachContent(data, rating_index);
         var newCenter = new google.maps.LatLng( data[0][0].lat, data[0][0].lng);
         map.setCenter(newCenter);
         map.setZoom(13);
-
       }
       else {
 
         $('div.ui.form.success').hide();
-        $('div#search_show').html( 
-          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui mini orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>'); 
+        $('div#search_show').html(
+          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui mini orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>');
       }
-   
-    
-    
+
     var real_price_list = data[0];
     for (var i = 0; i < real_price_list.length; i++) {
       createMarker(real_price_list[i], markers);
     }
 
     //create clusterer and push the global array of markers into it.
-    markerCluster = new MarkerClusterer(map, markers);  
+    markerCluster = L.markerClusterGroup();
+    markers.addLayer(markers);
+    map.addLayer(markers);
 
     $("div#advanced_search form").hide();
     $("div#search_show").show();
 
-
   });
-
 }
 
-function appendSerachContent(data, rating_index){
+function appendSerachContent(data, rating_index) {
   var item;
-  for( var i = 0; i < 3 && i < data[0].length; ++i){
-    if( rating_index != " " ){
+  for (var i = 0; i < 3 && i < data[0].length; ++i) {
+    if (rating_index != " ") {
       item = data[0][ rating_index[ rating_index.length - i - 1 ] ];
     }
-    else{
+    else {
       item = data[0][i];
     }
-
     $('#search_result').append(
-      "<li><a class='marker_link' href='#' id='" + item.id + "' onclick='moveToMarker(event,this.id)'>" + item.address + " " + item.price + "元</a></li>" 
-    )
+        "<li><a class='marker_link' href='#' id='" + item.id +
+        "' onclick='moveToMarker(event,this.id)'>" + item.address +
+        " " + item.price + "元</a></li>"
+    );
   }
-  $('#search_result').append(
-    "</ol>"
-  )
+  $('#search_result').append("</ol>");
 }
 
 function moveToMarker(event, markerID){
   event.preventDefault();
-  var newCenter = new google.maps.LatLng( id_markers[markerID].lat, id_markers[markerID].lng);
-  map.setCenter(newCenter);
+  var newCenter = [id_markers[markerID].lat, id_markers[markerID].lng];
+  map.setView(newCenter);
   map.setZoom(17);
 }
 
@@ -560,28 +425,30 @@ function searchUndo(){
   $("div#advanced_search form").show();
   $("div#search_show").hide();
 }
+
 function initalCheckbox(){
   $('.form .fields .checkbox').checkbox('disable');
   $('.form .fields .checkbox').checkbox();
 
   $('.form .fields .checkbox').click(function() {
-    if($(this).children('input').is(':checked')) {
+    if ($(this).children('input').is(':checked')) {
       showAround($(this).children('input').attr('name'));
-    } else {
+    }
+    else {
       hideAround($(this).children('input').attr('name'));
     }
   });
 }
 
 function splitImgUrl(imgUrl) {
-  if( imgUrl ){
+  if (imgUrl) {
     var img = imgUrl.split(",");
     var sliderHTML = "";
     for (var i = 0; i < img.length; i++) {
       sliderHTML += '<div><img u="image" src="' + img[i] + '" /></div>';
     }
   }
-  else{
+  else {
     sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
     sliderHTML += '<div><img u="image" src="<%= asset_path '006.jpg' %>" /></div>';
   }
@@ -591,12 +458,11 @@ function splitImgUrl(imgUrl) {
 var house_number = $('.cart').length;
 var house_array = []
 function addToCart() {
-
   // add input field by jQuery
   var max_input = 4;
   var fieldCount = 1;
 
-	 // whenever add the house to cart change the menu tab to List
+   // whenever add the house to cart change the menu tab to List
    $('div.ui.inverted.red.pointing.response.menu .item')
       .tab('change tab', 'List')
       .tab('deactivate all')
@@ -604,15 +470,14 @@ function addToCart() {
       .tab('activate navigation', 'List')
     ;
    window.location.hash = 'List';
-	
+
   if ( house_number <= max_input ){
     house_array.push(getHouse);
-
     fieldCount++;
     $('.cart').append('<li>' + '<i class="map marker icon"></i><div class="content">' +
                       '<span class="header"><a href="#" onclick="moveToMarker(event,this.id)" id="' + getHouse.id + '">'
-                      + getHouse.address + " " +  getHouse.price + "$ </a>" 
-                      + '</span><a href="#" onclick="removeFromCart(this)" id="house' 
+                      + getHouse.address + " " +  getHouse.price + "$ </a>"
+                      + '</span><a href="#" onclick="removeFromCart(this)" id="house'
                       +  house_number + '" class="removeclass">x</a></div></li>'
                      );
     house_number++;
@@ -629,5 +494,4 @@ function removeFromCart (item) {
   return false;
 }
 
-$(document).ready(initalCheckbox)
-google.maps.event.addDomListener(window, 'load', initialize);
+$(document).ready(initalCheckbox);

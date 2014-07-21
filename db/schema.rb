@@ -38,12 +38,6 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.string   "data",          default: "childcarerosters"
   end
 
-  create_table "comments", force: true do |t|
-    t.string   "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "dinings", force: true do |t|
     t.string   "diningid"
     t.string   "store_id"

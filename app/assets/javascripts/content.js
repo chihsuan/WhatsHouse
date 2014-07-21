@@ -1,5 +1,8 @@
 //= require jquery.address
 //= require jssor.slider.min
+//= require leaflet
+//= require leaflet.markercluster-src
+
 var jssor_slider1 = null;
 	jssor_slider1_starter = function (containerId) {
 		var options = {
@@ -13,4 +16,3 @@ var jssor_slider1 = null;
 		}
 		jssor_slider1 = new $JssorSlider$(containerId, options);
 };
-
