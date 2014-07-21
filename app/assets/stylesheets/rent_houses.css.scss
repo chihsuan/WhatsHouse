@@ -15,16 +15,16 @@
 	background-color: white;
 	@include box-shadow(rgba(0,0,0,0.1) 0px 1px 2px 1px);
 	position: relative;
-  padding: 20px 0px 100px 66px;
-	
+	padding: 20px 0px 100px 66px;
+
 	form {
 		margin: auto;
 		width: 500px;
 		text-align: center;
 		position: relative;
 		top: 40px;
-	
-	
+
+
 		div.ui.left.labeled.icon.input{
 			padding: 0px 0px 10px 0px;
 			width: 100%;
@@ -36,7 +36,7 @@
 			padding: 10px 0px 10px;
 			float:left;
 		}
-		
+
 		label{
 			float: left;
 			font-weight: bold;
@@ -83,7 +83,7 @@
 				position: relative;
 			}
 		}
-		
+
 		.submit_area{
 			border-top: 1px solid #D3D3D3; 
 			margin-top: 32px;
@@ -111,7 +111,7 @@
 		}
 	}
 }
-	
+
 
 .house_list{
 	width: 30%;

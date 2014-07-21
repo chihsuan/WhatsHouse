@@ -1,5 +1,5 @@
 /* all common css style include html, body, header ...
-*/
+ */
 
 @import "font-awesome";
 @import "compass/css3/border-radius";
@@ -35,10 +35,10 @@ header{
 	.item{
 		font-weight: 700;
 	}
-	
-	
+
+
 	.ui.inverted.menu a.item, 
-  div.ui.pointing.dropdown.item{
+	div.ui.pointing.dropdown.item{
 		color: $orange;	
 		font-size: 14px;
 		margin-left: 21px;
@@ -48,13 +48,13 @@ header{
 			border-bottom: 4px solid;
 		} 
 	}
-	
+
 	div.ui.pointing.dropdown.item.active.visible{
 		color: #D50909 !important;
 		border-bottom: 4px solid;
 	}
 
-	
+
 	.ui.inverted.menu .dropdown .menu .item, 
 	.ui.inverted.menu .dropdown .menu .item a {
 		color: $orange !important;
@@ -65,16 +65,16 @@ header{
 
 
 div.ui.fixed.inverted.title_bar.menu{
-  top: 0px;
-  width: 100%;
+	top: 0px;
+	width: 100%;
 	z-index: 10;
 	background-color: white; /* Old browsers */
 	height: 49px;
 	@include box-shadow(rgba(1,1,1,0.2) 1px 1px 1px );
-	
+
 	.menu{
 		position: relative;
-		
+
 		h2 {
 			margin: 0px;
 			position: relative;
@@ -84,7 +84,7 @@ div.ui.fixed.inverted.title_bar.menu{
 	.right.menu {
 		position: relative;
 		min-width: 14%;
-		
+
 		#renthouse_link{
 			@media screen and (max-width: $max-phone-size) {
 				display: none;
@@ -99,11 +99,11 @@ div.ui.pointing.dropdown.item{
 }
 
 .right.menu{
-	
+
 	.add.icon{
 		padding-top: 3px;	
 	}
-	
+
 	dropdown .icon{
 		position: relative;
 		float: right;
@@ -118,11 +118,11 @@ div.ui.pointing.dropdown.item{
 
 
 #sidebar {
-    float: left;
-    padding-right: 4px;
-    padding-bottom: 120px;
-    height: 600px;
- }
+	float: left;
+	padding-right: 4px;
+	padding-bottom: 120px;
+	height: 600px;
+}
 
 
 .toggle.icon{
@@ -152,7 +152,7 @@ i.toggle.big.angle.down.icon{
 	&:hover{
 		display: block;
 	}
-	
+
 	.item{
 		color: #737373;
 		display: inline-block;
@@ -189,7 +189,7 @@ i.toggle.big.angle.down.icon{
 	zoom:1;
 	margin: auto;
 	min-height: 100%;
-  height: 100%;
+	height: 100%;
 	margin:0 auto -30px;
 }
 
@@ -202,23 +202,23 @@ footer{
 	border-top: 1px solid #E2E2E2;
 	font-size: 13px;
 	line-height: 16px;
-	
+
 	ul{
 		list-style-type: none;
 	}
-	
+
 	li{
 		float: left;
 		padding: 10px 10px 10px 10px;
 	}
-	
-	 a{
+
+	a{
 		color: $orange;
-		 
-		 &:hover{
-			 color: #570000;
-		 }
-	 }
+
+		&:hover{
+			color: #570000;
+		}
+	}
 }
 
 
@@ -232,7 +232,7 @@ footer{
 
 
 /*input.ui.red.button {
-	background: #720000;
+background: #720000;
 }*/
 
 

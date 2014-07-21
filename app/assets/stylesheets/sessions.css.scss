@@ -12,14 +12,14 @@ $max-phone-size: 768px;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);	
 	min-width: 329px;
-	
+
 	@media screen and (max-width: $min-web-size) {
 		width: 36%;
-  }
-	
+	}
+
 	@media screen and (max-width: $max-phone-size) {
 		width: 48%;
-  }
+	}
 }
 
 #sign_in{
@@ -30,6 +30,6 @@ $max-phone-size: 768px;
 	@include background-size(100%);
 	@media screen and (max-width: $max-phone-size) {
 		background-image: none;
-  }
+	}
 }
 
