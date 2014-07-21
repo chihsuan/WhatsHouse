@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721090736) do
+ActiveRecord::Schema.define(version: 20140721145017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.string   "data",          default: "childcarerosters"
   end
 
+  create_table "comments", force: true do |t|
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "dinings", force: true do |t|
     t.string   "diningid"
     t.string   "store_id"
@@ -54,6 +60,9 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.datetime "updated_at"
     t.string   "data",       default: "dinings"
   end
+
+  add_index "dinings", ["lat"], name: "index_dinings_on_lat", using: :btree
+  add_index "dinings", ["lng"], name: "index_dinings_on_lng", using: :btree
 
   create_table "drugstores", force: true do |t|
     t.string   "state"
@@ -82,6 +91,9 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.string   "data",       default: "gas_stations"
   end
 
+  add_index "gas_stations", ["lat"], name: "index_gas_stations_on_lat", using: :btree
+  add_index "gas_stations", ["lng"], name: "index_gas_stations_on_lng", using: :btree
+
   create_table "hospitals", force: true do |t|
     t.string   "name"
     t.string   "address"
@@ -92,6 +104,25 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.datetime "updated_at"
     t.string   "data",       default: "hospitals"
   end
+
+  add_index "hospitals", ["lat"], name: "index_hospitals_on_lat", using: :btree
+  add_index "hospitals", ["lng"], name: "index_hospitals_on_lng", using: :btree
+
+  create_table "markets", force: true do |t|
+    t.string   "phone"
+    t.string   "business_hours"
+    t.string   "name"
+    t.string   "district"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "data",           default: "tainan_markets"
+  end
+
+  add_index "markets", ["lat"], name: "index_markets_on_lat", using: :btree
+  add_index "markets", ["lng"], name: "index_markets_on_lng", using: :btree
 
   create_table "police_stations", force: true do |t|
     t.string   "country"
@@ -116,6 +147,9 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.datetime "updated_at"
     t.string   "data",       default: "post_offices"
   end
+
+  add_index "post_offices", ["lat"], name: "index_post_offices_on_lat", using: :btree
+  add_index "post_offices", ["lng"], name: "index_post_offices_on_lng", using: :btree
 
   create_table "real_price_deals", force: true do |t|
     t.string   "area"
@@ -178,6 +212,10 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.integer  "browse_rate", default: 0
   end
 
+  add_index "rent_houses", ["address"], name: "index_rent_houses_on_address", using: :btree
+  add_index "rent_houses", ["people"], name: "index_rent_houses_on_people", using: :btree
+  add_index "rent_houses", ["price"], name: "index_rent_houses_on_price", using: :btree
+
   create_table "sale_houses", force: true do |t|
     t.string   "owner"
     t.string   "address"
@@ -214,6 +252,9 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.string   "data",       default: "stations"
   end
 
+  add_index "stations", ["lat"], name: "index_stations_on_lat", using: :btree
+  add_index "stations", ["lng"], name: "index_stations_on_lng", using: :btree
+
   create_table "stores", force: true do |t|
     t.string   "address"
     t.string   "code"
@@ -227,6 +268,9 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.string   "tel"
   end
 
+  add_index "stores", ["lat"], name: "index_stores_on_lat", using: :btree
+  add_index "stores", ["lng"], name: "index_stores_on_lng", using: :btree
+
   create_table "subways", force: true do |t|
     t.string   "city"
     t.string   "district"
@@ -239,18 +283,8 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.string   "data",       default: "subways"
   end
 
-  create_table "tainan_markets", force: true do |t|
-    t.string   "phone"
-    t.string   "business_hours"
-    t.string   "name"
-    t.string   "district"
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "data",           default: "tainan_markets"
-  end
+  add_index "subways", ["lat"], name: "index_subways_on_lat", using: :btree
+  add_index "subways", ["lng"], name: "index_subways_on_lng", using: :btree
 
   create_table "tainan_schools", force: true do |t|
     t.string   "fax"
@@ -284,6 +318,7 @@ ActiveRecord::Schema.define(version: 20140721090736) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "auth_token"
+    t.integer  "rent_houses_count",      default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
