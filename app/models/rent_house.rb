@@ -1,7 +1,7 @@
 class RentHouse < ActiveRecord::Base
 	belongs_to :user, :counter_cache => true
 	validates :user_id, presence: true
-	validates_presence_of :use, :structure, :address, :price, :owner, :tel, :breif, :img
+	validates_presence_of :use, :structure, :address, :price, :owner, :tel, :information, :img
 	validates :breif, :length => { :minimum => 1, :maximum => 120 }
 	geocoded_by :address,
 		:latitude => :lat, :longitude => :lng
