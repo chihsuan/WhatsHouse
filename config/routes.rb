@@ -1,30 +1,33 @@
 Rails.application.routes.draw do
-	root :to => "content#content"
+	root :to => "pages#index"
 
-	resources :users
-	resources :sessions, only: [:new, :create, :destroy]
+	resources :users do
+		collection do
+			get 'signup' => 'users#new'
+			get 'signin' => 'sessions#new'
+			delete 'signout' => 'sessions#destroy'
+		end
+	end
 	resources :rent_houses
-	resources :users 
 	resources :password_resets
-	resources :events do
+	resources :sessions, only: [:new, :create, :destroy]
+	
+	# ajax path
+	resource :events do
 		 collection do
+		 	get 'house_detail'
 			get 'search' 
 			get 'advancedSearch'
 		 end
 	end
 	
 	# main page router
-	get 'content' => 'content#content'
-	get 'rent' => 'content#rent'
-	get 'about_us' => 'content#about'
-	get 'contact' => 'content#contact'
+	get 'content' => 'pages#index'
+	get 'about_us' => 'pages#about'
+	get 'contact' => 'pages#contact'
+	get 'rent' => 'maps#show'
 	
-	#login_system
-	match '/signup',  to: 'users#new',            via: :get
-	match '/signin',  to: 'sessions#new',         via: :get
-	match '/signout', to: 'sessions#destroy',     via: :delete
-	
-	# socialnewtwork login router
+	# for social network login
 	match 'auth/failure', to: redirect('/'), via: [:get, :post]
 	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
 
