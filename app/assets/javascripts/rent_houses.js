@@ -18,15 +18,15 @@
 				if ( x <= max_input ){
 					fieldCount++;
 					
-					$(inputs_wrapper).append('<div><div class="ui left labeled icon input"> \
-											 <input id="rent_house_img" name="img[]" type="text" > \
-													<i class="photo icon"></i> \
-													<div class="ui corner label"> \
-														<i class="icon asterisk"></i> \
-													</div> \
-											<a href="#" class="removeclass">×</a></div>'
+					$(inputs_wrapper).append('<div><div class="ui left labeled icon input">' +
+											 '<input id="rent_house_img" name="img[]" type="text" >' +
+													'<i class="photo icon"></i>' +
+													'<div class="ui corner label">' +
+														'<i class="icon asterisk"></i> </div>'+ 
+											'<a href="#" class="removeclass">×</a></div>'
 					);
 					x++;
+					console.log(fieldCount);
 				}
 				return false;
 			});
@@ -42,4 +42,3 @@
 	}
 
 	$(document).ready(rent_page)
-	$(window).bind('page:change', rent_page)
