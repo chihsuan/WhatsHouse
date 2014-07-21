@@ -85,26 +85,26 @@ $max-phone-size: 768px;
 			}
 
 			a.ui.red.button{
-				height: 57px;
-				width: 42%;
-				text-align: center;
-				padding-top: 18px;
-				margin: 10px 10px 10px 10px;
-				font-size: 18px;
-			&:hover{
-				background-color: #E75859;
-				color: #FFFFFF;
-			}
-			&:last-child{
-				background: white;
-				border: 2px solid white;
-				color: #444;;
-				font-weight: normal;
-			}
-			&:last-child:hover{
-				background: rgba(255, 255, 255, 0);
-				color: white;
-				@include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
+					height: 57px;
+					width: 42%;
+					text-align: center;
+					padding-top: 18px;
+					margin: 10px 10px 10px 10px;
+					font-size: 18px;
+				&:hover{
+					background-color: #E75859;
+					color: #FFFFFF;
+				}
+				&:last-child{
+					background: white;
+					border: 2px solid white;
+					color: #444;;
+					font-weight: normal;
+				}
+				&:last-child:hover{
+					background: rgba(255, 255, 255, 0);
+					color: white;
+					@include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
 	 			}
 			}
 		}
@@ -114,6 +114,10 @@ $max-phone-size: 768px;
 
 
 //rent page
+
+div.leaflet-top.leaflet-left {
+	display: none;
+}
 
 #map_canvas { 
 	height: 96% !important;
