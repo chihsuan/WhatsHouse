@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 	root :to => "content#content"
 
 	resources :users
-	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :rent_houses
 	resources :users 
+	resources :password_resets
 	resources :events do
 		 collection do
 			get 'search' 
@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 	get 'rent' => 'content#rent'
 	get 'about_us' => 'content#about'
 	get 'contact' => 'content#contact'
-	get 'password_resets/new'
 	
 	#login_system
 	match '/signup',  to: 'users#new',            via: :get
