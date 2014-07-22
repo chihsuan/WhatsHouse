@@ -2,7 +2,7 @@ class RentHouse < ActiveRecord::Base
 	belongs_to :user, :counter_cache => true
 	validates :user_id, presence: true
 	validates_presence_of :use, :structure, :address, :price, :owner, :tel, :information, :img
-	validates :breif, :length => { :minimum => 1, :maximum => 120 }
+	validates :information, :length => { :minimum => 1, :maximum => 120 }
 	geocoded_by :address,
 		:latitude => :lat, :longitude => :lng
 	after_validation :geocode
@@ -18,7 +18,7 @@ class RentHouse < ActiveRecord::Base
 		@lng_lower = self.lng - 0.005
 		@number_list =  ""
 		@number_list += Stores.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper).length.to_s + " "
-		@number_list += TainanMarket.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper).length.to_s + " "
+		@number_list += Market.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper).length.to_s + " "
 		@number_list += Dining.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper).length.to_s + " "
 		@number_list += Station.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper).length.to_s 
 		#@number_list += Hospitals.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper).length.to_s + " "

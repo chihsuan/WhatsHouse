@@ -6,12 +6,13 @@ class RentHousesController < ApplicationController
 	end
 
 	def edit
+		@user = current_user
 	end
 
 	def update
 		if @rent_house.update_attributes(rentHouses_params)
 			flash[:success] = "更新成功!"
-			redirect_to @rent_house
+			redirect_to [current_user, @rent_house]
 		else
 			render :edit
 		end
@@ -19,12 +20,13 @@ class RentHousesController < ApplicationController
 
 	def new
 		@user = current_user
-		@rent_house = current_user.rent_houses.build
-		@rent_houses = current_user.rent_houses.paginate(page: params[:page])
+		@rent_house = @user.rent_houses.build
+		@rent_houses = @user.rent_houses.paginate(page: params[:page])
 	end
 
 	def create
 		begin
+			@user = current_user
 			@rent_house = current_user.rent_houses.build(rentHouses_params)
 			@rent_house.img = params[:img].join(',')
 			if @rent_house.save
@@ -34,9 +36,6 @@ class RentHousesController < ApplicationController
 				@user = current_user
 				render :new
 			end
-		rescue Exception => ex
-			flash[:error] = "#{ex}"
-			render :new
 		end
 	end
 

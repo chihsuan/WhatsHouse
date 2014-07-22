@@ -1,5 +1,5 @@
 		<div id = "rent_houses_page">
-					<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
+				<%= form_for [@user,@rent_house], :html => {:id => "msform"} do |f| %>
 		<!-- progressbar -->
 		  <%= render 'shared/error_messages', object: f.object%>
 			<div class="field use">

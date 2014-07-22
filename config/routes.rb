@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 			get 'signin' => 'sessions#new'
 			delete 'signout' => 'sessions#destroy'
 		end
+
+		resources :rent_houses
 	end
-	resources :rent_houses
 	resources :password_resets
 	resources :sessions, only: [:new, :create, :destroy]
 	

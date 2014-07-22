@@ -3,7 +3,7 @@
 		<div id = "rent_houses_page">
 		<h1>設定出租資料</h1>	
 			
-		<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
+		<%= form_for [@user, @rent_house], :html => {:id => "msform"} do |f| %>
 		<!-- progressbar -->
 		  <%= render 'shared/error_messages', object: f.object%>
 		  <div class="two fields">
