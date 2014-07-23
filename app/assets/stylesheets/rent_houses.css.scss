@@ -5,156 +5,127 @@
 @import "compass/css3/background-size";
 @import "compass/css3/box-shadow";
 
-.ui.form.rent {
-	position: absolute;
-	width: 30%;
-	top: 15%;
-	left: 20%;
-}
-
-.house_list{
-	width: 30%;
-	position: absolute;
-	top: 15%;
-	left: 60%;
-	color: white;
-}
 
 #rent_houses_page{
-	height: 100%;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-size: 100%;
-	.ui.steps .step.active, 
-	.ui.active.step, 
-	.ui.steps .step.active:after, 
-	.ui.active.steps:after{
-			background-color: #D50909;
-	}
-	
-	.ui.left.labeled.icon.input {
-		width: 100%;
-	}
+  height: 100%;
+  width: 60%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: auto;
+  background-color: white;
+  @include box-shadow(rgba(0,0,0,0.1) 0px 1px 2px 1px);
+  position: relative;
+  padding: 20px 0px 100px 66px;
+
+  form {
+    margin: auto;
+    width: 500px;
+    text-align: center;
+    position: relative;
+    top: 40px;
+
+
+    div.ui.left.labeled.icon.input{
+      padding: 0px 0px 10px 0px;
+      width: 100%;
+    }
+
+    abbr{
+      color: #c07525;
+      margin-right: 5px;
+      padding: 10px 0px 10px;
+      float:left;
+    }
+
+    label{
+      float: left;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 10px 0px 10px 0px;
+    }
+
+
+    textarea {
+      padding: 15px;
+      border: 1px solid #ccc;
+      @include border-radius(3px);
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: montserrat;
+      color: #2C3E50;
+      font-size: 13px;
+    }
+
+    textarea,	input{
+      border: 1px solid rgb(220, 220, 220);
+      @include box-shadow(rgba(0, 0, 0, 0.0392157) 0px 2px 4px 0px inset)
+    }
+
+    input.ui.red.button.submit{
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    div.two.fields > .field{
+      clear: none !important;
+      float:left;
+      width: 47%;
+    }
+    .use, .price{
+      padding-right: 5%;
+    }
+
+    .img_input_wrapper{
+
+      .add .icon{
+        top: 5px;
+        position: relative;
+      }
+    }
+
+    .submit_area{
+      border-top: 1px solid #D3D3D3; 
+      margin-top: 32px;
+    }
+
+    #show_img{
+      position: relative; 
+      top: 0px; 
+      left: 0px; 
+      width: 600px; 
+      height: 300px;
+    }
+    #imgs{
+      cursor: move; 
+      position: absolute; 
+      overflow: hidden; 
+      left: 0px; 
+      top: 0px; 
+      width: 600px; 
+      height: 300px;
+    }
+
+    div.field.img_input_wrapper{
+      width: 100%;
+    }
+  }
 }
 
 
-div.two.fields > .field{
-	clear: none !important;
-	float:left;
-	width: 47%;
+.house_list{
+  width: 30%;
+  position: absolute;
+  top: 15%;
+  left: 60%;
+  color: white;
 }
-.use, .price{
-	padding-right: 5%;
-}
-
-.img_input_wrapper{
-
-	div.ui.left.labeled.icon.input{
-		width: 88%;
-	}
-	
-	.add .icon{
-		top: 5px;
-		position: relative;
-	}
-}
-
-
-#show_img{
-	position: relative; top: 0px; left: 0px; width: 600px; height: 300px;
-}
-#imgs{
-	cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;
-}
-
-/*custom font*/
-
-/*form styles*/
-#msform {
-	margin: auto;
-	width: 500px;
-	text-align: center;
-	position: relative;
-	top: 40px;
-	
-	fieldset {
-		background: white;
-		border: 0 none;
-		@include border-radius(3px);
-		@include box-shadow(rgba(0, 0, 0, 0.4) 0 0 15px 1px);
-		padding: 20px 30px;
-	
-		box-sizing: border-box;
-		width: 100%;
-		/*stacking fieldsets above each other*/
-		position: absolute;
-		&:not(:first-of-type) {
-			display: none;
-		}
-	}
-	
-	input, textarea {
-		padding: 15px;
-		border: 1px solid #ccc;
-		@include border-radius(3px);
-		margin-bottom: 10px;
-		width: 100%;
-		box-sizing: border-box;
-		font-family: montserrat;
-		color: #2C3E50;
-		font-size: 13px;
-	}
-
-	.action-button {
-		width: 100px;
-		background: #D50909;
-		font-weight: bold;
-		color: white;
-		border: 0 none;
-		@include border-radius(1px);
-		cursor: pointer;
-		padding: 10px 5px;
-		margin: 10px 5px;
-	}
-
-	.action-button{
-		&:hover, &:focus {
-			@include box-shadow( white  0 0 0 2px #27AE60 0 0 0 3px);
-		}
-	}
-}
-
-/*headings*/
-.fs-title {
-	font-size: 15px;
-	text-transform: uppercase;
-	color: #2C3E50;
-	margin-bottom: 10px;
-}
-.fs-subtitle {
-	font-weight: normal;
-	font-size: 13px;
-	color: #666;
-	margin-bottom: 20px;
-}
-/*progressbar*/
-#progressbar {
-	margin-bottom: 30px;
-	overflow: hidden;
-	/*CSS counters to number the steps*/
-	counter-reset: step;
-}
-
-div.field.img_input_wrapper{
-	width: 100%;
-}
-
 
 
 // show house information page
 
 #house_detail{
-	position: relative;
-	left: 40%;
-	top: 100px;
+  position: relative;
+  left: 40%;
+  top: 100px;
 }

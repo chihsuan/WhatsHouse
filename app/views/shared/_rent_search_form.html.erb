@@ -1,39 +1,40 @@
-<%= form_tag('/events/advancedSearch', remote:true, method:'get', class:"search_form") do%>
-	<div class="search_form">	
-		<%= label_tag(:district, "鄉鎮市區", class: "ui orange ribbon label") %>
-		<div class="ui icon input">
-			 <%= text_field_tag(:district, nil,placeholder: "Search...") %>
-			<i class="search icon"></i>
-		</div>
-	</div>
-	<%= label_tag(:people, "人數", class: "ui orange ribbon label") %>
-	<div class="people_select">
-			<%= select_tag(:people, options_for_select([['1人', 1], ['2人', 2], ['3人', 3], ['4人', 4], ['5人', 5], ['6人以上', 6]], selected: :people )) %>	</div>
+<div class="ui form">
+  <%= form_tag('/events/advancedSearch', remote:true, method:'get', class:"search_form") do%>
+    <div class="search_form">	
+      <%= label_tag(:district, "鄉鎮市區", class: "ui orange ribbon label") %>
+      <div class="ui icon input">
+        <%= text_field_tag(:district, nil,placeholder: "Search...") %>
+        <i class="search icon"></i>
+      </div>
+    </div>
+    <%= label_tag(:people, "人數", class: "ui orange ribbon label") %>
+    <div class="people_select">
+      <%= select_tag(:people, options_for_select([['1人', 1], ['2人', 2], ['3人', 3], ['4人', 4], ['5人', 5], ['6人以上', 6]], selected: :people )) %>	</div>
 
-	<%= label_tag(:price, "月租", class:"ui orange ribbon label") %>
-	<div class="radio fields">
-		<div class="ui radio checkbox">
-			<%= radio_button_tag(:price, [0, 4000], checked = true)  %>
-			<%= label_tag(:price, "4000") %>
-			 <i class="small long arrow down icon"></i>
-		</div>	
-		<div class="ui radio checkbox">
-				<%= radio_button_tag(:price, [4000, 6000]) %>
-				<%= label_tag(:price, "4000 ~ 6000") %>
-		</div>
-		<div class="ui radio checkbox">	
-				<%= radio_button_tag(:price, [6000, 10000]) %>
-				<%= label_tag(:price, "6000 ~ 10000") %>
-		</div>	
-		<div class="ui radio checkbox">
-			<%= radio_button_tag(:price, [10000, 99999999]) %>
-			<%= label_tag(:price, "10000") %>
-			<i class="long arrow up icon"></i>
-		</div>	
-	</div>
-	<%= label_tag(:rating, "喜愛程度", class:"ui orange ribbon label") %>
-	 <%= render :partial => "shared/rating" %>
-	 <%= text_field_tag(:rating, nil, :id=>'rating_tag' ) %>
-<%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small orange button") %>
-	<% end %>
-
+    <%= label_tag(:price, "月租", class:"ui orange ribbon label") %>
+    <div class="radio fields">
+      <div class="ui radio checkbox">
+        <%= radio_button_tag(:price, [0, 4000], checked = true)  %>
+        <%= label_tag(:price, "4000") %>
+        <i class="small long arrow down icon"></i>
+      </div>	
+      <div class="ui radio checkbox">
+        <%= radio_button_tag(:price, [4000, 6000]) %>
+        <%= label_tag(:price, "4000 ~ 6000") %>
+      </div>
+      <div class="ui radio checkbox">	
+        <%= radio_button_tag(:price, [6000, 10000]) %>
+        <%= label_tag(:price, "6000 ~ 10000") %>
+      </div>	
+      <div class="ui radio checkbox">
+        <%= radio_button_tag(:price, [10000, 99999999]) %>
+        <%= label_tag(:price, "10000") %>
+        <i class="long arrow up icon"></i>
+      </div>	
+    </div>
+    <%= label_tag(:rating, "喜愛程度", class:"ui orange ribbon label") %>
+    <%= render :partial => "shared/rating" %>
+    <%= text_field_tag(:rating, nil, :id=>'rating_tag' ) %>
+    <%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small orange button") %>
+  <% end %>
+</div>

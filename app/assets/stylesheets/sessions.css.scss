@@ -6,30 +6,30 @@ $min-web-size: 920px;
 $max-phone-size: 768px;
 
 .ui.form.signin {
-	position: absolute;
-	width: 30%;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);	
-	min-width: 329px;
-	
-	@media screen and (max-width: $min-web-size) {
-		width: 36%;
+  position: absolute;
+  width: 30%;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);	
+  min-width: 329px;
+
+  @media screen and (max-width: $min-web-size) {
+    width: 36%;
   }
-	
-	@media screen and (max-width: $max-phone-size) {
-		width: 48%;
+
+  @media screen and (max-width: $max-phone-size) {
+    width: 48%;
   }
 }
 
 #sign_in{
-	background-image: image-url("005.jpg");
-	height: 100%;
-	min-height: 580px;
-	background-repeat: no-repeat;
-	@include background-size(100%);
-	@media screen and (max-width: $max-phone-size) {
-		background-image: none;
+  background-image: image-url("005.jpg");
+  height: 100%;
+  min-height: 580px;
+  background-repeat: no-repeat;
+  @include background-size(100%);
+  @media screen and (max-width: $max-phone-size) {
+    background-image: none;
   }
 }
 

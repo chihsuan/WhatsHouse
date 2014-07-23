@@ -80,7 +80,7 @@ function createMarker(obj, markers) {
     $('.form .fields .checkbox').checkbox('disable');
     // request the data from database.
     jQuery.ajax({
-      url : '/events/show',
+      url : '/events/house_detail',
       dataType : 'json',
       type : 'GET',
       data : {
@@ -122,7 +122,7 @@ function createMarker(obj, markers) {
           else if ( response[i].data == 'rent_houses' ){
             getHouse = response[i];
             $('#information').html(
-              '      <div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
+              '<div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
               '<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
               '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
               '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
@@ -131,7 +131,7 @@ function createMarker(obj, markers) {
               '<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
               '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
               '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
-              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].breif + '</p></td></tr><tbody></talbe>'
+              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].information + '</p></td></tr><tbody></talbe>'  
             );
             // add the pictures of house to the slider.
             var sliderHTML = splitImgUrl(response[i].img);
@@ -295,7 +295,9 @@ function hideAround (cat) {
   if (cat === "all") {
     for (var category in around) {
       // remove layer to hide the markers
-      map.removeLayer(aroundLayers[category]);
+      if (aroundLayers[category]) {
+        map.removeLayer(aroundLayers[category]);
+      }
     }
     return;
   }

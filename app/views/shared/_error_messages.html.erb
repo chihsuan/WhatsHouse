@@ -1,12 +1,12 @@
 <% if object.errors.any? %>
-    <div class="ui error message">
-		 <div class="header">   
-		The form contains <%= pluralize(object.errors.count, "error") %>.
-		</div>	
-		<ul class="list">
-  	 	 <% object.errors.full_messages.each do |msg| %>
-   		   <li>* <%= msg %></li>
-   		</ul>
-		<% end %>
-    </div>
+  <div class="ui error message">
+    <div class="header">   
+      The form contains <%= pluralize(object.errors.count, "error") %>.
+    </div>	
+    <ul class="list">
+      <% object.errors.full_messages.each do |msg| %>
+        <li>* <%= msg %></li>
+      </ul>
+    <% end %>
+  </div>
 <% end %>

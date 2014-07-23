@@ -1,95 +1,95 @@
 <div id="house_detail">
-<table>
-	<tbody>
-		<tr class="address row">
-			<td class="first">
-				<i class="map marker icon"></i>
-				地址
-			</td>
-			<td class="second">
-				<p> 
-					<%= @rentHouse.address %>
-				</p>
-			</td>
-		</tr>
-		<tr class="price row">
-			<td class="first">
-				<i class="dollar icon"></i>
-				租金
-			</td>
-			<td class="second">
-				<p>
-					<%= @rentHouse.price %>
-				</p>
-			</td>
-		</tr>
-		<tr class="type row">
-			<td class="first">
-				<i class="home icon"></i>
-				類型
-			</td>
-			<td class="second">
-				<p>
-					<%= @rentHouse.use %>
-				</p>
-			</td>
-		</tr>
-		<tr class="structure row">
-			<td class="first">
-				<i class="building icon"></i>
-				格局
-			</td>
-			<td class="second">
-				<p>
-				<%= @rentHouse.structure %>
-				</p>
-			</td
-		</tr>
-		<tr class="pepple row">
-			<td class="first">
-				<i class="users icon"></i>
-				人數
-			</td>
-			<td class="second">
-				<p>
-				<%= @rentHouse.people %>
-				</p>
-			</td>
-		</tr>
-    <tr class="contact row">
-			<td class="first">
-				<i class="user icon"></i>
-				聯絡人
-			</td>
-			<td class="second">
-				<p>
-				<%= @rentHouse.owner %>
-				</p>
-			</td>
-		</tr>
-    <tr class="tel row">
-			<td class="first">
-				<i class="phone icon"></i>
-				聯絡電話
-			</td>
-			<td class="second">
-				<p>
-				<%= @rentHouse.tel %>
-				</p>
-			</td>
-		</tr>
-     <tr class="infor row">
-			 <td class="first" id="main_infor">
-				 <i class="info icon"></i>
-				 刊登資訊
-			 </td>
-			 <td>
-				 <p>
-				 <%= @rentHouse.breif %>
-				 </p>
-			 </td>
-		 </tr>
-	</tbody>
-</table>
-</div>
+  <table>
+    <tbody>
+      <tr class="address row">
+        <td class="first">
+          <i class="map marker icon"></i>
+          地址
+        </td>
+        <td class="second">
+          <p> 
+          <%= @rent_house.address %>
+          </p>
+        </td>
+      </tr>
+      <tr class="price row">
+        <td class="first">
+          <i class="dollar icon"></i>
+          租金
+        </td>
+        <td class="second">
+          <p>
+          <%= @rent_house.price %>
+          </p>
+        </td>
+      </tr>
+      <tr class="type row">
+        <td class="first">
+          <i class="home icon"></i>
+          類型
+        </td>
+        <td class="second">
+          <p>
+          <%= @rent_house.use %>
+          </p>
+        </td>
+      </tr>
+      <tr class="structure row">
+        <td class="first">
+          <i class="building icon"></i>
+          格局
+        </td>
+        <td class="second">
+          <p>
+          <%= @rent_house.structure %>
+          </p>
+          </td
+        </tr>
+        <tr class="pepple row">
+          <td class="first">
+            <i class="users icon"></i>
+            人數
+          </td>
+          <td class="second">
+            <p>
+            <%= @rent_house.people %>
+            </p>
+          </td>
+        </tr>
+        <tr class="contact row">
+          <td class="first">
+            <i class="user icon"></i>
+            聯絡人
+          </td>
+          <td class="second">
+            <p>
+            <%= @rent_house.owner %>
+            </p>
+          </td>
+        </tr>
+        <tr class="tel row">
+          <td class="first">
+            <i class="phone icon"></i>
+            聯絡電話
+          </td>
+          <td class="second">
+            <p>
+            <%= @rent_house.tel %>
+            </p>
+          </td>
+        </tr>
+        <tr class="infor row">
+          <td class="first" id="main_infor">
+            <i class="info icon"></i>
+            刊登資訊
+          </td>
+          <td>
+            <p>
+            <%= @rent_house.information %>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 

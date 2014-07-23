@@ -1,198 +1,192 @@
-		<div id = "rent_houses_page">
-			
-		<%= form_for @rent_house, :html => {:id => "msform"} do |f| %>
-		<!-- progressbar -->
-		<div class="ui three steps" id="progressbar">
-			<div class="ui active step">基本資訊</div>
-			<div class="ui step">聯絡資訊</div>
-			<div class="ui step">刊登內容</div>
-		</div>
-		<fieldset>
-		  <%= render 'shared/error_messages', object: f.object%>
-		  <div class="two fields">
-			<div class="field use">
-			  <div class="ui left labeled icon input">
-			  	<%= f.text_field :use , :placeholder => "類別"%>
-			  	<i class="home icon"></i>
-			  	<div class="ui corner label">
-				  <i class="icon asterisk"></i>
-			  	</div>
-			  </div>
-			</div>
-
-			<div class="field structure">
-			  <div class="ui left labeled icon input">
-			    <%= f.text_field :structure, :placeholder => "格局"%>
-			  	<i class="building icon"></i>
-			  	<div class="ui corner label">
-				  <i class="icon asterisk"></i>
-			  	</div>
-			  </div>
-			</div>
-		  </div>
-
-		 <div class="two fields">
-		  <div class="field price">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :price, :placeholder => "租金"%>
-			  <i class="dollar icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-		 </div> 
-
-		  <div class="field people">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :people, :placeholder => "人數"%>
-			  <i class="users icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-		</div> 
-
-		</div>
-
-		  <div class="field">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :address, :placeholder => "地址"%>
-			  <i class="map marker icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-		  </div> 
-
-
-			<input type="button" name="next" class="next action-button" value="下一步" />
-		  </fieldset>
-		 <fieldset>
-		  <div class="field">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :owner, :placeholder => "聯絡人"%>
-			  <i class="user icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-		  </div>
-
-		  <div class="field">
-			<div class="ui left labeled icon input">
-				<%= f.text_field :tel, :placeholder => "聯絡電話"%>
-			  <i class="phone icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-		  </div>
-		<input type="button" name="previous" class="previous action-button" value="上一步" />
-		<input type="button" name="next" class="next action-button" value="下一步" />
-		 </fieldset>
-
-		 <fieldset>
-		  <div class="field">
-			<div class="ui left labeled icon input" id="info">
-			  <%= f.text_area  :breif, :placeholder => "刊登資訊" %>
-			  <i class="infor icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-		  </div>
-
-		  <div class="field img_input_wrapper">
-			<div class="ui left labeled icon input">
-			  <%= text_field_tag 'img[]',  nil, :placeholder => "照片URL" %>
-			  <i class="photo icon"></i>
-			  <div class="ui corner label">
-				<i class="icon asterisk"></i>
-			  </div>
-			</div>
-			<span class="i icon button add_more_button"><i class="add icon"></i></span>
-		  </div>
-		<input type="button" name="previous" class="previous action-button" value="上一步" />
-		  <%= f.submit "出租", class:"submit action-button" %>
-		</fieldset>
-		</div>
-		<% end %>
+<div id = "rent_houses_page">
+  <%= form_for [@user,@rent_house], :html => {:id => "msform"} do |f| %>
+    <!-- progressbar -->
+    <%= render 'shared/error_messages', object: f.object%>
+    <div class="field use">
+      <abbr title="required">*</abbr>
+      <%= f.label :'類別' %>
+      <div class="ui left labeled icon input">
+        <%= f.text_field :use %>
+        <i class="home icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div>
+    <div class="field structure">
+      <abbr title="required">*</abbr>
+      <%= f.label :'格局' %>
+      <div class="ui left labeled icon input">
+        <%= f.text_field :structure %>
+        <i class="building icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div>
+    <div class="field price">
+      <abbr title="required">*</abbr>
+      <%= f.label :'租金' %>	
+      <div class="ui left labeled icon input">
+        <%= f.text_field :price %>
+        <i class="dollar icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div> 
+    <div class="field people">
+      <abbr title="required">*</abbr>
+      <%= f.label :'人數' %>
+      <div class="ui left labeled icon input">
+        <%= f.text_field :people %>
+        <i class="users icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div> 
+    </div>
+    <div class="field">
+      <abbr title="required">*</abbr>
+      <%= f.label :'地址' %>
+      <div class="ui left labeled icon input">
+        <%= f.text_field :address %>
+        <i class="map marker icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div> 
+    <div class="field">
+      <abbr title="required">*</abbr>
+      <%= f.label :'聯絡人' %>	
+      <div class="ui left labeled icon input">
+        <%= f.text_field :owner %>
+        <i class="user icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <abbr title="required">*</abbr>
+      <%= f.label :'聯絡電話' %>
+      <div class="ui left labeled icon input">
+        <%= f.text_field :tel %>
+        <i class="phone icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <abbr title="required">*</abbr>
+      <%= f.label :'刊登資訊' %>
+      <div class="ui left labeled icon input" id="info">
+        <%= f.text_area  :information  %>
+        <i class="infor icon"></i>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div>
+    <div class="field img_input_wrapper">
+      <%= f.label :'照片連結(url)' %>
+      <div class="ui left labeled icon input">
+        <div class="ui left labeled icon input">
+          <%= text_field_tag 'img[]',  nil %>
+          <i class="photo icon"></i>
+          <div class="ui corner label">
+            <i class="icon asterisk"></i>
+          </div>
+        </div>
+        <span class="i icon button add_more_button"><i class="add icon"></i></span>
+      </div>
+      <div class="submit_area">
+        <%= f.submit "出租", class:"ui red button submit" %>
+      </div>
+    </div>
+  <% end %>
 
 
-<script>
-	$(document).ready(function(){
-			
-		$('#msform')
-		  .form({
-			use: {
-			  identifier : 'rent_house[use]',
-			  rules: [
-				{
-				  type   : 'empty',
-				  prompt : '請輸入類別'
-				}
-			  ]
-			},
-			structure: {
-			  identifier : 'rent_house[structure]',
-			  rules: [
-				{
-				  type   : 'empty',
-				  prompt : '請輸入格局'
-				}
-			  ]
-			},
-			address: {
-			  identifier : 'rent_house[address]',
-			  rules: [
-				{
-				  type   : 'empty',
-				  prompt : '請輸入地址'
-				}
-			  ]
-			},
-			price: {
-			  identifier : 'rent_house[price]',
-			  rules: [
-				{
-				  type   : 'empty',
-				  prompt : '請輸入月租'
-				}
-			  ]
-			},
-			owner: {
-			  identifier : 'rent_house[owner]',
-			  rules: [
-				{
-				  type   : 'empty',
-				  prompt : '請輸入聯絡人'
-				}
-			  ]
-			},
-			tel: {
-			  identifier : 'rent_house[tel]',
-			  rules: [
-				{
-				  type   : 'empty',
-				  prompt : '請輸入聯絡電話'
-				}
-			  ]
-			},
-			breif: {
-			  identifier : 'rent_house[breif]',
-			  rules: [
-				{
-				  type   : 'empty',
-				  prompt : '請輸入刊登資訊'
-				}
-			  ]
-			}
-		  },{
-			on: 'blur',
-			inline: 'true',
-			onSuccess : function() {
-			}
-		  })
-		});
-		
-		</script>
+
+
+
+
+  <script>
+    $(document).ready(function(){
+
+      $('#msform')
+      .form({
+        use: {
+          identifier : 'rent_house[use]',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : '請輸入類別'
+          }
+          ]
+        },
+        structure: {
+          identifier : 'rent_house[structure]',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : '請輸入格局'
+          }
+          ]
+        },
+        address: {
+          identifier : 'rent_house[address]',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : '請輸入地址'
+          }
+          ]
+        },
+        price: {
+          identifier : 'rent_house[price]',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : '請輸入月租'
+          }
+          ]
+        },
+        owner: {
+          identifier : 'rent_house[owner]',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : '請輸入聯絡人'
+          }
+          ]
+        },
+        tel: {
+          identifier : 'rent_house[tel]',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : '請輸入聯絡電話'
+          }
+          ]
+        },
+        breif: {
+          identifier : 'rent_house[breif]',
+          rules: [
+          {
+            type   : 'empty',
+            prompt : '請輸入刊登資訊'
+          }
+          ]
+        }
+        },{
+        on: 'blur',
+        inline: 'true',
+        onSuccess : function() {
+        }
+      })
+    });
+
+  </script>

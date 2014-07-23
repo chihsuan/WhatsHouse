@@ -1,28 +1,28 @@
 
 <footer id="footer">
-  <nav>
-  	<ul>
-      <li>© 2014 WhatsHouse</li>
-      <li><%= link_to "About Us",   about_us_path %></li>
-      <li><%= link_to "Contact",  contact_path %></li>
-    </ul>
-  </nav>
-  </footer>
-  <script>
-		
-$(document).ready(function() {
-		
-	$('.launch.button').click(function(){
-		$('#area').toggle();
-	});
+<nav>
+<ul>
+  <li>© 2014 WhatsHouse</li>
+  <li><%= link_to "About Us",   about_us_path %></li>
+  <li><%= link_to "Contact",  contact_path %></li>
+</ul>
+</nav>
+</footer>
+<script>
 
-	$('.rating')
-	  .rating('enable');	
+  $(document).ready(function() {
 
-	$('.rate').click(function(){
-		 $("#rating_tag").val( $('.rating').rating('get rating') );
-	});
-});
+    $('.launch.button').click(function(){
+      $('#area').toggle();
+    });
+
+    $('.rating')
+    .rating('enable');	
+
+    $('.rate').click(function(){
+      $("#rating_tag").val( $('.rating').rating('get rating') );
+    });
+  });
 
 
 </script>
