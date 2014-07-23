@@ -1,3 +1,4 @@
+<div class="ui form">
 <%= form_tag('/events/advancedSearch', remote:true, method:'get', class:"search_form") do%>
 	<div class="search_form">	
 		<%= label_tag(:district, "鄉鎮市區", class: "ui orange ribbon label") %>
@@ -36,4 +37,4 @@
 	 <%= text_field_tag(:rating, nil, :id=>'rating_tag' ) %>
 <%= submit_tag("搜尋", onClick:"search()", class:"adsearch ui small orange button") %>
 	<% end %>
-
+</div>
