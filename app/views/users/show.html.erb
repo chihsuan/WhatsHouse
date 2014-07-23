@@ -1,20 +1,23 @@
-<% provide(:title, @user.name) %>
-
-<div class="welcome_message">
-	<font><%= @user.name %></font>
-	歡迎來到WhatsHouse！
+<div id="profile">
+  <div class="ui orange segment">
+    <h4>關於</h4>
+    <ul>
+      <li>
+        使用者名稱
+        <%= @user.name %>
+      </li> 
+      <li>
+        Email
+        <%= @user.email %>
+      </li>
+    </ul>
+  </div>
+  <div class="ui orange segment">
+    <h4>出租中 (<%= @user.rent_houses.count %>)</h4>
+    <ol class="rent_houses">
+      <% if @user.rent_houses.any? %>
+        <%= render @user.rent_houses %>
+      <% end %>
+    </ol>
+  </div>
 </div>
-
-<!-- <div class="ui feed">
-	<div class="segmant">
-		<h3 class="ui top attached header">
-			<font><%= @user.name %></font>
-		</h3>
-		<div class="ui tabular attached menu">
-			<a class="active item">
-				Me.
-			</a>
-		<div>
-	</div>
-</div>
--->

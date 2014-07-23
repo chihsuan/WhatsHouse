@@ -1,0 +1,39 @@
+@import "compass/css3/background-size";
+$orange: #df4119;
+$min-web-size: 920px;
+$max-phone-size: 768px;
+
+.ui.form.signup {
+  position: absolute;
+  width: 30%;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);	
+  min-width: 329px;
+
+  @media screen and (max-width: $min-web-size) {
+    width: 36%;
+  }
+
+  @media screen and (max-width: $max-phone-size) {
+    width: 48%;
+  }
+}
+
+#sign_up {
+  background-image: image-url("008.jpg");
+  height: 100%;
+  background-repeat: no-repeat;
+  @include background-size(100%);
+  min-height: 580px;
+  @media screen and (max-width: $max-phone-size) {
+    background-image: none;
+  }
+}
+
+.user_edit{
+  top: 60px;
+  left: 35%;
+  width: 30%;
+  margin: auto;
+}

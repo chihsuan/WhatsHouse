@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 gem 'rails_12factor', group: :production
 ruby "2.1.1"
 gem 'gon'
+gem 'leaflet-rails'
 
 gem 'bcrypt-ruby'
 
@@ -57,3 +58,6 @@ gem 'certified'
 gem 'oauth2'
 gem "settingslogic"
 gem 'compass-rails'
+group :development do
+	gem 'guard-livereload', require: false
+end

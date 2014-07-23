@@ -1,38 +1,26 @@
 Rails.application.routes.draw do
-	resources :users
-	resources :password_resets
-	resources :sessions, only: [:new, :create, :destroy]
-	resources :rent_houses
-	resources :sale_houses,  only: [:create, :destroy]
-	root :to => "content#content"
-	
-	# main page router
-	get 'content' => 'content#content'
-	get 'rent' => 'content#rent'
-	get 'about_us' => 'content#about'
-	get 'contact' => 'content#contact'
-		
-	# login system router
-	match '/signup',  to: 'users#new',            via: 'get'
-	match '/signin',  to: 'sessions#new',         via: 'get'
-	match '/signout', to: 'sessions#destroy',     via: 'delete'
-  	get 'password_resets/new'
-	
-	# rent house router
-	match '/renthouse',  to: 'rent_houses#rentHouse',            via: 'get'
-	match '/salehouse',  to: 'sale_houses#sale',            via: 'get'
-	
-	# ajax router
-	match '/events/advancedSearch', to: 'events#advancedSearch', via: 'get'
-	match '/events/search', to: 'events#search', via: 'get'
-	match '/events/show', to: 'events#show', via: 'get'
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  root :to => "pages#index"
 
-	# socialnewtwork login router
-	match 'auth/failure', to: redirect('/'), via: [:get, :post]
-	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
+  resources :users do
+    resources :rent_houses
+  end
+  
+  # ajax path
+  resource :events do
+    collection do
+      get 'house_detail'
+      get 'search' 
+      get 'advancedSearch'
+    end
+  end
 
-	match '/analysis', to: 'content#analysis', via: 'get'
-	match '/buy', to: 'content#buy', via: 'get'
+  # main page router
+  get 'content' => 'pages#index'
+  get 'about_us' => 'pages#about_us'
+  get 'contact' => 'pages#contact'
+  get 'rent' => 'maps#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

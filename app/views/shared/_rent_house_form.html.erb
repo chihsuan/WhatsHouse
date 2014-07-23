@@ -1,44 +1,44 @@
- <%= form_for(@rent_house) do |f| %>
-	  <%= render 'shared/error_messages', object: f.object %>
-	  <div class="field">
-	
-	  <%= f.label :tpye %>
-	  <%= f.text_field :type %>
+<%= form_for(@rent_house) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
 
-	  <%= f.label :address %>
-      <%= f.text_field :address %>
-	  
-	  <%= f.label :price %>
-      <%= f.text_field :price %>
+    <%= f.label :tpye %>
+    <%= f.text_field :type %>
 
-      <%= f.label :size %>
-      <%= f.text_field :size %>
-	  
-	  <%= f.label :structure %>
-      <%= f.text_field :structure %>
-	  
-      <%= f.label :year %>
-      <%= f.text_field :year %>
-	
-      <%= f.label :floor %>
-      <%= f.text_field :floor %>
-	  
-      <%= f.label :breif %>
-	  <%= f.text_area  :breif %>
-	  
-	  <%= f.label :note %>
-      <%= f.text_field :note %>
-	  
-	  <%= f.label :tel %>
-      <%= f.text_field :tel %>
-	  
-	  <%= f.label :name %>
-      <%= f.text_field :owner %>
-	  
-	  <%= f.label :email %>
-	  <%= f.text_field :email %>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+
+    <%= f.label :size %>
+    <%= f.text_field :size %>
+
+    <%= f.label :structure %>
+    <%= f.text_field :structure %>
+
+    <%= f.label :year %>
+    <%= f.text_field :year %>
+
+    <%= f.label :floor %>
+    <%= f.text_field :floor %>
+
+    <%= f.label :breif %>
+    <%= f.text_area  :breif %>
+
+    <%= f.label :note %>
+    <%= f.text_field :note %>
+
+    <%= f.label :tel %>
+    <%= f.text_field :tel %>
+
+    <%= f.label :name %>
+    <%= f.text_field :owner %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
 
 
-  	  </div>
-      <%= f.submit "Create house on sale"  %>
+  </div>
+  <%= f.submit "Create house on sale"  %>
 <% end %>

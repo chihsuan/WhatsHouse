@@ -1,0 +1,16 @@
+<div id="confirmation">
+<div class="ui form segment">
+  <h2>重寄認證信</h2>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+    <div>
+      <%= f.submit "送出", class:"ui red button" %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</div>
+</div>

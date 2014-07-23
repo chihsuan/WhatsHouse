@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="WhatsHouse"/>
-	<meta property="og:locale" content="zh_TW"/>
-	<meta property="og:description" content="簡單、直覺、友善, 提供更輕鬆的方式尋找您心目中的家"/>
-	<meta property="og:url" content="https://whatshouse.herokuapp.com/"/>
-	<meta name="google-site-verification" content="KoeuCdB4d02WQXYvZbhp0j2rqPJ6iybSJ7Kc_HDf__A" />
-	<link href="<%= asset_path '006.jpg' %>" rel="image_src" type="image/jpeg">
-	<%= favicon_link_tag '/favicon.ico' %>
-	<title><%= full_title(yield(:title)) %></title>
-	<%= include_gon %>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<%= stylesheet_link_tag controller_name %>
-	<%= javascript_include_tag "application", controller_name , 'data-turbolinks-track' => true %>
-	<%= csrf_meta_tags %>
-	<%= render 'layouts/shim' %>
-</head>
-<body>
-	<div id="wrap">
-		<%= render 'layouts/header' %>
-		<div class="container clearfix">
-		 <%= render :partial => "shared/sidebar" %>	
-		 <%= yield %>
-		<div id='layout_footer'></div>
-		</div>
-		<%= render 'layouts/footer' %>
-		<%= debug(params) if Rails.env.development? %>
-	</div>
-	<script>
-			$('.response.menu .item')        
-  			  	.tab();
-			$('.ui.dropdown')
-			  .dropdown()
-		  ;
-	</script>
-</body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="WhatsHouse"/>
+    <meta property="og:locale" content="zh_TW"/>
+    <meta property="og:description" content="簡單、直覺、友善, 提供更輕鬆的方式尋找您心目中的家"/>
+    <meta property="og:url" content="https://whatshouse.herokuapp.com/"/>
+    <meta name="google-site-verification" content="KoeuCdB4d02WQXYvZbhp0j2rqPJ6iybSJ7Kc_HDf__A" />
+    <link href="<%= asset_path '006.jpg' %>" rel="image_src" type="image/jpeg">
+    <%= favicon_link_tag '/favicon.ico' %>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= include_gon %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag controller_name %>
+    <%= javascript_include_tag "application", controller_name , 'data-turbolinks-track' => true %>
+    <%= yield :head %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <div id="wrap">
+      <%= render 'layouts/header' %>
+      <div class="container clearfix">
+        <%= render :partial => "layouts/sidebar" %>	
+        <%= yield %>
+        <div id='layout_footer'></div>
+      </div>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+    <script>
+      $('.response.menu .item')        
+      .tab();
+      $('.ui.dropdown')
+      .dropdown()
+      ;
+    </script>
+  </body>
 </html>
