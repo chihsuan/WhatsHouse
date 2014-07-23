@@ -159,9 +159,6 @@ function createMarker(obj, markers) {
               console.log("found " + response[i].data);
               around[response[i].data] = [];
             }
-            // add the data into the corresponding category of
-            // around.
-            // around[response[i].data].push(response[i]);
             addAroundMarker(response[i]);
           }
         }
