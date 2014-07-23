@@ -1,4 +1,3 @@
-//= require jquery.address
 //= require jssor.slider.min
 //= require leaflet
 //= require leaflet.markercluster-src
