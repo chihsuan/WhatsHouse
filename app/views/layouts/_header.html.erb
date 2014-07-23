@@ -4,9 +4,6 @@
     <%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
       <h2><i class="home icon"></i>WhatsHouse</h2>
     <% end %>
-    <% if !signed_in? %>
-      <!-- <%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %> -->
-    <% end %>
     <% if current_page?('maps') %>
       <div class="menu_search_form">	
         <div class="item">
@@ -22,7 +19,7 @@
       </div>
     <% end %>
     <div class="right menu">
-      <% if signed_in? %>
+      <% if current_user %>
         <%= link_to new_user_rent_house_path(current_user), id:"renthouse_link", class:"item" do%>
           <i class="add icon"></i>出租
         <% end %>
@@ -30,17 +27,16 @@
           <%= current_user.name %>
           <i class="icon dropdown"></i>
           <div class="menu">
-            <%= link_to "編輯個人檔案", edit_user_path(current_user), class:"item", 'data-no-turbolink' => true %> 
-            <!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
-            <%= link_to "登出", signout_users_path, method: "delete" , class:"sign_in item" %>
+            <%= link_to '個人檔案', user_path(current_user), class:"item" %>
+            <%= link_to '帳號設定', edit_registration_path(:user), class:"item" %>
+            <%= link_to'登出', destroy_user_session_path, :method => :delete, class:"item" %>
           </div>
         </div>
       <% else %>
-        <%= link_to "登入", signin_users_path, class:"item"%>
-        <%= link_to "註冊", signup_users_path, class:"item"%>
+        <%= link_to '註冊', new_registration_path(:user), class:"item" %>
+        <%= link_to '登入', new_session_path(:user), class:"item" %>
       <% end %>	
     </div>
   </div>
-
 </div>
 </header>
