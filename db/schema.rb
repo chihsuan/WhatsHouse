@@ -38,12 +38,6 @@ ActiveRecord::Schema.define(version: 20140722052230) do
     t.string   "data",          default: "childcarerosters"
   end
 
-  create_table "comments", force: true do |t|
-    t.string   "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "dinings", force: true do |t|
     t.string   "diningid"
     t.string   "store_id"
@@ -209,7 +203,7 @@ ActiveRecord::Schema.define(version: 20140722052230) do
     t.string   "img"
     t.integer  "price"
     t.integer  "people"
-    t.integer  "browse_rate", default: 0
+    t.integer  "browse_rate"
   end
 
   add_index "rent_houses", ["address"], name: "index_rent_houses_on_address", using: :btree
