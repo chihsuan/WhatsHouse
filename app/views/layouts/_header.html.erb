@@ -7,7 +7,7 @@
 		<% if !signed_in? %>
 				<!-- <%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %> -->
 		<% end %>
-	<% if current_page?("rent") %>
+	<% if current_page?('maps') %>
 	<div class="menu_search_form">	
 		<div class="item">
 		<%= form_tag('/events/search', remote:true, method:'get', class:"search_form") do%>
