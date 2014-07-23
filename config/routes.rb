@@ -1,36 +1,36 @@
 Rails.application.routes.draw do
-	root :to => "pages#index"
+  root :to => "pages#index"
 
-	resources :users do
-		collection do
-			get 'signup' => 'users#new'
-			get 'signin' => 'sessions#new'
-			delete 'signout' => 'sessions#destroy'
-		end
+  resources :users do
+    collection do
+      get 'signup' => 'users#new'
+      get 'signin' => 'sessions#new'
+      delete 'signout' => 'sessions#destroy'
+    end
 
-		resources :rent_houses
-	end
-	resources :password_resets
-	resources :sessions, only: [:new, :create, :destroy]
-	
-	# ajax path
-	resource :events do
-		 collection do
-		 	get 'house_detail'
-			get 'search' 
-			get 'advancedSearch'
-		 end
-	end
-	
-	# main page router
-	get 'content' => 'pages#index'
-	get 'about_us' => 'pages#about'
-	get 'contact' => 'pages#contact'
-	get 'rent' => 'maps#show'
-	
-	# for social network login
-	match 'auth/failure', to: redirect('/'), via: [:get, :post]
-	match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
+    resources :rent_houses
+  end
+  resources :password_resets
+  resources :sessions, only: [:new, :create, :destroy]
+
+  # ajax path
+  resource :events do
+    collection do
+      get 'house_detail'
+      get 'search' 
+      get 'advancedSearch'
+    end
+  end
+
+  # main page router
+  get 'content' => 'pages#index'
+  get 'about_us' => 'pages#about'
+  get 'contact' => 'pages#contact'
+  get 'rent' => 'maps#show'
+
+  # for social network login
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'auth/:provider/callback', to: 'sessions#facebook', via: [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
