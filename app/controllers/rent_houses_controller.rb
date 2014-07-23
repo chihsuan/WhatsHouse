@@ -1,5 +1,5 @@
 class RentHousesController < ApplicationController
-  before_action :signed_in_user
+  before_filter :authenticate_user!
   before_action :find_house, only: [:edit, :update, :destroy, :show]
 
   def show
@@ -25,17 +25,15 @@ class RentHousesController < ApplicationController
   end
 
   def create
-    begin
+    @user = current_user
+    @rent_house = current_user.rent_houses.build(rentHouses_params)
+    @rent_house.img = params[:img].join(',')
+    if @rent_house.save
+      flash[:success] = "RentHouse created!"
+      redirect_to rent_path
+    else
       @user = current_user
-      @rent_house = current_user.rent_houses.build(rentHouses_params)
-      @rent_house.img = params[:img].join(',')
-      if @rent_house.save
-        flash[:success] = "RentHouse created!"
-        redirect_to rent_path
-      else
-        @user = current_user
-        render :new
-      end
+      render :new
     end
   end
 
