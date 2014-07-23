@@ -75,7 +75,7 @@ function createMarker(obj, markers) {
     focusPoint.lng = marker.lng;
     // delete the around points of previous marker.
     deleteAround();
-
+    
     // disable all checkbox in the html
     $('.form .fields .checkbox').checkbox('disable');
     // request the data from database.
@@ -295,7 +295,9 @@ function hideAround (cat) {
   if (cat === "all") {
     for (var category in around) {
       // remove layer to hide the markers
-      map.removeLayer(aroundLayers[category]);
+      if ( aroundLayers[category] ) {
+        map.removeLayer(aroundLayers[category]);
+      }
     }
     return;
   }
