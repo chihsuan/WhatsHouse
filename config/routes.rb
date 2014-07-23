@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :rent_houses
   end
-  #resources :password_resets
-  #resources :sessions, only: [:new, :create, :destroy]
-
+  
   # ajax path
   resource :events do
     collection do
@@ -19,10 +17,9 @@ Rails.application.routes.draw do
 
   # main page router
   get 'content' => 'pages#index'
-  get 'about_us' => 'pages#about'
+  get 'about_us' => 'pages#about_us'
   get 'contact' => 'pages#contact'
   get 'rent' => 'maps#show'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
