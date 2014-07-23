@@ -255,3 +255,12 @@ a.ui.red.button, input.ui.red.button{
   background-color: $orange;
 }
 
+.devise_links{
+  margin: auto;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  a{
+    padding: 10px 5px 5px 3px;
+  }
+}

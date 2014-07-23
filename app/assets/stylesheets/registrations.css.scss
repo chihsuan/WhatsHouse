@@ -1,16 +1,14 @@
-// Place all the styles related to the Sessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 @import "compass/css3/background-size";
+$orange: #df4119;
 $min-web-size: 920px;
 $max-phone-size: 768px;
 
-.ui.form.signin {
+.ui.form.signup {
   position: absolute;
   width: 30%;
-  top: 50%;
+  top: 45%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%); 
+  transform: translateX(-50%) translateY(-50%);	
   min-width: 329px;
 
   @media screen and (max-width: $min-web-size) {
@@ -22,13 +20,20 @@ $max-phone-size: 768px;
   }
 }
 
-#sign_in{
-  background-image: image-url("005.jpg");
+#sign_up {
+  background-image: image-url("008.jpg");
   height: 100%;
-  min-height: 580px;
   background-repeat: no-repeat;
   @include background-size(100%);
+  min-height: 580px;
   @media screen and (max-width: $max-phone-size) {
     background-image: none;
   }
+}
+
+.user_edit{
+  top: 60px;
+  left: 35%;
+  width: 30%;
+  margin: auto;
 }
