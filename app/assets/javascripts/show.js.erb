@@ -298,7 +298,9 @@ function hideAround (cat) {
   if (cat === "all") {
     for (var category in around) {
       // remove layer to hide the markers
-      map.removeLayer(aroundLayers[category]);
+      if (aroundLayers[category]) {
+        map.removeLayer(aroundLayers[category]);
+      }
     }
     return;
   }
