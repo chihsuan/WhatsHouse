@@ -7,125 +7,125 @@
 
 
 #rent_houses_page{
-	height: 100%;
-	width: 60%;
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin: auto;
-	background-color: white;
-	@include box-shadow(rgba(0,0,0,0.1) 0px 1px 2px 1px);
-	position: relative;
-	padding: 20px 0px 100px 66px;
+  height: 100%;
+  width: 60%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: auto;
+  background-color: white;
+  @include box-shadow(rgba(0,0,0,0.1) 0px 1px 2px 1px);
+  position: relative;
+  padding: 20px 0px 100px 66px;
 
-	form {
-		margin: auto;
-		width: 500px;
-		text-align: center;
-		position: relative;
-		top: 40px;
-
-
-		div.ui.left.labeled.icon.input{
-			padding: 0px 0px 10px 0px;
-			width: 100%;
-		}
-
-		abbr{
-			color: #c07525;
-			margin-right: 5px;
-			padding: 10px 0px 10px;
-			float:left;
-		}
-
-		label{
-			float: left;
-			font-weight: bold;
-			font-size: 15px;
-			padding: 10px 0px 10px 0px;
-		}
+  form {
+    margin: auto;
+    width: 500px;
+    text-align: center;
+    position: relative;
+    top: 40px;
 
 
-		textarea {
-			padding: 15px;
-			border: 1px solid #ccc;
-			@include border-radius(3px);
-			margin-bottom: 10px;
-			width: 100%;
-			box-sizing: border-box;
-			font-family: montserrat;
-			color: #2C3E50;
-			font-size: 13px;
-		}
+    div.ui.left.labeled.icon.input{
+      padding: 0px 0px 10px 0px;
+      width: 100%;
+    }
 
-		textarea,	input{
-			border: 1px solid rgb(220, 220, 220);
-			@include box-shadow(rgba(0, 0, 0, 0.0392157) 0px 2px 4px 0px inset)
-		}
+    abbr{
+      color: #c07525;
+      margin-right: 5px;
+      padding: 10px 0px 10px;
+      float:left;
+    }
 
-		input.ui.red.button.submit{
-			margin-bottom: 20px;
-			margin-top: 10px;
-		}
+    label{
+      float: left;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 10px 0px 10px 0px;
+    }
 
-		div.two.fields > .field{
-			clear: none !important;
-			float:left;
-			width: 47%;
-		}
-		.use, .price{
-			padding-right: 5%;
-		}
 
-		.img_input_wrapper{
+    textarea {
+      padding: 15px;
+      border: 1px solid #ccc;
+      @include border-radius(3px);
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: montserrat;
+      color: #2C3E50;
+      font-size: 13px;
+    }
 
-			.add .icon{
-				top: 5px;
-				position: relative;
-			}
-		}
+    textarea,	input{
+      border: 1px solid rgb(220, 220, 220);
+      @include box-shadow(rgba(0, 0, 0, 0.0392157) 0px 2px 4px 0px inset)
+    }
 
-		.submit_area{
-			border-top: 1px solid #D3D3D3; 
-			margin-top: 32px;
-		}
+    input.ui.red.button.submit{
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
 
-		#show_img{
-			position: relative; 
-			top: 0px; 
-			left: 0px; 
-			width: 600px; 
-			height: 300px;
-		}
-		#imgs{
-			cursor: move; 
-			position: absolute; 
-			overflow: hidden; 
-			left: 0px; 
-			top: 0px; 
-			width: 600px; 
-			height: 300px;
-		}
+    div.two.fields > .field{
+      clear: none !important;
+      float:left;
+      width: 47%;
+    }
+    .use, .price{
+      padding-right: 5%;
+    }
 
-		div.field.img_input_wrapper{
-			width: 100%;
-		}
-	}
+    .img_input_wrapper{
+
+      .add .icon{
+        top: 5px;
+        position: relative;
+      }
+    }
+
+    .submit_area{
+      border-top: 1px solid #D3D3D3; 
+      margin-top: 32px;
+    }
+
+    #show_img{
+      position: relative; 
+      top: 0px; 
+      left: 0px; 
+      width: 600px; 
+      height: 300px;
+    }
+    #imgs{
+      cursor: move; 
+      position: absolute; 
+      overflow: hidden; 
+      left: 0px; 
+      top: 0px; 
+      width: 600px; 
+      height: 300px;
+    }
+
+    div.field.img_input_wrapper{
+      width: 100%;
+    }
+  }
 }
 
 
 .house_list{
-	width: 30%;
-	position: absolute;
-	top: 15%;
-	left: 60%;
-	color: white;
+  width: 30%;
+  position: absolute;
+  top: 15%;
+  left: 60%;
+  color: white;
 }
 
 
 // show house information page
 
 #house_detail{
-	position: relative;
-	left: 40%;
-	top: 100px;
+  position: relative;
+  left: 40%;
+  top: 100px;
 }

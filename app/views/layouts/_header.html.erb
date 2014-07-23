@@ -1,46 +1,46 @@
 <header>
 <div class="ui fixed inverted title_bar menu">
-	<div class="menu">
-		<%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
-			<h2><i class="home icon"></i>WhatsHouse</h2>
-		<% end %>
-		<% if !signed_in? %>
-				<!-- <%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %> -->
-		<% end %>
-	<% if current_page?('maps') %>
-	<div class="menu_search_form">	
-		<div class="item">
-		<%= form_tag('/events/search', remote:true, method:'get', class:"search_form") do%>
-			<div class="ui icon input">
-				 <%= text_field_tag(:district, nil,placeholder: "搜尋城市、鄉鎮市區") %>
-				<i class="search icon">
-				</i>
-		<%= submit_tag("", onClick:"search()", class:"ui button search_submit") %>
-			</div>
-		<% end %>
-		</div>
-	</div>
-	<% end %>
-	<div class="right menu">
-	<% if signed_in? %>
-		<%= link_to new_user_rent_house_path(current_user), id:"renthouse_link", class:"item" do%>
-			<i class="add icon"></i>出租
-		<% end %>
-		<div class="ui pointing dropdown item">
-		<%= current_user.name %>
-			<i class="icon dropdown"></i>
-			<div class="menu">
-			<%= link_to "編輯個人檔案", edit_user_path(current_user), class:"item", 'data-no-turbolink' => true %> 
-				<!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
-			<%= link_to "登出", signout_users_path, method: "delete" , class:"sign_in item" %>
-			</div>
-		</div>
-	<% else %>
-		<%= link_to "登入", signin_users_path, class:"item"%>
-   		<%= link_to "註冊", signup_users_path, class:"item"%>
-	<% end %>	
-	</div>
-	</div>
+  <div class="menu">
+    <%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
+      <h2><i class="home icon"></i>WhatsHouse</h2>
+    <% end %>
+    <% if !signed_in? %>
+      <!-- <%= link_to "租屋", rent_path, class:"item", 'data-no-turbolink' => true %> -->
+    <% end %>
+    <% if current_page?('maps') %>
+      <div class="menu_search_form">	
+        <div class="item">
+          <%= form_tag('/events/search', remote:true, method:'get', class:"search_form") do%>
+            <div class="ui icon input">
+              <%= text_field_tag(:district, nil,placeholder: "搜尋城市、鄉鎮市區") %>
+              <i class="search icon">
+              </i>
+              <%= submit_tag("", onClick:"search()", class:"ui button search_submit") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="right menu">
+      <% if signed_in? %>
+        <%= link_to new_user_rent_house_path(current_user), id:"renthouse_link", class:"item" do%>
+          <i class="add icon"></i>出租
+        <% end %>
+        <div class="ui pointing dropdown item">
+          <%= current_user.name %>
+          <i class="icon dropdown"></i>
+          <div class="menu">
+            <%= link_to "編輯個人檔案", edit_user_path(current_user), class:"item", 'data-no-turbolink' => true %> 
+            <!-- <%= link_to "設定", edit_user_path(current_user), class:"sign_in item"%> -->
+            <%= link_to "登出", signout_users_path, method: "delete" , class:"sign_in item" %>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to "登入", signin_users_path, class:"item"%>
+        <%= link_to "註冊", signup_users_path, class:"item"%>
+      <% end %>	
+    </div>
+  </div>
 
 </div>
 </header>

@@ -13,99 +13,99 @@ $max-phone-size: 768px;
 
 //home page
 #site-container{
-	width: 100%;
-	height: 100%;
-	position: relative;
-	color: #ffffff;
-	font-weight: 700;
-	font-size: 36px;
-	background: image-url("006.jpg") no-repeat;
-	background-position: 0px;
-	min-height: 520px;
-	@include background-size(100%);
-	@include opacity(0.95);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 36px;
+  background: image-url("006.jpg") no-repeat;
+  background-position: 0px;
+  min-height: 520px;
+  @include background-size(100%);
+  @include opacity(0.95);
 
-	@media screen and (max-width: $min-web-size) {
-		height: auto;
-		width: auto;
-	}
-	@media screen and (max-width: $max-phone-size) {
-		top: -104px;
-	}
+  @media screen and (max-width: $min-web-size) {
+    height: auto;
+    width: auto;
+  }
+  @media screen and (max-width: $max-phone-size) {
+    top: -104px;
+  }
 
-	@media screen and (max-width: $max-phone-size - 78px ) {
-		background-image: none;
-	}
+  @media screen and (max-width: $max-phone-size - 78px ) {
+    background-image: none;
+  }
 
-	.heading{
-		padding: 20px 15px 15px 107px;
-		margin-right: auto;
-		margin-left: auto;
-		@include text-shadow(rgba(0,0,0,0.4) 1px 1px 1px);
+  .heading{
+    padding: 20px 15px 15px 107px;
+    margin-right: auto;
+    margin-left: auto;
+    @include text-shadow(rgba(0,0,0,0.4) 1px 1px 1px);
 
-		@media screen and (max-width: $max-phone-size) {
-			padding: 14%
-		}
+    @media screen and (max-width: $max-phone-size) {
+      padding: 14%
+    }
 
-		h1{
-			@media screen and (max-width: $max-phone-size) {
-				display: none;
-			}
-		}
+    h1{
+      @media screen and (max-width: $max-phone-size) {
+        display: none;
+      }
+    }
 
-		#signup{
-			font-size: 15px;
-			padding: 10px 10px 10px 10px;
-			margin-left: 26%;
-			margin-left: 330px;
-			background: transparent;
-		}
+    #signup{
+      font-size: 15px;
+      padding: 10px 10px 10px 10px;
+      margin-left: 26%;
+      margin-left: 330px;
+      background: transparent;
+    }
 
-		div.ui.left.labeled.icon.input {
-			@include border-radius(5px);
+    div.ui.left.labeled.icon.input {
+      @include border-radius(5px);
 
-		}
+    }
 
-		.enter{
-			width: 41%;
-			left: 30%;
-			position: relative;
+    .enter{
+      width: 41%;
+      left: 30%;
+      position: relative;
 
-			@media screen and (max-width: $min-web-size) {
-				width: 56%;
-			}
+      @media screen and (max-width: $min-web-size) {
+        width: 56%;
+      }
 
-			a.ui.button{
-				@media screen and (max-width: $max-phone-size) {
-					width: 68% !important;
-				}
-			}
+      a.ui.button{
+        @media screen and (max-width: $max-phone-size) {
+          width: 68% !important;
+        }
+      }
 
-			a.ui.red.button{
-				height: 57px;
-				width: 42%;
-				text-align: center;
-				padding-top: 18px;
-				margin: 10px 10px 10px 10px;
-				font-size: 18px;
-				&:hover{
-					background-color: #E75859;
-					color: #FFFFFF;
-				}
-				&:last-child{
-					background: white;
-					border: 2px solid white;
-					color: #444;;
-					font-weight: normal;
-				}
-				&:last-child:hover{
-					background: rgba(255, 255, 255, 0);
-					color: white;
-					@include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
-				}
-			}
-		}
-	}
+      a.ui.red.button{
+        height: 57px;
+        width: 42%;
+        text-align: center;
+        padding-top: 18px;
+        margin: 10px 10px 10px 10px;
+        font-size: 18px;
+        &:hover{
+          background-color: #E75859;
+          color: #FFFFFF;
+        }
+        &:last-child{
+          background: white;
+          border: 2px solid white;
+          color: #444;;
+          font-weight: normal;
+        }
+        &:last-child:hover{
+          background: rgba(255, 255, 255, 0);
+          color: white;
+          @include text-shadow(rgba(0,0,0,0.5) 1px 1px 1px);
+        }
+      }
+    }
+  }
 }
 
 
@@ -113,38 +113,38 @@ $max-phone-size: 768px;
 
 #about_us,
 #contact_us{
-	width: 70%;
-	margin: auto;
-	padding: 10px 10px 10px 10px;
-	color: black;
-	a{
-		padding-left: 5px;
-		color: #444;
-		&:hover{
-			color: $orange;
-		}
-	}
+  width: 70%;
+  margin: auto;
+  padding: 10px 10px 10px 10px;
+  color: black;
+  a{
+    padding-left: 5px;
+    color: #444;
+    &:hover{
+      color: $orange;
+    }
+  }
 }
 
 .author{
-	height: 200px;
-	width: 90%;
-	line-height: 40px;
-	margin: auto;
-	padding-top: 20px;
+  height: 200px;
+  width: 90%;
+  line-height: 40px;
+  margin: auto;
+  padding-top: 20px;
 }
 
 .author_img img,
 .author_img{
-	height: 150px;
-	width: 150px;
-	float:left;
+  height: 150px;
+  width: 150px;
+  float:left;
 }
 
 .author_brief{
-	width: 95%;
-	margin:auto;
-	li{
-		list-style:none;
-	}
+  width: 95%;
+  margin:auto;
+  li{
+    list-style:none;
+  }
 }

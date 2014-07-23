@@ -8,90 +8,90 @@ $max-phone-size: 768px;
 
 
 .ui.form.signup {
-	position: absolute;
-	width: 30%;
-	top: 40%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);	
-	min-width: 329px;
+  position: absolute;
+  width: 30%;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);	
+  min-width: 329px;
 
-	@media screen and (max-width: $min-web-size) {
-		width: 36%;
-	}
+  @media screen and (max-width: $min-web-size) {
+    width: 36%;
+  }
 
-	@media screen and (max-width: $max-phone-size) {
-		width: 48%;
-	}
+  @media screen and (max-width: $max-phone-size) {
+    width: 48%;
+  }
 }
 
 #sign_up {
-	background-image: image-url("008.jpg");
-	height: 100%;
-	background-repeat: no-repeat;
-	@include background-size(100%);
-	min-height: 580px;
-	@media screen and (max-width: $max-phone-size) {
-		background-image: none;
-	}
+  background-image: image-url("008.jpg");
+  height: 100%;
+  background-repeat: no-repeat;
+  @include background-size(100%);
+  min-height: 580px;
+  @media screen and (max-width: $max-phone-size) {
+    background-image: none;
+  }
 }
 
 
 .ui.about.cell.grid {
-	position: absolute;
-	top: 65px;
-	right: 20%;
-	width: 60%;
-	display:table;
+  position: absolute;
+  top: 65px;
+  right: 20%;
+  width: 60%;
+  display:table;
 
-	.column{
-		padding-right: 30px;
+  .column{
+    padding-right: 30px;
 
-		.ui.about.menu {
-			position: relative;	
-		}
-		.ui.tab.segmant {
-			display:table-cell;
-		}
+    .ui.about.menu {
+      position: relative;	
+    }
+    .ui.tab.segmant {
+      display:table-cell;
+    }
 
-	}	
+  }	
 
 }
 
 div.ui.form.edit.segment {
-	box-shadow: none;
-	input.ui.orange.button{
-		background-color: $orange;
-		width: 50%;
-	}
+  box-shadow: none;
+  input.ui.orange.button{
+    background-color: $orange;
+    width: 50%;
+  }
 }	
 
 #areaAbout{
-	position: relative;
+  position: relative;
 }
 
 .edit div.field{
-	width: 50%;
+  width: 50%;
 
-	@media screen and (max-width: $max-phone-size) {
-		width: 100%;
+  @media screen and (max-width: $max-phone-size) {
+    width: 100%;
 
-	}
+  }
 }
 
 #areaAbout table{
-	line-height: 30px;
+  line-height: 30px;
 
-	td{
-		padding-left: 5px;
-	}
+  td{
+    padding-left: 5px;
+  }
 }
 
 
 div.ui.inverted.pointing.about.menu{
 
-	background: $orange;
+  background: $orange;
 
-	.active.item:after{
-		background: $orange;
-	}
+  .active.item:after{
+    background: $orange;
+  }
 }
