@@ -122,7 +122,7 @@ function createMarker(obj, markers) {
           else if ( response[i].data == 'rent_houses' ){
             getHouse = response[i];
             $('#information').html(
-              '<div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
+              '      <div class="add_to_cart ui orange left corner label" onclick="addToCart()"><i class="add icon"></i></div><div class="ui right corner label"><div class="text">點擊率' + response[i].browse_rate  + '</div></div>' +
               '<table class="ui table segment row" cellpadding="0" cellspacing="0" border="0"><tbody>' +
               '<tr class="address row"><td class="first"><i class="map marker icon"></i>地址</td>' +  '<td class="second"><p>' + response[i].address + '</p></td></tr>' +
               '<tr class="price row"><td class="first"><i class="dollar icon"></i>租金</td>' +  '<td class="second"><p>' + response[i].price + '元/每月</p></td></tr>' +
@@ -131,7 +131,7 @@ function createMarker(obj, markers) {
               '<tr class="pepple row"><td class="first"><i class="users icon"></i>人數</td>' +  '<td class="second"><p>' + response[i].people + '</p></td></tr>' +
               '<tr class="contact row"><td class="first"><i class="user icon"></i>聯絡人</td>' + '<td class="second"><p>' + response[i].owner + '</p></td></tr>' +
               '<tr class="tel row"><td class="first"><i class="phone icon"></i>聯絡電話</td>' + '<td class="second"><p>' + response[i].tel + '</p></td></tr>' +
-              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].information + '</p></td></tr><tbody></talbe>'  
+              '<tr class="infor row"><td class="first" id="main_infor"><i class="info icon"></i>刊登資訊' + '<td><p>' + response[i].breif + '</p></td></tr><tbody></talbe>'
             );
             // add the pictures of house to the slider.
             var sliderHTML = splitImgUrl(response[i].img);
@@ -295,9 +295,7 @@ function hideAround (cat) {
   if (cat === "all") {
     for (var category in around) {
       // remove layer to hide the markers
-      if (aroundLayers[category]) {
-        map.removeLayer(aroundLayers[category]);
-      }
+      map.removeLayer(aroundLayers[category]);
     }
     return;
   }
@@ -315,15 +313,15 @@ function deleteAround () {
 }
 
 // Sets the map on all markers in the array.
-function setAllMap(map) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].addTo(map);
-  }
+function setAllMap() {
+  markerCluster = L.markerClusterGroup();
+  markerCluster.addLayers(markers);
+  map.addLayer(markerCluster);
 }
 
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() {
-  setAllMap(null);
+  map.removeLayer(markerCluster);
 }
 
 
@@ -335,49 +333,46 @@ function deleteMarkers() {
 
 function search () {
   $('.search_form, .menu_search_form').on('ajax:success', function(xha, data, status) {
-    markerCluster.setMap(null);
-    markerCluster = [];
     deleteMarkers();
     deleteAround();
 
-  $('div.ui.inverted.red.pointing.response.menu .item')
-    .tab('change tab', 'Advanced_Search')
-    .tab('deactivate all')
-    .tab('activate tab', 'Advanced_Search')
-    .tab('activate navigation', 'Advanced_Search')
-  ;
-  window.location.hash = 'Advanced_Search';
+    $('div.ui.inverted.red.pointing.response.menu .item')
+      .tab('change tab', 'Advanced_Search')
+      .tab('deactivate all')
+      .tab('activate tab', 'Advanced_Search')
+      .tab('activate navigation', 'Advanced_Search')
+    ;
+    window.location.hash = 'Advanced_Search';
 
-      var rating_index = data[1];
-      if( rating_index != " " && data[0].length > 0){
-        $('div.ui.form.success').hide();
+    var rating_index = data[1];
+    if( rating_index != " " && data[0].length > 0){
+      $('div.ui.form.success').hide();
 
-        $('div#search_show').html(
-         '<span id="serach_rating">搜尋排名</span><button class="undo ui orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-         "<ol id='search_result'>"
-       );
+      $('div#search_show').html(
+       '<span id="serach_rating">搜尋排名</span><button class="undo ui orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+       "<ol id='search_result'>"
+     );
 
-        appendSerachContent(data, rating_index);
-      }
-      else if( data[0].length > 0 ){
+      appendSerachContent(data, rating_index);
+    }
+    else if( data[0].length > 0 ){
 
-        $('div.ui.form.success').hide();
-        $('div#search_show').html(
-         '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui mini orange icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
-         "<ol id='search_result'>"
-        );
+      $('div.ui.form.success').hide();
+      $('div#search_show').html(
+       '<span id="serach_rating">搜尋結果(顯示前三筆)</span><button class="undo ui mini orange icon button" onclick="searchUndo()"><i class="undo icon"></i></button>' +
+       "<ol id='search_result'>"
+      );
 
-        appendSerachContent(data, rating_index);
-        var newCenter = new google.maps.LatLng( data[0][0].lat, data[0][0].lng);
-        map.setCenter(newCenter);
-        map.setZoom(13);
-      }
-      else {
+      appendSerachContent(data, rating_index);
+      var newCenter = new L.LatLng(data[0][0].lat, data[0][0].lng);
+      map.setView(newCenter, 13);
+    }
+    else {
 
-        $('div.ui.form.success').hide();
-        $('div#search_show').html(
-          '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui mini orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>');
-      }
+      $('div.ui.form.success').hide();
+      $('div#search_show').html(
+        '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui mini orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>');
+    }
 
     var real_price_list = data[0];
     for (var i = 0; i < real_price_list.length; i++) {
@@ -385,9 +380,7 @@ function search () {
     }
 
     //create clusterer and push the global array of markers into it.
-    markerCluster = L.markerClusterGroup();
-    markers.addLayer(markers);
-    map.addLayer(markers);
+    setAllMap();
 
     $("div#advanced_search form").hide();
     $("div#search_show").show();
