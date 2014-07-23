@@ -1,0 +1,18 @@
+<div id="reset_password">
+  <div class="ui form segment">
+  <h1>重設密碼</h1>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="field">
+      <%= f.label :email %>
+      <div class="ui labeled input">
+       <%= f.email_field :email, autofocus: true %>
+       </div>
+    </div>
+    <div class="actions">
+      <%= f.submit "送出", class:"ui red button"%>
+    </div>
+  <% end %>
+  <div><%= render "devise/shared/links" %></div>
+</div>
+</div>
