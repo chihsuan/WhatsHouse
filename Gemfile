@@ -58,3 +58,6 @@ gem 'certified'
 gem 'oauth2'
 gem "settingslogic"
 gem 'compass-rails'
+group :development do
+	gem 'guard-livereload', require: false
+end
