@@ -6,21 +6,24 @@ var around = {};
 // google map, I have to add them on layers and then add to map
 // remove on map to hide/show the markers.
 var aroundLayers = [];
-var markers = [];
+var houseMarkers = [];
+var searchHouseMarkers = [];
 var markerCluster;
 var getHouse;
 var id_markers = {};
 
+// set zoom level
+var zoomLevel = 8;
+// setCenter
+var center = [23.708924, 122.045115];
 var focusPoint = {
   lat: null,
   lng: null
 };
 
 function initialize() {
-  // set zoom level
-  var zoomLevel = 12;
   // set center
-  map = L.map('map_canvas').setView([22.999255, 120.215013], zoomLevel);
+  map = L.map('map_canvas').setView(center, zoomLevel);
   // add tile layer to map
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -28,15 +31,17 @@ function initialize() {
 
   markerCluster = L.markerClusterGroup();
 
-  markers = [];
+  houseMarkers = [];
   var real_price_list = gon.real_price_list;
 
   for (var i = 0; i < real_price_list.length; i++) {
-    createMarker(real_price_list[i], markers);
+    createMarker(real_price_list[i], houseMarkers);
   }
   //create clusterer and push the global array of markers into it.
-  markerCluster.addLayers(markers);
+  markerCluster.addLayers(houseMarkers);
   map.addLayer(markerCluster);
+  console.log("init : ");
+  console.log(markerCluster);
 }
 
 // add a marker to the map and push it to the map.
@@ -50,8 +55,8 @@ function createMarker(obj, markers) {
   marker.lng = obj.lng;
 
   marker.on('click', function(){
-    console.log("click");
-    console.log(marker.id);
+    // console.log("click");
+    // console.log(marker.id);
     // whenever click the marker change the menu tab to information
     $('div.ui.inverted.red.pointing.response.menu .item')
       .tab('change tab', 'Information')
@@ -75,7 +80,7 @@ function createMarker(obj, markers) {
     focusPoint.lng = marker.lng;
     // delete the around points of previous marker.
     deleteAround();
-    
+
     // disable all checkbox in the html
     $('.form .fields .checkbox').checkbox('disable');
     // request the data from database.
@@ -140,7 +145,7 @@ function createMarker(obj, markers) {
                   + sliderHTML + '</div>');
               jssor_slider1_starter('slider1_container');
             }
-            console.log(response[i].address);
+            // console.log(response[i].address);
           }
           else if( response[i].data == 'real_price_deals'){
             $('#information').html(
@@ -156,7 +161,7 @@ function createMarker(obj, markers) {
             // if the data category of response is not in around
             // around will add a property of data.
             if (!(response[i].data in around)) {
-              console.log("found " + response[i].data);
+              // console.log("found " + response[i].data);
               around[response[i].data] = [];
             }
             addAroundMarker(response[i]);
@@ -315,27 +320,54 @@ function deleteAround () {
 }
 
 // Sets the map on all markers in the array.
-function setAllMap() {
-  markerCluster = L.markerClusterGroup();
-  markerCluster.addLayers(markers);
-  map.addLayer(markerCluster);
+function setHouses(markers) {
+  // [NOTE] : there is a problem that really puzzle me... ,
+  // when the argument-markers is houseMarkers(array), if I use code
+  // in the "else" block below, markerCluster doesn't show up,
+  // but If I don't use markerCluster, just add marker one by one,
+  // it works...but that isn't what I want, so I specifically excluded
+  // the houseMarkers, and rebuild all markers(the cost is very expensive, I know)
+  // , markerCluster works... but I dont't know why...
+  if (markers === "houseMarkers") {
+    console.log("houseMarkers");
+    console.log(houseMarkers);
+    markerCluster = L.markerClusterGroup();
+
+    houseMarkers = [];
+    var real_price_list = gon.real_price_list;
+
+    for (var i = 0; i < real_price_list.length; i++) {
+      createMarker(real_price_list[i], houseMarkers);
+    }
+    //create clusterer and push the global array of markers into it.
+    markerCluster.addLayers(houseMarkers);
+    map.addLayer(markerCluster);
+    console.log(houseMarkers);
+  }
+  else {
+    markerCluster = L.markerClusterGroup();
+    markerCluster.addLayers(markers);
+    map.addLayer(markerCluster);
+  }
 }
 
 // Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
+function clearHouses() {
   map.removeLayer(markerCluster);
 }
 
 
 // Deletes all markers in the array by removing references to them.
-function deleteMarkers() {
-  clearMarkers();
-  markers = [];
+function deleteHouses(markers) {
+  clearHouses();
+  houseMarkers = [];
 }
 
 function search () {
   $('.search_form, .menu_search_form').on('ajax:success', function(xha, data, status) {
-    deleteMarkers();
+    // clear the last search result
+    searchHouseMarkers = [];
+    clearHouses();
     deleteAround();
 
     $('div.ui.inverted.red.pointing.response.menu .item')
@@ -370,23 +402,23 @@ function search () {
       map.setView(newCenter, 13);
     }
     else {
-
       $('div.ui.form.success').hide();
       $('div#search_show').html(
         '<span id="serach_rating">搜尋結果(0筆)</span><button class="undo ui mini orange mini icon button" onclick="searchUndo()"><i class="undo icon"></i></button>');
     }
 
     var real_price_list = data[0];
+    // search result will be stored into searchHouseMarkers .
     for (var i = 0; i < real_price_list.length; i++) {
-      createMarker(real_price_list[i], markers);
+      createMarker(real_price_list[i], searchHouseMarkers);
     }
 
     //create clusterer and push the global array of markers into it.
-    setAllMap();
+    setHouses(searchHouseMarkers);
 
+    // hide search form, show search result
     $("div#advanced_search form").hide();
     $("div#search_show").show();
-
   });
 }
 
@@ -416,8 +448,14 @@ function moveToMarker(event, markerID){
 }
 
 function searchUndo(){
+  deleteAround();
+  clearHouses();
+  // the houseMarkers is a special case, see what I note
+  // in function setHouses.
+  setHouses("houseMarkers");
   $("div#advanced_search form").show();
   $("div#search_show").hide();
+  map.setView(center, zoomLevel);
 }
 
 function initalCheckbox(){
