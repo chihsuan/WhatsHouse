@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class RentHousesController < ApplicationController
   before_filter :authenticate_user!
   before_action :find_house, only: [:edit, :update, :destroy, :show]

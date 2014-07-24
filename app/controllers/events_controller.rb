@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class EventsController < ApplicationController
 
   # event that handle ajax get or post

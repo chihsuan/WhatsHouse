@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class MapsController < ApplicationController
 
   #show house data in map
