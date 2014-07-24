@@ -1,3 +1,36 @@
+# -*- encoding : utf-8 -*-
+# == Schema Information
+#
+# Table name: rent_houses
+#
+#  id       :integer          not null, primary key
+#  string   "owner"
+#  string   "address"
+#  string   "structure"
+#  string   "size"
+#  string   "year"
+#  string   "floor"
+#  string   "email"
+#  string   "tel"
+#  text     "information"
+#  string   "note"
+#  datetime "created_at"
+#  datetime "updated_at"
+#  integer  "user_id"
+#  string   "type"
+#  float    "lat"
+#  float    "lng"
+#  string   "data",        default: "rent_houses"
+#  string   "use"
+#  string   "district"
+#  string   "around_list"
+#  string   "img"
+#  integer  "price"
+#  integer  "people"
+#  integer  "browse_rate", default: 0
+ 
+
+
 class RentHouse < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   validates :user_id, presence: true
