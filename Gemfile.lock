@@ -251,6 +251,7 @@ DEPENDENCIES
   jquery-rails
   leaflet-rails
   less-rails
+  minitest
   oauth2
   omniauth
   omniauth-facebook
