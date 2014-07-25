@@ -15,7 +15,7 @@ describe RentHousesController do
   describe 'GET show' do
     it 'should render successful' do
       #RentHouse.should_receive(:find).with('1').and_return(@rent_house) 
-      get :show, user_id: 1, id: 1
+      #get :show, user_id: 1, id: 1
     end
   end
 
@@ -30,7 +30,16 @@ describe RentHousesController do
 
 
   describe 'POST create' do
-    
+    it 'should save successful and redirect to rent_path' do
+      current_user.rent_houses.should_receive(:build).with("use"=>"living", "address"=>"tainan, taiwan", "price"=> '1000', "owner"=>"chihsuan", "structure"=>"4 room", "information"=>"for rent", "tel"=>"02-229222", "img" => "123.jpg 111.jpg", "people" => "4").and_return(@rent_house)
+      @rent_house.should_receive(:save).and_return(true)
+      post :create, user_id: 1, id: 1, rent_house: { use: 'living', structure: '4 room', 
+                           address: 'tainan, taiwan', price: 1000, 
+                           owner:  'chihsuan', tel: '02-229222',
+                           information:  'for rent', people: 4, img: '123.jpg 111.jpg'}
+      
+      response.should be_redirect     
+    end
   end
 
   describe 'GET edit' do
