@@ -56,8 +56,8 @@ describe RentHousesController do
   describe 'PUT update' do
     it 'should save successful and redirect to show' do
       current_user.stub_chain(:rent_houses, :find).with('1').and_return(@rent_house)
-      @rent_house.should_receive(:update_attributes).with('price' => '1222', 'information' => 'air conditioner').and_return(true)
-      put :update, user_id: 1, id: 1, rent_house: { price: '1222', information: 'air conditioner' } 
+      @rent_house.should_receive(:update_attributes).with('price' => '1222', 'information' => 'air conditioner', 'img' => '11 11').and_return(true)
+      put :update, user_id: 1, id: 1, rent_house: { price: '1222', information: 'air conditioner', img: '11 11'} 
 
       response.should be_redirect
     end
