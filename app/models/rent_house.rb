@@ -45,6 +45,11 @@ class RentHouse < ActiveRecord::Base
 
   scope :initial, -> { select("id, lat, lng, address, data") }
 
+
+  def set_img(img)
+    self.img = img.join(',')
+  end 
+
   def set_around_list
 
     @lat_upper = self.lat + 0.005
