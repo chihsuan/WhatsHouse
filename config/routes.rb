@@ -1,25 +1,23 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root :to => "pages#index"
-
+  
   resources :users do
     resources :rent_houses
   end
   
-  # ajax path
-  resource :events do
+  # set up ajax require path
+  resources :rent_houses do
     collection do
-      get 'house_detail'
+      get 'click_marker'
       get 'search' 
-      get 'advancedSearch'
+      get 'advanced_search'
     end
   end
 
-  # main page router
-  get 'content' => 'pages#index'
+  # static pages
   get 'about_us' => 'pages#about_us'
   get 'contact' => 'pages#contact'
-  get 'rent' => 'maps#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
