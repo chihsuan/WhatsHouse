@@ -1,18 +1,19 @@
 # -*- encoding : utf-8 -*-
 
 class RentHousesController < ApplicationController
-  before_filter :authenticate_user!, except: [:click_marker, :search, :advanced_search]
+  before_action :authenticate_user!, except: [:index, :click_marker, :search, :advanced_search]
+  before_action :find_user, except: [:index, :click_marker, :search, :advanced_search]
   before_action :find_house, only: [:edit, :update, :destroy, :show]
 
   def index
-    gon.real_price_list = RentHouse.initial.as_json()
+    # Initial house data for js  
+    gon.house_list = RentHouse.initial.as_json()
   end
 
   def show
   end
 
   def edit
-    @user = current_user
   end
 
   def update
@@ -25,13 +26,11 @@ class RentHousesController < ApplicationController
   end
 
   def new
-    @user = current_user
     @rent_house = @user.rent_houses.build
-    @rent_houses = @user.rent_houses.paginate(page: params[:page])
+    #@rent_houses = @user.rent_houses.paginate(page: params[:page])
   end
 
   def create
-    @user = current_user
     @rent_house = current_user.rent_houses.build(rentHouses_params)
     @rent_house.set_img(params[:img]) if params[:img].present?
     
@@ -39,15 +38,14 @@ class RentHousesController < ApplicationController
       flash[:success] = "RentHouse created!"
       redirect_to @user
     else
-      @user = current_user
       render :new
     end
   end
 
   def destroy
     @rent_house.destroy
-    @user = current_user
-    redirect_to @user
+    
+    redirect_to users_path(@user)
   end
 
   # For ajax return house data
@@ -81,6 +79,7 @@ class RentHousesController < ApplicationController
     @keyword = params[:district]
     @data = RentHouse.where("address like ?", "%#{@keyword}%")
     @data = [ @data, " "]
+    
     respond_to do |format|
       format.json { render :json => @data }
     end
@@ -110,6 +109,7 @@ class RentHousesController < ApplicationController
     else
       @data = [@data] + [" "]
     end
+    
     respond_to do |format|
       format.json { render :json => @data }
     end
@@ -119,7 +119,11 @@ class RentHousesController < ApplicationController
 
   def rentHouses_params
     params.require(:rent_house).permit(:use, :address, :price, :owner, :structure, 
-                                       :information, :tel, :name, :email, :district, :around_list, :img, :people)
+                                       :information, :tel, :name, :around_list, :img, :people)
+  end
+
+  def find_user
+    @user = current_user
   end
 
   def find_house

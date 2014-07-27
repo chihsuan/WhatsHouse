@@ -29,8 +29,6 @@
 #  integer  "people"
 #  integer  "browse_rate", default: 0
  
-
-
 class RentHouse < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   validates :user_id, presence: true
