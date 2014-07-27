@@ -3,8 +3,9 @@ require 'spec_helper'
 describe RentHousesController, :type => :controller do
 
   before do
-    @user = FactoryGirl.create(:user)
-    @rent_house = FactoryGirl.create(:rent_house)
+    @user = User.new
+    @user.stub(to_param: '1')
+    @rent_house = RentHouse.new
     @rent_house.stub(to_param: '1')
     controller.stub(:authenticate_user!)
     controller.stub(:current_user).and_return(@user)
@@ -22,7 +23,7 @@ describe RentHousesController, :type => :controller do
 
   describe 'GET show' do
     it 'should render successful' do
-      expect(current_user.rent_houses.find(1)).to eq(@rent_houses)
+      current_user.rent_houses.should_receive(:find).with('1').and_return(@rent_house)
       get :show, user_id: 1, id: 1
       expect(assigns[:rent_house]).to eq @rent_house
       expect(response).to be_success
