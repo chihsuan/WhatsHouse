@@ -3,10 +3,10 @@
 
 class PagesController < ApplicationController
 
-  # home page
   def index
     if signed_in? 
-      redirect_to rent_houses_path
+      gon.house_list = RentHouse.initial.as_json()
+      render template:  'rent_houses/index.html.erb'
     end
   end
 

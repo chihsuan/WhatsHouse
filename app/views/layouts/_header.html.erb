@@ -19,7 +19,7 @@
       </div>
     <% end %>
     <div class="right menu">
-      <% if current_user %>
+      <% if user_signed_in? %>
         <%= link_to new_user_rent_house_path(current_user), id:"renthouse_link", class:"item" do%>
           <i class="add icon"></i>出租
         <% end %>

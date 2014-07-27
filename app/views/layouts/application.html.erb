@@ -15,6 +15,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag controller_name %>
     <%= javascript_include_tag "application", controller_name , 'data-turbolinks-track' => true %>
+    <% if user_signed_in? and controller_name == 'pages' %>
+      <%= javascript_include_tag "application", 'rent_houses' , 'data-turbolinks-track' => true %>
+      <%= stylesheet_link_tag 'rent_houses' %>
+    <% end %>
     <%= yield :head %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
