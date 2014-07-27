@@ -29,7 +29,7 @@ function initialize() {
   markerCluster = L.markerClusterGroup();
 
   markers = [];
-  var real_price_list = gon.real_price_list;
+  var real_price_list = gon.house_list;
 
   for (var i = 0; i < real_price_list.length; i++) {
     createMarker(real_price_list[i], markers);
@@ -80,7 +80,7 @@ function createMarker(obj, markers) {
     $('.form .fields .checkbox').checkbox('disable');
     // request the data from database.
     jQuery.ajax({
-      url : '/events/house_detail',
+      url : '/rent_houses/click_marker',
       dataType : 'json',
       type : 'GET',
       data : {

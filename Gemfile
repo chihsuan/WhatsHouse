@@ -61,3 +61,10 @@ gem 'compass-rails'
 group :development do
 	gem 'guard-livereload', require: false
 end
+group :test, :development do
+  gem "rspec", "~> 3.0.0"
+  gem "rspec-rails", "~> 3.0.0"
+  gem "minitest"
+  gem 'factory_girl_rails'
+end
+
