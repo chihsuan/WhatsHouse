@@ -45,15 +45,13 @@ class RentHousesController < ApplicationController
     redirect_to user_path(@user)
   end
 
-  # For ajax return house data
   def get_data
 
-    @rent_house =  RentHouse.find(params[:id])
-    @around_data = @rent_house.get_around_data
+    @rent_house =  RentHouse.find(params[:id]) 
+    @data = [@rent_house] + @rent_house.get_around_data
 
-    #return house information to user
     respond_to do |format|
-      format.json { render :json => [@rent_house, @around_data] }
+      format.json { render :json => @data }
     end
   end
 
