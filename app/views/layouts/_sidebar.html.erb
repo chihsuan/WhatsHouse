@@ -5,7 +5,7 @@
     首頁
   <% end %>
   <% if !user_signed_in? %>
-    <%= link_to rent_houses_path, class:"item", 'data-no-turbolink' => true do %>
+    <%= link_to '/renthouses', class:"item", 'data-no-turbolink' => true do %>
       <i class="map marker icon"></i>
       租屋
     <% end %>

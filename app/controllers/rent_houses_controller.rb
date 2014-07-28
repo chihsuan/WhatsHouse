@@ -51,7 +51,7 @@ class RentHousesController < ApplicationController
   # For ajax return house data
   def click_marker
 
-    @data = [ RentHouse.find(params[:real_price_id]) ]
+    @data = [ RentHouse.find(params[:rent_house_id]) ]
 
     # find building around this house by lat, lng (around 1km)
     @lat_upper = Float(params[:lat]) + 0.005
