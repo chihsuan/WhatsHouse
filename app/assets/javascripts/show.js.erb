@@ -80,11 +80,11 @@ function createMarker(obj, markers) {
     $('.form .fields .checkbox').checkbox('disable');
     // request the data from database.
     jQuery.ajax({
-      url : '/rent_houses/click_marker',
+      url : '/rent_houses/get_data',
       dataType : 'json',
       type : 'GET',
       data : {
-        rent_house_id : marker.id,
+        id : marker.id,
         lat: marker.lat,
         lng: marker.lng
       },

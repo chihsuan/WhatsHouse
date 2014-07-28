@@ -3,14 +3,13 @@ Rails.application.routes.draw do
   root :to => "pages#index"
   
   resources :users
-  resources :rent_houses
-
-  # set up ajax require path
-  get '/rent_houses/click_marker' => 'rent_houses#click_marker'
-  get '/rent_houses/search' => 'rent_houses#search'
-  get '/rent_houses/advanced_search' => 'rent_houses#advanced_search'
-  get '/rent_houses' => 'rent_houses#index'
-
+  resources :rent_houses do
+    collection do
+      get 'get_data' => 'rent_houses#get_data'
+      get 'search' => 'rent_houses#search'
+      get 'advanced_search' => 'rent_houses#advanced_search'
+    end
+  end
 
   # static pages
   get 'about_us' => 'pages#about_us'

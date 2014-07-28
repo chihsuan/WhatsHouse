@@ -89,17 +89,31 @@ class RentHouse < ActiveRecord::Base
     @data += Subway.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
   end
 
-  def ranking
-    @score_list = []
-    for house in @data
-      @score = 0
-      for i in 0...params[:rating].length
-        @score = @score + house['around_list'][i].to_i * params[:rating][i].to_i
-      end
-      @score_list << @score
-    end
-    @data = [@data] + [ @score_list.map.with_index.sort_by(&:first).map(&:last) ]
-    #@data = [@data] + [" "]
-  end
+  def self.get_ranking(price, district, people, rating)
 
+    if price.present? && district.present?
+      @data = RentHouse.where("address like ?", "%#{@district}%").where(:price => 
+                                                                        price.split(" ")[0]...price.split(" ")[1]).where(:people => people)
+    elsif price.present?
+      @data = RentHouse.where(:price => price.split(" ")[0]...price.split(" ")[1]).where(:people => people )
+    else
+      @data = RentHouse.where("address like ?", "%#{@district}%").where(:people => people)
+    end
+
+    if rating.present?
+      @score_list = []
+      for house in @data
+        @score = 0
+        for i in 0...rating.length
+          @score = @score + house['around_list'][i].to_i * rating[i].to_i
+        end
+        @score_list << @score
+      end
+      @rank = @score_list.map.with_index.sort_by(&:first).map(&:last) 
+      
+      @data = [@data, @rank]
+    else
+      @data = [@data, " "]
+    end
+  end
 end
