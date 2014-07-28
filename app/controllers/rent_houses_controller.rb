@@ -46,7 +46,6 @@ class RentHousesController < ApplicationController
   end
 
   def get_data
-
     @rent_house =  RentHouse.find(params[:id]) 
     @data = [@rent_house] + @rent_house.get_around_data
 
@@ -63,9 +62,7 @@ class RentHousesController < ApplicationController
     end
   end
 
-
   def advanced_search
-
     @data = RentHouse.get_ranking(params[:price], params[:district], params[:people], params[:rating])
     
     respond_to do |format|
