@@ -16,7 +16,7 @@ describe RentHousesController, :type => :controller do
   describe 'GET index' do
     it 'should render successful' do
       expect(RentHouse.initial.as_json()).to eq([])
-      get :index #, user_id: 1, id: 1
+      get :index 
       expect(response).to be_success
     end
   end

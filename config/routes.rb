@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth/omniauth_callbacks" }
   root :to => "pages#index"
   
-  resources :users do
-    resources :rent_houses
-  end
+  resources :users
+  resources :rent_houses
 
   # set up ajax require path
   get '/rent_houses/click_marker' => 'rent_houses#click_marker'

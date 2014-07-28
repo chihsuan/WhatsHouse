@@ -28,7 +28,7 @@
 #  integer  "price"
 #  integer  "people"
 #  integer  "browse_rate", default: 0
- 
+
 class RentHouse < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   validates :user_id, presence: true
@@ -69,4 +69,37 @@ class RentHouse < ActiveRecord::Base
   def increase_browse_rates
     update_attributes(:browse_rate => browse_rate +  1)
   end
+
+  def get_around_data
+    # find building around this house by lat, lng (around 1km)
+    @lat_upper = Float(self.lat) + 0.005
+    @lat_lower = Float(self.lat) - 0.005
+    @lng_upper = Float(self.lng) + 0.005
+    @lng_lower = Float(self.lng) - 0.005
+
+    #database select
+    @data = []
+    @data += Stores.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+    @data += Hospitals.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+    @data += Station.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+    @data += Market.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+    @data += Dining.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+    @data += PostOffice.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+    @data += GasStation.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+    @data += Subway.where(:lat => @lat_lower...@lat_upper, :lng => @lng_lower...@lng_upper)
+  end
+
+  def ranking
+    @score_list = []
+    for house in @data
+      @score = 0
+      for i in 0...params[:rating].length
+        @score = @score + house['around_list'][i].to_i * params[:rating][i].to_i
+      end
+      @score_list << @score
+    end
+    @data = [@data] + [ @score_list.map.with_index.sort_by(&:first).map(&:last) ]
+    #@data = [@data] + [" "]
+  end
+
 end
