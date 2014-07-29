@@ -29,11 +29,10 @@ class RentHousesController < ApplicationController
 
   def create
     @rent_house = current_user.rent_houses.build(rentHouses_params)
-    @rent_house.set_img(params[:img]) if params[:img].present?
 
     if @rent_house.save
       flash[:success] = "RentHouse created!"
-      redirect_to users_path(@user)
+      redirect_to user_path(current_user)
     else
       render :new
     end
@@ -41,7 +40,6 @@ class RentHousesController < ApplicationController
 
   def destroy
     @rent_house.destroy
-
     redirect_to user_path(@user)
   end
 
@@ -55,7 +53,7 @@ class RentHousesController < ApplicationController
   end
 
   def search
-    @data = RentHouse.where("address like ?", "%#{params[:district]}%")
+    @data = RentHouse.address_is(params[:district])
 
     respond_to do |format|
       format.json { render :json => [@data, " "] }
@@ -64,7 +62,7 @@ class RentHousesController < ApplicationController
 
   def advanced_search
     @data = RentHouse.get_ranking(params[:price], params[:district], params[:people], params[:rating])
-    
+
     respond_to do |format|
       format.json { render :json => @data }
     end
