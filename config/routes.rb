@@ -2,16 +2,12 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth/omniauth_callbacks" }
   root :to => "pages#index"
   
-  resources :users do
-    resources :rent_houses
-  end
-  
-  # set up ajax require path
+  resources :users
   resources :rent_houses do
     collection do
-      get 'click_marker'
-      get 'search' 
-      get 'advanced_search'
+      get 'get_data' => 'rent_houses#get_data'
+      get 'search' => 'rent_houses#search'
+      get 'advanced_search' => 'rent_houses#advanced_search'
     end
   end
 

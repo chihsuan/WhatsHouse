@@ -5,13 +5,13 @@
     首頁
   <% end %>
   <% if !user_signed_in? %>
-    <%= link_to rent_houses_path, class:"item", 'data-no-turbolink' => true do %>
+    <%= link_to '/renthouses', class:"item", 'data-no-turbolink' => true do %>
       <i class="map marker icon"></i>
       租屋
     <% end %>
   <% end%>
   <% if signed_in? %>
-    <%= link_to new_user_rent_house_path(current_user), class:"item", 'data-no-turbolink' => true do %>
+    <%= link_to new_rent_house_path, class:"item", 'data-no-turbolink' => true do %>
       <i class="add icon"></i>
       出租
     <% end %>

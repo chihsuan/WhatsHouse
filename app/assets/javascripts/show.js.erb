@@ -30,7 +30,7 @@ function initialize() {
 
   markers = [];
   var real_price_list = gon.house_list;
-
+  console.log(real_price_list);
   for (var i = 0; i < real_price_list.length; i++) {
     createMarker(real_price_list[i], markers);
   }
@@ -80,19 +80,18 @@ function createMarker(obj, markers) {
     $('.form .fields .checkbox').checkbox('disable');
     // request the data from database.
     jQuery.ajax({
-      url : '/rent_houses/click_marker',
+      url : '/rent_houses/get_data',
       dataType : 'json',
       type : 'GET',
       data : {
-        real_price_id : marker.id,
-        data: marker.data,
+        id : marker.id,
         lat: marker.lat,
         lng: marker.lng
       },
       // if success, check the data type and send the information to the
       // corresponding block.
       success : function(response) {
-        // console.log(response);
+         console.log(response);
         for ( i=0; i < response.length; ++i ){
           if ( response[i].data == 'sale_houses'){
             $('#information').html(

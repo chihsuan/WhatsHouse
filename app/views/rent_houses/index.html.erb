@@ -3,6 +3,20 @@
     <%= javascript_include_tag "show" %>
   <% end %>
   <body onload="initialize()">
+<%= content_for :search_bar do %>
+  <div class="menu_search_form">	
+        <div class="item">
+          <%= form_tag( search_rent_houses_path, remote:true, method:'get', class:"search_form") do%>
+            <div class="ui icon input">
+              <%= text_field_tag(:district, nil,placeholder: "搜尋城市、鄉鎮市區") %>
+              <i class="search icon">
+              </i>
+              <%= submit_tag("", onClick:"search()", class:"ui button search_submit") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+ <% end %>   
     <div id="map_canvas" style="width:100%; height:100%">
     </div>
     <div class="ui response cell grid">

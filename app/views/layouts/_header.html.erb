@@ -4,23 +4,10 @@
     <%= link_to root_path, class:"item", 'data-no-turbolink' => true do %>
       <h2><i class="home icon"></i>WhatsHouse</h2>
     <% end %>
-    <% if current_page?('maps') %>
-      <div class="menu_search_form">	
-        <div class="item">
-          <%= form_tag( search_rent_houses_path, remote:true, method:'get', class:"search_form") do%>
-            <div class="ui icon input">
-              <%= text_field_tag(:district, nil,placeholder: "搜尋城市、鄉鎮市區") %>
-              <i class="search icon">
-              </i>
-              <%= submit_tag("", onClick:"search()", class:"ui button search_submit") %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+    <%= yield :search_bar %>
     <div class="right menu">
       <% if user_signed_in? %>
-        <%= link_to new_user_rent_house_path(current_user), id:"renthouse_link", class:"item" do%>
+        <%= link_to new_rent_house_path, id:"renthouse_link", class:"item" do%>
           <i class="add icon"></i>出租
         <% end %>
         <div class="ui pointing dropdown item">

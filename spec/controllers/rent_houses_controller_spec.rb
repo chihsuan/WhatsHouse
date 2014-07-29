@@ -16,7 +16,7 @@ describe RentHousesController, :type => :controller do
   describe 'GET index' do
     it 'should render successful' do
       expect(RentHouse.initial.as_json()).to eq([])
-      get :index, user_id: 1, id: 1
+      get :index 
       expect(response).to be_success
     end
   end
@@ -46,10 +46,10 @@ describe RentHousesController, :type => :controller do
                                                            "information"=>"for rent", "tel"=>"02-229222", 
                                                            "img" => "123.jpg 111.jpg", "people" => "4").and_return(@rent_house)
       @rent_house.should_receive(:save).and_return(true)
-      post :create, user_id: 1, id: 1, rent_house: { use: 'living', structure: '4 room', 
-        address: 'tainan, taiwan', price: 1000, 
-        owner:  'chihsuan', tel: '02-229222',
-        information:  'for rent', people: 4, img: '123.jpg 111.jpg'}
+      post :create, user_id: 1, rent_house: { use: 'living', structure: '4 room', 
+                                                     address: 'tainan, taiwan', price: 1000, 
+                                                     owner:  'chihsuan', tel: '02-229222',
+                                                     information:  'for rent', people: 4, img: '123.jpg 111.jpg'}
 
       expect(response).to be_redirect
     end
