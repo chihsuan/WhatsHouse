@@ -42,8 +42,6 @@ ruby "2.1.1"
 gem 'gon'
 gem 'leaflet-rails'
 
-gem 'bcrypt-ruby'
-
 gem 'therubyracer', platforms: :ruby # or any other runtime
 gem 'less-rails'
 gem 'autoprefixer-rails'
